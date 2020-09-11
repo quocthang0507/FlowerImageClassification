@@ -37,6 +37,14 @@ namespace FlowerImageClassification.Shared
 			OutputModelPath = outputModelPath;
 			InputFolderPathForPrediction = inputFolderPathForPrediction;
 			InputFolderPathForTraining = inputFolderPathForTraining;
+			// MLContext's random number generator is the global source of randomness for all of such random operations.
+			mlContext = new MLContext(1);
+			mlContext.Log += PrintMLContextLog;
+		}
+
+		public void TrainModel()
+		{
+
 		}
 
 		/// <summary>
@@ -49,7 +57,9 @@ namespace FlowerImageClassification.Shared
 			var predictionsDataView = trainedModel.Transform(testDataset);
 			var metrics = mlContext.MulticlassClassification.Evaluate(predictionsDataView, "LabelAsKey", "PredictedLabel");
 			ConsoleHelper.PrintMultiClassClassificationMetrics("TensorFlow DNN Transfer Learning", metrics);
-
+			watch.Stop();
+			var milliseconds = watch.ElapsedMilliseconds;
+			Console.WriteLine($"Predicting and Evaluation took: {milliseconds / 1000} seconds");
 		}
 
 		/// <summary>
