@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using FlowerImageClassification.Training.Models;
+using FlowerImageClassification.WebApp.Models;
 
-namespace FlowerImageClassification.Training.Controllers
+namespace FlowerImageClassification.WebApp.Controllers
 {
 	public class HomeController : Controller
 	{

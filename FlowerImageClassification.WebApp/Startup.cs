@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace FlowerImageClassification.Training
+namespace FlowerImageClassification.WebApp
 {
 	public class Startup
 	{

@@ -1,6 +1,6 @@
 using System;
 
-namespace FlowerImageClassification.Training.Models
+namespace FlowerImageClassification.WebApp.Models
 {
 	public class ErrorViewModel
 	{

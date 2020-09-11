@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowerImageClassification.Training", "FlowerImageClassification.Training\FlowerImageClassification.Training.csproj", "{14F3003C-F2A6-4EDE-9E87-87FA23A5745C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowerImageClassification.Training", "FlowerImageClassification.Training\FlowerImageClassification.Training.csproj", "{A57039DD-00FA-4AB0-88C0-4454AB876226}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowerImageClassification.Prediction", "FlowerImageClassification.Prediction\FlowerImageClassification.Prediction.csproj", "{4C0D7DCF-332B-442F-9EBD-2A949B14610A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowerImageClassification.Shared", "FlowerImageClassification.Shared\FlowerImageClassification.Shared.csproj", "{66379751-661F-4778-8950-F35E78E4373A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowerImageClassification.WebApp", "FlowerImageClassification.WebApp\FlowerImageClassification.WebApp.csproj", "{3BF93C46-9EB8-4278-81A4-E6B4787A4B98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{14F3003C-F2A6-4EDE-9E87-87FA23A5745C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14F3003C-F2A6-4EDE-9E87-87FA23A5745C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14F3003C-F2A6-4EDE-9E87-87FA23A5745C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14F3003C-F2A6-4EDE-9E87-87FA23A5745C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A57039DD-00FA-4AB0-88C0-4454AB876226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A57039DD-00FA-4AB0-88C0-4454AB876226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A57039DD-00FA-4AB0-88C0-4454AB876226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A57039DD-00FA-4AB0-88C0-4454AB876226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C0D7DCF-332B-442F-9EBD-2A949B14610A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C0D7DCF-332B-442F-9EBD-2A949B14610A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C0D7DCF-332B-442F-9EBD-2A949B14610A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C0D7DCF-332B-442F-9EBD-2A949B14610A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66379751-661F-4778-8950-F35E78E4373A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66379751-661F-4778-8950-F35E78E4373A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66379751-661F-4778-8950-F35E78E4373A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66379751-661F-4778-8950-F35E78E4373A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BF93C46-9EB8-4278-81A4-E6B4787A4B98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BF93C46-9EB8-4278-81A4-E6B4787A4B98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BF93C46-9EB8-4278-81A4-E6B4787A4B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BF93C46-9EB8-4278-81A4-E6B4787A4B98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

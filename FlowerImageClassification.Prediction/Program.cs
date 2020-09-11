@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FlowerImageClassification.Training
+namespace FlowerImageClassification.Prediction
 {
 	class Program
 	{
