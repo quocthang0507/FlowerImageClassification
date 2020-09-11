@@ -1,8 +1,11 @@
-﻿using FlowerImageClassification.Shared.Image;
+﻿using FlowerImageClassification.Shared.Common;
+using FlowerImageClassification.Shared.Image;
 using Microsoft.ML;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace FlowerImageClassification.Shared
@@ -27,6 +30,7 @@ namespace FlowerImageClassification.Shared
 
 		private MLContext mlContext;
 		private ITransformer trainedModel;
+		private IDataView testDataset;
 
 		public MLTraining(string outputModelPath, string inputFolderPathForPrediction, string inputFolderPathForTraining)
 		{
@@ -36,12 +40,29 @@ namespace FlowerImageClassification.Shared
 		}
 
 		/// <summary>
-		/// Run prediction method to try single predictions
+		/// Evaluate model by making predictions in bulk
+		/// </summary>
+		public void EvaluateModel()
+		{
+			Console.WriteLine("Making predictions in bulk for evaluating model's quality...");
+			var watch = Stopwatch.StartNew();
+			var predictionsDataView = trainedModel.Transform(testDataset);
+			var metrics = mlContext.MulticlassClassification.Evaluate(predictionsDataView, "LabelAsKey", "PredictedLabel");
+			ConsoleHelper.PrintMultiClassClassificationMetrics("TensorFlow DNN Transfer Learning", metrics);
+
+		}
+
+		/// <summary>
+		/// Get the first image file and run prediction method
 		/// </summary>
 		/// <param name="predictedImagesFolderPath"></param>
 		public void RunSinglePrediction(string predictedImagesFolderPath)
 		{
-
+			var predictionEngine = mlContext.Model.CreatePredictionEngine<ImageDataInMemory, ImagePrediction>(trainedModel);
+			var predictedImages = FileUtils.LoadImagesFromDirectoryInMemory(predictedImagesFolderPath, false);
+			var image = predictedImages.First();
+			var prediction = predictionEngine.Predict(image);
+			PrintImagePrediction(image.ImageData.ImagePath, "Unknown", prediction.PredictedLabel, prediction.Score.Max());
 		}
 
 		/// <summary>
@@ -51,8 +72,12 @@ namespace FlowerImageClassification.Shared
 		public void RunMultiplePredictions(string predictedImagesFolderPath)
 		{
 			var predictionEngine = mlContext.Model.CreatePredictionEngine<ImageDataInMemory, ImagePrediction>(trainedModel);
-			var testImages = FileUtils.LoadImagesFromDirectoryInMemory(predictedImagesFolderPath, false);
-
+			var predictedImages = FileUtils.LoadImagesFromDirectoryInMemory(predictedImagesFolderPath, false);
+			foreach (var image in predictedImages)
+			{
+				var prediction = predictionEngine.Predict(image);
+				PrintImagePrediction(image.ImageData.ImagePath, "Unknown", prediction.PredictedLabel, prediction.Score.Max());
+			}
 		}
 
 		/// <summary>
