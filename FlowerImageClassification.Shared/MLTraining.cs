@@ -47,9 +47,9 @@ namespace FlowerImageClassification.Shared
 		}
 
 		/// <summary>
-		/// Run the pipeline to train the model
+		/// Run the pipeline to train the model, then save the model to specific output folder path
 		/// </summary>
-		public void TrainModel()
+		public void RunPipeline()
 		{
 			// 2. Load the initial full image-set into an IDataView and shuffle so it'll be better balanced
 			IEnumerable<ImageData> images = FileUtils.LoadImagesFromDirectory(InputFolderPathForTraining, true);
@@ -66,12 +66,32 @@ namespace FlowerImageClassification.Shared
 			// 4. Split the data 80:20 into train and test sets, train and evaluate.
 			var splitData = mlContext.Data.TrainTestSplit(transformedDataset, 0.2);
 			IDataView trainDataset = splitData.TrainSet; // 80%
-			IDataView testDataset = splitData.TestSet; // 20%
+			testDataset = splitData.TestSet; // 20%
 
 			// 5. Call pipeline
-			CreateDefaultPipeline(testDataset);
+			var pipeline = CreateDefaultPipeline(testDataset);
 
+			// 6. Train/create the ML Model
+			Console.WriteLine("*** Training the image classification model with DNN Transfer Learning on top of the selected pre-trained model/architecture ***");
 
+			////////// Begin training
+			var watch = Stopwatch.StartNew();
+			trainedModel = pipeline.Fit(trainDataset);
+			watch.Stop();
+			////////// End training
+
+			var ms = watch.ElapsedMilliseconds;
+			Console.WriteLine($"Training with transfer learning took: {ms / 1000} seconds");
+
+			// 7. Get the quality metrics
+			EvaluateModel();
+
+			// 8. Save the model to assets/outputs ML.NET .zip model file and TF .pb model file
+			mlContext.Model.Save(trainedModel, trainDataset.Schema, OutputModelPath);
+			Console.WriteLine($"Model saved to: {OutputModelPath}");
+
+			// 9. Try a single prediction in an end-user app
+			
 		}
 
 		/// <summary>
@@ -80,11 +100,13 @@ namespace FlowerImageClassification.Shared
 		public void EvaluateModel()
 		{
 			Console.WriteLine("Making predictions in bulk for evaluating model's quality...");
+			// Begin evaluating
 			var watch = Stopwatch.StartNew();
 			var predictionsDataView = trainedModel.Transform(testDataset);
 			var metrics = mlContext.MulticlassClassification.Evaluate(predictionsDataView, "LabelAsKey", "PredictedLabel");
 			ConsoleHelper.PrintMultiClassClassificationMetrics("TensorFlow DNN Transfer Learning", metrics);
 			watch.Stop();
+			// End evaluating
 			var milliseconds = watch.ElapsedMilliseconds;
 			Console.WriteLine($"Predicting and Evaluation took: {milliseconds / 1000} seconds");
 		}
