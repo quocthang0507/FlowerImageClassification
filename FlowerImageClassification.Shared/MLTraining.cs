@@ -99,6 +99,10 @@ namespace FlowerImageClassification.Shared
 		/// </summary>
 		public void EvaluateModel()
 		{
+			if (trainedModel == null)
+			{
+				throw new Exception("Please run the pipeline before evaluating the model!");
+			}
 			Console.WriteLine("Making predictions in bulk for evaluating model's quality...");
 			// Begin evaluating
 			var watch = Stopwatch.StartNew();
@@ -117,6 +121,10 @@ namespace FlowerImageClassification.Shared
 		/// <param name="predictedImagesFolderPath"></param>
 		public void RunSinglePrediction(string predictedImagesFolderPath)
 		{
+			if (trainedModel == null)
+			{
+				throw new Exception("Please run the pipeline before predicting!");
+			}
 			var predictionEngine = mlContext.Model.CreatePredictionEngine<ImageDataInMemory, ImagePrediction>(trainedModel);
 			var predictedImages = FileUtils.LoadImagesFromDirectoryInMemory(predictedImagesFolderPath, false);
 			var image = predictedImages.First();
@@ -130,6 +138,10 @@ namespace FlowerImageClassification.Shared
 		/// <param name="predictedImagesFolderPath"></param>
 		public void RunMultiplePredictions(string predictedImagesFolderPath)
 		{
+			if (trainedModel == null)
+			{
+				throw new Exception("Please run the pipeline before predicting!");
+			}
 			var predictionEngine = mlContext.Model.CreatePredictionEngine<ImageDataInMemory, ImagePrediction>(trainedModel);
 			var predictedImages = FileUtils.LoadImagesFromDirectoryInMemory(predictedImagesFolderPath, false);
 			foreach (var image in predictedImages)
