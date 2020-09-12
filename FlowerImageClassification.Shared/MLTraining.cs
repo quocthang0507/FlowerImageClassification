@@ -1,6 +1,9 @@
 ﻿using FlowerImageClassification.Shared.Common;
 using FlowerImageClassification.Shared.Image;
 using Microsoft.ML;
+using Microsoft.ML.Data;
+using Microsoft.ML.Transforms;
+using Microsoft.ML.Vision;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -64,6 +67,11 @@ namespace FlowerImageClassification.Shared
 			var splitData = mlContext.Data.TrainTestSplit(transformedDataset, 0.2);
 			IDataView trainDataset = splitData.TrainSet; // 80%
 			IDataView testDataset = splitData.TestSet; // 20%
+
+			// 5. Call pipeline
+			CreateDefaultPipeline(testDataset);
+
+
 		}
 
 		/// <summary>
@@ -107,6 +115,45 @@ namespace FlowerImageClassification.Shared
 				var prediction = predictionEngine.Predict(image);
 				PrintImagePrediction(image.ImageData.ImagePath, "Unknown", prediction.PredictedLabel, prediction.Score.Max());
 			}
+		}
+
+		/// <summary>
+		/// 5. Define the model's training pipeline using DNN default values
+		/// </summary>
+		/// <param name="dataset"></param>
+		/// <returns></returns>
+		private EstimatorChain<KeyToValueMappingTransformer> CreateDefaultPipeline(IDataView dataset)
+		{
+			var pipline = mlContext.MulticlassClassification.Trainers.
+				ImageClassification("LabelAsKey", "Image", validationSet: dataset).
+				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
+			return pipline;
+		}
+
+		/// <summary>
+		/// 5.1. (Optional) Define the model's training pipeline by using explicit hyper-parameters
+		/// </summary>
+		/// <param name="dataset"></param>
+		/// <returns></returns>
+		private EstimatorChain<KeyToValueMappingTransformer> CreateCustomPipeline(IDataView dataset)
+		{
+			var options = new ImageClassificationTrainer.Options()
+			{
+				LabelColumnName = "LabelAsKey",
+				FeatureColumnName = "Image",
+				// Change the architecture to different DNN architecture
+				Arch = ImageClassificationTrainer.Architecture.ResnetV2101,
+				// Number of training iterations
+				Epoch = 100,
+				// Number of samples to use for mini-batch training
+				BatchSize = 10,
+				LearningRate = 0.01f,
+				MetricsCallback = (metrics) => Console.WriteLine(metrics),
+				ValidationSet = dataset
+			};
+			var pipeline = mlContext.MulticlassClassification.Trainers.ImageClassification(options).
+				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
+			return pipeline;
 		}
 
 		/// <summary>
