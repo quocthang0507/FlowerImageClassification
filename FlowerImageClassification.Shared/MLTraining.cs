@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using static Microsoft.ML.Transforms.ValueToKeyMappingEstimator;
 
 namespace FlowerImageClassification.Shared
 {
@@ -42,9 +43,27 @@ namespace FlowerImageClassification.Shared
 			mlContext.Log += PrintMLContextLog;
 		}
 
+		/// <summary>
+		/// Run the pipeline to train the model
+		/// </summary>
 		public void TrainModel()
 		{
+			// 2. Load the initial full image-set into an IDataView and shuffle so it'll be better balanced
+			IEnumerable<ImageData> images = FileUtils.LoadImagesFromDirectory(InputFolderPathForTraining, true);
+			IDataView dataset = mlContext.Data.LoadFromEnumerable(images);
+			IDataView shuffledDataset = mlContext.Data.ShuffleRows(dataset);
 
+			// 3. Load Images with in-memory type within the IDataView and Transform Labels to Keys (Categorical)
+			IDataView transformedDataset = mlContext.Transforms.Conversion.
+				MapValueToKey("LabelAsKey", "Label", keyOrdinality: KeyOrdinality.ByValue)
+				.Append(mlContext.Transforms.LoadRawImageBytes("Image", InputFolderPathForTraining, "ImagePath")).
+				Fit(shuffledDataset).
+				Transform(shuffledDataset);
+
+			// 4. Split the data 80:20 into train and test sets, train and evaluate.
+			var splitData = mlContext.Data.TrainTestSplit(transformedDataset, 0.2);
+			IDataView trainDataset = splitData.TrainSet; // 80%
+			IDataView testDataset = splitData.TestSet; // 20%
 		}
 
 		/// <summary>
