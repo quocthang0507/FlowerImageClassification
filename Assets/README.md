@@ -1,2 +1,1 @@
-# FlowerImageClassification
-Classify and recognize flower images using ML.Net library
+// Silence is gold

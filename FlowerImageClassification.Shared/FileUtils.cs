@@ -51,7 +51,7 @@ namespace FlowerImageClassification.Shared
 		public static string GetAbsolutePath(Assembly assembly, string relativePath)
 		{
 			var assemblyFolderPath = new FileInfo(assembly.Location).Directory.FullName;
-			return Path.Combine(assemblyFolderPath, relativePath);
+			return Path.GetFullPath(Path.Combine(assemblyFolderPath, relativePath));
 		}
 	}
 }
