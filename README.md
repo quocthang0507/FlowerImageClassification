@@ -1,5 +1,5 @@
 # FlowerImageClassification
-Classify and recognize flower images using ML.Net library
+Classify and recognize flower images using ML.NET library
 
 This solution based on DeepLearning_ImageClassification_Training, https://github.com/dotnet/machinelearning-samples/tree/master/samples/csharp/getting-started/DeepLearning_ImageClassification_Training
 
@@ -12,7 +12,7 @@ This solution based on DeepLearning_ImageClassification_Training, https://github
 Phân loại hình ảnh là một bài toán thường thấy trong lĩnh vực *Học Sâu*. Dưới đây trình bày cách tạo một mô hình phân loại hình ảnh tuỳ biến dựa trên cách tiếp cận *chuyển giao học tập*.
 
 *Kịch bản phân loại hình ảnh, sử dụng thư viện ML.NET xây dựng mô hình học sâu tuỳ biến*
-![](https://devblogs.microsoft.com/dotnet/wp-content/uploads/sites/10/2019/08/image-classifier-scenario.png)
+![](Readme/image-classifier-scenario.png)
 
 
 ## Tập dữ liệu (Dataset/Imageset)
@@ -24,4 +24,15 @@ Bạn có thể sử dụng nhiều tập hình ảnh hoa khác nhau, chẳng h�
 ![](102categories.jpg)
 
 *2 tập hình ảnh trên chứa các ảnh có nhiều biến thể (ảnh sáng, tỷ lệ, hình dáng) nên nhiều ảnh trong đó trông khác biệt với các hình còn lại.*
-Để sử dụng trong dự án này, bạn cần phải đưa các hình ảnh vào đúng thư mục với tên thư mục như là tên lớp (Name as label). Tôi đã sắp xếp chúng, bạn có thể sử dụng từ [đây](https://github.com/quocthang0507/ImageClassificationExample/tree/master/jpg) (cho tập 17 category) hoặc từ [đây](https://github.com/quocthang0507/102-Category-Flower/tree/master/jpg) (cho tập 102 category).
+
+Để sử dụng trong dự án này, bạn cần phải đưa các hình ảnh vào đúng thư mục với tên thư mục như là tên lớp (Name as label/category). Tôi đã sắp xếp chúng, bạn có thể sử dụng từ liên kết [này](https://github.com/quocthang0507/ImageClassificationExample/tree/master/jpg) (cho tập 17 category) hoặc từ liên kết [này](https://github.com/quocthang0507/102-Category-Flower/tree/master/jpg) (cho tập 102 category).
+
+Tensoflow cũng cung cập một tập hình ảnh, bạn có thể tải từ liên kết [này](http://download.tensorflow.org/example_images/flower_photos.tgz).
+
+> *Giấy phép tập hình ảnh*
+>
+> All images in this archive are licensed under the Creative Commons By-Attribution License, available at:
+https://creativecommons.org/licenses/by/2.0/
+>
+> Thông tin đầy đủ giấy phép được cung cấp trong tập tin LICENSE.txt trong tập tin nén .zip tải về.
+
