@@ -27,7 +27,7 @@ Bạn có thể sử dụng nhiều tập hình ảnh hoa khác nhau, chẳng h�
 
 Để sử dụng trong dự án này, bạn cần phải đưa các hình ảnh vào đúng thư mục với tên thư mục như là tên lớp (Name as label/category). Tôi đã sắp xếp chúng, bạn có thể sử dụng từ liên kết [này](https://github.com/quocthang0507/ImageClassificationExample/tree/master/jpg) (cho tập 17 category) hoặc từ liên kết [này](https://github.com/quocthang0507/102-Category-Flower/tree/master/jpg) (cho tập 102 category).
 
-Tensoflow cũng cung cập một tập hình ảnh, bạn có thể tải từ liên kết [này](http://download.tensorflow.org/example_images/flower_photos.tgz).
+Tensoflow cũng cung cấp một tập hình ảnh, bạn có thể tải từ liên kết [này](http://download.tensorflow.org/example_images/flower_photos.tgz).
 
 > *Giấy phép tập hình ảnh*
 >
@@ -36,3 +36,25 @@ https://creativecommons.org/licenses/by/2.0/
 >
 > Thông tin đầy đủ giấy phép được cung cấp trong tập tin LICENSE.txt trong tập tin nén .zip tải về.
 
+## ML Task - Phân loại hình ảnh
+
+Để giải quyết bài toán này, đầu tiên sẽ xây dựng mô hình Học Máy. Sau đó, chúng ta đào tạo mô hình trên dữ liệu sẵn có, đánh giá kết quả và cuối cùng là sử dụng mô hình xây dựng được để phân loại một hình ảnh mới.
+
+![](Readme/modelpipeline.png)
+
+### 1. Cấu hình dự án để sử dụng GPU hoặc CPU
+
+Bạn có thể sử dụng sức mạnh sẵn có của máy tính, bạn có thể cấu hình để việc đào tạo sử dụng CPU hoặc GPU. Mặc định, dự án này sử dụng CPU, vì yêu cầu GPU hơi chút khó khăn do bạn phải có một card màn hình tương thích (chẳng hạn NVIDIA GPU graphics cards).
+
+#### Sử dụng CPU
+
+Bạn cần tham chiếu đến thư viện: `SciSharp.TensorFlow.Redist`
+
+![](Readme/cpu.png)
+
+
+#### Sử dụng GPU
+
+Bạn cần tham chiếu đến thư viện: `SciSharp.TensorFlow.Redist-Windows-GPU` hoặc `SciSharp.TensorFlow.Redist-Linux-GPU`
+
+![](Readme/gpu.png)
