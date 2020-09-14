@@ -107,7 +107,7 @@ namespace FlowerImageClassification.Shared
 			// Begin evaluating
 			var watch = Stopwatch.StartNew();
 			var predictionsDataView = trainedModel.Transform(testDataset);
-			var metrics = mlContext.MulticlassClassification.Evaluate(predictionsDataView, "LabelAsKey", "PredictedLabel");
+			var metrics = mlContext.MulticlassClassification.Evaluate(predictionsDataView, labelColumnName: "LabelAsKey", predictedLabelColumnName: "PredictedLabel");
 			ConsoleHelper.PrintMultiClassClassificationMetrics("TensorFlow DNN Transfer Learning", metrics);
 			watch.Stop();
 			// End evaluating
