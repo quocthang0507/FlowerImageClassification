@@ -119,7 +119,7 @@ namespace FlowerImageClassification.Shared
 		/// Get the first image file and run prediction method
 		/// </summary>
 		/// <param name="predictedImagesFolderPath"></param>
-		public void RunSinglePrediction(string predictedImagesFolderPath)
+		public void TrySinglePrediction(string predictedImagesFolderPath)
 		{
 			if (trainedModel == null)
 			{
@@ -136,7 +136,7 @@ namespace FlowerImageClassification.Shared
 		/// Run prediction method to try multiple predictions
 		/// </summary>
 		/// <param name="predictedImagesFolderPath"></param>
-		public void RunMultiplePredictions(string predictedImagesFolderPath)
+		public void TryMultiplePredictions(string predictedImagesFolderPath)
 		{
 			if (trainedModel == null)
 			{
