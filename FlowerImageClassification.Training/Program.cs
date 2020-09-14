@@ -8,10 +8,19 @@ namespace FlowerImageClassification.Training
 	{
 		static void Main(string[] args)
 		{
+			// Redirect console output to a stream
+			StreamWriter writer = new StreamWriter($"Output_{DateTime.Now.ToString("d M y h m s").Replace(' ', '_')}.txt");
+			TextWriter consoleOut = Console.Out;
+			Console.SetOut(writer);
+			// Begin to run the pipeline
 			string outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath;
 			SetPaths(out outputMlNetModelFilePath, out imagesFolderPathForPredictions, out fullImagesetFolderPath);
 			MLTraining mlTraining = new MLTraining(outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath);
 			mlTraining.RunPipeline();
+			// End the pipeline and write to file
+			Console.SetOut(consoleOut);
+			writer.Close();
+
 			Console.ReadKey();
 		}
 
