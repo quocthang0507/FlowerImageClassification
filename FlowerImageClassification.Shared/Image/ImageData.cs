@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FlowerImageClassification.Shared.Image
+﻿namespace FlowerImageClassification.Shared.Image
 {
 	/// <summary>
 	/// Class represents a single image data

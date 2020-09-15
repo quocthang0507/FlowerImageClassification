@@ -1,5 +1,3 @@
-using System;
-
 namespace FlowerImageClassification.WebApp.Models
 {
 	public class ErrorViewModel
