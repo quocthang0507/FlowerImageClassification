@@ -8,17 +8,23 @@
 		/// <summary>
 		/// Bytes of image file
 		/// </summary>
-		public readonly byte[] ImageBytes;
+		public byte[] ImageBytes;
 
 		/// <summary>
-		/// Basic info of image file
+		/// Path to image file
 		/// </summary>
-		public readonly ImageData ImageData;
+		public string ImagePath { get; set; }
 
-		public ImageDataInMemory(byte[] imageBytes, ImageData imageData)
+		/// <summary>
+		/// Name of this image file
+		/// </summary>
+		public string Label { get; set; }
+
+		public ImageDataInMemory(byte[] imageBytes, string imagePath, string label)
 		{
 			ImageBytes = imageBytes;
-			ImageData = imageData;
+			ImagePath = imagePath;
+			Label = label;
 		}
 	}
 }

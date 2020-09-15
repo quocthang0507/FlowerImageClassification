@@ -39,7 +39,7 @@ namespace FlowerImageClassification.Shared
 			=> LoadImagesFromDirectory(pathToImageFolder, nameAsLabel).
 				Select(image => new ImageDataInMemory(
 					File.ReadAllBytes(image.ImagePath),
-					image));
+					image.ImagePath, image.Label));
 
 		/// <summary>
 		/// Get an absolute path from a relative path

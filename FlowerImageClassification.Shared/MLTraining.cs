@@ -133,7 +133,7 @@ namespace FlowerImageClassification.Shared
 			var predictedImages = FileUtils.LoadImagesFromDirectoryInMemory(InputFolderPathForPrediction, false);
 			var image = predictedImages.First();
 			var prediction = predictionEngine.Predict(image);
-			PrintImagePrediction(image.ImageData.ImagePath, "Unknown", prediction.PredictedLabel, prediction.Score.Max());
+			PrintImagePrediction(image.ImagePath, "Unknown", prediction.PredictedLabel, prediction.Score.Max());
 		}
 
 		/// <summary>
@@ -153,7 +153,7 @@ namespace FlowerImageClassification.Shared
 			foreach (var image in predictedImages)
 			{
 				var prediction = predictionEngine.Predict(image);
-				PrintImagePrediction(image.ImageData.ImagePath, "Unknown", prediction.PredictedLabel, prediction.Score.Max());
+				PrintImagePrediction(image.ImagePath, "Unknown", prediction.PredictedLabel, prediction.Score.Max());
 			}
 		}
 
@@ -173,10 +173,10 @@ namespace FlowerImageClassification.Shared
 		/// <returns></returns>
 		private EstimatorChain<KeyToValueMappingTransformer> CreateDefaultPipeline(IDataView dataset)
 		{
-			var pipline = mlContext.MulticlassClassification.Trainers.
+			var pipeline = mlContext.MulticlassClassification.Trainers.
 				ImageClassification("LabelAsKey", "Image", validationSet: dataset).
 				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
-			return pipline;
+			return pipeline;
 		}
 
 		/// <summary>

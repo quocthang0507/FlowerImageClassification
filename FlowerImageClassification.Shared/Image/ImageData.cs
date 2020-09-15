@@ -9,6 +9,7 @@
 		/// Path to image file
 		/// </summary>
 		public string ImagePath { get; set; }
+
 		/// <summary>
 		/// Name of this image file
 		/// </summary>
