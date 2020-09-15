@@ -91,7 +91,7 @@ namespace FlowerImageClassification.Shared
 			Console.WriteLine($"Model saved to: {OutputModelPath}");
 
 			// 9. Try a single prediction in an end-user app
-			
+
 		}
 
 		/// <summary>
@@ -101,7 +101,10 @@ namespace FlowerImageClassification.Shared
 		{
 			if (trainedModel == null)
 			{
-				throw new Exception("Please run the pipeline before evaluating the model!");
+				if (File.Exists(OutputModelPath))
+					LoadTrainedModel();
+				else
+					throw new Exception("Please run the pipeline before evaluating the model!");
 			}
 			Console.WriteLine("Making predictions in bulk for evaluating model's quality...");
 			// Begin evaluating
@@ -118,15 +121,17 @@ namespace FlowerImageClassification.Shared
 		/// <summary>
 		/// Get the first image file and run prediction method
 		/// </summary>
-		/// <param name="predictedImagesFolderPath"></param>
-		public void TrySinglePrediction(string predictedImagesFolderPath)
+		public void TrySinglePrediction()
 		{
 			if (trainedModel == null)
 			{
-				throw new Exception("Please run the pipeline before predicting!");
+				if (File.Exists(OutputModelPath))
+					LoadTrainedModel();
+				else
+					throw new Exception("Please run the pipeline before predicting!");
 			}
 			var predictionEngine = mlContext.Model.CreatePredictionEngine<ImageDataInMemory, ImagePrediction>(trainedModel);
-			var predictedImages = FileUtils.LoadImagesFromDirectoryInMemory(predictedImagesFolderPath, false);
+			var predictedImages = FileUtils.LoadImagesFromDirectoryInMemory(InputFolderPathForPrediction, false);
 			var image = predictedImages.First();
 			var prediction = predictionEngine.Predict(image);
 			PrintImagePrediction(image.ImageData.ImagePath, "Unknown", prediction.PredictedLabel, prediction.Score.Max());
@@ -135,20 +140,31 @@ namespace FlowerImageClassification.Shared
 		/// <summary>
 		/// Run prediction method to try multiple predictions
 		/// </summary>
-		/// <param name="predictedImagesFolderPath"></param>
-		public void TryMultiplePredictions(string predictedImagesFolderPath)
+		public void TryMultiplePredictions()
 		{
 			if (trainedModel == null)
 			{
-				throw new Exception("Please run the pipeline before predicting!");
+				if (File.Exists(OutputModelPath))
+					LoadTrainedModel();
+				else
+					throw new Exception("Please run the pipeline before predicting!");
 			}
 			var predictionEngine = mlContext.Model.CreatePredictionEngine<ImageDataInMemory, ImagePrediction>(trainedModel);
-			var predictedImages = FileUtils.LoadImagesFromDirectoryInMemory(predictedImagesFolderPath, false);
+			var predictedImages = FileUtils.LoadImagesFromDirectoryInMemory(InputFolderPathForPrediction, false);
 			foreach (var image in predictedImages)
 			{
 				var prediction = predictionEngine.Predict(image);
 				PrintImagePrediction(image.ImageData.ImagePath, "Unknown", prediction.PredictedLabel, prediction.Score.Max());
 			}
+		}
+
+		/// <summary>
+		/// Load trained model from .zip file
+		/// </summary>
+		private void LoadTrainedModel()
+		{
+			Console.WriteLine($"Loading model from: {OutputModelPath}");
+			trainedModel = mlContext.Model.Load(OutputModelPath, out var modelSchema);
 		}
 
 		/// <summary>
