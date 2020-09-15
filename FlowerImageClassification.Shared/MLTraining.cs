@@ -58,7 +58,7 @@ namespace FlowerImageClassification.Shared
 			// 3. Load Images with in-memory type within the IDataView and Transform Labels to Keys (Categorical)
 			IDataView transformedDataset = mlContext.Transforms.Conversion.
 				MapValueToKey("LabelAsKey", "Label", keyOrdinality: KeyOrdinality.ByValue)
-				// The outputColumnName should be same name in ImageDataInMemory
+				// The outputColumnName should has same name in ImageDataInMemory
 				.Append(mlContext.Transforms.LoadRawImageBytes("ImageBytes", InputFolderPathForTraining, "ImagePath")).
 				Fit(shuffledDataset).
 				Transform(shuffledDataset);
@@ -175,6 +175,7 @@ namespace FlowerImageClassification.Shared
 		private EstimatorChain<KeyToValueMappingTransformer> CreateDefaultPipeline(IDataView dataset)
 		{
 			var pipeline = mlContext.MulticlassClassification.Trainers.
+				// The feature column name should has same name in ImageDataInMemory
 				ImageClassification(labelColumnName: "LabelAsKey", featureColumnName: "ImageBytes", validationSet: dataset).
 				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
 			return pipeline;
@@ -190,6 +191,7 @@ namespace FlowerImageClassification.Shared
 			var options = new ImageClassificationTrainer.Options()
 			{
 				LabelColumnName = "LabelAsKey",
+				// The feature column name should has same name in ImageDataInMemory
 				FeatureColumnName = "ImageBytes",
 				// Change the architecture to different DNN architecture
 				Arch = ImageClassificationTrainer.Architecture.ResnetV2101,
