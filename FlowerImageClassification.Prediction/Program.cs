@@ -10,7 +10,7 @@ namespace FlowerImageClassification.Prediction
 		static void Main(string[] args)
 		{
 			// Redirect console output to a stream
-			string output = $"Output_{DateTime.Now.ToString("d M y h m s").Replace(' ', '_')}.txt";
+			string output = $"Output_{DateTime.Now.ToString("d_M_y h_m_s")}.txt";
 			using (Capturing capturing = new Capturing(output))
 			{
 				string outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath;

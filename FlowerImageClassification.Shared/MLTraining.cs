@@ -127,7 +127,7 @@ namespace FlowerImageClassification.Shared
 			var predictedImages = FileUtils.LoadImagesFromDirectoryInMemory(InputFolderPathForPrediction, false);
 			var image = predictedImages.First();
 			var prediction = predictionEngine.Predict(image);
-			PrintImagePrediction(image.ImagePath, "Unknown", prediction.PredictedLabel, prediction.Score.Max());
+			PrintImagePrediction(image.ImagePath, image.Label, prediction.PredictedLabel, prediction.Score.Max());
 		}
 
 		/// <summary>
@@ -147,7 +147,7 @@ namespace FlowerImageClassification.Shared
 			foreach (var image in predictedImages)
 			{
 				var prediction = predictionEngine.Predict(image);
-				PrintImagePrediction(image.ImagePath, "Unknown", prediction.PredictedLabel, prediction.Score.Max());
+				PrintImagePrediction(image.ImagePath, image.Label, prediction.PredictedLabel, prediction.Score.Max());
 			}
 		}
 
