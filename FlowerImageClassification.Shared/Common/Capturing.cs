@@ -17,9 +17,11 @@ namespace FlowerImageClassification.Shared.Common
 		/// <param name="pathToOutput"></param>
 		public Capturing(string pathToOutput)
 		{
+			// Keep original standard output stream
 			consoleWriter = Console.Out;
 			fileWriter = new StreamWriter(pathToOutput);
 			fileWriter.AutoFlush = true;
+			// Redirect output stream
 			Console.SetOut(fileWriter);
 		}
 
@@ -28,6 +30,7 @@ namespace FlowerImageClassification.Shared.Common
 		/// </summary>
 		public void Dispose()
 		{
+			// Bring back the standard output stream
 			Console.SetOut(consoleWriter);
 			fileWriter.Close();
 		}

@@ -11,7 +11,7 @@ namespace FlowerImageClassification.Prediction
 		{
 			// Redirect console output to a stream
 			string output = $"Output_{DateTime.Now.ToString("d_M_y h_m_s")}.txt";
-			using (Capturing capturing = new Capturing(output))
+			using (MirrorOutput capturing = new MirrorOutput(output))
 			{
 				string outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath;
 				SetPaths(out outputMlNetModelFilePath, out imagesFolderPathForPredictions, out fullImagesetFolderPath);

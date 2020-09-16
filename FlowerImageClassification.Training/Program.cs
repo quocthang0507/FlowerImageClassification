@@ -11,7 +11,7 @@ namespace FlowerImageClassification.Training
 		{
 			// Redirect console output to a stream
 			string output = $"Output_{DateTime.Now.ToString("d M y h m s").Replace(' ', '_')}.txt";
-			using (Capturing capturing = new Capturing(output))
+			using (MirrorOutput capturing = new MirrorOutput(output))
 			{
 				// Begin to run the pipeline
 				string outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath;
