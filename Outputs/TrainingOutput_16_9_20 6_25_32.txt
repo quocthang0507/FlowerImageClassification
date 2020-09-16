@@ -1,0 +1,361 @@
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Channel started
+*** Training the image classification model with DNN Transfer Learning on top of the selected pre-trained model/architecture ***
+[Source=ImageClassificationTrainer; Ensuring meta files are present., Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; Ensuring meta files are present., Kind=Trace] Channel finished. Elapsed 00:00:00.0459483.
+[Source=ImageClassificationTrainer; Ensuring meta files are present., Kind=Trace] Channel disposed
+Saver not created because there are no variables in the graph to restore
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:   1
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:   2
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:   3
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:   4
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:   5
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:   6
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:   7
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:   8
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:   9
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  10
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  11
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  12
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  13
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  14
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  15
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  16
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  17
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  18
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  19
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  20
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  21
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  22
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  23
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  24
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  25
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  26
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  27
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  28
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  29
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  30
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  31
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  32
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  33
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  34
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  35
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  36
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  37
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  38
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  39
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  40
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  41
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  42
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  43
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  44
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  45
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  46
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  47
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  48
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used: Validation, Image Index:  49
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:   1
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:   2
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:   3
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:   4
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:   5
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:   6
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:   7
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:   8
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:   9
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  10
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  11
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  12
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  13
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  14
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  15
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  16
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  17
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  18
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  19
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  20
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  21
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  22
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  23
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  24
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  25
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  26
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  27
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  28
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  29
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  30
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  31
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  32
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  33
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  34
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  35
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  36
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  37
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  38
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  39
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  40
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  41
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  42
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  43
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  44
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  45
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  46
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  47
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  48
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  49
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  50
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  51
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  52
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  53
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  54
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  55
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  56
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  57
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  58
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  59
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  60
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  61
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  62
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  63
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  64
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  65
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  66
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  67
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  68
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  69
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  70
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  71
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  72
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  73
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  74
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  75
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  76
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  77
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  78
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  79
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  80
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  81
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  82
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  83
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  84
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  85
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  86
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  87
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  88
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  89
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  90
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  91
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  92
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  93
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  94
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  95
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  96
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  97
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  98
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index:  99
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 100
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 101
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 102
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 103
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 104
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 105
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 106
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 107
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 108
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 109
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 110
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 111
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 112
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 113
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 114
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 115
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 116
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 117
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 118
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 119
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 120
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 121
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 122
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 123
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 124
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 125
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 126
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 127
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 128
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 129
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 130
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 131
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 132
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 133
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 134
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 135
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 136
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 137
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 138
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 139
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 140
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 141
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 142
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 143
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 144
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 145
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 146
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 147
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 148
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 149
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 150
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 151
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:   0, Accuracy:    0.53125, Cross-Entropy:   1.163765, Learning Rate:       0.01
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:   0, Accuracy: 0.47111112, Cross-Entropy:  1.8437115
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:   1, Accuracy: 0.81874996, Cross-Entropy:  0.5766055, Learning Rate:     0.0094
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:   1, Accuracy: 0.81333333, Cross-Entropy:  0.5867775
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:   2, Accuracy: 0.90624994, Cross-Entropy:  0.3040737, Learning Rate:     0.0094
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:   2, Accuracy:  0.8533333, Cross-Entropy:  0.5157433
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:   3, Accuracy:  0.9499999, Cross-Entropy: 0.23870401, Learning Rate:   0.008836
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:   3, Accuracy:  0.8533333, Cross-Entropy:  0.4833207
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:   4, Accuracy:    0.96875, Cross-Entropy: 0.19723606, Learning Rate:   0.008836
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:   4, Accuracy:  0.8533333, Cross-Entropy: 0.46479803
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:   5, Accuracy: 0.97499996, Cross-Entropy: 0.17024478, Learning Rate: 0.008305839
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:   5, Accuracy:  0.8533333, Cross-Entropy: 0.45411396
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:   6, Accuracy:    0.98125, Cross-Entropy: 0.14987874, Learning Rate: 0.008305839
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:   6, Accuracy:  0.8533333, Cross-Entropy: 0.44769916
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:   7, Accuracy:    0.98125, Cross-Entropy: 0.13507348, Learning Rate: 0.0078074895
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:   7, Accuracy:  0.8533333, Cross-Entropy: 0.44344336
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:   8, Accuracy:    0.98125, Cross-Entropy: 0.122848906, Learning Rate: 0.0078074895
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:   8, Accuracy:  0.8533333, Cross-Entropy: 0.44126147
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:   9, Accuracy:    0.98125, Cross-Entropy: 0.11342805, Learning Rate: 0.00733904
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:   9, Accuracy:  0.8533333, Cross-Entropy: 0.43943462
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  10, Accuracy:    0.98125, Cross-Entropy: 0.10519088, Learning Rate: 0.00733904
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  10, Accuracy:  0.8533333, Cross-Entropy: 0.43893433
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  11, Accuracy: 0.98749995, Cross-Entropy: 0.09863959, Learning Rate: 0.0068986975
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  11, Accuracy:  0.8533333, Cross-Entropy:  0.4381675
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  12, Accuracy: 0.98749995, Cross-Entropy: 0.09267651, Learning Rate: 0.0068986975
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  12, Accuracy:  0.8733333, Cross-Entropy: 0.43836412
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  13, Accuracy: 0.98749995, Cross-Entropy: 0.08785123, Learning Rate: 0.0064847753
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  13, Accuracy:  0.8733333, Cross-Entropy: 0.43810755
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  14, Accuracy: 0.98749995, Cross-Entropy: 0.083323345, Learning Rate: 0.0064847753
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  14, Accuracy:  0.8733333, Cross-Entropy: 0.43857947
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  15, Accuracy: 0.98749995, Cross-Entropy: 0.07962458, Learning Rate: 0.0060956893
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  15, Accuracy:  0.8733333, Cross-Entropy: 0.43858537
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  16, Accuracy: 0.98749995, Cross-Entropy: 0.07606882, Learning Rate: 0.0060956893
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  16, Accuracy:  0.8733333, Cross-Entropy: 0.43914452
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  17, Accuracy: 0.98749995, Cross-Entropy: 0.073149055, Learning Rate: 0.0057299477
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  17, Accuracy:  0.8733333, Cross-Entropy:  0.4392914
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  18, Accuracy: 0.98749995, Cross-Entropy: 0.07028597, Learning Rate: 0.0057299477
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  18, Accuracy:  0.8733333, Cross-Entropy: 0.43985444
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  19, Accuracy:    0.99375, Cross-Entropy: 0.06792831, Learning Rate: 0.005386151
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  19, Accuracy:  0.8733333, Cross-Entropy:  0.4400785
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  20, Accuracy:    0.99375, Cross-Entropy: 0.065577656, Learning Rate: 0.005386151
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  20, Accuracy:  0.8733333, Cross-Entropy: 0.44061118
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  21, Accuracy:    0.99375, Cross-Entropy: 0.06363908, Learning Rate: 0.0050629815
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  21, Accuracy:  0.8733333, Cross-Entropy: 0.44087657
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  22, Accuracy:    0.99375, Cross-Entropy: 0.061678678, Learning Rate: 0.0050629815
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  22, Accuracy:  0.8733333, Cross-Entropy: 0.44136745
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  23, Accuracy:    0.99375, Cross-Entropy: 0.06006067, Learning Rate: 0.0047592027
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  23, Accuracy:  0.8733333, Cross-Entropy:  0.4416532
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  24, Accuracy:          1, Cross-Entropy: 0.058404338, Learning Rate: 0.0047592027
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  24, Accuracy:  0.8733333, Cross-Entropy: 0.44210058
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  25, Accuracy:          1, Cross-Entropy: 0.057036843, Learning Rate: 0.004473651
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  25, Accuracy:  0.8733333, Cross-Entropy: 0.44239384
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  26, Accuracy:          1, Cross-Entropy: 0.055621963, Learning Rate: 0.004473651
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  26, Accuracy:  0.8733333, Cross-Entropy: 0.44280058
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  27, Accuracy:          1, Cross-Entropy: 0.054453712, Learning Rate: 0.0042052316
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  27, Accuracy:  0.8733333, Cross-Entropy: 0.44309312
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  28, Accuracy:          1, Cross-Entropy: 0.053233672, Learning Rate: 0.0042052316
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  28, Accuracy:  0.8733333, Cross-Entropy:  0.4434634
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  29, Accuracy:          1, Cross-Entropy: 0.052226342, Learning Rate: 0.0039529176
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  29, Accuracy:  0.8733333, Cross-Entropy: 0.44375014
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  30, Accuracy:          1, Cross-Entropy: 0.05116568, Learning Rate: 0.0039529176
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  30, Accuracy:  0.8733333, Cross-Entropy: 0.44408816
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  31, Accuracy:          1, Cross-Entropy: 0.050290037, Learning Rate: 0.0037157428
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  31, Accuracy:  0.8733333, Cross-Entropy: 0.44436583
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used:      Train, Batch Processed Count:  16, Epoch:  32, Accuracy:          1, Cross-Entropy: 0.04936133, Learning Rate: 0.0037157428
+[Source=ImageClassificationTrainer; ImageClassificationTrainer, Kind=Trace] Phase: Training, Dataset used: Validation, Batch Processed Count:   5, Epoch:  32, Accuracy:  0.8733333, Cross-Entropy: 0.44467553
+Saver not created because there are no variables in the graph to restore
+Restoring parameters from C:\Users\La Quoc Thang\AppData\Local\Temp\hvfdvxvc.0km\custom_retrained_model_based_on_resnet_v2_50_299.meta
+Froze 2 variables.
+Converted 2 variables to const ops.
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel finished. Elapsed 00:00:00.0173753.
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel finished. Elapsed 00:00:00.0113728.
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel disposed
+Training with transfer learning took: 70 seconds
+Making predictions in bulk for evaluating model's quality...
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel finished. Elapsed 00:00:00.0099693.
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel finished. Elapsed 00:00:00.0117839.
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; CursorSplitter, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; CursorSplitter, Kind=Trace] Channel finished. Elapsed 00:00:00.1107949.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; CursorSplitter, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.2030248.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.2691701.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.2459915.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.1887921.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.2584865.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.2649783.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.1451511.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.1556821.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.2181238.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.2029448.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.2776588.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.3617496.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:13.9992048.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:13.8646896.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+************************************************************
+*    Metrics for TensorFlow DNN Transfer Learning multi-class classification model   
+*-----------------------------------------------------------
+    AccuracyMacro = 0.8917, a value between 0 and 1, the closer to 1, the better
+    AccuracyMicro = 0.8776, a value between 0 and 1, the closer to 1, the better
+    LogLoss = 0.4346, the closer to 0, the better
+    LogLoss for class 1 = 0.5373, the closer to 0, the better
+    LogLoss for class 2 = 0.0874, the closer to 0, the better
+    LogLoss for class 3 = 0.5218, the closer to 0, the better
+    LogLoss for class 4 = 0.1267, the closer to 0, the better
+    LogLoss for class 5 = 0.7362, the closer to 0, the better
+************************************************************
+Predicting and Evaluation took: 14 seconds
+[Source=ImageClassificationTrainer; BinarySaver; Saving, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; EmptyDataView; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; EmptyDataView; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0187979.
+[Source=ImageClassificationTrainer; EmptyDataView; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; EmptyDataView; Cursor, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; BinarySaver; Write, Kind=Trace] Channel started
+[Source=ImageClassificationTrainer; EmptyDataView; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0122878.
+[Source=ImageClassificationTrainer; EmptyDataView; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; BinarySaver; Write, Kind=Trace] Channel finished. Elapsed 00:00:00.0942932.
+[Source=ImageClassificationTrainer; BinarySaver; Write, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; BinarySaver; Saving, Kind=Trace] Channel finished. Elapsed 00:00:00.2652412.
+[Source=ImageClassificationTrainer; BinarySaver; Saving, Kind=Trace] Channel disposed
+Model saved to: D:\Github\FlowerImageClassification\Assets\Outputs\imageClassifier.zip

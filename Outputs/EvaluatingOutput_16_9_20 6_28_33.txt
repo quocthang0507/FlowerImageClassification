@@ -1,0 +1,30 @@
+Loading model from: D:\Github\FlowerImageClassification\Assets\Outputs\imageClassifier.zip
+Image File: bồ công anh 2.jpg original labeled as bồ công anh 2.jpg predicted as dandelion with score 0.9412037
+Image File: bồ công anh 3.jpg original labeled as bồ công anh 3.jpg predicted as dandelion with score 0.44925168
+Image File: bồ công anh 5.jpg original labeled as bồ công anh 5.jpg predicted as dandelion with score 0.9669483
+Image File: cúc họa mi 2.jpg original labeled as cúc họa mi 2.jpg predicted as daisy with score 0.9934963
+Image File: cúc họa mi 3.jpg original labeled as cúc họa mi 3.jpg predicted as daisy with score 0.537222
+Image File: cúc họa mi 5.jpg original labeled as cúc họa mi 5.jpg predicted as daisy with score 0.9437042
+Image File: cúc vàng 1.jpg original labeled as cúc vàng 1.jpg predicted as dandelion with score 0.47958723
+Image File: cúc vàng 2.jpg original labeled as cúc vàng 2.jpg predicted as dandelion with score 0.8233372
+Image File: hoa hồng 1.jpg original labeled as hoa hồng 1.jpg predicted as roses with score 0.9983682
+Image File: hoa hồng 2.jpg original labeled as hoa hồng 2.jpg predicted as roses with score 0.9977277
+Image File: hoa hồng 3.jpg original labeled as hoa hồng 3.jpg predicted as roses with score 0.9989022
+Image File: hoa hồng 4.jpg original labeled as hoa hồng 4.jpg predicted as roses with score 0.99996305
+Image File: hoa hồng 5.jpg original labeled as hoa hồng 5.jpg predicted as roses with score 0.84979427
+Image File: hướng dương 1.jpg original labeled as hướng dương 1.jpg predicted as sunflowers with score 0.89603597
+Image File: hướng dương 2.jpg original labeled as hướng dương 2.jpg predicted as sunflowers with score 0.9749497
+Image File: hướng dương 3.jpg original labeled as hướng dương 3.jpg predicted as sunflowers with score 0.68588793
+Image File: hướng dương 4.jpg original labeled as hướng dương 4.jpg predicted as sunflowers with score 0.77393407
+Image File: hướng dương 5.jpg original labeled as hướng dương 5.jpg predicted as sunflowers with score 0.87676793
+Image File: hồng vẽ 1.jpg original labeled as hồng vẽ 1.jpg predicted as roses with score 0.45582998
+Image File: hồng vẽ 2.jpg original labeled as hồng vẽ 2.jpg predicted as roses with score 0.99021786
+Image File: lay ơn 1.jpg original labeled as lay ơn 1.jpg predicted as roses with score 0.60431355
+Image File: lay ơn 2.jpg original labeled as lay ơn 2.jpg predicted as tulips with score 0.63715804
+Image File: tu líp 1.jpg original labeled as tu líp 1.jpg predicted as tulips with score 0.98327464
+Image File: tu líp 2.jpg original labeled as tu líp 2.jpg predicted as roses with score 0.68897474
+Image File: tu líp 3.jpg original labeled as tu líp 3.jpg predicted as roses with score 0.6786743
+Image File: tu líp 4.png original labeled as tu líp 4.png predicted as sunflowers with score 0.66482896
+Image File: tu líp 5.jpg original labeled as tu líp 5.jpg predicted as tulips with score 0.98620343
+Image File: đồng tiền 1.jpg original labeled as đồng tiền 1.jpg predicted as sunflowers with score 0.7553601
+Image File: đồng tiền 2.jpg original labeled as đồng tiền 2.jpg predicted as sunflowers with score 0.6696101

@@ -43,6 +43,7 @@ namespace FlowerImageClassification.Shared.Common
 		public MirrorOutput(string pathToOutput)
 		{
 			stdOutput = Console.Out;
+			Console.OutputEncoding = Encoding.UTF8;
 			try
 			{
 				fileWriter = new StreamWriter(pathToOutput);

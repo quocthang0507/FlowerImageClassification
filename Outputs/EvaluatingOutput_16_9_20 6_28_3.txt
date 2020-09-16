@@ -1,0 +1,15 @@
+Loading model from: D:\Github\FlowerImageClassification\Assets\Outputs\imageClassifier.zip
+Making predictions in bulk for evaluating model's quality...
+************************************************************
+*    Metrics for TensorFlow DNN Transfer Learning multi-class classification model   
+*-----------------------------------------------------------
+    AccuracyMacro = 0.975, a value between 0 and 1, the closer to 1, the better
+    AccuracyMicro = 0.9796, a value between 0 and 1, the closer to 1, the better
+    LogLoss = 0.1096, the closer to 0, the better
+    LogLoss for class 1 = 0.018, the closer to 0, the better
+    LogLoss for class 2 = 0.0206, the closer to 0, the better
+    LogLoss for class 3 = 0.0211, the closer to 0, the better
+    LogLoss for class 4 = 0.1208, the closer to 0, the better
+    LogLoss for class 5 = 0.4293, the closer to 0, the better
+************************************************************
+Predicting and Evaluation took: 14 seconds
