@@ -16,7 +16,8 @@ namespace FlowerImageClassification.Prediction
 				string outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath;
 				SetPaths(out outputMlNetModelFilePath, out imagesFolderPathForPredictions, out fullImagesetFolderPath);
 				MLTraining mlTraining = new MLTraining(outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath);
-				mlTraining.TrySinglePrediction();
+				//mlTraining.TrySinglePrediction();
+				mlTraining.TryMultiplePredictions();
 			}
 			// End the pipeline and write to file
 			Console.WriteLine("Press any key to exit...");

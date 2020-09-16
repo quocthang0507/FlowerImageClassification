@@ -97,15 +97,8 @@ namespace FlowerImageClassification.Shared
 		/// <summary>
 		/// Evaluate model by making predictions in bulk
 		/// </summary>
-		public void EvaluateModel()
+		private void EvaluateModel()
 		{
-			if (trainedModel == null)
-			{
-				if (File.Exists(OutputModelPath))
-					LoadTrainedModel();
-				else
-					throw new Exception("Please run the pipeline before evaluating the model!");
-			}
 			Console.WriteLine("Making predictions in bulk for evaluating model's quality...");
 			// Begin evaluating
 			var watch = Stopwatch.StartNew();
