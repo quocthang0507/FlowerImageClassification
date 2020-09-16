@@ -166,7 +166,7 @@ namespace FlowerImageClassification.Shared
 
 			// 4. Split the data 80:20 into train and test sets, train and evaluate.
 			var splitData = mlContext.Data.TrainTestSplit(transformedDataset, 0.2);
-			IDataView trainDataset = splitData.TrainSet; // 80%
+			trainDataset = splitData.TrainSet; // 80%
 			testDataset = splitData.TestSet; // 20%
 		}
 
