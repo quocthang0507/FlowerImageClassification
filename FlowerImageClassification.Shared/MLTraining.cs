@@ -34,6 +34,7 @@ namespace FlowerImageClassification.Shared
 		private MLContext mlContext;
 		private ITransformer trainedModel;
 		private IDataView testDataset;
+		private IDataView trainDataset;
 
 		public MLTraining(string outputModelPath, string inputFolderPathForPrediction, string inputFolderPathForTraining)
 		{
@@ -50,23 +51,8 @@ namespace FlowerImageClassification.Shared
 		/// </summary>
 		public void RunPipeline()
 		{
-			// 2. Load the initial full image-set into an IDataView and shuffle so it'll be better balanced
-			IEnumerable<ImageData> images = FileUtils.LoadImagesFromDirectory(InputFolderPathForTraining, true);
-			IDataView dataset = mlContext.Data.LoadFromEnumerable(images);
-			IDataView shuffledDataset = mlContext.Data.ShuffleRows(dataset);
-
-			// 3. Load Images with in-memory type within the IDataView and Transform Labels to Keys (Categorical)
-			IDataView transformedDataset = mlContext.Transforms.Conversion.
-				MapValueToKey("LabelAsKey", "Label", keyOrdinality: KeyOrdinality.ByValue)
-				// The outputColumnName should has same name in ImageDataInMemory
-				.Append(mlContext.Transforms.LoadRawImageBytes("ImageBytes", InputFolderPathForTraining, "ImagePath")).
-				Fit(shuffledDataset).
-				Transform(shuffledDataset);
-
-			// 4. Split the data 80:20 into train and test sets, train and evaluate.
-			var splitData = mlContext.Data.TrainTestSplit(transformedDataset, 0.2);
-			IDataView trainDataset = splitData.TrainSet; // 80%
-			testDataset = splitData.TestSet; // 20%
+			// 1., 2., 3., 4.
+			PrepareDataset();
 
 			// 5. Call pipeline
 			var pipeline = CreateDefaultPipeline(testDataset);
@@ -89,16 +75,25 @@ namespace FlowerImageClassification.Shared
 			// 8. Save the model to assets/outputs ML.NET .zip model file and TF .pb model file
 			mlContext.Model.Save(trainedModel, trainDataset.Schema, OutputModelPath);
 			Console.WriteLine($"Model saved to: {OutputModelPath}");
-
-			// 9. Try a single prediction in an end-user app
-
 		}
 
 		/// <summary>
-		/// Evaluate model by making predictions in bulk
+		/// Evaluate model by making predictions in bulk.
+		/// If you run it without running pipeline, it will find and load the existed trained model, and then prepare the dataset.
+		/// Maybe the evaluation result different in each running.
 		/// </summary>
-		private void EvaluateModel()
+		public void EvaluateModel()
 		{
+			if (trainedModel == null)
+			{
+				if (File.Exists(OutputModelPath))
+				{
+					LoadTrainedModel();
+					PrepareDataset();
+				}
+				else
+					throw new Exception("Please run the pipeline before evaluating!");
+			}
 			Console.WriteLine("Making predictions in bulk for evaluating model's quality...");
 			// Begin evaluating
 			var watch = Stopwatch.StartNew();
@@ -149,6 +144,30 @@ namespace FlowerImageClassification.Shared
 				var prediction = predictionEngine.Predict(image);
 				PrintImagePrediction(image.ImagePath, image.Label, prediction.PredictedLabel, prediction.Score.Max());
 			}
+		}
+
+		/// <summary>
+		/// Prepare dataset by loading from files, transforming and splitting
+		/// </summary>
+		private void PrepareDataset()
+		{
+			// 2. Load the initial full image-set into an IDataView and shuffle so it'll be better balanced
+			IEnumerable<ImageData> images = FileUtils.LoadImagesFromDirectory(InputFolderPathForTraining, true);
+			IDataView dataset = mlContext.Data.LoadFromEnumerable(images);
+			IDataView shuffledDataset = mlContext.Data.ShuffleRows(dataset);
+
+			// 3. Load Images with in-memory type within the IDataView and Transform Labels to Keys (Categorical)
+			IDataView transformedDataset = mlContext.Transforms.Conversion.
+				MapValueToKey("LabelAsKey", "Label", keyOrdinality: KeyOrdinality.ByValue)
+				// The outputColumnName should has same name in ImageDataInMemory
+				.Append(mlContext.Transforms.LoadRawImageBytes("ImageBytes", InputFolderPathForTraining, "ImagePath")).
+				Fit(shuffledDataset).
+				Transform(shuffledDataset);
+
+			// 4. Split the data 80:20 into train and test sets, train and evaluate.
+			var splitData = mlContext.Data.TrainTestSplit(transformedDataset, 0.2);
+			IDataView trainDataset = splitData.TrainSet; // 80%
+			testDataset = splitData.TestSet; // 20%
 		}
 
 		/// <summary>
