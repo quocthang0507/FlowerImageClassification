@@ -209,7 +209,7 @@ namespace FlowerImageClassification.Shared
 				// Change the architecture to different DNN architecture
 				Arch = ImageClassificationTrainer.Architecture.ResnetV250,
 				// Number of training iterations
-				Epoch = 100,
+				Epoch = 200,
 				// Number of samples to use for mini-batch training
 				BatchSize = 10,
 				LearningRate = 0.01f,
