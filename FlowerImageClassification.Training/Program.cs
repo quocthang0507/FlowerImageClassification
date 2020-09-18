@@ -31,9 +31,9 @@ namespace FlowerImageClassification.Training
 		{
 			string assetsRelativePath = @"../../../../Assets";
 			string assetsPath = GetAbsolutePath(assetsRelativePath);
-			outputMlNetModelFilePath = Path.Combine(assetsPath, "Outputs", "imageClassifier.zip");
+			outputMlNetModelFilePath = Path.Combine(assetsPath, "Outputs", "imageClassifier2_resnetv250.zip");
 			imagesFolderPathForPredictions = Path.Combine(assetsPath, "Inputs", "Predictions", "test1");
-			fullImagesetFolderPath = Path.Combine(assetsPath, "Inputs", "Trainings", "flower_photos_small_set");
+			fullImagesetFolderPath = Path.Combine(assetsPath, "Inputs", "Trainings", "dalat_dataset");
 			consoleOutputPath = GetAbsolutePath(@"../../../../Outputs");
 		}
 	}

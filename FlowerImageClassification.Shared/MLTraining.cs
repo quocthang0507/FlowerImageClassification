@@ -55,7 +55,8 @@ namespace FlowerImageClassification.Shared
 			PrepareDataset();
 
 			// 5. Call pipeline
-			var pipeline = CreateDefaultPipeline(testDataset);
+			//var pipeline = CreateDefaultPipeline(testDataset);
+			var pipeline = CreateCustomPipeline(testDataset);
 
 			// 6. Train/create the ML Model
 			Console.WriteLine("*** Training the image classification model with DNN Transfer Learning on top of the selected pre-trained model/architecture ***");
@@ -206,7 +207,7 @@ namespace FlowerImageClassification.Shared
 				// The feature column name should has same name in ImageDataInMemory
 				FeatureColumnName = "ImageBytes",
 				// Change the architecture to different DNN architecture
-				Arch = ImageClassificationTrainer.Architecture.ResnetV2101,
+				Arch = ImageClassificationTrainer.Architecture.ResnetV250,
 				// Number of training iterations
 				Epoch = 100,
 				// Number of samples to use for mini-batch training
