@@ -15,7 +15,6 @@ using System.Linq;
 
 namespace FlowerImageClassification.WebApp.Controllers
 {
-	[ApiController]
 	public class HomeController : Controller
 	{
 		public IConfiguration configuration { get; }
@@ -37,6 +36,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 			return View();
 		}
 
+		[Route("Privacy")]
 		public IActionResult Privacy()
 		{
 			return View();
@@ -54,6 +54,8 @@ namespace FlowerImageClassification.WebApp.Controllers
 		=> "Hello World";
 
 		[HttpPost]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
 		[Route("api/ClassifyImage")]
 		public async Task<IActionResult> ClassifyImage(IFormFile imageFile)
 		{
@@ -66,7 +68,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 
 			// Check that the image is valid
 			byte[] imageData = memoryStream.ToArray();
-			if (imageData.IsValidImage())
+			if (!imageData.IsValidImage())
 				return StatusCode(StatusCodes.Status415UnsupportedMediaType);
 			_logger.LogInformation("Start processing image...");
 

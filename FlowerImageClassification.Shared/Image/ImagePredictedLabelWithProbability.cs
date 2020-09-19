@@ -5,9 +5,9 @@
 	/// </summary>
 	public class ImagePredictedLabelWithProbability
 	{
-		public string ImageID;
-		public string PredictedLabel;
+		public string ImageID { get; set; }
+		public string PredictedLabel { get; set; }
 		public float Probability { get; set; }
-		public long PredictionExecutionTime;
+		public long PredictionExecutionTime { get; set; }
 	}
 }
