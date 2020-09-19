@@ -207,7 +207,7 @@ namespace FlowerImageClassification.Shared
 				// The feature column name should has same name in ImageDataInMemory
 				FeatureColumnName = "ImageBytes",
 				// Change the architecture to different DNN architecture
-				Arch = ImageClassificationTrainer.Architecture.ResnetV250,
+				Arch = ImageClassificationTrainer.Architecture.MobilenetV2,
 				// Number of training iterations
 				Epoch = 200,
 				// Number of samples to use for mini-batch training
