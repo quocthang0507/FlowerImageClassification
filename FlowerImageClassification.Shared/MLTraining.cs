@@ -31,10 +31,10 @@ namespace FlowerImageClassification.Shared
 		/// </summary>
 		public string InputFolderPathForTraining { get; set; }
 
-		private MLContext mlContext;
-		private ITransformer trainedModel;
-		private IDataView testDataset;
-		private IDataView trainDataset;
+		protected MLContext mlContext;
+		protected ITransformer trainedModel;
+		protected IDataView testDataset;
+		protected IDataView trainDataset;
 
 		public MLTraining(string outputModelPath, string inputFolderPathForPrediction, string inputFolderPathForTraining)
 		{
@@ -150,7 +150,7 @@ namespace FlowerImageClassification.Shared
 		/// <summary>
 		/// Prepare dataset by loading from files, transforming and splitting
 		/// </summary>
-		private void PrepareDataset()
+		protected void PrepareDataset()
 		{
 			// 2. Load the initial full image-set into an IDataView and shuffle so it'll be better balanced
 			IEnumerable<ImageData> images = FileUtils.LoadImagesFromDirectory(InputFolderPathForTraining, true);
@@ -257,7 +257,7 @@ namespace FlowerImageClassification.Shared
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void PrintMLContextLog(object sender, LoggingEventArgs e)
+		protected void PrintMLContextLog(object sender, LoggingEventArgs e)
 		{
 			if (e.Message.StartsWith("[Source=ImageClassificationTrainer;"))
 			{
