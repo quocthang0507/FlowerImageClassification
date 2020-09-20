@@ -39,7 +39,7 @@ namespace FlowerImageClassification.Shared
 		/// <summary>
 		/// Run the pipeline to train the model, then save the model to specific output folder path
 		/// </summary>
-		public void RunPipeline()
+		public new void RunPipeline()
 		{
 			// 1., 2., 3., 4.
 			PrepareDataset();
