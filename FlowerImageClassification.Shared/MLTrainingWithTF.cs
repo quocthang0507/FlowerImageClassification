@@ -2,6 +2,7 @@
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using Microsoft.ML.Transforms;
+using Microsoft.ML.Vision;
 using System;
 using System.Diagnostics;
 using static Microsoft.ML.Transforms.ValueToKeyMappingEstimator;
@@ -24,8 +25,22 @@ namespace FlowerImageClassification.Shared
 			InceptionTFModelPath = inceptionTFModelPath;
 		}
 
-		public IEstimator<ITransformer> CreateCustomPipeline()
+		public IEstimator<ITransformer> CreateCustomPipelineTF()
 		{
+			var options = new ImageClassificationTrainer.Options()
+			{
+				LabelColumnName = "LabelAsKey",
+				FeatureColumnName = "softmax2_pre_activation",
+				// Change the architecture to different DNN architecture
+				Arch = ImageClassificationTrainer.Architecture.InceptionV3,
+				// Number of training iterations
+				Epoch = 200,
+				// Number of samples to use for mini-batch training
+				BatchSize = 10,
+				LearningRate = 0.01f,
+				MetricsCallback = (metrics) => Console.WriteLine(metrics),
+				ValidationSet = testDataset
+			};
 			string outputCol = "ImageBytes", inputCol = "ImagePath";
 			IEstimator<ITransformer> pipeline = mlContext.Transforms.
 				LoadRawImageBytes(outputCol, InputFolderPathForTraining, inputCol).
@@ -34,8 +49,10 @@ namespace FlowerImageClassification.Shared
 				Append(mlContext.Model.LoadTensorFlowModel(InceptionTFModelPath).
 				ScoreTensorFlowModel(outputColumnNames: new[] { "softmax2_pre_activation" }, inputColumnNames: new[] { inputCol }, addBatchDimensionInput: true)).
 				Append(mlContext.Transforms.Conversion.MapValueToKey("LabelAsKey", "Label", keyOrdinality: KeyOrdinality.ByValue)).
-				Append(mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(labelColumnName: "LabelAsKey", featureColumnName: "softmax2_pre_activation")).
-				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "Predicted")).AppendCacheCheckpoint(mlContext);
+				Append(mlContext.MulticlassClassification.Trainers.ImageClassification(options)).
+				//Append(mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(labelColumnName: "LabelAsKey", featureColumnName: "softmax2_pre_activation")).
+				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "Predicted")).
+				AppendCacheCheckpoint(mlContext);
 			return pipeline;
 		}
 
@@ -48,7 +65,7 @@ namespace FlowerImageClassification.Shared
 			PrepareDataset();
 
 			// 5. Call pipeline
-			var pipeline = CreateCustomPipeline();
+			var pipeline = CreateCustomPipelineTF();
 
 			// 6. Train/create the ML Model
 			Console.WriteLine("*** Training the image classification model with DNN Transfer Learning on top of the selected pre-trained model/architecture ***");
@@ -69,8 +86,6 @@ namespace FlowerImageClassification.Shared
 			mlContext.Model.Save(trainedModel, trainDataset.Schema, OutputModelPath);
 			Console.WriteLine($"Model saved to: {OutputModelPath}");
 		}
-
-
 
 		/// <summary>
 		/// Map the parameter values to friendly names
