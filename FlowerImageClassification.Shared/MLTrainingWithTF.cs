@@ -8,6 +8,9 @@ using static Microsoft.ML.Transforms.ValueToKeyMappingEstimator;
 
 namespace FlowerImageClassification.Shared
 {
+	/// <summary>
+	/// Class provides many methods to train a model using ML.Net Transfer Learning
+	/// </summary>
 	public class MLTrainingWithTF : MLTraining
 	{
 		/// <summary>

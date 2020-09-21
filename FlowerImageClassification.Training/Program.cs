@@ -7,7 +7,7 @@ namespace FlowerImageClassification.Training
 {
 	class Program
 	{
-		static string outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath, consoleOutputPath;
+		static string outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath, consoleOutputPath, inceptionModelPath;
 
 		static void Main(string[] args)
 		{
@@ -17,7 +17,7 @@ namespace FlowerImageClassification.Training
 			using (MirrorOutput capturing = new MirrorOutput(output))
 			{
 				// Begin to run the pipeline
-				MLTraining mlTraining = new MLTraining(outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath);
+				MLTraining mlTraining = new MLTrainingWithTF(inceptionModelPath, outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath);
 				mlTraining.RunPipeline();
 			}
 			// End the pipeline and write to file
@@ -31,10 +31,11 @@ namespace FlowerImageClassification.Training
 		{
 			string assetsRelativePath = @"../../../../Assets";
 			string assetsPath = GetAbsolutePath(assetsRelativePath);
-			outputMlNetModelFilePath = Path.Combine(assetsPath, "Outputs", "imageClassifier_mobilenetv2.zip");
+			outputMlNetModelFilePath = Path.Combine(assetsPath, "Outputs", "imageClassifier_tf.zip");
 			imagesFolderPathForPredictions = Path.Combine(assetsPath, "Inputs", "Predictions", "test1");
 			fullImagesetFolderPath = Path.Combine(assetsPath, "Inputs", "Trainings", "dalat_dataset");
 			consoleOutputPath = GetAbsolutePath(@"../../../../Outputs");
+			inceptionModelPath = Path.Combine(assetsPath, "Inputs", "Inception", "tensorflow_inception_graph.pb");
 		}
 	}
 }
