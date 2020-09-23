@@ -1,7 +1,4 @@
-﻿using FlowerImageClassification.Shared.Image;
-using Microsoft.ML;
-using Microsoft.ML.Data;
-using Microsoft.ML.Transforms;
+﻿using Microsoft.ML;
 using Microsoft.ML.Vision;
 using System;
 using System.Diagnostics;
@@ -19,7 +16,7 @@ namespace FlowerImageClassification.Shared
 		/// </summary>
 		public string InceptionTFModelPath { get; set; }
 
-		public MLTrainingWithTF(string inceptionTFModelPath, string outputModelPath, string inputFolderPathForPrediction, string inputFolderPathForTraining) : 
+		public MLTrainingWithTF(string inceptionTFModelPath, string outputModelPath, string inputFolderPathForPrediction, string inputFolderPathForTraining) :
 			base(outputModelPath, inputFolderPathForPrediction, inputFolderPathForTraining)
 		{
 			InceptionTFModelPath = inceptionTFModelPath;
