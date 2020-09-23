@@ -12,6 +12,10 @@ if (form != null)
 		e.preventDefault();
 
 		const files = document.querySelector('[type=file]').files;
+		if (!fileValidation()) {
+			alert("Tập tin không hợp lệ!");
+			return;
+		}
 		const formData = new FormData();
 
 		formData.append('imageFile', files[0]);
@@ -52,3 +56,27 @@ $(document).ready(function () {
 		$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 	});
 });
+
+/////////////// Validate file extension ///////////////
+function fileValidation() {
+	var fileInput = document.querySelector('[type=file]');
+	var filePath = fileInput.value;
+	// Allowing 2 extensions
+	var allowedExtensions = /(\.jpg|\.png)$/i;
+	if (!allowedExtensions.exec(filePath)) {
+		alert('Chỉ chấp nhận hình JPG và PNG!');
+		fileInput.value = '';
+	}
+	else {
+		// Image preview 
+		if (fileInput.files && fileInput.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				document.getElementById('divImagePreview').innerHTML = '<img src="' + e.target.result + '"/>';
+			};
+			reader.readAsDataURL(fileInput.files[0]);
+			return true;
+		}
+	}
+	return false;
+}

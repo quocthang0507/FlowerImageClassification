@@ -58,7 +58,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[Route("api/ClassifyImage")]
 		public async Task<IActionResult> ClassifyImage(IFormFile imageFile)
 		{
-			if (imageFile.Length == 0)
+			if (imageFile == null || imageFile.Length == 0)
 				return BadRequest();
 			var memoryStream = new MemoryStream();
 

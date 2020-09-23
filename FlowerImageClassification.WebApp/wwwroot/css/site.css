@@ -22,6 +22,11 @@ a.navbar-brand {
 	font-weight: 600;
 }
 
+img {
+	height: 200px;
+	float: right;
+}
+
 /* Provide sufficient contrast against white background */
 a {
 	color: #0366d6;

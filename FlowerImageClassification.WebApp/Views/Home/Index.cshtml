@@ -2,32 +2,40 @@
 	ViewData["Title"] = "Trang chủ";
 }
 
-<div class="text-center">
-	<h1 class="display-4">Chào mừng</h1>
-	<h2 class="headerDiv">Ứng dụng nhận diện loài hoa trực tuyến, sử dụng thư viện ML.NET, dựa trên TensorFlow</h2>
-	<p>Tìm hiểu thêm về <a href="https://docs.microsoft.com/en-us/dotnet/machine-learning/">thư viện ML.NET</a> của Microsoft.</p>
-</div>
-<br />
-<div>
-<form method="post" enctype="multipart/form-data">
-	<div>
-	 <p>Tải hình ảnh của bạn lên đây:</p>
+<div class="container">
+	<div class="text-center">
+		<h1 class="display-4">Chào mừng</h1>
+		<h2 class="headerDiv">Ứng dụng nhận diện loài hoa trực tuyến, sử dụng thư viện ML.NET, dựa trên TensorFlow</h2>
+		<p>Tìm hiểu thêm về <a href="https://docs.microsoft.com/en-us/dotnet/machine-learning/">thư viện ML.NET</a> của Microsoft.</p>
 	</div>
-	 <div>
-		 <div class="custom-file mb-3">
-		  <input type="file" class="custom-file-input" id="customFile" name="imageFile">
-		  <label class="custom-file-label" for="customFile">Choose file</label>
+	<br />
+	<div>
+		<form method="post" enctype="multipart/form-data">
+			<div>
+				<p>Tải hình ảnh của bạn lên đây:</p>
+			</div>
+			<div>
+				<div class="custom-file mb-3">
+					<input type="file" class="custom-file-input" id="customFile" name="imageFile">
+					<label class="custom-file-label" for="customFile">Choose file</label>
+				</div>
+			</div>
+			<div>
+				<input type="submit" value="Gửi hình" name="submit" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+	<br />
+	<br />
+	<div class="row">
+		<div class="col-sm">
+			<div id="divImagePreview" class="col-md-10"></div>
 		</div>
-	 </div>
-	 <br/>
-	 <div>
-		 <input type="submit" value="Gửi hình" name="submit" class="btn btn-primary"/>
-	 </div>
-</form>
+		<div class="col-sm">
+			<div id="divImageId" class="col-md-10"></div>
+			<div id="divPrediction" class="col-md-10"></div>
+			<div id="divProbability" class="col-md-10"></div>
+			<div id="divExecutionTime" class="col-md-10"></div>
+		</div>
+	</div>
 </div>
-<br />
-<br />
-<div id="divImageId" class="col-md-10"></div>
-<div id="divPrediction" class="col-md-10"></div>
-<div id="divProbability" class="col-md-10"></div>
-<div id="divExecutionTime" class="col-md-10"></div>
