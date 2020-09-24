@@ -159,9 +159,9 @@ namespace FlowerImageClassification.Shared
 
 			// 3. Load Images with in-memory type within the IDataView and Transform Labels to Keys (Categorical)
 			IDataView transformedDataset = mlContext.Transforms.Conversion.
-				MapValueToKey("LabelAsKey", "Label", keyOrdinality: KeyOrdinality.ByValue)
+				MapValueToKey("LabelAsKey", "Label", keyOrdinality: KeyOrdinality.ByValue).
 				// The outputColumnName should has same name in ImageDataInMemory
-				.Append(mlContext.Transforms.LoadRawImageBytes("ImageBytes", InputFolderPathForTraining, "ImagePath")).
+				Append(mlContext.Transforms.LoadRawImageBytes("ImageBytes", InputFolderPathForTraining, "ImagePath")).
 				Fit(shuffledDataset).
 				Transform(shuffledDataset);
 
