@@ -340,6 +340,5 @@ ASALocalRun/
 healthchecksdb
 
 [Oo]utputs/*
-dalat_dataset/*
-!dalat_dataset/*.txt
-!dalat_dataset/*.md
+[Tt]rainings/
+!*.md
