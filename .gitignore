@@ -340,4 +340,6 @@ ASALocalRun/
 healthchecksdb
 
 [Oo]utputs/*
-[Aa]ssets/[Ii]nputs/[Tt]ranings/*
+dalat_dataset/*
+!dalat_dataset/*.txt
+!dalat_dataset/*.md
