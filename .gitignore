@@ -340,3 +340,4 @@ ASALocalRun/
 healthchecksdb
 
 [Oo]utputs/*
+[Aa]ssets/[Ii]nputs/[Tt]ranings/*
