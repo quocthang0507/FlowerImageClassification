@@ -8,6 +8,10 @@ a.navbar-brand {
 	font-weight: 700;
 }
 
+.active {
+	font-weight: 600;
+}
+
 .headerDiv {
 	color: blue;
 	text-align: center;
@@ -22,13 +26,19 @@ a.navbar-brand {
 	float: left;
 }
 
-.active {
-	font-weight: 600;
+/* For image frame*/
+.imgPreview {
+	width: 100%;
 }
 
-img {
-	height: 200px;
-	float: right;
+#formButton {
+	width: 100%;
+	margin-top: 10px;
+	text-align: center;
+}
+
+#divResult_left, #divResult_right {
+	visibility: hidden;
 }
 
 /* Provide sufficient contrast against white background */

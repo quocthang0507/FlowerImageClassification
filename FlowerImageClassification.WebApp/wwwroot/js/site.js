@@ -4,27 +4,36 @@
 // Write your JavaScript code.
 
 const url = 'api/ClassifyImage';
+const webcam = document.getElementById("my_camera");
 const form = document.querySelector('form');
+const inputFile = document.getElementById("inputFile");
+const inputWebcam = document.getElementById("inputWebcam");
 
 /////////////// Form submit ///////////////
-if (form != null)
+if (inputFile != null || inputWebcam != null)
 	form.addEventListener('submit', e => {
 		e.preventDefault();
-
-		const files = document.querySelector('[type=file]').files;
-		if (!fileValidation()) {
-			return;
-		}
 		const formData = new FormData();
-
-		formData.append('imageFile', files[0]);
-
+		// User input file
+		if (inputFile != null) {
+			const files = inputFile.files;
+			if (!fileValidation()) {
+				return;
+			}
+			formData.append('imageFile', files[0]);
+		}
+		// User webcam image
+		else {
+			var file = document.getElementById("inputWebcam").src;
+			formData.append("base64image", file);
+		}
 		fetch(url, {
 			method: 'POST',
 			body: formData
 		}).then(response => response.json()
 		).then(response2 => {
 			console.log('Received response from server: ', response2);
+			document.getElementById("divResult_right").style.visibility = "visible";
 			document.getElementById('divImageId').innerHTML = "Tên tập tin vừa tải lên: " + response2.imageID;
 			document.getElementById('divPrediction').innerHTML = "Kết quả dự đoán là: " + response2.predictedLabel;
 			document.getElementById('divProbability').innerHTML = "Xác suất: " + (response2.probability * 100).toFixed(3) + "%";
@@ -53,6 +62,7 @@ $(document).ready(function () {
 	$(".custom-file-input").on("change", function () {
 		var fileName = $(this).val().split("\\").pop();
 		$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		fileValidation();
 	});
 });
 
@@ -73,7 +83,8 @@ function fileValidation() {
 		if (fileInput.files && fileInput.files[0]) {
 			var reader = new FileReader();
 			reader.onload = function (e) {
-				document.getElementById('divImagePreview').innerHTML = '<img src="' + e.target.result + '"/>';
+				document.getElementById("divResult_left").style.visibility = "visible";
+				document.getElementById('divImagePreview').innerHTML = '<img class="imgPreview" src="' + e.target.result + '"/>';
 			};
 			reader.readAsDataURL(fileInput.files[0]);
 			return true;
@@ -83,12 +94,14 @@ function fileValidation() {
 }
 
 /////////////// Webcam settings //////////////////
-Webcam.set({ width: 320, height: 240, image_format: "jpeg", jpeg_quality: 90 });
-function takeSnapshot() {
-	Webcam.snap(function (data_uri) {
-		document.getElementById("results").innerHTML = '<img src="' + data_uri + '"/>';
-		Webcam.upload(data_uri, '/api/...', function (code, text) {
-			alert('Photo captured');
+if (webcam != null) {
+	var width = document.getElementById("formButton").offsetWidth;
+	var height = width * 3 / 4;
+	Webcam.set({ width: width, height: height, image_format: "jpeg", jpeg_quality: 90 });
+	Webcam.attach('#my_camera');
+	function takeSnapshot() {
+		Webcam.snap(function (data_uri) {
+			document.getElementById("webcamPreview").innerHTML = '<img src="' + data_uri + '" id="inputWebcam"/>';
 		});
-	});
+	}
 }

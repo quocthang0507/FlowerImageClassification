@@ -15,25 +15,36 @@
 		</div>
 		<div>
 			<div class="custom-file mb-3">
-				<input type="file" class="custom-file-input" id="customFile" name="imageFile" accept="image/*">
-				<label class="custom-file-label" for="customFile">Choose file</label>
+				<input type="file" class="custom-file-input" id="inputFile" name="imageFile" accept="image/*">
+				<label class="custom-file-label" for="inputFile">Choose file</label>
 			</div>
 		</div>
-		<div>
-			<input type="submit" value="Gửi hình" name="submit" class="btn btn-primary" />
+		<div id="formButton">
+			<input type="submit" value="Gửi hình" name="submit" class="btn btn-primary"/>
+			<a class="btn btn-success" asp-area="" asp-controller="Camera" asp-action="Capture">Chuyển qua Camera</a>
 		</div>
 	</form>
 </div>
 <br />
 <br />
 <div class="row">
-	<div class="col-sm">
-		<div id="divImagePreview" class="col-md-10"></div>
+	<div class="col-sm" id="divResult_left">
+		<div class="card">
+			<div class="card-header">Xem trước</div>
+			<div class="card-body">
+				<div id="divImagePreview"></div>
+			</div>
+		</div>
 	</div>
-	<div class="col-sm">
-		<div id="divImageId" class="col-md-10"></div>
-		<div id="divPrediction" class="col-md-10"></div>
-		<div id="divProbability" class="col-md-10"></div>
-		<div id="divExecutionTime" class="col-md-10"></div>
+	<div class="col-sm" id="divResult_right">
+		<div class="card">
+			<div class="card-header">Kết quả</div>
+			<div class="card-body">
+				<div id="divImageId" class="col-md-10"></div>
+				<div id="divPrediction" class="col-md-10"></div>
+				<div id="divProbability" class="col-md-10"></div>
+				<div id="divExecutionTime" class="col-md-10"></div>
+			</div>
+		</div>
 	</div>
 </div>
