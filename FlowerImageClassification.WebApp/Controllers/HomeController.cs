@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ML;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -67,6 +68,21 @@ namespace FlowerImageClassification.WebApp.Controllers
 
 			// Check that the image is valid
 			byte[] imageData = memoryStream.ToArray();
+			return Classify(imageData, imageFile.FileName);
+		}
+
+		[HttpPost]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
+		[Route("api/ClassifyImageBase64")]
+		public IActionResult ClassifyImageBase64(string base64image)
+		{
+			var imageData = Base64ToByteArray(base64image);
+			return Classify(imageData, null);
+		}
+
+		private IActionResult Classify(byte[] imageData, string filename = null)
+		{
 			if (!imageData.IsValidImage())
 				return StatusCode(StatusCodes.Status415UnsupportedMediaType);
 			_logger.LogInformation("Start processing image...");
@@ -91,12 +107,21 @@ namespace FlowerImageClassification.WebApp.Controllers
 				PredictedLabel = prediction.PredictedLabel,
 				Probability = prediction.Score.Max(),
 				PredictionExecutionTime = elapsedTime,
-				ImageID = imageFile.FileName
+				ImageID = filename
 			};
 			return Ok(bestPrediction);
 		}
 
+
 		private string getAbsolutePath(string relativePath)
 			=> FileUtils.GetAbsolutePath(typeof(Program).Assembly, relativePath);
+
+		private byte[] Base64ToByteArray(string base64String)
+		{
+			if (base64String.StartsWith("data:image"))
+				return Convert.FromBase64String(base64String.Split(',')[1]);
+			return Convert.FromBase64String(base64String);
+		}
 	}
 }
+

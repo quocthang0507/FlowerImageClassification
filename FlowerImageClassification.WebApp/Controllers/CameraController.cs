@@ -8,7 +8,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 {
 	public class CameraController : Controller
 	{
-		public IActionResult Capture()
+		public IActionResult Index()
 		{
 			return View();
 		}

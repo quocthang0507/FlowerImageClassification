@@ -1,6 +1,6 @@
 ﻿
 @{
-	ViewData["Title"] = "Capture";
+	ViewData["Title"] = "Camera";
 }
 <div class="text-center">
 	<h1 class="display-4">Chào mừng</h1>
@@ -26,7 +26,7 @@
 				<div class="card">
 					<div class="card-header">Ảnh chụp</div>
 					<div class="card-body">
-						<div id="webcamPreview">Ảnh chụp của bạn sẽ xuất hiện tại đây...</div>
+						<img src="" id="inputWebcam" />
 					</div>
 				</div>
 			</div>
@@ -41,14 +41,6 @@
 <br />
 <br />
 <div class="row">
-	<div class="col-sm" id="divResult_left">
-		<div class="card">
-			<div class="card-header">Xem trước</div>
-			<div class="card-body">
-				<div id="divImagePreview"></div>
-			</div>
-		</div>
-	</div>
 	<div class="col-sm" id="divResult_right">
 		<div class="card">
 			<div class="card-header">Kết quả</div>

@@ -3,17 +3,17 @@
 
 // Write your JavaScript code.
 
-const url = 'api/ClassifyImage';
+var url = 'api/ClassifyImage';
 const webcam = document.getElementById("my_camera");
 const form = document.querySelector('form');
 const inputFile = document.getElementById("inputFile");
 const inputWebcam = document.getElementById("inputWebcam");
 
 /////////////// Form submit ///////////////
-if (inputFile != null || inputWebcam != null)
+if (inputFile != null || inputWebcam.src != null)
 	form.addEventListener('submit', e => {
 		e.preventDefault();
-		const formData = new FormData();
+		var formData = new FormData();
 		// User input file
 		if (inputFile != null) {
 			const files = inputFile.files;
@@ -24,6 +24,7 @@ if (inputFile != null || inputWebcam != null)
 		}
 		// User webcam image
 		else {
+			url = 'api/ClassifyImageBase64';
 			var file = document.getElementById("inputWebcam").src;
 			formData.append("base64image", file);
 		}
@@ -93,7 +94,7 @@ function fileValidation() {
 	return false;
 }
 
-/////////////// Webcam settings //////////////////
+/////////////// Webcam settings ///////////////
 if (webcam != null) {
 	var width = document.getElementById("formButton").offsetWidth;
 	var height = width * 3 / 4;
@@ -101,7 +102,7 @@ if (webcam != null) {
 	Webcam.attach('#my_camera');
 	function takeSnapshot() {
 		Webcam.snap(function (data_uri) {
-			document.getElementById("webcamPreview").innerHTML = '<img src="' + data_uri + '" id="inputWebcam"/>';
+			document.getElementById("inputWebcam").src = data_uri;
 		});
 	}
 }
