@@ -13,7 +13,6 @@ if (form != null)
 
 		const files = document.querySelector('[type=file]').files;
 		if (!fileValidation()) {
-			alert("Tập tin không hợp lệ!");
 			return;
 		}
 		const formData = new FormData();
@@ -63,7 +62,9 @@ function fileValidation() {
 	var filePath = fileInput.value;
 	// Allowing 2 extensions
 	var allowedExtensions = /(\.jpg|\.png)$/i;
-	if (!allowedExtensions.exec(filePath)) {
+	if (fileInput.files.length == 0)
+		alert("Hình ảnh không được để trống!");
+	else if (!allowedExtensions.exec(filePath)) {
 		alert('Chỉ chấp nhận hình JPG và PNG!');
 		fileInput.value = '';
 	}
@@ -79,4 +80,15 @@ function fileValidation() {
 		}
 	}
 	return false;
+}
+
+/////////////// Webcam settings //////////////////
+Webcam.set({ width: 320, height: 240, image_format: "jpeg", jpeg_quality: 90 });
+function takeSnapshot() {
+	Webcam.snap(function (data_uri) {
+		document.getElementById("results").innerHTML = '<img src="' + data_uri + '"/>';
+		Webcam.upload(data_uri, '/api/...', function (code, text) {
+			alert('Photo captured');
+		});
+	});
 }

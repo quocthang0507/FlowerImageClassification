@@ -1,0 +1,29 @@
+﻿
+@{
+	ViewData["Title"] = "Capture";
+}
+<script src="~/js/webcam.js" type="text/javascript"></script>
+<div class="text-center">
+	<h1 class="headerDiv">Capture</h1>
+</div>
+<div class="row">
+	<div class="col-sm">
+		<div class="panel panel-default">
+			<div class="panel-heading">Camera</div>
+			<div class="panel-body">
+				<div id="my_camera"></div>
+				<form>
+					<input type="button" class="btn btn-success" value="Take Snapshot" onclick="takeSnapshot()" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm">
+		<div class="panel panel-default">
+			<div class="panel-heading">Captured Photo</div>
+			<div class="panel-body">
+				<div id="results">Your captured image will appear here...</div>
+			</div>
+		</div>
+	</div>
+</div>
