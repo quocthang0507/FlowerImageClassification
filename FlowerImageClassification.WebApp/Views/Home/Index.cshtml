@@ -3,7 +3,7 @@
 }
 
 <div>
-	<form method="post" enctype="multipart/form-data">
+	<form method="post" enctype="multipart/form-data" class="dropzone">
 		<div>
 			<p>Tải hình ảnh của bạn lên đây:</p>
 		</div>
@@ -14,7 +14,7 @@
 			</div>
 		</div>
 		<div id="formButton">
-			<input type="submit" value="Gửi hình" name="submit" class="btn btn-primary"/>
+			<input type="submit" value="Gửi hình" name="submit" class="btn btn-primary" />
 			<a class="btn btn-success" asp-area="" asp-controller="Camera" asp-action="Index">Chuyển qua Camera</a>
 		</div>
 	</form>
@@ -42,3 +42,6 @@
 		</div>
 	</div>
 </div>
+@section scripts{
+	<script src="~/js/dropzone.js" type="text/javascript" asp-append-version="true"></script>
+}
