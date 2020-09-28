@@ -1,5 +1,4 @@
-﻿using FlowerImageClassification.Shared;
-using FlowerImageClassification.Shared.Image;
+﻿using FlowerImageClassification.Shared.Image;
 using FlowerImageClassification.Shared.Models.ImageHelpers;
 using FlowerImageClassification.WebApp.Models;
 using Microsoft.AspNetCore.Http;

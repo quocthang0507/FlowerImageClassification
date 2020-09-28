@@ -46,17 +46,6 @@ if (inputFile != null || inputWebcam.src != null)
 		});
 	});
 
-/////////////// Add 'active' class to current element ///////////////
-$(document).ready(function () {
-	var url = window.location;
-	$('.collapse .navbar-nav').find('.active').removeClass('active');
-	$('.collapse .navbar-nav li a').each(function () {
-		if (this.href == url) {
-			$(this).parent().addClass('active');
-		}
-	});
-});
-
 /////////////// File upload form ///////////////
 $(document).ready(function () {
 	// Add the following code if you want the name of the file appear on select
