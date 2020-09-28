@@ -17,7 +17,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 {
 	public class HomeController : Controller
 	{
-		public IConfiguration configuration { get; }
+		public IConfiguration Configuration { get; }
 
 		private readonly PredictionEnginePool<ImageDataInMemory, ImagePrediction> predictionEnginePool;
 		private readonly ILogger<HomeController> _logger;
@@ -26,7 +26,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		{
 			// Get the ML Model Engine injected, for scoring
 			this.predictionEnginePool = predictionEnginePool;
-			this.configuration = configuration;
+			this.Configuration = configuration;
 			// Get other injected dependencies
 			_logger = logger;
 		}
@@ -117,10 +117,6 @@ namespace FlowerImageClassification.WebApp.Controllers
 			};
 			return Ok(bestPrediction);
 		}
-
-
-		private string getAbsolutePath(string relativePath)
-			=> FileUtils.GetAbsolutePath(typeof(Program).Assembly, relativePath);
 
 		private byte[] Base64ToByteArray(string base64String)
 		{
