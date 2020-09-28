@@ -1,7 +1,7 @@
 # FlowerImageClassification
 Classify and recognize flower images using ML.NET library
 
-This solution based on DeepLearning_ImageClassification_Training, https://github.com/dotnet/machinelearning-samples/tree/master/samples/csharp/getting-started/DeepLearning_ImageClassification_Training
+This solution based on [DeepLearning_ImageClassification_Training](https://github.com/dotnet/machinelearning-samples/tree/master/samples/csharp/getting-started/DeepLearning_ImageClassification_Training)
 
 ## Bảng thông tin tóm tắt
 | ML.NET version | API type | Status | App Type | Data type | Scenario | ML Task | Algorithms |
