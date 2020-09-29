@@ -169,9 +169,9 @@ namespace FlowerImageClassification.Shared
 			The pre-processed data is split and 70% is used for training while the remaining 30% is used for validation. 
 			Then, the 30% validation set is further split into validation and test sets where 90% is used for validation and 10% is used for testing.
 			*/
-			var splitData = mlContext.Data.TrainTestSplit(transformedDataset, 0.3);
-			var validationTestSplit = mlContext.Data.TrainTestSplit(splitData.TestSet);
-			trainDataset = splitData.TrainSet;
+			var trainSplit = mlContext.Data.TrainTestSplit(transformedDataset, 0.3);
+			var validationTestSplit = mlContext.Data.TrainTestSplit(trainSplit.TestSet);
+			trainDataset = trainSplit.TrainSet;
 			validationDataset = validationTestSplit.TrainSet;
 			testDataset = validationTestSplit.TestSet;
 		}
