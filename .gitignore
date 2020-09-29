@@ -342,3 +342,4 @@ healthchecksdb
 [Oo]utputs/*
 [Tt]rainings/
 !*.md
+!*.zip
