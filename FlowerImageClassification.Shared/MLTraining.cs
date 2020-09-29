@@ -34,6 +34,7 @@ namespace FlowerImageClassification.Shared
 		protected MLContext mlContext;
 		protected ITransformer trainedModel;
 		protected IDataView testDataset;
+		protected IDataView validationDataset;
 		protected IDataView trainDataset;
 
 		public MLTraining(string outputModelPath, string inputFolderPathForPrediction, string inputFolderPathForTraining)
@@ -55,8 +56,7 @@ namespace FlowerImageClassification.Shared
 			PrepareDataset();
 
 			// 5. Call pipeline
-			//var pipeline = CreateDefaultPipeline(testDataset);
-			var pipeline = CreateCustomPipeline(testDataset);
+			var pipeline = CreateCustomPipeline();
 
 			// 6. Train/create the ML Model
 			Console.WriteLine("*** Training the image classification model with DNN Transfer Learning on top of the selected pre-trained model/architecture ***");
@@ -165,10 +165,15 @@ namespace FlowerImageClassification.Shared
 				Fit(shuffledDataset).
 				Transform(shuffledDataset);
 
-			// 4. Split the data 80:20 into train and test sets, train and evaluate.
-			var splitData = mlContext.Data.TrainTestSplit(transformedDataset, 0.2);
-			trainDataset = splitData.TrainSet; // 80%
-			testDataset = splitData.TestSet; // 20%
+			/* 4. Split the data into train, validation and test set.
+			The pre-processed data is split and 70% is used for training while the remaining 30% is used for validation. 
+			Then, the 30% validation set is further split into validation and test sets where 90% is used for validation and 10% is used for testing.
+			*/
+			var splitData = mlContext.Data.TrainTestSplit(transformedDataset, 0.3);
+			var validationTestSplit = mlContext.Data.TrainTestSplit(splitData.TestSet);
+			trainDataset = splitData.TrainSet;
+			validationDataset = validationTestSplit.TrainSet;
+			testDataset = validationTestSplit.TestSet;
 		}
 
 		/// <summary>
@@ -197,9 +202,9 @@ namespace FlowerImageClassification.Shared
 		/// <summary>
 		/// 5.1. (Optional) Define the model's training pipeline by using explicit hyper-parameters
 		/// </summary>
-		/// <param name="dataset"></param>
+		/// <param name="validationSet"></param>
 		/// <returns></returns>
-		private EstimatorChain<KeyToValueMappingTransformer> CreateCustomPipeline(IDataView dataset)
+		private EstimatorChain<KeyToValueMappingTransformer> CreateCustomPipeline()
 		{
 			var options = new ImageClassificationTrainer.Options()
 			{
@@ -214,7 +219,7 @@ namespace FlowerImageClassification.Shared
 				BatchSize = 10,
 				LearningRate = 0.01f,
 				MetricsCallback = (metrics) => Console.WriteLine(metrics),
-				ValidationSet = dataset
+				ValidationSet = validationDataset
 			};
 			var pipeline = mlContext.MulticlassClassification.Trainers.ImageClassification(options).
 				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));

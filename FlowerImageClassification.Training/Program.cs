@@ -17,7 +17,7 @@ namespace FlowerImageClassification.Training
 			using (MirrorOutput capturing = new MirrorOutput(output))
 			{
 				// Begin to run the pipeline
-				MLTraining mlTraining = new MLTrainingWithTF(inceptionModelPath, outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath);
+				MLTraining mlTraining = new MLTraining(outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath);
 				mlTraining.RunPipeline();
 			}
 			// End the pipeline and write to file

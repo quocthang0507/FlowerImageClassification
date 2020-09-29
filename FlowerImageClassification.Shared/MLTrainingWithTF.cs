@@ -36,7 +36,7 @@ namespace FlowerImageClassification.Shared
 				BatchSize = 10,
 				LearningRate = 0.01f,
 				MetricsCallback = (metrics) => Console.WriteLine(metrics),
-				ValidationSet = testDataset
+				ValidationSet = validationDataset
 			};
 			string outputCol = "ImageBytes", inputCol = "ImagePath";
 			IEstimator<ITransformer> pipeline = mlContext.Transforms.
@@ -46,6 +46,7 @@ namespace FlowerImageClassification.Shared
 				Append(mlContext.Model.LoadTensorFlowModel(InceptionTFModelPath).
 				ScoreTensorFlowModel(outputColumnNames: new[] { "softmax2_pre_activation" }, inputColumnNames: new[] { inputCol }, addBatchDimensionInput: true)).
 				Append(mlContext.Transforms.Conversion.MapValueToKey("LabelAsKey", "Label", keyOrdinality: KeyOrdinality.ByValue)).
+				////////////////////////////////////////////////////////////////////////////////
 				Append(mlContext.MulticlassClassification.Trainers.ImageClassification(options)).
 				//Append(mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(labelColumnName: "LabelAsKey", featureColumnName: "softmax2_pre_activation")).
 				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "Predicted")).
