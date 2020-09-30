@@ -13,7 +13,7 @@ namespace FlowerImageClassification.Training
 		{
 			// Redirect console output to a stream
 			SetPaths();
-			string output = Path.Combine(consoleOutputPath, $"resnetv2101_{DateTime.Now.ToString("d_M_y h_m_s")}.txt");
+			string output = Path.Combine(consoleOutputPath, $"mobilenetv2_{DateTime.Now.ToString("d_M_y h_m_s")}.txt");
 			using (MirrorOutput capturing = new MirrorOutput(output))
 			{
 				// Begin to run the pipeline
@@ -31,7 +31,7 @@ namespace FlowerImageClassification.Training
 		{
 			string assetsRelativePath = @"../../../../Assets";
 			string assetsPath = GetAbsolutePath(assetsRelativePath);
-			outputMlNetModelFilePath = Path.Combine(assetsPath, "Outputs", "imageClassifier_resnetv2101.zip");
+			outputMlNetModelFilePath = Path.Combine(assetsPath, "Outputs", "imageClassifier_mobilenetv2.zip");
 			imagesFolderPathForPredictions = Path.Combine(assetsPath, "Inputs", "Predictions", "test1");
 			fullImagesetFolderPath = Path.Combine(assetsPath, "Inputs", "Trainings", "dalat_dataset");
 			consoleOutputPath = GetAbsolutePath(@"../../../../Outputs");
