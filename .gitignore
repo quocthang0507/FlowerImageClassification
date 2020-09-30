@@ -340,6 +340,6 @@ ASALocalRun/
 healthchecksdb
 
 [Oo]utputs/*
-[Tt]rainings/
+[Tt]rainings/*
 !*.md
 !*.zip
