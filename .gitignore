@@ -339,6 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-**/[Tt]rainings/**
-!*.md
-!*.zip
+[Tt]rainings/
