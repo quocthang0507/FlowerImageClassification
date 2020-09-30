@@ -1,1 +1,1 @@
-Please copy all meta files to C:\Users\[user]\AppData\Local\Temp\MLNET
+Please extract and copy all meta files to C:\Users\\[user]\AppData\Local\Temp\MLNET
