@@ -21,8 +21,8 @@ namespace FlowerImageClassification.Prediction
 				using (MirrorOutput capturing = new MirrorOutput(output))
 				{
 					MLTraining mlTraining = new MLTraining(outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath);
-					mlTraining.EvaluateModel();
-					//mlTraining.TrySinglePrediction();
+					//mlTraining.EvaluateModel();
+					mlTraining.TrySinglePrediction();
 					//mlTraining.TryMultiplePredictions();
 				}
 			}
