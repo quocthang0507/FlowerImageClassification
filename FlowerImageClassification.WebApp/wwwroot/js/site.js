@@ -10,7 +10,7 @@ const inputFile = document.getElementById("inputFile");
 const inputWebcam = document.getElementById("inputWebcam");
 
 /////////////// Form submit ///////////////
-if (inputFile != null || inputWebcam.src != null)
+if (inputFile != null || inputWebcam != null)
 	form.addEventListener('submit', e => {
 		e.preventDefault();
 		var formData = new FormData();

@@ -84,6 +84,7 @@ namespace FlowerImageClassification.Shared.Common
 				i++;
 				Console.WriteLine($"    LogLoss for class {i} = {classLogLoss:0.####}, the closer to 0, the better");
 			}
+			Console.WriteLine($"    LogLossReduction = {metrics.LogLossReduction:0.####}, the closer to 1, the better");
 			Console.WriteLine($"************************************************************");
 		}
 

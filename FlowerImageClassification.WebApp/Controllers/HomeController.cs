@@ -83,6 +83,8 @@ namespace FlowerImageClassification.WebApp.Controllers
 		public IActionResult ClassifyImageBase64(string base64image)
 		{
 			var imageData = Base64ToByteArray(base64image);
+			if (imageData == null)
+				return BadRequest();
 			return Classify(imageData, null);
 		}
 
@@ -121,7 +123,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		{
 			if (base64String.StartsWith("data:image"))
 				return Convert.FromBase64String(base64String.Split(',')[1]);
-			return Convert.FromBase64String(base64String);
+			return null;
 		}
 	}
 }
