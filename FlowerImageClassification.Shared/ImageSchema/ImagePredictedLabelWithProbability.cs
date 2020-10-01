@@ -1,4 +1,4 @@
-﻿namespace FlowerImageClassification.Shared.Image
+﻿namespace FlowerImageClassification.Shared.ImageSchema
 {
 	/// <summary>
 	/// Image result with predicted label and its probability

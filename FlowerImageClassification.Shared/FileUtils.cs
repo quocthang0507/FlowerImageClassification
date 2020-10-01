@@ -1,4 +1,4 @@
-﻿using FlowerImageClassification.Shared.Image;
+﻿using FlowerImageClassification.Shared.ImageSchema;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;

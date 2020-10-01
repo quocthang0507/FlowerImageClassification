@@ -1,5 +1,5 @@
 ﻿using FlowerImageClassification.Shared.Common;
-using FlowerImageClassification.Shared.Image;
+using FlowerImageClassification.Shared.ImageSchema;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using Microsoft.ML.Transforms;

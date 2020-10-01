@@ -1,4 +1,5 @@
-﻿using FlowerImageClassification.Shared.Image;
+﻿using FlowerImageClassification.Shared.ImageHelpers;
+using FlowerImageClassification.Shared.ImageSchema;
 using FlowerImageClassification.Shared.Models.ImageHelpers;
 using FlowerImageClassification.WebApp.Models;
 using Microsoft.AspNetCore.Http;
@@ -6,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ML;
-using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -79,10 +79,28 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[HttpPost]
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
+		[Route("api/CollectAndClassifyImage")]
+		public async Task<IActionResult> CollectAndClassifyImage(IFormFile imageFile)
+		{
+			if (imageFile == null || imageFile.Length == 0)
+				return BadRequest();
+			var memoryStream = new MemoryStream();
+
+			// Asynchronously copies the content of the uploaded file
+			await imageFile.CopyToAsync(memoryStream);
+
+			// Check that the image is valid
+			byte[] imageData = memoryStream.ToArray();
+			return Classify(imageData, imageFile.FileName);
+		}
+
+		[HttpPost]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
 		[Route("api/ClassifyImageBase64")]
 		public IActionResult ClassifyImageBase64(string base64image)
 		{
-			var imageData = Base64ToByteArray(base64image);
+			var imageData = ImageTransformer.Base64ToByteArray(base64image);
 			if (imageData == null)
 				return BadRequest();
 			return Classify(imageData, null);
@@ -119,12 +137,6 @@ namespace FlowerImageClassification.WebApp.Controllers
 			return Ok(bestPrediction);
 		}
 
-		private byte[] Base64ToByteArray(string base64String)
-		{
-			if (base64String.StartsWith("data:image"))
-				return Convert.FromBase64String(base64String.Split(',')[1]);
-			return null;
-		}
 	}
 }
 

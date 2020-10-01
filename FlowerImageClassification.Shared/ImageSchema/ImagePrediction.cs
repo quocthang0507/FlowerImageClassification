@@ -1,6 +1,6 @@
 ﻿using Microsoft.ML.Data;
 
-namespace FlowerImageClassification.Shared.Image
+namespace FlowerImageClassification.Shared.ImageSchema
 {
 	public class ImagePrediction
 	{

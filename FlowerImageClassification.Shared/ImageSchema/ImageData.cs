@@ -1,4 +1,4 @@
-﻿namespace FlowerImageClassification.Shared.Image
+﻿namespace FlowerImageClassification.Shared.ImageSchema
 {
 	/// <summary>
 	/// Class represents a single image data
