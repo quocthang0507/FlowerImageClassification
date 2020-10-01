@@ -21,4 +21,12 @@
     <ProjectReference Include="..\FlowerImageClassification.Shared\FlowerImageClassification.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Contributions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Contributions\README.md" />
+  </ItemGroup>
+
 </Project>

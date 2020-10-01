@@ -20,6 +20,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 
 		private readonly PredictionEnginePool<ImageDataInMemory, ImagePrediction> predictionEnginePool;
 		private readonly ILogger<HomeController> _logger;
+		private string contributionPath = "Contributions";
 
 		public HomeController(PredictionEnginePool<ImageDataInMemory, ImagePrediction> predictionEnginePool, IConfiguration configuration, ILogger<HomeController> logger)
 		{
@@ -89,9 +90,8 @@ namespace FlowerImageClassification.WebApp.Controllers
 			// Asynchronously copies the content of the uploaded file
 			await imageFile.CopyToAsync(memoryStream);
 
-			// Check that the image is valid
 			byte[] imageData = memoryStream.ToArray();
-			return Classify(imageData, imageFile.FileName);
+			return Classify(imageData, imageFile.FileName, true);
 		}
 
 		[HttpPost]
@@ -103,13 +103,30 @@ namespace FlowerImageClassification.WebApp.Controllers
 			var imageData = ImageTransformer.Base64ToByteArray(base64image);
 			if (imageData == null)
 				return BadRequest();
-			return Classify(imageData, null);
+			return Classify(imageData);
 		}
 
-		private IActionResult Classify(byte[] imageData, string filename = null)
+		[HttpPost]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
+		[Route("api/CollectAndClassifyImageBase64")]
+		public IActionResult CollectAndClassifyImageBase64(string base64image)
 		{
+			var imageData = ImageTransformer.Base64ToByteArray(base64image);
+			if (imageData == null)
+				return BadRequest();
+			return Classify(imageData, null, true);
+		}
+
+		private IActionResult Classify(byte[] imageData, string filename = null, bool canCollect = false)
+		{
+			// Check that the image is valid
 			if (!imageData.IsValidImage())
 				return StatusCode(StatusCodes.Status415UnsupportedMediaType);
+
+			if (canCollect)
+				ImageTransformer.ImageArrayToFile(imageData, contributionPath);
+
 			_logger.LogInformation("Start processing image...");
 
 			// Measure execution time

@@ -26,7 +26,7 @@ a.navbar-brand {
 	float: left;
 }
 
-/* For image frame*/
+/* For form*/
 img {
 	width: 100%;
 	padding: 10px;
@@ -35,6 +35,10 @@ img {
 #formButton {
 	width: 100%;
 	margin-top: 10px;
+	text-align: center;
+}
+
+.form-check {
 	text-align: center;
 }
 
@@ -103,11 +107,6 @@ body {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-}
-
-.container {
-	background-color: rgba(255, 255, 255, 0.7);
-	padding: 10px;
 }
 
 .footer {
