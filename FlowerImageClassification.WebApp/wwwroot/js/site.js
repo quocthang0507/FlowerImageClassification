@@ -3,7 +3,6 @@
 
 // Write your JavaScript code.
 
-var url = 'api/ClassifyImage';
 const webcam = document.getElementById("my_camera");
 const form = document.querySelector('form');
 const inputFile = document.getElementById("inputFile");
@@ -14,6 +13,7 @@ if (inputFile != null || inputWebcam != null)
 	form.addEventListener('submit', e => {
 		e.preventDefault();
 
+		var url = '';
 		var formData = new FormData();
 		var checked = $('input[type=checkbox]').prop('checked');
 
@@ -23,12 +23,19 @@ if (inputFile != null || inputWebcam != null)
 			if (!fileValidation())
 				return;
 			formData.append('imageFile', files[0]);
+			if (checked)
+				url = 'api/CollectAndClassifyImage';
+			else
+				url = 'api/ClassifyImage';
 		}
 		//////////// User webcam image ////////////
 		else {
-			url = 'api/ClassifyImageBase64';
 			var file = document.getElementById("inputWebcam").src;
 			formData.append("base64image", file);
+			if (checked)
+				url = 'api/CollectAndClassifyImageBase64';
+			else
+				url = 'api/ClassifyImageBase64'
 		}
 
 		fetch(url, {
