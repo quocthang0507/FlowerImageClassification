@@ -13,21 +13,24 @@ const inputWebcam = document.getElementById("inputWebcam");
 if (inputFile != null || inputWebcam != null)
 	form.addEventListener('submit', e => {
 		e.preventDefault();
+
 		var formData = new FormData();
-		// User input file
+		var checked = $('input[type=checkbox]').prop('checked');
+
+		//////////// User input file ///////////
 		if (inputFile != null) {
 			const files = inputFile.files;
-			if (!fileValidation()) {
+			if (!fileValidation())
 				return;
-			}
 			formData.append('imageFile', files[0]);
 		}
-		// User webcam image
+		//////////// User webcam image ////////////
 		else {
 			url = 'api/ClassifyImageBase64';
 			var file = document.getElementById("inputWebcam").src;
 			formData.append("base64image", file);
 		}
+
 		fetch(url, {
 			method: 'POST',
 			body: formData
