@@ -20,25 +20,25 @@
 				<div class="card">
 					<div class="card-header">Ảnh chụp</div>
 					<div class="card-body">
-						<img src="" id="inputWebcam" alt="Camera image" />
+						<img src="" id="inputWebcam" />
+						<label class="form-check">
+							Cho phép đóng góp ảnh này
+							<input type="checkbox" class="form-check-input" id="chkContribute">
+							<span class="checkmark"></span>
+						</label>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<label class="form-check">
-				Cho phép đóng góp ảnh này
-				<input type="checkbox" class="form-check-input" id="chkContribute">
-				<span class="checkmark"></span>
-			</label>
-		</div>
-		<div class="row">
 			<div id="formButton">
 				<input type="submit" value="Gửi hình" name="submit" class="btn btn-primary" />
+				<a class="btn btn-success" asp-area="" asp-controller="Home" asp-action="Index">Chuyển qua tập tin</a>
 			</div>
 		</div>
 	</form>
 </div>
+<br/>
 <div class="row">
 	<div class="col-sm" id="divResult_right">
 		<div class="card">
