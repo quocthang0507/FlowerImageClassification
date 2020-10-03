@@ -28,5 +28,14 @@ namespace FlowerImageClassification.WebApp.Extensions
 			return acceptedActions.Contains(currentAction) && acceptedControllers.Contains(currentController);
 		}
 
+		/// <summary>
+		/// Check if the address is localhost
+		/// </summary>
+		/// <param name="htmlHelper"></param>
+		/// <returns></returns>
+		public static bool IsLocalHost(this IHtmlHelper htmlHelper)
+		{
+			return htmlHelper.ViewContext.HttpContext.Request.Host.Value.Contains("localhost");
+		}
 	}
 }

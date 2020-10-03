@@ -48,7 +48,9 @@ header {
 }
 
 
-/* For slideshow background */
+/* For slideshow background 
+    ---------------------------------------------------
+*/
 
 .cb-slideshow {
     list-style: none;
@@ -66,7 +68,7 @@ header {
 
 .cb-slideshow:after {
     content: '';
-    /*background: transparent url(../img/pattern.png) repeat top left;*/
+    background: transparent url(../img/pattern.png) repeat top left;
 }
 
 .cb-slideshow li span {
@@ -137,7 +139,9 @@ header {
 }
 
 
-/* For form */
+/* For form 
+    ---------------------------------------------------
+*/
 
 img {
     width: 100%;
@@ -156,7 +160,9 @@ img {
 }
 
 
-/* Checkbox Input */
+/* Checkbox Input 
+    ---------------------------------------------------
+*/
 
 input#chkContribute {
     position: absolute;
@@ -213,7 +219,9 @@ input#chkContribute {
 }
 
 
-/* Provide sufficient contrast against white background */
+/* Provide sufficient contrast against white background 
+    ---------------------------------------------------
+*/
 
 a {
     color: #0366d6;
@@ -234,7 +242,8 @@ a {
 
 
 /* Sticky footer styles
--------------------------------------------------- */
+    ---------------------------------------------------
+*/
 
 html {
     font-size: 15px;
@@ -265,7 +274,8 @@ button.accept-policy {
 
 
 /* Sticky footer styles
--------------------------------------------------- */
+    ---------------------------------------------------
+*/
 
 html {
     position: relative;
@@ -294,7 +304,8 @@ body {
 
 
 /* Nested list styles
--------------------------------------------------- */
+    ---------------------------------------------------
+*/
 
 .list-group-item.main {
     font-weight: 600;
@@ -328,7 +339,8 @@ body {
 
 
 /* For Iframe
----------------------------------------------*/
+    ---------------------------------------------------
+*/
 
 iframe {
     width: 100%;
@@ -336,4 +348,14 @@ iframe {
 
 iframe.repo {
     height: 500px;
+}
+
+/* For scrollable list
+    ---------------------------------------------------
+*/
+
+.list-group#listFlowers {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    max-height: 400px;
 }

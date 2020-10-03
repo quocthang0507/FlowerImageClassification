@@ -1,4 +1,5 @@
 using FlowerImageClassification.Shared.ImageSchema;
+using FlowerImageClassification.WebApp.LiteDb;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,6 +31,10 @@ namespace FlowerImageClassification.WebApp
 				FromFile(Configuration["MLModel:MLModelFilePath"]);
 
 			// WarmUpPredictionEnginePool(services);
+
+			services.Configure<LiteDbOptions>(Configuration.GetSection("LiteDbOptions"));
+			services.AddSingleton<ILiteDbContext, LiteDbContext>();
+			services.AddTransient<ILiteDbFlowerService, LiteDbFlowerService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -48,14 +48,14 @@
 	</header>
 	@if (@Html.IsThisPage(actions: "Index", controllers: "Home") || @Html.IsThisPage(actions: "Index", controllers: "Camera"))
 	{
-	<!--Random background-image-->
-	<ul class="cb-slideshow">
-		<li><span>Image 01</span></li>
-		<li><span>Image 02</span></li>
-		<li><span>Image 03</span></li>
-		<li><span>Image 04</span></li>
-		<li><span>Image 05</span></li>
-	</ul>
+		<!--Random background-image-->
+		<ul class="cb-slideshow">
+			<li><span>Image 01</span></li>
+			<li><span>Image 02</span></li>
+			<li><span>Image 03</span></li>
+			<li><span>Image 04</span></li>
+			<li><span>Image 05</span></li>
+		</ul>
 	}
 	<div class="container">
 		<main role="main" class="pb-3">
@@ -65,15 +65,24 @@
 
 	<footer class="border-top footer">
 		<div class="container">
-			&copy; @DateTime.Now.Year - La Quốc Thắng, <a href="mailto:1610207@dlu.edu.vn">1610207@dlu.edu.vn</a><br/>
+			&copy; @DateTime.Now.Year - La Quốc Thắng, <a href="mailto:1610207@dlu.edu.vn">1610207@dlu.edu.vn</a><br />
 			🧡 From <a href="https://github.com/quocthang0507" target="_blank">quocthang0507</a> with love ❤
 		</div>
 	</footer>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/js/popper.min.js" type="text/javascript"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	@RenderSection("Scripts", required: false)
-	<script src="~/js/funcs.min.js" type="text/javascript" asp-append-version="true"></script>
-	<script src="~/js/site.min.js" type="text/javascript" asp-append-version="true"></script>
+	@if (!@Html.IsLocalHost())
+	{
+		@RenderSection("Scripts", required: false)
+		<script src="~/js/funcs.min.js" type="text/javascript" asp-append-version="true"></script>
+		<script src="~/js/site.min.js" type="text/javascript" asp-append-version="true"></script>
+	}
+	else
+	{
+		@RenderSection("Scripts", required: false)
+		<script src="~/js/funcs.js" type="text/javascript" asp-append-version="true"></script>
+		<script src="~/js/site.js" type="text/javascript" asp-append-version="true"></script>
+	}
 </body>
 </html>
