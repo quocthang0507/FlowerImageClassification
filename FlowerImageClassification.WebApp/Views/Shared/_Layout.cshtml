@@ -46,6 +46,8 @@
 			</div>
 		</nav>
 	</header>
+	@if (@Html.IsThisPage(actions: "Index", controllers: "Home") || @Html.IsThisPage(actions: "Index", controllers: "Camera"))
+	{
 	<ul class="cb-slideshow">
 		<li><span>Image 01</span></li>
 		<li><span>Image 02</span></li>
@@ -54,6 +56,7 @@
 		<li><span>Image 05</span></li>
 		<li><span>Image 06</span></li>
 	</ul>
+	}
 	<div class="container">
 		<main role="main" class="pb-3">
 			@RenderBody()
