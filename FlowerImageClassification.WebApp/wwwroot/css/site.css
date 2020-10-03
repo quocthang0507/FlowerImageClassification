@@ -1,5 +1,6 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+
 .navbar {
 	background-image: linear-gradient(to bottom, #FFFFFF, #e2e2e2);
 	margin-bottom: 1px !important;
@@ -43,6 +44,10 @@ header {
 	margin-top: 10px;
 }
 
+.card-file {
+	padding: 10px;
+}
+
 /* For slideshow background */
 .cb-slideshow {
 	list-style: none;
@@ -59,7 +64,7 @@ header {
 
 		.cb-slideshow:after {
 			content: '';
-			background: transparent url(../img/pattern.png) repeat top left;
+			/*background: transparent url(../img/pattern.png) repeat top left;*/
 		}
 
 		.cb-slideshow li span {
@@ -189,7 +194,7 @@ img {
 }
 
 /* Checkbox Input */
-input {
+input#chkContribute {
 	position: absolute;
 	opacity: 0;
 	cursor: pointer;
@@ -203,8 +208,9 @@ input {
 	left: 0;
 	height: 25px;
 	width: 25px;
-	background-color: white;
+	background-color: aliceblue;
 	border-radius: 2px;
+	border: 1px solid black;
 }
 
 	.checkmark:after {
@@ -223,6 +229,7 @@ input {
 
 	.form-check input:checked ~ .checkmark {
 		background-color: #28a745;
+		border: none;
 	}
 
 		.form-check input:checked ~ .checkmark:after {
