@@ -8,13 +8,13 @@ Please don't miss the following information.
 ## Bảng thông tin tóm tắt
 | ML.NET version | API type | Status | App Type | Data type | Scenario | ML Task | Algorithms |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Microsoft.ML 1.5.2 | Dynamic API | Up-to-date | Console apps, Web App (MVC) and Library in .NET Core | Image files | Image classification, Multiclass classification | Image classification with TensorFlow model retrain based on transfer learning  | DNN architectures: ResNet, InceptionV3, MobileNet, etc.  |
+| Microsoft.ML 1.5.2 | Dynamic API | Up-to-date | Console App, Web App (ASP.NET MVC) and Library in .NET Core | Image files | Image classification, Multiclass classification | Image classification with TensorFlow model retrain based on transfer learning  | DNN architectures: ResNet, InceptionV3, MobileNet |
 
 ## Vấn đề
 Phân loại hình ảnh là một bài toán thường thấy trong lĩnh vực *Học Sâu*. Dưới đây trình bày cách tạo một mô hình phân loại hình ảnh tuỳ biến dựa trên cách tiếp cận *chuyển giao học tập*.
 
-*Kịch bản phân loại hình ảnh, sử dụng thư viện ML.NET xây dựng mô hình học sâu tuỳ biến*
 ![](Readme/image-classifier-scenario.png)
+*Kịch bản phân loại hình ảnh, sử dụng thư viện ML.NET xây dựng mô hình học sâu tuỳ biến*
 
 ## Tập dữ liệu (Dataset/Imageset)
 Bạn có thể sử dụng nhiều tập hình ảnh hoa khác nhau, chẳng hạn tập hình ảnh nổi tiếng Oxford Flower Dataset của Maria-Elena Nilsback và Andrew Zisserman
@@ -39,10 +39,14 @@ Tensoflow cũng cung cấp một tập hình ảnh, bạn có thể tải từ l
 https://creativecommons.org/licenses/by/2.0/
 >
 > Thông tin đầy đủ giấy phép được cung cấp trong tập tin LICENSE.txt trong tập tin nén .zip tải về.
+> 
+> All the images are from [Flickr](https://www.flickr.com/)
+>
+> This imageset is used only for educational and evaluational purposes, not for commercial purposes.
 
 ## ML Task - Phân loại hình ảnh
 
-Để giải quyết bài toán này, đầu tiên sẽ xây dựng mô hình Học Máy. Sau đó, chúng ta đào tạo mô hình trên dữ liệu sẵn có, đánh giá kết quả và cuối cùng là sử dụng mô hình xây dựng được để phân loại một hình ảnh mới. Dưới đây trình bày các bước theo trình tự, các đoạn mã thật có thể khác đôi chút với các đoạn mã mẫu. Dự án có tên là `FlowerImageClassification.Shared`.
+Để giải quyết bài toán này, đầu tiên sẽ xây dựng mô hình Học Máy. Sau đó, chúng ta huấn luyệN mô hình trên dữ liệu sẵn có, đánh giá kết quả và cuối cùng là sử dụng mô hình xây dựng được để phân loại các hình ảnh mới. Dưới đây trình bày các bước theo trình tự, các đoạn mã thật có thể khác đôi chút với các đoạn mã mẫu. Dự án có tên là `FlowerImageClassification.Shared`.
 
 ![](Readme/modelpipeline.png)
 
@@ -55,7 +59,6 @@ Bạn có thể sử dụng sức mạnh sẵn có của máy tính để việc
 Bạn cần tham chiếu đến thư viện: `SciSharp.TensorFlow.Redist`
 
 ![](Readme/cpu.png)
-
 
 #### Sử dụng GPU
 
@@ -234,7 +237,7 @@ var predictionEngine = mlContext.Model.CreatePredictionEngine<InMemoryImageData,
 
 //Predict the first image in the folder
 IEnumerable<InMemoryImageData> imagesToPredict = LoadInMemoryImagesFromDirectory(
-                                                        imagesFolderPathForPredictions, false);
+    imagesFolderPathForPredictions, false);
 
 InMemoryImageData imageToPredict = new InMemoryImageData
 {
@@ -247,11 +250,10 @@ var prediction = predictionEngine.Predict(imageToPredict);
 // Get the highest score and its index
 float maxScore = prediction.Score.Max();
 
-Console.WriteLine($"Image Filename : [{imageToPredict.ImageFileName}], " +
-                    $"Predicted Label : [{prediction.PredictedLabel}], " +
-                    $"Probability : [{maxScore}] " 
-                    );
+Console.WriteLine($"Image Filename : [{imageToPredict.ImageFileName}		$"Predicted Label : [{prediction.PredictedLabel}], " +
+    $"Probability : [{maxScore}] ");
 ```
+
 Rồi bây giờ, bạn có thể khám phá rồi đó.
 
 # TensorFlow DNN Transfer Learning background information
