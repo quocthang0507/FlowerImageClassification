@@ -84,41 +84,6 @@ header {
     animation: imageAnimation 36s linear infinite 0s;
 }
 
-.cb-slideshow li:nth-child(1) span {
-    background-image: url(../img/1.jpg);
-    object-fit: cover;
-}
-
-.cb-slideshow li:nth-child(2) span {
-    background-image: url(../img/2.jpg);
-    animation-delay: 6s;
-    object-fit: cover;
-}
-
-.cb-slideshow li:nth-child(3) span {
-    background-image: url(../img/3.jpg);
-    animation-delay: 12s;
-    object-fit: cover;
-}
-
-.cb-slideshow li:nth-child(4) span {
-    background-image: url(../img/4.jpg);
-    animation-delay: 18s;
-    object-fit: cover;
-}
-
-.cb-slideshow li:nth-child(5) span {
-    background-image: url(../img/5.jpg);
-    animation-delay: 24s;
-    object-fit: cover;
-}
-
-.cb-slideshow li:nth-child(6) span {
-    background-image: url(../img/6.jpg);
-    animation-delay: 30s;
-    object-fit: cover;
-}
-
 .cb-slideshow li:nth-child(2) div {
     animation-delay: 6s;
 }
@@ -133,10 +98,6 @@ header {
 
 .cb-slideshow li:nth-child(5) div {
     animation-delay: 24s;
-}
-
-.cb-slideshow li:nth-child(6) div {
-    animation-delay: 30s;
 }
 
 @keyframes imageAnimation {
