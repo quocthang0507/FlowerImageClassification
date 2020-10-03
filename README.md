@@ -1,7 +1,9 @@
 # FlowerImageClassification
-Classify and recognize flower images using ML.NET library
+The entire solution is based on [DeepLearning_ImageClassification_Training](https://github.com/dotnet/machinelearning-samples/tree/master/samples/csharp/getting-started/DeepLearning_ImageClassification_Training).
 
-This solution based on [DeepLearning_ImageClassification_Training](https://github.com/dotnet/machinelearning-samples/tree/master/samples/csharp/getting-started/DeepLearning_ImageClassification_Training)
+Hope you like it! 😍😍😍
+
+Please don't miss the following information.
 
 ## Bảng thông tin tóm tắt
 | ML.NET version | API type | Status | App Type | Data type | Scenario | ML Task | Algorithms |
@@ -13,7 +15,6 @@ Phân loại hình ảnh là một bài toán thường thấy trong lĩnh vực
 
 *Kịch bản phân loại hình ảnh, sử dụng thư viện ML.NET xây dựng mô hình học sâu tuỳ biến*
 ![](Readme/image-classifier-scenario.png)
-
 
 ## Tập dữ liệu (Dataset/Imageset)
 Bạn có thể sử dụng nhiều tập hình ảnh hoa khác nhau, chẳng hạn tập hình ảnh nổi tiếng Oxford Flower Dataset của Maria-Elena Nilsback và Andrew Zisserman
