@@ -48,5 +48,17 @@
 			"renameLocals": true
 		},
 		"sourceMap": false
+	},
+	{
+		"outputFileName": "wwwroot/js/admin.min.js",
+		"inputFiles": [
+			"wwwroot/js/admin.js"
+		],
+		"minify": {
+			"enabled": true,
+			"renameLocals": true
+		},
+		"sourceMap": false
 	}
+
 ]

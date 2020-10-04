@@ -1,6 +1,10 @@
 ﻿using FlowerImageClassification.WebApp.LiteDb;
+using FlowerImageClassification.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FlowerImageClassification.WebApp.Controllers
 {
@@ -17,7 +21,16 @@ namespace FlowerImageClassification.WebApp.Controllers
 
 		public IActionResult Index()
 		{
-			return View();
+			FlowerDataset imageset = new FlowerDataset((LiteDbFlowerService)flowerService);
+			imageset.InitializeImageSet();
+
+			var flowers = GetAll();
+			return View(flowers);
+		}
+
+		private IEnumerable<Flower> GetAll()
+		{
+			return flowerService.FindAll();
 		}
 	}
 }

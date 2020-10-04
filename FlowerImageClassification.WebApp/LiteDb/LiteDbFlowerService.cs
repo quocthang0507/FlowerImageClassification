@@ -14,15 +14,15 @@ namespace FlowerImageClassification.WebApp.LiteDb
 			liteDb = liteDbContext.Database;
 		}
 
-		public IEnumerable<Flower> FindAll() => liteDb.GetCollection<Flower>("Flower").FindAll();
+		public IEnumerable<Flower> FindAll() => liteDb.GetCollection<Flower>().FindAll();
 
-		public Flower FindOne(int id) => liteDb.GetCollection<Flower>("Flower").
+		public Flower FindOne(int id) => liteDb.GetCollection<Flower>().
 			Find(f => f.ID == id).FirstOrDefault();
 
-		public int Insert(Flower flower) => liteDb.GetCollection<Flower>("Api").Insert(flower);
+		public int Insert(Flower flower) => liteDb.GetCollection<Flower>().Insert(flower);
 
-		public bool Update(Flower flower) => liteDb.GetCollection<Flower>("Api").Update(flower);
+		public bool Update(Flower flower) => liteDb.GetCollection<Flower>().Update(flower);
 
-		public int Delete(int id) => liteDb.GetCollection<Flower>("Api").DeleteMany(f => f.ID == id);
+		public int Delete(int id) => liteDb.GetCollection<Flower>().DeleteMany(f => f.ID == id);
 	}
 }

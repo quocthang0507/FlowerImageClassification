@@ -1,5 +1,6 @@
 using FlowerImageClassification.Shared.ImageSchema;
 using FlowerImageClassification.WebApp.LiteDb;
+using FlowerImageClassification.WebApp.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -62,7 +63,7 @@ namespace FlowerImageClassification.WebApp
 			});
 		}
 
-		public static void WarmUpPredictionEnginePool(IServiceCollection services)
+		private static void WarmUpPredictionEnginePool(IServiceCollection services)
 		{
 			//#1 - Simply get a Prediction Engine
 			var predictionEnginePool = services.BuildServiceProvider().GetRequiredService<PredictionEnginePool<ImageDataInMemory, ImagePrediction>>();

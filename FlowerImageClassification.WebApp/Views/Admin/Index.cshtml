@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<Flower>
+
 @{
 	ViewData["Title"] = "Quản trị viên";
 }
@@ -9,16 +10,10 @@
 		<br />
 		<br />
 		<div class="list-group" id="listFlowers">
-			<button type="button" class="list-group-item list-group-item-action">Hoa cẩm chướng</button>
-			<button type="button" class="list-group-item list-group-item-action">Hoa cẩm tú cầu</button>
-			<button type="button" class="list-group-item list-group-item-action">Hoa phượng tím</button>
-			<button type="button" class="list-group-item list-group-item-action">Hoa oải hương</button>
-			<button type="button" class="list-group-item list-group-item-action">Hoa lay ơn</button>
-			<button type="button" class="list-group-item list-group-item-action">Hoa loa kèn</button>
-			<button type="button" class="list-group-item list-group-item-action">Hoa cát tường</button>
-			<button type="button" class="list-group-item list-group-item-action">Hoa hồng</button>
-			<button type="button" class="list-group-item list-group-item-action">Hoa hướng dương</button>
-			<button type="button" class="list-group-item list-group-item-action">Hoa uất kim hương</button>
+			@foreach (var flower in Model)
+			{
+				<button type="button" class="list-group-item list-group-item-action" id="@flower.ID">@flower.VietnameseName</button>
+			}
 		</div>
 	</div>
 	<div class="col-sm-8">
@@ -66,5 +61,5 @@
 				console.error(err.stack);
 			});
 	</script>
-
+	<script src="~/js/admin.js" type="text/javascript" asp-append-version="true"></script>
 }
