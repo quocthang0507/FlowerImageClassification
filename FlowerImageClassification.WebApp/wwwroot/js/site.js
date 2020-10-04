@@ -3,7 +3,7 @@
 
 // The following Javascript codes are used for initializing webpage events
 
-console.log('%cWARNING! You are in development mode', 'color: red; font-size: 30px; font-weight: bold;');
+console.log('%cWARNING! You are in development mode', 'color: red; font-size: 28px; font-weight: bold;');
 
 /////////////// Constants ///////////////
 const webcam = document.getElementById("my_camera");
