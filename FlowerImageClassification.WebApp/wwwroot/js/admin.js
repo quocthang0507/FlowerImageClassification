@@ -3,11 +3,14 @@
 
 // The following Javascript codes are used for supporting admin page
 
+let _id = 0;
+
 /**
  * Load content to the form by flower's id
  * @param {any} id
  */
 function getItemById(id) {
+	_id = id;
 	var length = $('#listFlowers button').length;
 	for (var i = 1; i <= length; i++) {
 		var btn = document.getElementById(i);
@@ -20,21 +23,63 @@ function getItemById(id) {
 	fetch(url)
 		.then(response => response.json())
 		.then(data => displayItem(data))
-		.catch(error => console.error('Unable to get item:', error));
+		.catch(error => {
+			console.error('Lỗi khi truy xuất thông tin từ server:', error);
+			alert('Lỗi khi truy xuất thông tin từ server.')
+		});
 }
+
+$(document).ready(function () {
+	getItemById(1);
+});
 
 /**
  * Display item in form
  * @param {any} item
  */
 function displayItem(item) {
+	console.log(item);
 	document.getElementById('tbxEnglishName').value = item.englishName;
 	document.getElementById('tbxVietnameseName').value = item.vietnameseName;
-	document.getElementById('rtbInfo').innerHTML = item.richTextInfo;
+	if (item.richTextInfo !== null)
+		_editor.setData(item.richTextInfo);
+	else
+		document.getElementById('rtbInfo').innerHTML = '';
 	document.getElementById('imgThumbnail').src = item.thumbnail;
 	document.getElementById('imgThumbnail').alt = item.vietnameseName;
+	_thumbnail = item.thumbnail;
 }
 
-$(document).ready(function () {
-	getItemById(1);
-});
+$('form').on('submit', submit);
+
+/**
+ * Update flower info
+ */
+function submit() {
+	const url = 'api/update';
+
+	const engName = document.getElementById('tbxEnglishName');
+	const viName = document.getElementById('tbxVietnameseName');
+
+	const flower = {
+		ID: _id,
+		EnglishName: engName.value,
+		VietnameseName: viName.value,
+		RichTextInfo: _editor.getData(),
+		Thumbnail: _thumbnail
+	};
+	fetch(url, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(flower)
+	}).then().then(() => {
+		if (alert('Cập nhật thành công! Trang web sẽ tải lại...')) { }
+		else window.location.reload();
+	}).catch(error => {
+		console.error('Lỗi cập nhật:', error);
+		alert('Lỗi cập nhật thông tin lên server.');
+	});
+
+}

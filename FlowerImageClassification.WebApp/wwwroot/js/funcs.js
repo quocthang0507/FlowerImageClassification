@@ -105,7 +105,7 @@ function uploadAndClassify(e) {
         document.getElementById('divExecutionTime').innerHTML = "Thời gian dự đoán: " + response2.predictionExecutionTime + " mili giây";
         return response2;
     }).catch(error => {
-        console.log('Đã có lỗi xảy ra: ', error);
-        alert('Đã có lỗi xảy ra, vui lòng thử lại');
+        console.error('Đã có lỗi xảy ra: ', error);
+        alert('Đã có lỗi xảy ra, vui lòng thử lại.');
     });
 }

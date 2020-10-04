@@ -42,6 +42,18 @@ namespace FlowerImageClassification.WebApp.Controllers
 				return NotFound();
 		}
 
+		[HttpPost]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
+		[Route("api/update")]
+		public IActionResult Update([FromBody]Flower flower)
+		{
+			var result = flowerService.Update(flower);
+			if (result)
+				return Ok();
+			return BadRequest();
+		}
+
 		private IEnumerable<Flower> GetAll()
 		{
 			return flowerService.FindAll();

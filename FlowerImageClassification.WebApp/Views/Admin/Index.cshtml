@@ -20,7 +20,7 @@
 		<strong>Công cụ chỉnh sửa nội dung:</strong>
 		<br />
 		<br />
-		<form>
+		<form method="post" action="javascript:void(0);" enctype="multipart/form-data">
 			<div class="form-inline">
 				<label for="tbxEnglishName" class="col-form-label">Tên tiếng Anh:</label>
 				<div>
@@ -36,7 +36,7 @@
 			<div class="form-group row">
 				<label for="imgThumbnail" class="col-sm-3 col-form-label">Hình đại diện:</label>
 				<div class="col-sm-9 center">
-					<img id="imgThumbnail" src="" alt=""/>
+					<img id="imgThumbnail" src="" alt="" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -55,15 +55,15 @@
 @section scripts{
 	<script src="~/js/ckeditor.js" type="text/javascript" asp-append-version="true"></script>
 	<script>
+		let _editor;
+		let _thumbnail;
+
 		ClassicEditor
 			.create(document.querySelector('#rtbInfo'), {
-				// toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-			})
-			.then(editor => {
-				window.editor = editor;
-			})
-			.catch(err => {
-				console.error(err.stack);
+			}).then(editor => {
+				_editor = editor;
+			}).catch(error => {
+				console.error(error);
 			});
 	</script>
 	<script src="~/js/admin.js" type="text/javascript" asp-append-version="true"></script>
