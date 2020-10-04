@@ -74,7 +74,7 @@ function submit() {
 		},
 		body: JSON.stringify(flower)
 	}).then().then(() => {
-		alert('Cập nhật thành công!');
+		alert('Lưu thành công!');
 	}).catch(error => {
 		console.error('Lỗi cập nhật:', error);
 		alert('Lỗi cập nhật thông tin lên server.');
