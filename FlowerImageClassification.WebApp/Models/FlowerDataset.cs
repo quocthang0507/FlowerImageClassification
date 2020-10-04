@@ -34,14 +34,10 @@ namespace FlowerImageClassification.WebApp.Models
 		{
 			foreach (var flower in Imageset)
 			{
-				InsertNew(flower);
+				if (flowerService.FindOne(flower.ID) == null)
+					flowerService.Insert(flower);
 			}
 		}
 
-		private void InsertNew(Flower flower)
-		{
-			if (flowerService.FindOne(flower.ID) == null)
-				flowerService.Insert(flower);
-		}
 	}
 }
