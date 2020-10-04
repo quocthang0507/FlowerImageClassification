@@ -3,10 +3,7 @@ using FlowerImageClassification.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FlowerImageClassification.WebApp.Controllers
 {
@@ -46,7 +43,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 		[Route("api/update")]
-		public IActionResult Update([FromBody]Flower flower)
+		public IActionResult Update([FromBody] Flower flower)
 		{
 			var result = flowerService.Update(flower);
 			if (result)

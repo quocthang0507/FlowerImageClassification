@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace FlowerImageClassification.WebApp.LiteDb
 {
+	/// <summary>
+	/// Interface for LiteDbFlowerService
+	/// </summary>
 	public interface ILiteDbFlowerService
 	{
 		int Delete(int id);

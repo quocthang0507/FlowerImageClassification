@@ -1,8 +1,5 @@
 ﻿using FlowerImageClassification.WebApp.LiteDb;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FlowerImageClassification.WebApp.Models
 {
