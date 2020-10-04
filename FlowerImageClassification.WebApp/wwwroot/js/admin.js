@@ -38,16 +38,15 @@ $(document).ready(function () {
  * @param {any} item
  */
 function displayItem(item) {
-	console.log(item);
 	document.getElementById('tbxEnglishName').value = item.englishName;
 	document.getElementById('tbxVietnameseName').value = item.vietnameseName;
-	if (item.richTextInfo !== null)
-		_editor.setData(item.richTextInfo);
-	else
-		document.getElementById('rtbInfo').innerHTML = '';
 	document.getElementById('imgThumbnail').src = item.thumbnail;
 	document.getElementById('imgThumbnail').alt = item.vietnameseName;
 	_thumbnail = item.thumbnail;
+	if (item.richTextInfo !== null)
+		_editor.setData(item.richTextInfo);
+	else
+		_editor.setData('');
 }
 
 $('form').on('submit', submit);
@@ -75,8 +74,7 @@ function submit() {
 		},
 		body: JSON.stringify(flower)
 	}).then().then(() => {
-		if (alert('Cập nhật thành công! Trang web sẽ tải lại...')) { }
-		else window.location.reload();
+		alert('Cập nhật thành công!');
 	}).catch(error => {
 		console.error('Lỗi cập nhật:', error);
 		alert('Lỗi cập nhật thông tin lên server.');

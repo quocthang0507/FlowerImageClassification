@@ -41,7 +41,12 @@
 			</div>
 			<div class="form-group">
 				<label for="rtbInfo" class="col-form-label">Thông tin mô tả:</label>
-				<div id="rtbInfo"></div>
+				<div class="document-editor">
+					<div class="toolbar-container"></div>
+					<div class="content-container">
+						<div id="rtbInfo"></div>
+					</div>
+				</div>
 			</div>
 			<div class="row">
 				<div id="formButton">
@@ -58,12 +63,17 @@
 		let _editor;
 		let _thumbnail;
 
-		ClassicEditor
+		DecoupledEditor
 			.create(document.querySelector('#rtbInfo'), {
-			}).then(editor => {
+				// toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+			})
+			.then(editor => {
+				const toolbarContainer = document.querySelector('.toolbar-container');
+				toolbarContainer.prepend(editor.ui.view.toolbar.element);
 				_editor = editor;
-			}).catch(error => {
-				console.error(error);
+			})
+			.catch(err => {
+				console.error(err.stack);
 			});
 	</script>
 	<script src="~/js/admin.js" type="text/javascript" asp-append-version="true"></script>
