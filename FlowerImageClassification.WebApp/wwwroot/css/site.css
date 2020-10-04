@@ -1,6 +1,9 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+/* For navigation bar
+    ---------------------------------------------------
+*/
 .navbar {
 	background-image: linear-gradient(to bottom, #FFFFFF, #e2e2e2);
 	margin-bottom: 1px !important;
@@ -16,6 +19,10 @@ a.navbar-brand {
 .active {
 	font-weight: 600;
 }
+
+/* For entire page
+    ---------------------------------------------------
+*/
 
 header {
 	z-index: 9;
@@ -47,6 +54,17 @@ header {
 	padding: 10px;
 }
 
+.row {
+	margin-top: 10px;
+}
+
+.btn {
+	cursor: pointer;
+}
+
+.center {
+	text-align: center;
+}
 
 /* For slideshow background 
     ---------------------------------------------------
@@ -171,6 +189,7 @@ img {
 .col-form-label {
 	font-style: italic;
 }
+
 /* Checkbox Input 
     ---------------------------------------------------
 */

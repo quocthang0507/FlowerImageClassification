@@ -3,6 +3,7 @@ using FlowerImageClassification.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 
 namespace FlowerImageClassification.WebApp.Controllers
@@ -32,11 +33,18 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[Route("api/GetById/{id:int}")]
 		public IActionResult GetById(int id)
 		{
-			var result = flowerService.FindOne(id);
-			if (result != null)
-				return Ok(result);
-			else
-				return NotFound();
+			Flower result;
+			try
+			{
+				result = flowerService.FindOne(id);
+				if (result != null)
+					return Ok(result);
+			}
+			catch (Exception)
+			{
+				return BadRequest();
+			}
+			return NotFound();
 		}
 
 		[HttpPost]
@@ -45,10 +53,18 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[Route("api/update")]
 		public IActionResult Update([FromBody] Flower flower)
 		{
-			var result = flowerService.Update(flower);
-			if (result)
-				return Ok();
-			return BadRequest();
+			bool result;
+			try
+			{
+				result = flowerService.Update(flower);
+				if (result)
+					return Ok(result);
+			}
+			catch (Exception)
+			{
+				return BadRequest();
+			}
+			return NotFound();
 		}
 
 		private IEnumerable<Flower> GetAll()

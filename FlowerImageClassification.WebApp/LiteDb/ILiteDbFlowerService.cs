@@ -13,5 +13,7 @@ namespace FlowerImageClassification.WebApp.LiteDb
 		Flower FindOne(int id);
 		int Insert(Flower flower);
 		bool Update(Flower flower);
+		string GetInfoByName(string englishName);
+
 	}
 }

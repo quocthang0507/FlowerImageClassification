@@ -1,12 +1,14 @@
 ﻿using FlowerImageClassification.Shared.ImageHelpers;
 using FlowerImageClassification.Shared.ImageSchema;
 using FlowerImageClassification.Shared.Models.ImageHelpers;
+using FlowerImageClassification.WebApp.LiteDb;
 using FlowerImageClassification.WebApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ML;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -19,16 +21,18 @@ namespace FlowerImageClassification.WebApp.Controllers
 		public IConfiguration Configuration { get; }
 
 		private readonly PredictionEnginePool<ImageDataInMemory, ImagePrediction> predictionEnginePool;
-		private readonly ILogger<HomeController> _logger;
+		private readonly ILiteDbFlowerService flowerService;
+		private readonly ILogger<HomeController> logger;
 		private string contributionPath = "Contributions";
 
-		public HomeController(PredictionEnginePool<ImageDataInMemory, ImagePrediction> predictionEnginePool, IConfiguration configuration, ILogger<HomeController> logger)
+		public HomeController(PredictionEnginePool<ImageDataInMemory, ImagePrediction> predictionEnginePool, IConfiguration configuration, ILogger<HomeController> logger, ILiteDbFlowerService flowerService)
 		{
 			// Get the ML Model Engine injected, for scoring
 			this.predictionEnginePool = predictionEnginePool;
 			this.Configuration = configuration;
 			// Get other injected dependencies
-			_logger = logger;
+			this.logger = logger;
+			this.flowerService = flowerService;
 		}
 
 		public IActionResult Index()
@@ -56,8 +60,22 @@ namespace FlowerImageClassification.WebApp.Controllers
 
 		[HttpGet]
 		[Route("api/ClassifyImage")]
-		public ActionResult<string> Get()
-		=> "Hello World";
+		public ActionResult<string> Get() => "Hello World";
+
+		[HttpGet]
+		[Route("api/GetInfo/{name}")]
+		public ActionResult<string> GetInfo(string name)
+		{
+			try
+			{
+				string info = flowerService.GetInfoByName(name);
+				return Ok(info);
+			}
+			catch (Exception)
+			{
+				return NotFound("Not found");
+			}
+		}
 
 		[HttpPost]
 		[ProducesResponseType(200)]
@@ -127,7 +145,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 			if (canCollect)
 				ImageTransformer.ImageArrayToFile(imageData, contributionPath);
 
-			_logger.LogInformation("Start processing image...");
+			logger.LogInformation("Start processing image...");
 
 			// Measure execution time
 			var watch = Stopwatch.StartNew();
@@ -141,7 +159,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 			// Stop measuring time
 			watch.Stop();
 			var elapsedTime = watch.ElapsedMilliseconds;
-			_logger.LogInformation($"Image processed in {elapsedTime} miliseconds");
+			logger.LogInformation($"Image processed in {elapsedTime} miliseconds");
 
 			// Predict the image's label with highest probability
 			var bestPrediction = new ImagePredictedLabelWithProbability
