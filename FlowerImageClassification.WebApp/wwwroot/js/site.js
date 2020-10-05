@@ -36,3 +36,17 @@ if (background != null)
         element.style.objectFit = 'cover';
         element.style.animationDelay = (index - 1) * 6 + "s";
     }
+
+/////////////// Initialize dictionary about flower categories ///////////////
+var dict = {
+    "Carnation": "Hoa cẩm chướng",
+    "Hydrangea": "Hoa cẩm tú cầu",
+    "Jacaranda": "Hoa phượng tím",
+    "Lavender": "Hoa oải hương",
+    "Gladiolus": "Hoa lay ơn",
+    "Lily flower": "Hoa loa kèn",
+    "Lisianthus": "Hoa cát tường",
+    "Rose": "Hoa hồng",
+    "Sunflower": "Hoa hướng dương",
+    "Tulip": "Hoa uất kim hương"
+}
