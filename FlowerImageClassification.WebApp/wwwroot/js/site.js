@@ -34,10 +34,10 @@ if (background != null)
         var random = getRandomArbitraryNumber(1, 15);
         element.style.backgroundImage = 'url(../img/' + random + '.jpg)';
         element.style.objectFit = 'cover';
-        element.style.animationDelay = (index - 1) * 6 + "s";
+        element.style.animationDelay = (index - 1) * 10 + "s";
     }
 
-/////////////// Initialize dictionary about flower categories ///////////////
+/////////////// Dictionary about flower categories ///////////////
 var dict = {
     "Carnation": "Hoa cẩm chướng",
     "Hydrangea": "Hoa cẩm tú cầu",

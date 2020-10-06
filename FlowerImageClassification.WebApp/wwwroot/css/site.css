@@ -105,27 +105,23 @@ header {
     background-repeat: no-repeat;
     opacity: 0;
     z-index: 0;
-    animation: imageAnimation 36s linear infinite 0s;
-}
-
-.cb-slideshow li:nth-child(1) div {
-    animation-delay: 0s;
+    animation: imageAnimation 50s linear infinite 0s;
 }
 
 .cb-slideshow li:nth-child(2) div {
-    animation-delay: 6s;
+    animation-delay: 10s;
 }
 
 .cb-slideshow li:nth-child(3) div {
-    animation-delay: 12s;
+    animation-delay: 20s;
 }
 
 .cb-slideshow li:nth-child(4) div {
-    animation-delay: 18s;
+    animation-delay: 30s;
 }
 
 .cb-slideshow li:nth-child(5) div {
-    animation-delay: 24s;
+    animation-delay: 40s;
 }
 
 @keyframes imageAnimation {
@@ -151,19 +147,6 @@ header {
 .no-cssanimations .cb-slideshow li span {
     opacity: 1;
 }
-
-@media screen and (max-width: 1140px) {
-    .cb-slideshow li div h3 {
-        font-size: 140px
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .cb-slideshow li div h3 {
-        font-size: 80px
-    }
-}
-
 
 /* For form 
     ---------------------------------------------------
