@@ -22,6 +22,20 @@ function takeSnapshot() {
 }
 
 /**
+ * Add 'loading' class
+ */
+function addLoadingClass() {
+    $("body").addClass("loading");
+}
+
+/**
+ * Remove 'loading' class
+ */
+function removeLoadingClass() {
+    $("body").removeClass("loading");
+}
+
+/**
  * Validate file extension in file input element
  */
 function validateFileExtension() {
@@ -57,7 +71,6 @@ function customFileInput() {
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-        fileValidation();
     });
 }
 
@@ -93,6 +106,8 @@ function uploadAndClassify(e) {
             url = 'api/ClassifyImageBase64'
     }
 
+    addLoadingClass();
+
     fetch(url, {
         method: 'POST',
         body: formData
@@ -104,10 +119,13 @@ function uploadAndClassify(e) {
         document.getElementById('divProbability').innerHTML = "Xác suất: " + (response2.probability * 100).toFixed(3) + "%";
         document.getElementById('divExecutionTime').innerHTML = "Thời gian dự đoán: " + response2.predictionExecutionTime + " mili giây";
         getInfo(response2.predictedLabel);
-        return response2;
+
+        removeLoadingClass();
     }).catch(error => {
         console.error('Đã có lỗi xảy ra: ', error);
         alert('Đã có lỗi xảy ra, vui lòng thử lại.');
+
+        removeLoadingClass();
     });
 }
 
