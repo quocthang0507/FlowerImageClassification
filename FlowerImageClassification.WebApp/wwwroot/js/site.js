@@ -17,7 +17,7 @@ if (inputFile != null || inputWebcam != null)
     form.addEventListener('submit', e => uploadAndClassify(e));
 
 /////////////// File upload form ///////////////
-$(document).ready(customFileInput);
+$(document).ready(customFileInput());
 
 /////////////// Webcam settings ///////////////
 if (webcam != null) {
