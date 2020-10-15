@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using static Microsoft.ML.Transforms.ValueToKeyMappingEstimator;
 
 namespace FlowerImageClassification.Shared
@@ -37,6 +38,7 @@ namespace FlowerImageClassification.Shared
 		protected IDataView validationDataset;
 		protected IDataView trainDataset;
 		protected float testRatio;
+		protected int arch;
 
 		/// <summary>
 		/// Create a new instance of MLTraining with many necessary parameters
@@ -46,7 +48,7 @@ namespace FlowerImageClassification.Shared
 		/// <param name="inputFolderPathForTraining">Path to input folder for training</param>
 		/// <param name="randomSeed">A random seed</param>
 		/// <param name="testRatio">A fraction of train set and test set</param>
-		public MLTraining(string outputModelPath, string inputFolderPathForPrediction, string inputFolderPathForTraining, int randomSeed = 1, float testRatio = 0.3f)
+		public MLTraining(string outputModelPath, string inputFolderPathForPrediction, string inputFolderPathForTraining, int? randomSeed = 1, float testRatio = 0.3f, int arch = 3)
 		{
 			OutputModelPath = outputModelPath;
 			InputFolderPathForPrediction = inputFolderPathForPrediction;
@@ -55,6 +57,7 @@ namespace FlowerImageClassification.Shared
 			mlContext = new MLContext(randomSeed);
 			mlContext.Log += PrintMLContextLog;
 			this.testRatio = testRatio;
+			this.arch = arch;
 		}
 
 		/// <summary>
@@ -230,7 +233,7 @@ namespace FlowerImageClassification.Shared
 				// The feature column name should has same name in ImageDataInMemory
 				FeatureColumnName = "ImageBytes",
 				// Change the architecture to different DNN architecture
-				Arch = ImageClassificationTrainer.Architecture.InceptionV3,
+				Arch = (ImageClassificationTrainer.Architecture)arch,
 				// Number of training iterations
 				Epoch = 200,
 				// Number of samples to use for mini-batch training
