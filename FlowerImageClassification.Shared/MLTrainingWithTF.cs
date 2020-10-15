@@ -60,7 +60,7 @@ namespace FlowerImageClassification.Shared
 		public new void RunPipeline()
 		{
 			// 1., 2., 3., 4.
-			PrepareDataset();
+			PrepareDataset(true);
 
 			// 5. Call pipeline
 			var pipeline = CreateCustomPipelineTF();

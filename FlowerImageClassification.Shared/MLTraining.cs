@@ -36,15 +36,25 @@ namespace FlowerImageClassification.Shared
 		protected IDataView testDataset;
 		protected IDataView validationDataset;
 		protected IDataView trainDataset;
+		protected float testRatio;
 
-		public MLTraining(string outputModelPath, string inputFolderPathForPrediction, string inputFolderPathForTraining)
+		/// <summary>
+		/// Create a new instance of MLTraining with many necessary parameters
+		/// </summary>
+		/// <param name="outputModelPath">Path to output model folder</param>
+		/// <param name="inputFolderPathForPrediction">Path to input folder for prediction</param>
+		/// <param name="inputFolderPathForTraining">Path to input folder for training</param>
+		/// <param name="randomSeed">A random seed</param>
+		/// <param name="testRatio">A fraction of train set and test set</param>
+		public MLTraining(string outputModelPath, string inputFolderPathForPrediction, string inputFolderPathForTraining, int randomSeed = 1, float testRatio = 0.3f)
 		{
 			OutputModelPath = outputModelPath;
 			InputFolderPathForPrediction = inputFolderPathForPrediction;
 			InputFolderPathForTraining = inputFolderPathForTraining;
 			// MLContext's random number generator is the global source of randomness for all of such random operations.
-			mlContext = new MLContext(1);
+			mlContext = new MLContext(randomSeed);
 			mlContext.Log += PrintMLContextLog;
+			this.testRatio = testRatio;
 		}
 
 		/// <summary>
@@ -53,7 +63,7 @@ namespace FlowerImageClassification.Shared
 		public void RunPipeline()
 		{
 			// 1., 2., 3., 4.
-			PrepareDataset();
+			PrepareDataset(false);
 
 			// 5. Call pipeline
 			var pipeline = CreateCustomPipeline();
@@ -90,7 +100,7 @@ namespace FlowerImageClassification.Shared
 				if (File.Exists(OutputModelPath))
 				{
 					LoadTrainedModel();
-					PrepareDataset();
+					PrepareDataset(false);
 				}
 				else
 					throw new Exception("Please run the pipeline before evaluating!");
@@ -150,7 +160,7 @@ namespace FlowerImageClassification.Shared
 		/// <summary>
 		/// Prepare dataset by loading from files, transforming and splitting
 		/// </summary>
-		protected void PrepareDataset()
+		protected void PrepareDataset(bool shouldValidateBeforeTesting)
 		{
 			// 2. Load the initial full image-set into an IDataView and shuffle so it'll be better balanced
 			IEnumerable<ImageData> images = FileUtils.LoadImagesFromDirectory(InputFolderPathForTraining, true);
@@ -168,12 +178,20 @@ namespace FlowerImageClassification.Shared
 			/* 4. Split the data into train, validation and test set.
 			The pre-processed data is split and 70% is used for training while the remaining 30% is used for validation. 
 			Then, the 30% validation set is further split into validation and test sets where 90% is used for validation and 10% is used for testing.
-			*/
 			var trainSplit = mlContext.Data.TrainTestSplit(transformedDataset, 0.3);
-			var validationTestSplit = mlContext.Data.TrainTestSplit(trainSplit.TestSet);
+			*/
+			var trainSplit = mlContext.Data.TrainTestSplit(transformedDataset, testRatio);
 			trainDataset = trainSplit.TrainSet;
-			validationDataset = validationTestSplit.TrainSet;
-			testDataset = validationTestSplit.TestSet;
+			if (shouldValidateBeforeTesting)
+			{
+				var validationTestSplit = mlContext.Data.TrainTestSplit(trainSplit.TestSet);
+				validationDataset = validationTestSplit.TrainSet;
+				testDataset = validationTestSplit.TestSet;
+			}
+			else
+			{
+				testDataset = trainSplit.TestSet;
+			}
 		}
 
 		/// <summary>
@@ -219,7 +237,8 @@ namespace FlowerImageClassification.Shared
 				BatchSize = 10,
 				LearningRate = 0.01f,
 				MetricsCallback = (metrics) => Console.WriteLine(metrics),
-				ValidationSet = validationDataset
+				ValidationSet = testDataset
+				//ValidationSet = validationDataset
 			};
 			var pipeline = mlContext.MulticlassClassification.Trainers.ImageClassification(options).
 				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
