@@ -17,21 +17,39 @@ namespace FlowerImageClassification.Training
 	{
 		static string outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath, consoleOutputPath, inceptionModelPath;
 		static string architectureName;
+		static float[] fractions = { 0.5f, 0.6f, 0.7f, 0.8f, 0.9f };
 
 		static void Main(string[] args)
 		{
-			int arch = 0;
-			architectureName = Enum.GetName(typeof(Architecture), arch);
+
+			foreach (Architecture arch in (Architecture[])Enum.GetValues(typeof(Architecture)))
+			{
+				foreach (float frac in fractions)
+				{
+					architectureName = Enum.GetName(typeof(Architecture), (int)arch);
+
+					SetPaths();
+					string output = Path.Combine(consoleOutputPath, $"{architectureName}_{frac}.txt");
+
+					MirrorOutput capturing = new MirrorOutput(output);
+					Console.WriteLine($"==================== { architectureName} architecture, {frac} ratio of train set with test set ====================");
+					MLTraining mlTraining = new MLTraining(outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath, null, frac, (int)arch);
+					mlTraining.RunPipeline();
+					capturing.Dispose();
+				}
+			}
 
 			// Redirect console output to a stream
-			SetPaths();
-			string output = Path.Combine(consoleOutputPath, $"{architectureName}_{DateTime.Now.ToString("d_M_y h_m_s")}.txt");
-			using (MirrorOutput capturing = new MirrorOutput(output))
-			{
-				// Begin to run the pipeline
-				MLTraining mlTraining = new MLTraining(outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath, null, 0.5f, arch);
-				mlTraining.RunPipeline();
-			}
+			//SetPaths();
+			//string output = Path.Combine(consoleOutputPath, $"{architectureName}_{ratio}_norandom.txt");
+			//using (MirrorOutput capturing = new MirrorOutput(output))
+			//{
+			//	Console.WriteLine($"========== {architectureName} architecture ==========");
+
+			//	// Begin to run the pipeline
+			//	MLTraining mlTraining = new MLTraining(outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath, null, 0.5f, arch);
+			//	mlTraining.RunPipeline();
+			//}
 
 			// End the pipeline and write to file
 			Console.WriteLine("Press any key to exit...");

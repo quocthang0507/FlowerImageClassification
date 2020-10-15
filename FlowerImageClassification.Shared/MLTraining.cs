@@ -48,7 +48,7 @@ namespace FlowerImageClassification.Shared
 		/// <param name="inputFolderPathForTraining">Path to input folder for training</param>
 		/// <param name="randomSeed">A random seed</param>
 		/// <param name="testRatio">A fraction of train set and test set</param>
-		public MLTraining(string outputModelPath, string inputFolderPathForPrediction, string inputFolderPathForTraining, int? randomSeed = 1, float testRatio = 0.3f, int arch = 3)
+		public MLTraining(string outputModelPath, string inputFolderPathForPrediction, string inputFolderPathForTraining, int? randomSeed = 1, float trainRatio = 0.7f, int arch = 3)
 		{
 			OutputModelPath = outputModelPath;
 			InputFolderPathForPrediction = inputFolderPathForPrediction;
@@ -56,7 +56,7 @@ namespace FlowerImageClassification.Shared
 			// MLContext's random number generator is the global source of randomness for all of such random operations.
 			mlContext = new MLContext(randomSeed);
 			mlContext.Log += PrintMLContextLog;
-			this.testRatio = testRatio;
+			this.testRatio = 1f - trainRatio;
 			this.arch = arch;
 		}
 
