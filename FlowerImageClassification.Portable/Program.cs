@@ -24,6 +24,7 @@ namespace FlowerImageClassification.Portable
 		{
 			Console.OutputEncoding = Encoding.UTF8;
 			Console.ForegroundColor = ConsoleColor.Cyan;
+			Console.WriteLine("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:");
 			Console.WriteLine(new String('=', 50));
 			Console.WriteLine("0. Thoát khỏi chương trình");
 			Console.WriteLine("1. Huấn luyện mô hình");
@@ -48,6 +49,8 @@ namespace FlowerImageClassification.Portable
 
 		static void PerformSubMenu_Training()
 		{
+			Console.ForegroundColor = ConsoleColor.Cyan;
+			Console.WriteLine("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:");
 			Console.WriteLine("\n" + new string('=', 50));
 			Console.WriteLine("1. Chạy tự động với bộ thiết lập có sẵn");
 			Console.WriteLine("    Chương trình sẽ tự động sử dụng các kiến trúc DNN được hỗ trợ bởi ML.NET:");
@@ -57,6 +60,7 @@ namespace FlowerImageClassification.Portable
 			Console.WriteLine("    Như vậy sẽ thực hiện tổng cộng 4 x 5 = 20 lần, thời gian chạy khá lâu, vui lòng không được tắt trong khi chạy");
 			Console.WriteLine("2. Tự chọn một kiến trúc và kích thước tập huấn luyện");
 			Console.WriteLine(new string('=', 50));
+			Console.ResetColor();
 			int function = SelectMenu(2);
 			Console.Clear();
 			Print_FolderPathPrompt(out string outputModelPath, "Nhập đường dẫn đến thư mục sẽ lưu (các) mô hình đã được huấn luyện: ");
@@ -118,6 +122,8 @@ namespace FlowerImageClassification.Portable
 
 		static void PerformSubMenu_Evaluation()
 		{
+			Console.ForegroundColor = ConsoleColor.Cyan;
+			Console.WriteLine("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:");
 			Console.WriteLine("\n" + new string('=', 50));
 			Console.WriteLine("1. Đánh giá tất cả các mô hình đã được huấn luyện");
 			Console.WriteLine("    Chương trình sẽ tự động tìm và sử dụng các mô hình đã huấn luyện thông qua định dạng tập tin *.zip:");
@@ -127,6 +133,7 @@ namespace FlowerImageClassification.Portable
 			Console.WriteLine("2. Tự chọn một kiến trúc và kích thước tập đánh giá");
 			Print_WarningText("Lưu ý: Hình ảnh đã được học nếu đem đi đánh giá sẽ không khách quan, do đó phải sử dụng kích thước tập đánh giá = 1 - kích thước tập huấn luyện");
 			Console.WriteLine(new string('=', 50));
+			Console.ResetColor();
 			int function = SelectMenu(2);
 			Console.Clear();
 			Print_FolderPathPrompt(out string outputModelPath, "Nhập đường dẫn đến thư mục đã lưu (các) mô hình đã được huấn luyện: ");
@@ -203,6 +210,8 @@ namespace FlowerImageClassification.Portable
 			while (true)
 			{
 				Console.Write(promptText);
+				Console.BackgroundColor = ConsoleColor.White;
+				Console.ForegroundColor = ConsoleColor.Black;
 				folderPath = Console.ReadLine();
 				if (Directory.Exists(folderPath))
 				{
