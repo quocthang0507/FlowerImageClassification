@@ -19,12 +19,14 @@ namespace FlowerImageClassification.Portable
 		static void PrintMenu()
 		{
 			Console.OutputEncoding = Encoding.UTF8;
+			Console.ForegroundColor = ConsoleColor.Cyan;
 			Console.WriteLine(new String('=', 50));
 			Console.WriteLine("0. Thoát khỏi chương trình");
 			Console.WriteLine("1. Huấn luyện mô hình");
 			Console.WriteLine("2. Đánh giá mô hình");
 			Console.WriteLine("3. Dự đoán mô hình");
 			Console.WriteLine(new String('=', 50));
+			Console.ResetColor();
 		}
 
 		static int SelectMenu(int total)
@@ -88,11 +90,15 @@ namespace FlowerImageClassification.Portable
 						Console.Write("Nhập tên kiến trúc cần sử dụng để huấn luyện mô hình: ");
 						archName = Console.ReadLine();
 						Console.Write("Nhập số thập phân kích thước tập huấn luyện so với tập đánh giá (0 < x < 1): ");
-						if (Enum.TryParse(archName, out arch) && float.TryParse(Console.ReadLine(), out frac))
+						string fracStr = Console.ReadLine();
+						if (Enum.TryParse(archName, out arch) && float.TryParse(fracStr, out frac))
 						{
 							if (0f < frac && frac < 1f)
 								break;
+							Print_WarningText("Tỷ lệ phải lớn hơn 0 và nhỏ hơn 1");
 						}
+						Print_WarningText("Nội dung nhập không hợp lệ");
+						Console.ReadKey();
 					}
 					archName = Enum.GetName(typeof(Architecture), (int)arch);
 					fileName = $"{archName}_{frac}";
@@ -103,7 +109,7 @@ namespace FlowerImageClassification.Portable
 					capturing.Dispose();
 					break;
 				default:
-					Console.WriteLine("Nhập sai menu, vui lòng nhập lại!");
+					Print_WarningText("Nhập sai menu, vui lòng nhập lại!");
 					break;
 			}
 		}
@@ -126,14 +132,28 @@ namespace FlowerImageClassification.Portable
 				folderPath = Console.ReadLine();
 				if (Directory.Exists(folderPath))
 				{
-					Console.WriteLine("Tìm thấy thư mục, bạn có thể tiếp tục");
+					Print_SuccessText("Tìm thấy thư mục, bạn có thể tiếp tục");
 					return;
 				}
 				else
 				{
-					Console.WriteLine("Không tìm thấy thư mục, vui lòng nhập lại");
+					Print_WarningText("Không tìm thấy thư mục, vui lòng nhập lại");
 				}
 			}
+		}
+
+		static void Print_WarningText(string text)
+		{
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine(text);
+			Console.ResetColor();
+		}
+
+		static void Print_SuccessText(string text)
+		{
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine(text);
+			Console.ResetColor();
 		}
 
 		static void PerformMenu()
