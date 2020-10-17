@@ -5,14 +5,6 @@ using System.IO;
 
 namespace FlowerImageClassification.Training
 {
-	public enum Architecture
-	{
-		ResnetV2101 = 0,
-		InceptionV3 = 1,
-		MobilenetV2 = 2,
-		ResnetV250 = 3
-	}
-
 	class Program
 	{
 		static string outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath, consoleOutputPath, inceptionModelPath;

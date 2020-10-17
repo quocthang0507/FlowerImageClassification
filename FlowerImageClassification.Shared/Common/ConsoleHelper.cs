@@ -76,6 +76,7 @@ namespace FlowerImageClassification.Shared.Common
 			Console.WriteLine($"*-----------------------------------------------------------");
 			Console.WriteLine($"    AccuracyMacro = {metrics.MacroAccuracy:0.####}, a value between 0 and 1, the closer to 1, the better");
 			Console.WriteLine($"    AccuracyMicro = {metrics.MicroAccuracy:0.####}, a value between 0 and 1, the closer to 1, the better");
+			Console.WriteLine($"    LogLossReduction = {metrics.LogLossReduction:0.####}, the closer to 1, the better");
 			Console.WriteLine($"    LogLoss = {metrics.LogLoss:0.####}, the closer to 0, the better");
 
 			int i = 0;
@@ -84,7 +85,9 @@ namespace FlowerImageClassification.Shared.Common
 				i++;
 				Console.WriteLine($"    LogLoss for class {i} = {classLogLoss:0.####}, the closer to 0, the better");
 			}
-			Console.WriteLine($"    LogLossReduction = {metrics.LogLossReduction:0.####}, the closer to 1, the better");
+			Console.WriteLine($"    TopKPredictionCount = {metrics.TopKPredictionCount}");
+			Console.WriteLine($"    TopKAccuracy = {metrics.TopKAccuracy}");
+			Console.WriteLine($"    ConfusionMatrix:\n{metrics.ConfusionMatrix.GetFormattedConfusionTable()}");
 			Console.WriteLine($"************************************************************");
 		}
 
