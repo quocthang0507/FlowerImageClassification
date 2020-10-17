@@ -10,6 +10,7 @@ namespace FlowerImageClassification.Training
 		static string outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath, consoleOutputPath, inceptionModelPath;
 		static string architectureName;
 		static float[] fractions = { 0.5f, 0.6f, 0.7f, 0.8f, 0.9f };
+		static string fileName;
 
 		static void Main(string[] args)
 		{
@@ -19,9 +20,10 @@ namespace FlowerImageClassification.Training
 				foreach (float frac in fractions)
 				{
 					architectureName = Enum.GetName(typeof(Architecture), (int)arch);
+					fileName = $"{architectureName}_{frac}";
 
 					SetPaths();
-					string output = Path.Combine(consoleOutputPath, $"{architectureName}_{frac}.txt");
+					string output = Path.Combine(consoleOutputPath, fileName + ".txt");
 
 					MirrorOutput capturing = new MirrorOutput(output);
 					Console.WriteLine($"==================== { architectureName} architecture, {frac} ratio of train set with test set ====================");
@@ -54,7 +56,7 @@ namespace FlowerImageClassification.Training
 		{
 			string assetsRelativePath = @"../../../../Assets";
 			string assetsPath = GetAbsolutePath(assetsRelativePath);
-			outputMlNetModelFilePath = Path.Combine(assetsPath, "Outputs", $"imageClassifier_{architectureName}.zip");
+			outputMlNetModelFilePath = Path.Combine(assetsPath, "Outputs", fileName + ".zip");
 			imagesFolderPathForPredictions = Path.Combine(assetsPath, "Inputs", "Predictions", "test1");
 			fullImagesetFolderPath = Path.Combine(assetsPath, "Inputs", "Trainings", "dalat_dataset");
 			consoleOutputPath = GetAbsolutePath(@"../../../../Outputs");
