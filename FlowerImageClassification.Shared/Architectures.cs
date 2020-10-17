@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FlowerImageClassification.Shared
+﻿namespace FlowerImageClassification.Shared
 {
 	public enum Architecture
 	{

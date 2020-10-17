@@ -57,6 +57,7 @@ namespace FlowerImageClassification.Portable
 			Print_PathPrompt(out string fullImagesetFolderPath, "Nhập đường dẫn đến thư mục có chứa các thư mục tập hình ảnh: ");
 			Print_PathPrompt(out string consoleOutputPath, "Nhập đường dẫn đến thư mục sẽ lưu (các) kết quả cửa sổ Console: ");
 			string archName;
+			string fileName;
 			switch (function)
 			{
 				case 1:
@@ -64,22 +65,22 @@ namespace FlowerImageClassification.Portable
 					float[] fractions = { 0.5f, 0.6f, 0.7f, 0.8f, 0.9f };
 					foreach (Architecture _arch in (Architecture[])Enum.GetValues(typeof(Architecture)))
 					{
-						foreach (float frac in fractions)
+						foreach (float _frac in fractions)
 						{
 							archName = Enum.GetName(typeof(Architecture), (int)_arch);
+							fileName = $"{archName}_{_frac}";
 
-							string output = Path.Combine(consoleOutputPath, $"{archName}_{frac}.txt");
-
-							MirrorOutput capturing = new MirrorOutput(output);
-							Console.WriteLine($"==================== {archName} architecture, {frac} ratio of train set with test set ====================");
-							MLTraining mlTraining = new MLTraining(outputModelPath, null, fullImagesetFolderPath, null, frac, (int)_arch);
-							mlTraining.RunPipeline();
-							capturing.Dispose();
+							MirrorOutput _capturing = new MirrorOutput(Path.Combine(consoleOutputPath, fileName + ".txt"));
+							Console.WriteLine($"==================== {archName} architecture, {_frac} ratio of train set with test set ====================");
+							MLTraining _mlTraining = new MLTraining(Path.Combine(outputModelPath, fileName + ".zip"), null, fullImagesetFolderPath, null, _frac, (int)_arch);
+							_mlTraining.RunPipeline();
+							_capturing.Dispose();
 						}
 					}
 					break;
 				case 2:
 					Architecture arch;
+					float frac;
 					while (true)
 					{
 						Console.Clear();
@@ -87,13 +88,19 @@ namespace FlowerImageClassification.Portable
 						Console.Write("Nhập tên kiến trúc cần sử dụng để huấn luyện mô hình: ");
 						archName = Console.ReadLine();
 						Console.Write("Nhập số thập phân kích thước tập huấn luyện so với tập đánh giá (0 < x < 1): ");
-						float frac;
 						if (Enum.TryParse(archName, out arch) && float.TryParse(Console.ReadLine(), out frac))
 						{
-							if (0 < frac && frac < 1f)
+							if (0f < frac && frac < 1f)
 								break;
 						}
 					}
+					archName = Enum.GetName(typeof(Architecture), (int)arch);
+					fileName = $"{archName}_{frac}";
+					MirrorOutput capturing = new MirrorOutput(Path.Combine(consoleOutputPath, fileName + ".txt"));
+					Console.WriteLine($"==================== {archName} architecture, {frac} ratio of train set with test set ====================");
+					MLTraining mlTraining = new MLTraining(Path.Combine(outputModelPath, fileName + ".zip"), null, fullImagesetFolderPath, null, frac, (int)arch);
+					mlTraining.RunPipeline();
+					capturing.Dispose();
 					break;
 				default:
 					Console.WriteLine("Nhập sai menu, vui lòng nhập lại!");
