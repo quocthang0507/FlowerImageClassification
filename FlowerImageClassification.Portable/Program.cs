@@ -202,7 +202,26 @@ namespace FlowerImageClassification.Portable
 
 		static void PerformSubMenu_Prediction()
 		{
-
+			Console.ForegroundColor = ConsoleColor.Cyan;
+			Console.WriteLine("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:");
+			Console.WriteLine("\n" + new string('=', 50));
+			Console.WriteLine("1. Tự động dự đoán tất cả các bức hình có trong thư mục ");
+			Console.WriteLine("2. Dự đoán một bức hình tùy ý");
+			Print_WarningText("Lưu ý: Chỉ nhận hình ảnh là tập tin .jpg hoặc .png");
+			Console.WriteLine(new string('=', 50));
+			Console.ResetColor();
+			int function = SelectMenu(2);
+			Console.Clear();
+			switch (function)
+			{
+				case 1:
+					Print_FolderPathPrompt(out string predictionFolderPath, "Nhập đường dẫn đến thư mục hình ảnh cần dự đoán: ");
+					break;
+				case 2:
+					break;
+				default:
+					break;
+			}
 		}
 
 		static void Print_FolderPathPrompt(out string folderPath, string promptText)
