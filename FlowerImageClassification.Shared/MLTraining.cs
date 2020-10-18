@@ -263,15 +263,15 @@ namespace FlowerImageClassification.Shared
 			Console.ForegroundColor = labelColor;
 			Console.Write($"{Path.GetFileName(imagePath)}");
 			Console.ForegroundColor = defaultForeground;
-			Console.Write(" original labeled as ");
+			Console.Write(", original labeled as ");
 			Console.ForegroundColor = labelColor;
 			Console.Write(label);
 			Console.ForegroundColor = defaultForeground;
-			Console.Write(" predicted as ");
+			Console.Write(", predicted as ");
 			Console.ForegroundColor = labelColor;
 			Console.Write(predictedLabel);
 			Console.ForegroundColor = defaultForeground;
-			Console.Write(" with score ");
+			Console.Write(", with score ");
 			Console.ForegroundColor = probColor;
 			Console.Write(probability);
 			Console.ForegroundColor = defaultForeground;

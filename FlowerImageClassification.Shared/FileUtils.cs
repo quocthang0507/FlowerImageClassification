@@ -1,4 +1,5 @@
 ﻿using FlowerImageClassification.Shared.ImageSchema;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace FlowerImageClassification.Shared
 		{
 			var imagesPath = Directory.
 				GetFiles(pathToImageFolder, "*", SearchOption.AllDirectories).
-				Where(file => Path.GetExtension(file).Contains("jpg") || Path.GetExtension(file).Contains("png"));
+				Where(file => Path.GetExtension(file).Contains("jpg", StringComparison.OrdinalIgnoreCase) || Path.GetExtension(file).Contains("png", StringComparison.OrdinalIgnoreCase));
 			return nameAsLabel ?
 				imagesPath.Select(path => new ImageData(path, Directory.GetParent(path).Name)) :
 				imagesPath.Select(path => new ImageData(path, Path.GetFileName(path)));
