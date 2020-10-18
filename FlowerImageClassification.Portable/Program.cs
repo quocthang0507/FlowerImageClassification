@@ -25,13 +25,13 @@ namespace FlowerImageClassification.Portable
 		{
 			Console.OutputEncoding = Encoding.UTF8;
 			Console.ForegroundColor = ConsoleColor.Cyan;
-			WriteHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 50);
-			Console.WriteLine(new String('=', 50));
+			WriteHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 100);
+			Console.WriteLine(new String('=', 100));
 			Console.WriteLine("0. Thoát khỏi chương trình");
 			Console.WriteLine("1. Huấn luyện mô hình");
 			Console.WriteLine("2. Đánh giá mô hình");
 			Console.WriteLine("3. Dự đoán mô hình");
-			Console.WriteLine(new String('=', 50));
+			Console.WriteLine(new String('=', 100));
 			Console.ResetColor();
 		}
 
@@ -51,16 +51,16 @@ namespace FlowerImageClassification.Portable
 		static void PerformSubMenu_Training()
 		{
 			Console.ForegroundColor = ConsoleColor.Cyan;
-			WriteHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 50);
-			Console.WriteLine("\n" + new string('=', 50));
+			WriteHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 100);
+			Console.WriteLine("\n" + new string('=', 100));
 			Console.WriteLine("1. Chạy tự động với bộ thiết lập có sẵn");
 			Console.WriteLine("    Chương trình sẽ tự động sử dụng các kiến trúc DNN được hỗ trợ bởi ML.NET:");
-			Console.WriteLine("        ResnetV2101, InceptionV3, MobilenetV2, ResnetV250");
+			Console.WriteLine("        ResnetV2101, InceptionV3, MobilenetV2, ResnetV2100");
 			Console.WriteLine("    Và tự động thay đổi kích thước tập huấn luyện:");
 			Console.WriteLine("        {0.5, 0.6, 0.7, 0.8, 0.9}");
 			Console.WriteLine("    Như vậy sẽ thực hiện tổng cộng 4 x 5 = 20 lần, thời gian chạy khá lâu, vui lòng không được tắt trong khi chạy");
 			Console.WriteLine("2. Tự chọn một kiến trúc và kích thước tập huấn luyện");
-			Console.WriteLine(new string('=', 50));
+			Console.WriteLine(new string('=', 100));
 			Console.ResetColor();
 			int function = SelectMenu(2);
 			Console.Clear();
@@ -93,7 +93,7 @@ namespace FlowerImageClassification.Portable
 					while (true)
 					{
 						Console.Clear();
-						Console.WriteLine("ML.NET hỗ trợ các kiến trúc DNN sau: ResnetV2101, InceptionV3, MobilenetV2, ResnetV250");
+						Console.WriteLine("ML.NET hỗ trợ các kiến trúc DNN sau: ResnetV2101, InceptionV3, MobilenetV2, ResnetV2100");
 						Console.Write("Nhập tên kiến trúc cần sử dụng để huấn luyện mô hình: ");
 						archNameInput = Console.ReadLine();
 						Console.Write("Nhập số thập phân kích thước tập huấn luyện so với tập đánh giá (0 < x < 1): ");
@@ -125,8 +125,8 @@ namespace FlowerImageClassification.Portable
 		static void PerformSubMenu_Evaluation()
 		{
 			Console.ForegroundColor = ConsoleColor.Cyan;
-			WriteHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 50);
-			Console.WriteLine("\n" + new string('=', 50));
+			WriteHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 100);
+			Console.WriteLine("\n" + new string('=', 100));
 			Console.WriteLine("1. Đánh giá tất cả các mô hình đã được huấn luyện");
 			Console.WriteLine("    Chương trình sẽ tự động tìm và sử dụng các mô hình đã huấn luyện thông qua định dạng tập tin *.zip:");
 			Console.WriteLine("    Và tự động thay đổi kích thước tập đánh giá:");
@@ -134,7 +134,7 @@ namespace FlowerImageClassification.Portable
 			Console.WriteLine("    Như vậy sẽ thực hiện (số mô hình tìm thấy) x 5 lần, thời gian chạy khá lâu, vui lòng không được tắt trong khi chạy");
 			Console.WriteLine("2. Tự chọn một kiến trúc và kích thước tập đánh giá");
 			WriteHelper.Print_WarningText("Lưu ý: Hình ảnh đã được học nếu đem đi đánh giá sẽ không khách quan, do đó phải sử dụng \nkích thước tập đánh giá = 1 - kích thước tập huấn luyện");
-			Console.WriteLine(new string('=', 50));
+			Console.WriteLine(new string('=', 100));
 			Console.ResetColor();
 			int function = SelectMenu(2);
 			Console.Clear();
@@ -199,12 +199,12 @@ namespace FlowerImageClassification.Portable
 		static void PerformSubMenu_Prediction()
 		{
 			Console.ForegroundColor = ConsoleColor.Cyan;
-			WriteHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 50);
-			Console.WriteLine("\n" + new string('=', 50));
+			WriteHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 100);
+			Console.WriteLine("\n" + new string('=', 100));
 			Console.WriteLine("1. Tự động dự đoán tất cả các bức hình có trong thư mục ");
 			Console.WriteLine("2. Dự đoán một bức hình tùy ý");
 			WriteHelper.Print_WarningText("Lưu ý: Chỉ nhận hình ảnh là tập tin *.jpg hoặc *.png");
-			Console.WriteLine(new string('=', 50));
+			Console.WriteLine(new string('=', 100));
 			Console.ResetColor();
 			int function = SelectMenu(2);
 			string trainedModelPath;
@@ -305,15 +305,12 @@ namespace FlowerImageClassification.Portable
 						Console.WriteLine("Thoát khỏi chương trình, nhấn phím bất kỳ để thoát...");
 						return;
 					case Menu.Training:
-						Console.WriteLine("Huấn luyện mô hình".ToUpper());
 						PerformSubMenu_Training();
 						break;
 					case Menu.Evaluation:
-						Console.WriteLine("Đánh giá mô hình".ToUpper());
 						PerformSubMenu_Evaluation();
 						break;
 					case Menu.Prediction:
-						Console.WriteLine("Dự đoán mô hình".ToUpper());
 						PerformSubMenu_Prediction();
 						break;
 					default:
