@@ -48,5 +48,5 @@ var dict = {
     "Lisianthus": "Hoa cát tường",
     "Rose": "Hoa hồng",
     "Sunflower": "Hoa hướng dương",
-    "Tulip": "Hoa uất kim hương"
+    "Tulips": "Hoa uất kim hương"
 }

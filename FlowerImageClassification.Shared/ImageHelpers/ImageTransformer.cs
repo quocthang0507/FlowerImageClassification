@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 
 namespace FlowerImageClassification.Shared.ImageHelpers
@@ -28,12 +29,12 @@ namespace FlowerImageClassification.Shared.ImageHelpers
 		/// <returns></returns>
 		public static Image ByteArrayToImage(byte[] imageData)
 		{
-			Image returnImage = null;
+			Image image = null;
 			using (MemoryStream ms = new MemoryStream(imageData))
 			{
-				returnImage = Image.FromStream(ms);
+				image = Image.FromStream(ms);
 			}
-			return returnImage;
+			return image;
 		}
 
 		/// <summary>
@@ -44,7 +45,8 @@ namespace FlowerImageClassification.Shared.ImageHelpers
 		public static void ImageArrayToFile(byte[] imageData, string path)
 		{
 			var image = ByteArrayToImage(imageData);
-			image.Save(path);
+			string fileName = Path.GetRandomFileName().Split('.')[0];
+			image.Save(Path.Combine(path, fileName + ".jpg"), ImageFormat.Jpeg);
 		}
 	}
 }
