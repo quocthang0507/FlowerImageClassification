@@ -23,7 +23,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		private readonly PredictionEnginePool<ImageDataInMemory, ImagePrediction> predictionEnginePool;
 		private readonly ILiteDbFlowerService flowerService;
 		private readonly ILogger<HomeController> logger;
-		private string contributionPath = "~/Contributions/";
+		private string contributionPath = "Contributions/";
 
 		public HomeController(PredictionEnginePool<ImageDataInMemory, ImagePrediction> predictionEnginePool, IConfiguration configuration, ILogger<HomeController> logger, ILiteDbFlowerService flowerService)
 		{
@@ -86,7 +86,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 			if (imageFile == null || imageFile.Length == 0)
 				return BadRequest();
 			var imageData = await ReceiveFile(imageFile);
-			return await Classify(imageData, imageFile.FileName);
+			return Classify(imageData, imageFile.FileName);
 		}
 
 		[HttpPost]
@@ -98,31 +98,31 @@ namespace FlowerImageClassification.WebApp.Controllers
 			if (imageFile == null || imageFile.Length == 0)
 				return BadRequest();
 			var imageData = await ReceiveFile(imageFile);
-			return await Classify(imageData, imageFile.FileName, true);
+			return Classify(imageData, imageFile.FileName, true);
 		}
 
 		[HttpPost]
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 		[Route("api/ClassifyImageBase64")]
-		public async Task<IActionResult> ClassifyImageBase64(string base64image)
+		public IActionResult ClassifyImageBase64(string base64image)
 		{
 			var imageData = ImageTransformer.Base64ToByteArray(base64image);
 			if (imageData == null)
 				return BadRequest();
-			return await Classify(imageData);
+			return Classify(imageData);
 		}
 
 		[HttpPost]
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 		[Route("api/CollectAndClassifyImageBase64")]
-		public async Task<IActionResult> CollectAndClassifyImageBase64(string base64image)
+		public IActionResult CollectAndClassifyImageBase64(string base64image)
 		{
 			var imageData = ImageTransformer.Base64ToByteArray(base64image);
 			if (imageData == null)
 				return BadRequest();
-			return await Classify(imageData, null, true);
+			return Classify(imageData, null, true);
 		}
 
 		private async Task<byte[]> ReceiveFile(IFormFile imageFile)
@@ -137,14 +137,13 @@ namespace FlowerImageClassification.WebApp.Controllers
 			return imageData;
 		}
 
-		private async Task<IActionResult> Classify(byte[] imageData, string filename = null, bool collected = false)
+		private IActionResult Classify(byte[] imageData, string filename = null, bool savedFile = false)
 		{
 			// Check that the image is valid
 			if (!imageData.IsValidImage())
 				return StatusCode(StatusCodes.Status415UnsupportedMediaType);
 
-			if (collected)
-				ImageTransformer.ImageArrayToFile(imageData, contributionPath);
+			if (savedFile) ImageTransformer.ImageArrayToFile(imageData, contributionPath);
 
 			logger.LogInformation("Start processing image...");
 

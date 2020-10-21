@@ -1,5 +1,5 @@
-﻿using System;
-using System.Drawing;
+﻿using FlowerImageClassification.Shared.Models.ImageHelpers;
+using System;
 using System.Drawing.Imaging;
 using System.IO;
 
@@ -23,30 +23,17 @@ namespace FlowerImageClassification.Shared.ImageHelpers
 		}
 
 		/// <summary>
-		/// Transform byte[] to image object
-		/// </summary>
-		/// <param name="imageData"></param>
-		/// <returns></returns>
-		public static Image ByteArrayToImage(byte[] imageData)
-		{
-			Image image = null;
-			using (MemoryStream ms = new MemoryStream(imageData))
-			{
-				image = Image.FromStream(ms);
-			}
-			return image;
-		}
-
-		/// <summary>
-		/// Transform byte[] to image object and save to filename
+		/// Transform byte[] to image object and save to file
 		/// </summary>
 		/// <param name="imageData"></param>
 		/// <param name="path">Full path with file name</param>
 		public static void ImageArrayToFile(byte[] imageData, string path)
 		{
-			var image = ByteArrayToImage(imageData);
+			ImageFormat format = ImageValidation.GetImageFormat(imageData);
+			string ext = format == ImageFormat.Jpeg ? ".jpg" : ".png";
 			string fileName = Path.GetRandomFileName().Split('.')[0];
-			image.Save(Path.Combine(path, fileName + ".jpg"), ImageFormat.Jpeg);
+			string filePath = Path.Combine(path, fileName + ext);
+			File.WriteAllBytes(filePath, imageData);
 		}
 	}
 }
