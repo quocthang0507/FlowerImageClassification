@@ -21,19 +21,5 @@ namespace FlowerImageClassification.Shared.ImageHelpers
 				return Convert.FromBase64String(base64String.Split(',')[1]);
 			return null;
 		}
-
-		/// <summary>
-		/// Transform byte[] to image object and save to file
-		/// </summary>
-		/// <param name="imageData"></param>
-		/// <param name="path">Full path with file name</param>
-		public static void ImageArrayToFile(byte[] imageData, string path)
-		{
-			ImageFormat format = ImageValidation.GetImageFormat(imageData);
-			string ext = format == ImageFormat.Jpeg ? ".jpg" : ".png";
-			string fileName = Path.GetRandomFileName().Split('.')[0];
-			string filePath = Path.Combine(path, fileName + ext);
-			File.WriteAllBytes(filePath, imageData);
-		}
 	}
 }
