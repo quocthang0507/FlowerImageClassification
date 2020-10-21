@@ -10,12 +10,10 @@ namespace FlowerImageClassification.WebApp.Controllers
 {
 	public class AdminController : Controller
 	{
-		private readonly ILogger<AdminController> logger;
 		private readonly ILiteDbFlowerService flowerService;
 
-		public AdminController(ILogger<AdminController> logger, ILiteDbFlowerService flowerService)
+		public AdminController(ILiteDbFlowerService flowerService)
 		{
-			this.logger = logger;
 			this.flowerService = flowerService;
 			FlowerDataset imageset = new FlowerDataset((LiteDbFlowerService)flowerService);
 			imageset.InitializeImageSet();

@@ -61,7 +61,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 
 		[HttpGet]
 		[Route("api/ClassifyImage")]
-		public ActionResult<string> Get() => "Hello World";
+		public ActionResult<string> Get() => "Hello, World!";
 
 		[HttpGet]
 		[Route("api/GetInfo/{name}")]
@@ -150,10 +150,8 @@ namespace FlowerImageClassification.WebApp.Controllers
 			{
 				var ext = ImageValidation.GetImageFormat(imageData) == ImageFormat.Jpeg ? ".jpg" : ".png";
 				var filePath = Path.Combine(Directory.GetCurrentDirectory(), contributionPath, Path.GetRandomFileName().Split('.')[0] + ext);
-				using (FileStream stream = new FileStream(filePath, FileMode.Create))
-				{
-					await stream.WriteAsync(imageData);
-				}
+				using FileStream stream = new FileStream(filePath, FileMode.Create);
+				await stream.WriteAsync(imageData);
 			}
 
 			logger.LogInformation("Start processing image...");

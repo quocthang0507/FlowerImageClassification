@@ -30,8 +30,6 @@ namespace FlowerImageClassification.WebApp
 			services.AddPredictionEnginePool<ImageDataInMemory, ImagePrediction>().
 				FromFile(Configuration["MLModel:MLModelFilePath"]);
 
-			// WarmUpPredictionEnginePool(services);
-
 			services.Configure<LiteDbOptions>(Configuration.GetSection("LiteDbOptions"));
 			services.AddSingleton<ILiteDbContext, LiteDbContext>();
 			services.AddTransient<ILiteDbFlowerService, LiteDbFlowerService>();
@@ -60,42 +58,6 @@ namespace FlowerImageClassification.WebApp
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
 			});
-		}
-
-		private static void WarmUpPredictionEnginePool(IServiceCollection services)
-		{
-			//#1 - Simply get a Prediction Engine
-			var predictionEnginePool = services.BuildServiceProvider().GetRequiredService<PredictionEnginePool<ImageDataInMemory, ImagePrediction>>();
-			var predictionEngine = predictionEnginePool.GetPredictionEngine();
-			predictionEnginePool.ReturnPredictionEngine(predictionEngine);
-
-			// #2 - Predict
-			// Get a sample image
-
-			Image img = Image.FromFile(@"...");
-			byte[] imageData;
-			IFormFile imageFile;
-			using (MemoryStream ms = new MemoryStream())
-			{
-				img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-				//To byte[] (#1)
-				imageData = ms.ToArray();
-
-				//To FormFile (#2)
-				imageFile = new FormFile(ms, 0, ms.Length, "BlackRose", "BlackRose.png");
-			}
-
-			var imageInputData = new ImageDataInMemory(imageBytes: imageData, label: null, imagePath: null);
-
-			// Measure execution time.
-			var watch = System.Diagnostics.Stopwatch.StartNew();
-
-			var prediction = predictionEnginePool.Predict(imageInputData);
-
-			// Stop measuring time.
-			watch.Stop();
-			var elapsedMs = watch.ElapsedMilliseconds;
-
 		}
 	}
 }
