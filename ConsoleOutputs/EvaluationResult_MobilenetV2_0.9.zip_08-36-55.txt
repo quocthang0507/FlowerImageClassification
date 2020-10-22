@@ -1,0 +1,43 @@
+==================== D:\GitHub\FlowerImageClassification\Assets\Outputs\Lan 1\MobilenetV2_0.9.zip architecture, 0.1 ratio of test set with train set====================
+Loading model from: D:\GitHub\FlowerImageClassification\Assets\Outputs\Lan 1\MobilenetV2_0.9.zip
+Making predictions in bulk for evaluating model's quality...
+************************************************************
+*    Metrics for TensorFlow DNN Transfer Learning multi-class classification model   
+*-----------------------------------------------------------
+    AccuracyMacro = 0.9668, a value between 0 and 1, the closer to 1, the better
+    AccuracyMicro = 0.9676, a value between 0 and 1, the closer to 1, the better
+    LogLossReduction = 0.9542, the closer to 1, the better
+    LogLoss = 0.1052, the closer to 0, the better
+    LogLoss for class 1 = 0.2414, the closer to 0, the better
+    LogLoss for class 2 = 0.2105, the closer to 0, the better
+    LogLoss for class 3 = 0.1238, the closer to 0, the better
+    LogLoss for class 4 = 0.0615, the closer to 0, the better
+    LogLoss for class 5 = 0.0456, the closer to 0, the better
+    LogLoss for class 6 = 0.0154, the closer to 0, the better
+    LogLoss for class 7 = 0.225, the closer to 0, the better
+    LogLoss for class 8 = 0.1393, the closer to 0, the better
+    LogLoss for class 9 = 0.0031, the closer to 0, the better
+    LogLoss for class 10 = 0.0193, the closer to 0, the better
+    TopKPredictionCount = 0
+    TopKAccuracy = 0
+    ConfusionMatrix:
+
+Confusion table
+               ||================================================================================
+PREDICTED      ||     0 |     1 |     2 |     3 |     4 |     5 |     6 |     7 |     8 |     9 | Recall
+TRUTH          ||================================================================================
+0.   Carnation ||    90 |     2 |     0 |     0 |     0 |     0 |     2 |     2 |     0 |     0 | 0.9375
+1.   Gladiolus ||     2 |    98 |     0 |     0 |     2 |     3 |     2 |     0 |     0 |     0 | 0.9159
+2.   Hydrangea ||     1 |     2 |   111 |     0 |     0 |     0 |     2 |     0 |     0 |     0 | 0.9569
+3.   Jacaranda ||     0 |     0 |     1 |    96 |     0 |     0 |     0 |     0 |     0 |     0 | 0.9897
+4.    Lavender ||     0 |     0 |     1 |     0 |    97 |     0 |     0 |     0 |     0 |     0 | 0.9898
+5. Lily flower ||     0 |     0 |     0 |     0 |     0 |   113 |     0 |     0 |     0 |     1 | 0.9912
+6.  Lisianthus ||     3 |     1 |     2 |     0 |     0 |     0 |    78 |     0 |     0 |     0 | 0.9286
+7.        Rose ||     4 |     0 |     0 |     0 |     0 |     0 |     0 |    93 |     0 |     0 | 0.9588
+8.   Sunflower ||     0 |     0 |     0 |     0 |     0 |     0 |     0 |     0 |   106 |     0 | 1.0000
+9.      Tulips ||     0 |     0 |     0 |     0 |     0 |     0 |     0 |     0 |     0 |   102 | 1.0000
+               ||================================================================================
+Precision      ||0.9000 |0.9515 |0.9652 |1.0000 |0.9798 |0.9741 |0.9286 |0.9789 |1.0000 |0.9903 |
+
+************************************************************
+Predicting and Evaluation took: 36 seconds
