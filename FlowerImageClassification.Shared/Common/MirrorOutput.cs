@@ -13,6 +13,8 @@ namespace FlowerImageClassification.Shared.Common
 		private StreamWriter fileWriter;
 		private TextWriter doubleWriter;
 		private TextWriter stdOutput;
+		// To detect redundant calls
+		private bool _disposed = false;
 
 		public class DoubleWriter : TextWriter
 		{
@@ -58,12 +60,32 @@ namespace FlowerImageClassification.Shared.Common
 			Console.SetOut(doubleWriter);
 		}
 
-		public void Dispose()
+		~MirrorOutput() => Dispose(false);
+
+		public void Dispose(bool disposing)
 		{
+			if (_disposed)
+				return;
+			if (disposing)
+			{
+				// TODO: dispose managed state (managed objects).
+			}
+
+			// TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+			// TODO: set large fields to null.
+
 			// Bring back the standard output stream
+			_disposed = true;
+
 			Console.SetOut(stdOutput);
 			fileWriter.Flush();
 			fileWriter.Close();
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 	}
 }

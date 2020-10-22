@@ -59,7 +59,7 @@ namespace FlowerImageClassification.Training
 			outputMlNetModelFilePath = Path.Combine(assetsPath, "Outputs", fileName + ".zip");
 			imagesFolderPathForPredictions = Path.Combine(assetsPath, "Inputs", "Predictions", "test1");
 			fullImagesetFolderPath = Path.Combine(assetsPath, "Inputs", "Trainings", "dalat_dataset");
-			consoleOutputPath = GetAbsolutePath(@"../../../../Outputs");
+			consoleOutputPath = GetAbsolutePath(@"../../../../ConsoleOutputs");
 			inceptionModelPath = Path.Combine(assetsPath, "Inputs", "Inception", "tensorflow_inception_graph.pb");
 		}
 	}

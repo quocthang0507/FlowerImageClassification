@@ -37,7 +37,7 @@ namespace FlowerImageClassification.Prediction
 			outputMlNetModelFilePath = Path.Combine(assetsPath, "Outputs", "Old");
 			imagesFolderPathForPredictions = Path.Combine(assetsPath, "Inputs", "Predictions");
 			fullImagesetFolderPath = Path.Combine(assetsPath, "Inputs", "Trainings", "dalat_dataset");
-			consoleOutputPath = GetAbsolutePath(@"../../../../Outputs");
+			consoleOutputPath = GetAbsolutePath(@"../../../../ConsoleOutputs");
 		}
 
 	}

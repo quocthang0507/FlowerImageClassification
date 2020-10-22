@@ -19,7 +19,6 @@ namespace FlowerImageClassification.Portable
 	class Program
 	{
 		static float[] trainingFractions = { 0.5f, 0.6f, 0.7f, 0.8f, 0.9f };
-		static float[] evaluationFractions = { 0.1f, 0.2f, 0.3f, 0.4f, 0.5f };
 
 		static void PrintMenu()
 		{
@@ -94,16 +93,11 @@ namespace FlowerImageClassification.Portable
 					{
 						Console.Clear();
 						Console.WriteLine("ML.NET hỗ trợ các kiến trúc DNN sau: ResnetV2101, InceptionV3, MobilenetV2, ResnetV2100");
-						Console.Write("Nhập tên kiến trúc cần sử dụng để huấn luyện mô hình: ");
+						Console.Write("Nhập đúng tên kiến trúc cần sử dụng để huấn luyện mô hình: ");
 						archNameInput = Console.ReadLine();
-						Console.Write("Nhập số thập phân kích thước tập huấn luyện so với tập đánh giá (0 < x < 1): ");
-						string fracInput = Console.ReadLine();
-						if (Enum.TryParse(archNameInput, out arch) && float.TryParse(fracInput, out frac))
-						{
-							if (0f < frac && frac < 1f)
-								break;
-							WriteHelper.Print_WarningText("Tỷ lệ phải lớn hơn 0 và nhỏ hơn 1");
-						}
+						Print_FractionPrompt(out frac, "Nhập số thập phân kích thước tập huấn luyện so với tập đánh giá (0 < x < 1): ");
+						if (Enum.TryParse(archNameInput, out arch))
+							break;
 						WriteHelper.Print_WarningText("Nội dung nhập không hợp lệ");
 						Console.ReadKey();
 					}
@@ -127,24 +121,22 @@ namespace FlowerImageClassification.Portable
 			Console.ForegroundColor = ConsoleColor.Cyan;
 			WriteHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 100);
 			Console.WriteLine("\n" + new string('=', 100));
-			Console.WriteLine("1. Đánh giá tất cả các mô hình đã được huấn luyện");
-			Console.WriteLine("    Chương trình sẽ tự động tìm và sử dụng các mô hình đã huấn luyện thông qua định dạng tập tin *.zip:");
-			Console.WriteLine("    Và tự động thay đổi kích thước tập đánh giá:");
-			Console.WriteLine("        {0.1, 0.2, 0.3, 0.4, 0.5}");
-			Console.WriteLine("    Như vậy sẽ thực hiện (số mô hình tìm thấy) x 5 lần, thời gian chạy khá lâu, vui lòng không được tắt trong khi chạy");
+			Console.WriteLine("1. Đánh giá tất cả các mô hình đã được huấn luyện với kích thước tùy chỉnh");
+			Console.WriteLine("    Chương trình sẽ tự động tìm và sử dụng các mô hình đã huấn luyện có định dạng tập tin *.zip:");
 			Console.WriteLine("2. Tự chọn một kiến trúc và kích thước tập đánh giá");
 			WriteHelper.Print_WarningText("Lưu ý: Hình ảnh đã được học nếu đem đi đánh giá sẽ không khách quan, do đó phải sử dụng \nkích thước tập đánh giá = 1 - kích thước tập huấn luyện");
 			Console.WriteLine(new string('=', 100));
 			Console.ResetColor();
 			int function = SelectMenu(2);
 			Console.Clear();
-			Print_FolderPathPrompt(out string outputModelPath, "Nhập đường dẫn đến thư mục đã lưu (các) mô hình đã được huấn luyện: ");
 			Print_FolderPathPrompt(out string fullImagesetFolderPath, "Nhập đường dẫn đến thư mục có chứa các thư mục tập hình ảnh: ");
 			Print_FolderPathPrompt(out string consoleOutputPath, "Nhập đường dẫn đến thư mục sẽ lưu (các) kết quả cửa sổ Console: ");
+			Print_FractionPrompt(out float frac, "Nhập số thập phân kích thước tập đánh giá so với tập huấn luyện (= 1 - kích thước tập huấn luyện): ");
 			string consoleFileName;
 			switch (function)
 			{
 				case 1:
+					Print_FolderPathPrompt(out string outputModelPath, "Nhập đường dẫn đến thư mục đã lưu (các) mô hình đã được huấn luyện: ");
 					Console.Clear();
 					var foundTrainedModels = Directory.GetFiles(outputModelPath, "*", SearchOption.TopDirectoryOnly).
 						Where(file => Path.GetExtension(file).Contains("zip", StringComparison.OrdinalIgnoreCase));
@@ -153,39 +145,22 @@ namespace FlowerImageClassification.Portable
 						WriteHelper.Print_WarningText("Không tìm thấy bất kỳ tập tin *.zip nào trong thư mục này cả");
 						return;
 					}
-					foreach (var modelPath in foundTrainedModels)
-						foreach (var f in evaluationFractions)
-						{
-							consoleFileName = $"EvaluationResult_{Path.GetFileName(modelPath)}_{DateTime.Now.ToString("HH-mm-ss")}";
-							MirrorOutput capturing_1 = new MirrorOutput(Path.Combine(consoleOutputPath, consoleFileName + ".txt"));
-							Console.WriteLine($"==================== {Path.GetFileName(modelPath)} architecture, {f} ratio of test set with train set====================");
-							MLTraining mlTraining_1 = new MLTraining(modelPath, null, fullImagesetFolderPath, null, f);
-							mlTraining_1.EvaluateModel();
-							capturing_1.Dispose();
-						}
+					foreach (var filePath in foundTrainedModels)
+					{
+						consoleFileName = $"EvaluationResult_{Path.GetFileName(filePath)}_{DateTime.Now.ToString("HH-mm-ss")}";
+						MirrorOutput capturing_1 = new MirrorOutput(Path.Combine(consoleOutputPath, consoleFileName + ".txt"));
+						Console.WriteLine($"==================== {Path.GetFileName(filePath)} architecture, {frac} ratio of test set with train set====================");
+						MLTraining mlTraining_1 = new MLTraining(filePath, null, fullImagesetFolderPath, null, frac);
+						mlTraining_1.EvaluateModel();
+						capturing_1.Dispose();
+					}
 					break;
 				case 2:
-					float frac;
-					string fileName;
-					while (true)
-					{
-						Console.Clear();
-						Print_FilePathPrompt(out fileName, "Nhập đường dẫn đến mô hình đã được huấn luyện trước: ");
-						Console.Write("Nhập số thập phân kích thước tập đánh giá so với tập huấn luyện (= 1 - kích thước tập huấn luyện): ");
-						string fracStr = Console.ReadLine();
-						if (float.TryParse(fracStr, out frac))
-						{
-							if (0f < frac && frac < 1f)
-								break;
-							WriteHelper.Print_WarningText("Tỷ lệ phải lớn hơn 0 và nhỏ hơn 1");
-						}
-						WriteHelper.Print_WarningText("Nội dung nhập không hợp lệ");
-						Console.ReadKey();
-					}
-					consoleFileName = $"EvaluationResult_{fileName}_{DateTime.Now.ToString("HH-mm-ss")}";
+					Print_FilePathPrompt(out string modelPath, "Nhập đường dẫn đến tập tin mô hình đã được huấn luyện trước: ");
+					consoleFileName = $"EvaluationResult_{Path.GetFileName(modelPath)}_{DateTime.Now.ToString("HH-mm-ss")}";
 					MirrorOutput capturing_2 = new MirrorOutput(Path.Combine(consoleOutputPath, consoleFileName + ".txt"));
-					Console.WriteLine($"==================== {fileName} architecture, {frac} ratio of test set with train set====================");
-					MLTraining mlTraining_2 = new MLTraining(consoleFileName, null, fullImagesetFolderPath, null, 1 - frac);
+					Console.WriteLine($"==================== {modelPath} architecture, {frac} ratio of test set with train set====================");
+					MLTraining mlTraining_2 = new MLTraining(modelPath, null, fullImagesetFolderPath, null, 1 - frac);
 					mlTraining_2.EvaluateModel();
 					capturing_2.Dispose();
 					break;
@@ -223,7 +198,7 @@ namespace FlowerImageClassification.Portable
 					ConsumeModel.MLNetModelPath = trainedModelPath;
 					while (true)
 					{
-						if (Print_FilePathPrompt(out string imagePath, "Nhập đường dẫn hình ảnh cần dự đoán, hoặc gõ 'exit' để THOÁT: ") == 0)
+						if (!Print_FilePathPrompt(out string imagePath, "Nhập đường dẫn hình ảnh cần dự đoán, hoặc gõ 'exit' để THOÁT: "))
 							break;
 						ImageDataInMemory imageData = new ImageDataInMemory(imagePath, Path.GetFileName(imagePath));
 						var predictionResult = ConsumeModel.Predict(imageData);
@@ -265,7 +240,7 @@ namespace FlowerImageClassification.Portable
 		/// <param name="filePath"></param>
 		/// <param name="promptText"></param>
 		/// <returns></returns>
-		static int Print_FilePathPrompt(out string filePath, string promptText)
+		static bool Print_FilePathPrompt(out string filePath, string promptText)
 		{
 			while (true)
 			{
@@ -276,7 +251,7 @@ namespace FlowerImageClassification.Portable
 				Console.ResetColor();
 				filePath = filePath.Replace("\"", "");
 				if (filePath.Equals("exit", StringComparison.OrdinalIgnoreCase))
-					return 0;
+					return false;
 				if (File.Exists(filePath))
 				{
 					WriteHelper.Print_SuccessText("Tìm thấy tập tin, bạn có thể tiếp tục");
@@ -285,11 +260,24 @@ namespace FlowerImageClassification.Portable
 				{
 					WriteHelper.Print_WarningText("Không tìm thấy tập tin, vui lòng nhập lại");
 				}
-				return 1;
+				return true;
 			}
 		}
 
-
+		static void Print_FractionPrompt(out float frac, string promptText)
+		{
+			while (true)
+			{
+				Console.Write(promptText);
+				string fracStr = Console.ReadLine();
+				if (float.TryParse(fracStr, out frac))
+				{
+					if (0f < frac && frac < 1f)
+						break;
+					WriteHelper.Print_WarningText("Tỷ lệ phải lớn hơn 0 và nhỏ hơn 1");
+				}
+			}
+		}
 
 		static void PerformMenu()
 		{
