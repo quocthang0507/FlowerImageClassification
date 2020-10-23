@@ -56,10 +56,10 @@ namespace FlowerImageClassification.Training
 		{
 			string assetsRelativePath = @"../../../../Assets";
 			string assetsPath = GetAbsolutePath(assetsRelativePath);
-			outputMlNetModelFilePath = Path.Combine(assetsPath, "Outputs", fileName + ".zip");
+			outputMlNetModelFilePath = Path.Combine(assetsPath, "Outputs", "Lan 2",fileName + ".zip");
 			imagesFolderPathForPredictions = Path.Combine(assetsPath, "Inputs", "Predictions", "test1");
 			fullImagesetFolderPath = Path.Combine(assetsPath, "Inputs", "Trainings", "dalat_dataset");
-			consoleOutputPath = GetAbsolutePath(@"../../../../ConsoleOutputs");
+			consoleOutputPath = GetAbsolutePath(@"../../../../ConsoleOutputs/Lan 2 (Thu nho Dataset)");
 			inceptionModelPath = Path.Combine(assetsPath, "Inputs", "Inception", "tensorflow_inception_graph.pb");
 		}
 	}
