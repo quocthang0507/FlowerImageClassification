@@ -65,7 +65,7 @@ namespace FlowerImageClassification.Shared
 		public void RunPipeline()
 		{
 			// 1., 2., 3., 4.
-			PrepareDataset(false);
+			PrepareDataset(true);
 
 			// 5. Call pipeline
 			var pipeline = CreateCustomPipeline();
@@ -239,8 +239,8 @@ namespace FlowerImageClassification.Shared
 				BatchSize = 10,
 				LearningRate = 0.01f,
 				MetricsCallback = (metrics) => Console.WriteLine(metrics),
-				ValidationSet = testDataset
-				//ValidationSet = validationDataset
+				//ValidationSet = testDataset
+				ValidationSet = validationDataset
 			};
 			var pipeline = mlContext.MulticlassClassification.Trainers.ImageClassification(options).
 				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
