@@ -474,38 +474,27 @@ button.sentiment span {
     transition: 0.5s;
 }
 
-button.sentiment span.like:after {
-    content: '👍';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-}
+    button.sentiment span.like:after {
+        content: "\A 👍";
+        white-space: pre;
+        opacity: 0;
+        transition: 0.5s;
+    }
 
-button.sentiment span.dislike:after {
-    content: '👎';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-}
+    button.sentiment span.dislike:after {
+        content: "\A 👎";
+        white-space: pre;
+        opacity: 0;
+        transition: 0.5s;
+    }
 
-button.sentiment span.normal:after {
-    content: '👌';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-}
-
-button.sentiment:hover span {
-    padding-right: 25px;
-}
+    button.sentiment span.normal:after {
+        content: "\A 👌";
+        white-space: pre;
+        opacity: 0;
+        transition: 0.5s;
+    }
 
 button.sentiment:hover span:after {
     opacity: 1;
-    right: 0;
 }

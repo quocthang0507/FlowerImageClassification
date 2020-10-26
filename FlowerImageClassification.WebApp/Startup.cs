@@ -2,13 +2,10 @@ using FlowerImageClassification.Shared.ImageSchema;
 using FlowerImageClassification.WebApp.LiteDb;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.ML;
-using System.Drawing;
-using System.IO;
 
 namespace FlowerImageClassification.WebApp
 {

@@ -1,7 +1,4 @@
-﻿using FlowerImageClassification.Shared.Models.ImageHelpers;
-using System;
-using System.Drawing.Imaging;
-using System.IO;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace FlowerImageClassification.Shared.ImageHelpers
