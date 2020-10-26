@@ -2,6 +2,7 @@
 using System;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace FlowerImageClassification.Shared.ImageHelpers
 {
@@ -15,7 +16,7 @@ namespace FlowerImageClassification.Shared.ImageHelpers
 		/// </summary>
 		/// <param name="base64String"></param>
 		/// <returns></returns>
-		public static byte[] Base64ToByteArray(string base64String)
+		public async static Task<byte[]> Base64ToByteArray(string base64String)
 		{
 			if (base64String.StartsWith("data:image"))
 				return Convert.FromBase64String(base64String.Split(',')[1]);
