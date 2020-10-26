@@ -44,26 +44,26 @@
 				<div id="divExecutionTime" class="col-md-10"></div>
 				<br />
 				<div class="center">
-					<button class="btn btn-info" data-toggle="modal" data-target="#modal">Khám phá thêm về loài hoa
+					<button class="btn btn-info" data-toggle="modal" data-target="#modal-info">Khám phá thêm về loài hoa
 						này</button>
 				</div>
 				<div class="row center">
 					<div class="col-sm">
-						<button class="btn sentiment">
+						<button class="btn sentiment" data-toggle="modal" data-target="#modal-sentiment">
 							<span class="dislike">
 								Không hài lòng
 							</span>
 						</button>
 					</div>
 					<div class="col-sm">
-						<button class="btn sentiment">
+						<button class="btn sentiment" data-toggle="modal" data-target="#modal-sentiment">
 							<span class="normal">
 								Bình thường
 							</span>
 						</button>
 					</div>
 					<div class="col-sm">
-						<button class="btn sentiment">
+						<button class="btn sentiment" data-toggle="modal" data-target="#modal-sentiment">
 							<span class="like">
 								Hài lòng
 							</span>
@@ -74,11 +74,27 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+<div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="modalTitle">Thông tin cho bạn</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body"></div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="modal-sentiment" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalTitle">Hãy cho chúng tôi biết lý do</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>

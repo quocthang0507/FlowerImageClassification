@@ -129,6 +129,6 @@ function uploadAndClassify(e) {
 function getInfo(name) {
 	var url = 'api/GetInfo/' + name;
 	$.get(url, function (data) {
-		document.querySelector('#modal > div > div > div.modal-body').innerHTML = data;
+		document.querySelector('#modal-info > div > div > div.modal-body').innerHTML = data;
 	});
 }
