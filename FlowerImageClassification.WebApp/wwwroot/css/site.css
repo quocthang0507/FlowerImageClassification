@@ -174,20 +174,12 @@ img {
     visibility: hidden;
 }
 
-.col-form-label {
-    font-style: italic;
-}
-
 
 /* Input 
     ---------------------------------------------------
 */
 
-.form-control {
-    margin-left: 10px;
-}
-
-input#chkContribute {
+input.form-check-input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -474,26 +466,26 @@ button.sentiment span {
     transition: 0.5s;
 }
 
-    button.sentiment span.like:after {
-        content: "\A 👍";
-        white-space: pre;
-        opacity: 0;
-        transition: 0.5s;
-    }
+button.sentiment span.like:after {
+    content: "\A 👍";
+    white-space: pre;
+    opacity: 0;
+    transition: 0.5s;
+}
 
-    button.sentiment span.dislike:after {
-        content: "\A 👎";
-        white-space: pre;
-        opacity: 0;
-        transition: 0.5s;
-    }
+button.sentiment span.dislike:after {
+    content: "\A 👎";
+    white-space: pre;
+    opacity: 0;
+    transition: 0.5s;
+}
 
-    button.sentiment span.normal:after {
-        content: "\A 👌";
-        white-space: pre;
-        opacity: 0;
-        transition: 0.5s;
-    }
+button.sentiment span.normal:after {
+    content: "\A 👌";
+    white-space: pre;
+    opacity: 0;
+    transition: 0.5s;
+}
 
 button.sentiment:hover span:after {
     opacity: 1;
