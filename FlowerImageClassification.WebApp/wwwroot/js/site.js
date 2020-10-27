@@ -44,9 +44,9 @@ var dict = {
     "Jacaranda": "Hoa phượng tím",
     "Lavender": "Hoa oải hương",
     "Gladiolus": "Hoa lay ơn",
-    "Lily flower": "Hoa loa kèn",
+    "Lily": "Hoa loa kèn",
     "Lisianthus": "Hoa cát tường",
     "Rose": "Hoa hồng",
     "Sunflower": "Hoa hướng dương",
-    "Tulips": "Hoa uất kim hương"
+    "Tulip": "Hoa uất kim hương"
 }

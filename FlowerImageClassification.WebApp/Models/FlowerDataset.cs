@@ -23,7 +23,7 @@ namespace FlowerImageClassification.WebApp.Models
 				new Flower{ID=7,VietnameseName="Hoa cát tường",EnglishName="Lisianthus",RichTextInfo="",Thumbnail="/thumbnail/lisianthus.jpg"},
 				new Flower{ID=8,VietnameseName="Hoa hồng",EnglishName="Rose",RichTextInfo="",Thumbnail="/thumbnail/rose.jpg"},
 				new Flower{ID=9,VietnameseName="Hoa hướng dương",EnglishName="Sunflower",RichTextInfo="",Thumbnail="/thumbnail/sunflower.jpg"},
-				new Flower{ID=10,VietnameseName="Hoa uất kim hương",EnglishName="Tulips",RichTextInfo="",Thumbnail="/thumbnail/tulips.jpg"}
+				new Flower{ID=10,VietnameseName="Hoa uất kim hương",EnglishName="Tulip",RichTextInfo="",Thumbnail="/thumbnail/tulips.jpg"}
 			};
 		}
 
