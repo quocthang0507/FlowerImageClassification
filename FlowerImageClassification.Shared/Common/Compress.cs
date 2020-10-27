@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -69,7 +70,7 @@ namespace FlowerImageClassification.Shared.Common
 				{
 					using (var gzipStream = new GZipInputStream(inStream))
 					{
-						using (TarArchive tarArchive = TarArchive.CreateInputTarArchive(gzipStream))
+						using (TarArchive tarArchive = TarArchive.CreateInputTarArchive(gzipStream, Encoding.UTF8))
 							tarArchive.ExtractContents(destFolder);
 					}
 				}
