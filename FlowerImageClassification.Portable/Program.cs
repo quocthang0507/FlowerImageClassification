@@ -54,7 +54,7 @@ namespace FlowerImageClassification.Portable
 			Console.WriteLine("\n" + new string('=', 100));
 			Console.WriteLine("1. Chạy tự động với bộ thiết lập có sẵn");
 			Console.WriteLine("    Chương trình sẽ tự động sử dụng các kiến trúc DNN được hỗ trợ bởi ML.NET:");
-			Console.WriteLine("        ResnetV2101, InceptionV3, MobilenetV2, ResnetV2100");
+			Console.WriteLine("        ResnetV2101, InceptionV3, MobilenetV2, ResnetV250");
 			Console.WriteLine("    Và tự động thay đổi kích thước tập huấn luyện:");
 			Console.WriteLine("        {0.5, 0.6, 0.7, 0.8, 0.9}");
 			Console.WriteLine("    Như vậy sẽ thực hiện tổng cộng 4 x 5 = 20 lần, thời gian chạy khá lâu, vui lòng không được tắt trong khi chạy");
@@ -80,7 +80,7 @@ namespace FlowerImageClassification.Portable
 
 							MirrorOutput capturing_1 = new MirrorOutput(Path.Combine(consoleOutputPath, modelFileName + ".txt"));
 							Console.WriteLine($"==================== {archNameInput} architecture, {f} ratio of train set with test set ====================");
-							MLTraining mlTraining_1 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), null, fullImagesetFolderPath, null, f, (int)_arch);
+							MLTraining mlTraining_1 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), null, fullImagesetFolderPath, 1, f, (int)_arch);
 							mlTraining_1.RunPipeline();
 							capturing_1.Dispose();
 						}
@@ -92,7 +92,7 @@ namespace FlowerImageClassification.Portable
 					while (true)
 					{
 						Console.Clear();
-						Console.WriteLine("ML.NET hỗ trợ các kiến trúc DNN sau: ResnetV2101, InceptionV3, MobilenetV2, ResnetV2100");
+						Console.WriteLine("ML.NET hỗ trợ các kiến trúc DNN sau: ResnetV2101, InceptionV3, MobilenetV2, ResnetV250");
 						Console.Write("Nhập đúng tên kiến trúc cần sử dụng để huấn luyện mô hình: ");
 						archNameInput = Console.ReadLine();
 						Print_FractionPrompt(out frac, "Nhập số thập phân kích thước tập huấn luyện so với tập đánh giá (0 < x < 1): ");
@@ -105,7 +105,7 @@ namespace FlowerImageClassification.Portable
 					modelFileName = $"{archNameInput}_{frac}_{DateTime.Now.ToString("HH-mm-ss")}";
 					MirrorOutput capturing_2 = new MirrorOutput(Path.Combine(consoleOutputPath, modelFileName + ".txt"));
 					Console.WriteLine($"==================== {archNameInput} architecture, {frac} ratio of train set with test set ====================");
-					MLTraining mlTraining_2 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), null, fullImagesetFolderPath, null, frac, (int)arch);
+					MLTraining mlTraining_2 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), null, fullImagesetFolderPath, 1, frac, (int)arch);
 					mlTraining_2.RunPipeline();
 					capturing_2.Dispose();
 					break;
