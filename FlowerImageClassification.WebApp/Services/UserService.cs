@@ -25,7 +25,7 @@ namespace FlowerImageClassification.WebApp.Services
 				u.Username.Equals(username, StringComparison.OrdinalIgnoreCase) &&
 				u.Password.Equals(password)
 			));
-			return user == null;
+			return user != null;
 		}
 	}
 }

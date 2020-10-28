@@ -20,6 +20,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 			imageset.InitializeImageSet();
 		}
 
+		[BasicAuthentication]
 		public IActionResult Index()
 		{
 			var flowers = GetAll();
@@ -30,6 +31,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 		[Route("api/GetById/{id:int}")]
+		[BasicAuthentication]
 		public IActionResult GetById(int id)
 		{
 			Flower result;
@@ -50,6 +52,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 		[Route("api/update")]
+		[BasicAuthentication]
 		public IActionResult Update([FromBody] Flower flower)
 		{
 			bool result;
