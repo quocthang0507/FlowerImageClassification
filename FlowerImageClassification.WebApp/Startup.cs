@@ -1,7 +1,6 @@
 using FlowerImageClassification.Shared.ImageSchema;
 using FlowerImageClassification.WebApp.LiteDb;
 using FlowerImageClassification.WebApp.Services;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -32,6 +31,8 @@ namespace FlowerImageClassification.WebApp
 			services.Configure<LiteDbOptions>(Configuration.GetSection("LiteDbOptions"));
 			services.AddSingleton<ILiteDbContext, LiteDbContext>();
 			services.AddTransient<ILiteDbFlowerService, LiteDbFlowerService>();
+
+			services.AddScoped<IUserService, UserService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +49,8 @@ namespace FlowerImageClassification.WebApp
 			app.UseStaticFiles();
 
 			app.UseRouting();
+
+			app.UseAuthentication();
 
 			app.UseAuthorization();
 

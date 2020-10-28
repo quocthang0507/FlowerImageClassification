@@ -1,6 +1,6 @@
 ﻿using FlowerImageClassification.WebApp.LiteDb;
 using FlowerImageClassification.WebApp.Models;
-using Microsoft.AspNetCore.Authorization;
+using FlowerImageClassification.WebApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace FlowerImageClassification.WebApp.Controllers
 {
+	[BasicAuthentication]
 	public class AdminController : Controller
 	{
 		private readonly ILiteDbFlowerService flowerService;
