@@ -1,5 +1,6 @@
 ﻿using FlowerImageClassification.WebApp.LiteDb;
 using FlowerImageClassification.WebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;

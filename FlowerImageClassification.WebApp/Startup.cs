@@ -1,5 +1,7 @@
 using FlowerImageClassification.Shared.ImageSchema;
 using FlowerImageClassification.WebApp.LiteDb;
+using FlowerImageClassification.WebApp.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

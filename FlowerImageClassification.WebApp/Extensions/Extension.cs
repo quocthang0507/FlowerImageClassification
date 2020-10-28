@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using FlowerImageClassification.WebApp.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,5 +38,6 @@ namespace FlowerImageClassification.WebApp.Extensions
 		{
 			return htmlHelper.ViewContext.HttpContext.Request.Host.Value.Contains("localhost");
 		}
+
 	}
 }
