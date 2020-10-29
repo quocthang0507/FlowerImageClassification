@@ -1,29 +1,26 @@
 ﻿using FlowerImageClassification.WebApp.Models;
+using LiteDB;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FlowerImageClassification.WebApp.LiteDb
 {
 	public class LiteDbSentimentService : ILiteDbSentimentService
 	{
-		public IEnumerable<Sentiment> FindAll()
+		private LiteDatabase liteDb;
+
+		public LiteDbSentimentService(ILiteDbContext liteDbContext)
 		{
-			throw new NotImplementedException();
+			liteDb = liteDbContext.Database;
 		}
 
-		public Sentiment FindOne(int id)
-		{
-			throw new NotImplementedException();
-		}
+		public IEnumerable<Sentiment> FindAll() => liteDb.GetCollection<Sentiment>().FindAll();
 
-		public int Insert(Sentiment sentiment)
-		{
-			throw new NotImplementedException();
-		}
+		public Sentiment FindOne(int id) => liteDb.GetCollection<Sentiment>().Find(s => s.ID == id).FirstOrDefault();
 
-		public bool Update(Sentiment sentiment)
-		{
-			throw new NotImplementedException();
-		}
+		public int Insert(Sentiment sentiment) => liteDb.GetCollection<Sentiment>().Insert(sentiment);
+
+		public bool Update(Sentiment sentiment) => liteDb.GetCollection<Sentiment>().Update(sentiment);
 	}
 }

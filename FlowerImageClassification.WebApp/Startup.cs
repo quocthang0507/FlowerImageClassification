@@ -31,6 +31,7 @@ namespace FlowerImageClassification.WebApp
 			services.Configure<LiteDbOptions>(Configuration.GetSection("LiteDbOptions"));
 			services.AddSingleton<ILiteDbContext, LiteDbContext>();
 			services.AddTransient<ILiteDbFlowerService, LiteDbFlowerService>();
+			services.AddTransient<ILiteDbSentimentService, LiteDbSentimentService>();
 
 			services.AddScoped<IUserService, UserService>();
 		}
