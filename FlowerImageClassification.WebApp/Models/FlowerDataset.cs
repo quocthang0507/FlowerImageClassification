@@ -1,18 +1,20 @@
 ﻿using FlowerImageClassification.WebApp.LiteDb;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace FlowerImageClassification.WebApp.Models
 {
 	public class FlowerDataset
 	{
-		public IEnumerable<Flower> Imageset { get; set; }
-
 		private LiteDbFlowerService flowerService;
+
+		public IEnumerable<Flower> ImageSet { get; set; }
 
 		public FlowerDataset(LiteDbFlowerService flowerService)
 		{
 			this.flowerService = flowerService;
-			Imageset = new Flower[]
+			ImageSet = new Flower[]
 			{
 				new Flower{ID=1,VietnameseName="Hoa cẩm chướng",EnglishName="Carnation",RichTextInfo="",Thumbnail="/thumbnail/carnation.jpg"},
 				new Flower{ID=2,VietnameseName="Hoa cẩm tú cầu",EnglishName="Hydrangea",RichTextInfo="",Thumbnail="/thumbnail/hydrangea.jpg"},
@@ -29,12 +31,50 @@ namespace FlowerImageClassification.WebApp.Models
 
 		public void InitializeImageSet()
 		{
-			foreach (var flower in Imageset)
+			foreach (var flower in ImageSet)
 			{
 				if (flowerService.FindOne(flower.ID) == null)
 					flowerService.Insert(flower);
 			}
 		}
 
+		public void SaveToFile(string pathToFolder)
+		{
+			var db = flowerService.FindAll();
+			foreach (var flower in db)
+			{
+				string fullPath = Path.Combine(pathToFolder, flower.EnglishName + ".txt");
+				using (StreamWriter sw = new StreamWriter(fullPath, false, Encoding.UTF8))
+				{
+					sw.WriteLine(flower.ID);
+					sw.WriteLine(flower.VietnameseName);
+					sw.WriteLine(flower.EnglishName);
+					sw.WriteLine(flower.RichTextInfo);
+					sw.WriteLine(flower.Thumbnail);
+				}
+			}
+		}
+
+		public void RestoreImageSet(string pathToFolder)
+		{
+			var files = Directory.GetFiles(pathToFolder, "*.txt", SearchOption.TopDirectoryOnly);
+			foreach (var file in files)
+			{
+				using (StreamReader sr = new StreamReader(file))
+				{
+					string data = sr.ReadToEnd();
+					string[] arr = data.Split("\r\n");
+					Flower flower = new Flower()
+					{
+						ID = int.Parse(arr[0]),
+						VietnameseName = arr[1],
+						EnglishName = arr[2],
+						RichTextInfo = arr[3],
+						Thumbnail = arr[4]
+					};
+					flowerService.InsertOrUpdateIfExisted(flower);
+				}
+			}
+		}
 	}
 }

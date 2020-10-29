@@ -16,7 +16,7 @@ namespace FlowerImageClassification.WebApp.LiteDb
 		}
 
 		/// <summary>
-		/// Get all the flower from database
+		/// Get all the flowers from database
 		/// </summary>
 		/// <returns></returns>
 		public IEnumerable<Flower> FindAll() => liteDb.GetCollection<Flower>().FindAll();
@@ -61,6 +61,16 @@ namespace FlowerImageClassification.WebApp.LiteDb
 				englishName = englishName.Split(' ')[0];
 			return liteDb.GetCollection<Flower>().Find(f => f.EnglishName.Equals(englishName, StringComparison.OrdinalIgnoreCase)).
 				FirstOrDefault().RichTextInfo;
+		}
+
+		/// <summary>
+		/// Insert a new flower or update if it existed
+		/// </summary>
+		/// <param name="flower"></param>
+		public void InsertOrUpdateIfExisted(Flower flower)
+		{
+			if (!Update(flower))
+				Insert(flower);
 		}
 	}
 }
