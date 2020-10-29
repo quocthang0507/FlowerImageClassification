@@ -123,6 +123,17 @@ function uploadAndClassify(e) {
 }
 
 /**
+ * Submit user sentiment to server
+ * @param {any} e
+ */
+function SubmitUserSentiment(e) {
+	e.preventDefault();
+
+	console.log("test");
+	$('#modal-sentiment').modal('toggle');
+}
+
+/**
  * Send request to get info by flower name
  * @param {Text} name 
  */

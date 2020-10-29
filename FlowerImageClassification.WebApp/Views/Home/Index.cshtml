@@ -3,15 +3,14 @@
 }
 
 <div class="card card-file">
-	<form method="post" enctype="multipart/form-data">
+	<form method="post" enctype="multipart/form-data" id="mainForm">
 		<div>
 			<p>Tải hình ảnh của bạn lên đây:</p>
 		</div>
 		<div>
 			<div class="form-group custom-file mb-3">
-				<input type="file" class="custom-file-input form-control" id="inputFile" name="imageFile"
-				accept="image/*">
-				<label class="custom-file-label" for="inputFile">Choose file</label>
+				<input type="file" class="custom-file-input form-control" id="inputFile" name="imageFile" accept="image/*">
+				<label class="custom-file-label" for="inputFile">Chọn tập tin</label>
 			</div>
 		</div>
 		<div id="formButton">
@@ -83,9 +82,9 @@
 </div>
 
 <!--Model form phản hồi ý kiến-->
-<div class="modal fade" id="modal-sentiment" tabindex="-1" role="dialog" aria-labelledby="modalTitle"
-aria-hidden="true">
+<div class="modal fade" id="modal-sentiment" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
 	<div class="modal-dialog" role="document">
+		<form method="post" enctype="multipart/form-data" id="sentimentForm">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="modalTitle">Phản hồi về kết quả</h5>
@@ -121,10 +120,11 @@ aria-hidden="true">
 				<p>Lưu ý: Ảnh sẽ gửi kèm cùng với phản hồi này và lưu lại trên hệ thống. Bạn có muốn tiếp tục?</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-thanks">Gửi</button>
+				<input class="btn btn-primary" type="submit" name="submit" value="Gửi"/>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
 			</div>
 		</div>
+		</form>
 	</div>
 </div>
 
