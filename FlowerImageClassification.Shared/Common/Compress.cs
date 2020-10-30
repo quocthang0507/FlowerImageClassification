@@ -38,11 +38,11 @@ namespace FlowerImageClassification.Shared.Common
 
 		public static void UnZip(String gzArchiveName, String destFolder)
 		{
-			var flag = gzArchiveName.Split(Path.DirectorySeparatorChar).Last().Split('.').First() + ".bin";
+			string flag = gzArchiveName.Split(Path.DirectorySeparatorChar).Last().Split('.').First() + ".bin";
 			if (File.Exists(Path.Combine(destFolder, flag))) return;
 
 			Console.WriteLine($"Extracting.");
-			var task = Task.Run(() =>
+			Task task = Task.Run(() =>
 			{
 				ZipFile.ExtractToDirectory(gzArchiveName, destFolder);
 			});
@@ -60,20 +60,16 @@ namespace FlowerImageClassification.Shared.Common
 
 		public static void ExtractTGZ(String gzArchiveName, String destFolder)
 		{
-			var flag = gzArchiveName.Split(Path.DirectorySeparatorChar).Last().Split('.').First() + ".bin";
+			string flag = gzArchiveName.Split(Path.DirectorySeparatorChar).Last().Split('.').First() + ".bin";
 			if (File.Exists(Path.Combine(destFolder, flag))) return;
 
 			Console.WriteLine($"Extracting.");
-			var task = Task.Run(() =>
+			Task task = Task.Run(() =>
 			{
-				using (var inStream = File.OpenRead(gzArchiveName))
-				{
-					using (var gzipStream = new GZipInputStream(inStream))
-					{
-						using (TarArchive tarArchive = TarArchive.CreateInputTarArchive(gzipStream, Encoding.UTF8))
-							tarArchive.ExtractContents(destFolder);
-					}
-				}
+				using FileStream inStream = File.OpenRead(gzArchiveName);
+				using GZipInputStream gzipStream = new GZipInputStream(inStream);
+				using TarArchive tarArchive = TarArchive.CreateInputTarArchive(gzipStream, Encoding.UTF8);
+				tarArchive.ExtractContents(destFolder);
 			});
 
 			while (!task.IsCompleted)

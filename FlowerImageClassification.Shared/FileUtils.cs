@@ -21,7 +21,7 @@ namespace FlowerImageClassification.Shared
 		/// <returns></returns>
 		public static IEnumerable<ImageData> LoadImagesFromDirectory(string pathToImageFolder, bool nameAsLabel = true)
 		{
-			var imagesPath = Directory.
+			IEnumerable<string> imagesPath = Directory.
 				GetFiles(pathToImageFolder, "*", SearchOption.AllDirectories).
 				Where(file => Path.GetExtension(file).Contains("jpg", StringComparison.OrdinalIgnoreCase) || Path.GetExtension(file).Contains("png", StringComparison.OrdinalIgnoreCase));
 			return nameAsLabel ?
@@ -50,7 +50,7 @@ namespace FlowerImageClassification.Shared
 		/// <returns></returns>
 		public static string GetAbsolutePath(Assembly assembly, string relativePath)
 		{
-			var assemblyFolderPath = new FileInfo(assembly.Location).Directory.FullName;
+			string assemblyFolderPath = new FileInfo(assembly.Location).Directory.FullName;
 			return Path.GetFullPath(Path.Combine(assemblyFolderPath, relativePath));
 		}
 	}

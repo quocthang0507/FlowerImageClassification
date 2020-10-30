@@ -25,8 +25,8 @@ namespace FlowerImageClassification.Shared
 			// Load model & create prediction engine
 			try
 			{
-				var mlModel = mlContext.Model.Load(MLNetModelPath, out var modelInputSchema);
-				var predEngine = mlContext.Model.CreatePredictionEngine<ImageDataInMemory, ImagePrediction>(mlModel);
+				ITransformer mlModel = mlContext.Model.Load(MLNetModelPath, out DataViewSchema modelInputSchema);
+				PredictionEngine<ImageDataInMemory, ImagePrediction> predEngine = mlContext.Model.CreatePredictionEngine<ImageDataInMemory, ImagePrediction>(mlModel);
 				return predEngine;
 			}
 			catch (Exception e)

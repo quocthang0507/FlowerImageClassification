@@ -25,7 +25,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[BasicAuthentication]
 		public IActionResult Index()
 		{
-			var flowers = GetAll();
+			IEnumerable<Flower> flowers = GetAll();
 			return View(flowers);
 		}
 

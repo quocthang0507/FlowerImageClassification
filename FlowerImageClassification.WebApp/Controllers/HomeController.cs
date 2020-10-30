@@ -86,7 +86,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		{
 			if (imageFile == null || imageFile.Length == 0)
 				return BadRequest();
-			var imageData = await GetUploadedFile(imageFile);
+			byte[] imageData = await GetUploadedFile(imageFile);
 			return Classify(imageData, imageFile.FileName);
 		}
 
@@ -96,7 +96,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[Route("api/ClassifyBase64")]
 		public async Task<IActionResult> ClassifyBase64(string base64image)
 		{
-			var imageData = await ImageTransformer.Base64ToByteArray(base64image);
+			byte[] imageData = await ImageTransformer.Base64ToByteArray(base64image);
 			if (imageData == null)
 				return BadRequest();
 			return Classify(imageData);
@@ -104,7 +104,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 
 		private async Task<byte[]> GetUploadedFile(IFormFile imageFile)
 		{
-			var memoryStream = new MemoryStream();
+			MemoryStream memoryStream = new MemoryStream();
 
 			// Asynchronously copies the content of the uploaded file
 			await imageFile.CopyToAsync(memoryStream);
@@ -116,8 +116,8 @@ namespace FlowerImageClassification.WebApp.Controllers
 
 		private async void SaveUploadedFile(byte[] imageData)
 		{
-			var ext = ImageValidation.GetImageFormat(imageData) == ImageFormat.Jpeg ? ".jpg" : ".png";
-			var filePath = Path.Combine(Directory.GetCurrentDirectory(), contributionPath, Path.GetRandomFileName().Split('.')[0] + ext);
+			string ext = ImageValidation.GetImageFormat(imageData) == ImageFormat.Jpeg ? ".jpg" : ".png";
+			string filePath = Path.Combine(Directory.GetCurrentDirectory(), contributionPath, Path.GetRandomFileName().Split('.')[0] + ext);
 			using FileStream stream = new FileStream(filePath, FileMode.Create);
 			await stream.WriteAsync(imageData);
 		}
@@ -131,22 +131,22 @@ namespace FlowerImageClassification.WebApp.Controllers
 			logger.LogInformation("Start processing image...");
 
 			// Measure execution time
-			var watch = Stopwatch.StartNew();
+			Stopwatch watch = Stopwatch.StartNew();
 
 			// Set the specific image data into the ImageInputData type used in the DataView
-			var imageInputData = new ImageDataInMemory(imageData, null, null);
+			ImageDataInMemory imageInputData = new ImageDataInMemory(imageData, null, null);
 
 			// Predict code for provided image
-			var prediction = predictionEnginePool.Predict(imageInputData);
+			ImagePrediction prediction = predictionEnginePool.Predict(imageInputData);
 
 			// Stop measuring time
 			watch.Stop();
-			var elapsedTime = watch.ElapsedMilliseconds;
+			long elapsedTime = watch.ElapsedMilliseconds;
 
 			logger.LogInformation($"Image processed in {elapsedTime} miliseconds");
 
 			// Predict the image's label with highest probability
-			var bestPrediction = new ImagePredictedLabelWithProbability
+			ImagePredictedLabelWithProbability bestPrediction = new ImagePredictedLabelWithProbability
 			{
 				PredictedLabel = prediction.PredictedLabel,
 				Probability = prediction.Score.Max(),

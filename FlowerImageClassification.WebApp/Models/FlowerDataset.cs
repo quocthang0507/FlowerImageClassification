@@ -31,7 +31,7 @@ namespace FlowerImageClassification.WebApp.Models
 
 		public void InitializeImageSet()
 		{
-			foreach (var flower in ImageSet)
+			foreach (Flower flower in ImageSet)
 			{
 				if (flowerService.FindOne(flower.ID) == null)
 					flowerService.Insert(flower);
@@ -40,8 +40,8 @@ namespace FlowerImageClassification.WebApp.Models
 
 		public void SaveToFile(string pathToFolder)
 		{
-			var db = flowerService.FindAll();
-			foreach (var flower in db)
+			IEnumerable<Flower> db = flowerService.FindAll();
+			foreach (Flower flower in db)
 			{
 				string fullPath = Path.Combine(pathToFolder, flower.EnglishName + ".txt");
 				using (StreamWriter sw = new StreamWriter(fullPath, false, Encoding.UTF8))
@@ -57,8 +57,8 @@ namespace FlowerImageClassification.WebApp.Models
 
 		public void RestoreImageSet(string pathToFolder)
 		{
-			var files = Directory.GetFiles(pathToFolder, "*.txt", SearchOption.TopDirectoryOnly);
-			foreach (var file in files)
+			string[] files = Directory.GetFiles(pathToFolder, "*.txt", SearchOption.TopDirectoryOnly);
+			foreach (string file in files)
 			{
 				using (StreamReader sr = new StreamReader(file))
 				{

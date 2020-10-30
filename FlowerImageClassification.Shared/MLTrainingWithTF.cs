@@ -24,7 +24,7 @@ namespace FlowerImageClassification.Shared
 
 		public IEstimator<ITransformer> CreateCustomPipelineTF()
 		{
-			var options = new ImageClassificationTrainer.Options()
+			ImageClassificationTrainer.Options options = new ImageClassificationTrainer.Options()
 			{
 				LabelColumnName = "LabelAsKey",
 				FeatureColumnName = "softmax2_pre_activation",
@@ -63,18 +63,18 @@ namespace FlowerImageClassification.Shared
 			PrepareDataset(true);
 
 			// 5. Call pipeline
-			var pipeline = CreateCustomPipelineTF();
+			IEstimator<ITransformer> pipeline = CreateCustomPipelineTF();
 
 			// 6. Train/create the ML Model
 			Console.WriteLine("*** Training the image classification model with DNN Transfer Learning on top of the selected pre-trained model/architecture ***");
 
 			////////// Begin training
-			var watch = Stopwatch.StartNew();
+			Stopwatch watch = Stopwatch.StartNew();
 			trainedModel = pipeline.Fit(trainDataset);
 			watch.Stop();
 			////////// End training
 
-			var ms = watch.ElapsedMilliseconds;
+			long ms = watch.ElapsedMilliseconds;
 			Console.WriteLine($"Training with transfer learning took: {ms / 1000} seconds");
 
 			// 7. Get the quality metrics

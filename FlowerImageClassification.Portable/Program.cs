@@ -138,14 +138,14 @@ namespace FlowerImageClassification.Portable
 				case 1:
 					Print_FolderPathPrompt(out string outputModelPath, "Nhập đường dẫn đến thư mục đã lưu (các) mô hình đã được huấn luyện: ");
 					Console.Clear();
-					var foundTrainedModels = Directory.GetFiles(outputModelPath, "*", SearchOption.TopDirectoryOnly).
+					System.Collections.Generic.IEnumerable<string> foundTrainedModels = Directory.GetFiles(outputModelPath, "*", SearchOption.TopDirectoryOnly).
 						Where(file => Path.GetExtension(file).Contains("zip", StringComparison.OrdinalIgnoreCase));
 					if (foundTrainedModels.Count() == 0)
 					{
 						WriteHelper.Print_WarningText("Không tìm thấy bất kỳ tập tin *.zip nào trong thư mục này cả");
 						return;
 					}
-					foreach (var filePath in foundTrainedModels)
+					foreach (string filePath in foundTrainedModels)
 					{
 						consoleFileName = $"EvaluationResult_{Path.GetFileName(filePath)}_{DateTime.Now.ToString("HH-mm-ss")}";
 						MirrorOutput capturing_1 = new MirrorOutput(Path.Combine(consoleOutputPath, consoleFileName + ".txt"));
@@ -201,7 +201,7 @@ namespace FlowerImageClassification.Portable
 						if (!Print_FilePathPrompt(out string imagePath, "Nhập đường dẫn hình ảnh cần dự đoán, hoặc gõ 'exit' để THOÁT: "))
 							break;
 						ImageDataInMemory imageData = new ImageDataInMemory(imagePath, Path.GetFileName(imagePath));
-						var predictionResult = ConsumeModel.Predict(imageData);
+						ImagePrediction predictionResult = ConsumeModel.Predict(imageData);
 						Console.WriteLine($"Tên dự đoán: {predictionResult.PredictedLabel}");
 						Console.WriteLine($"Độ chính xác: {predictionResult.Score.Max()}");
 					}

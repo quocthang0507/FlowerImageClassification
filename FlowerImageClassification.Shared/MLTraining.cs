@@ -68,18 +68,18 @@ namespace FlowerImageClassification.Shared
 			PrepareDataset(true);
 
 			// 5. Call pipeline
-			var pipeline = CreateCustomPipeline();
+			EstimatorChain<KeyToValueMappingTransformer> pipeline = CreateCustomPipeline();
 
 			// 6. Train/create the ML Model
 			Console.WriteLine("*** Training the image classification model with DNN Transfer Learning on top of the selected pre-trained model/architecture ***");
 
 			////////// Begin training
-			var watch = Stopwatch.StartNew();
+			Stopwatch watch = Stopwatch.StartNew();
 			trainedModel = pipeline.Fit(trainDataset);
 			watch.Stop();
 			////////// End training
 
-			var ms = watch.ElapsedMilliseconds;
+			long ms = watch.ElapsedMilliseconds;
 			Console.WriteLine($"Training with transfer learning took: {ms / 1000} seconds");
 
 			// 7. Get the quality metrics
@@ -109,13 +109,13 @@ namespace FlowerImageClassification.Shared
 			}
 			Console.WriteLine("Making predictions in bulk for evaluating model's quality...");
 			// Begin evaluating
-			var watch = Stopwatch.StartNew();
-			var predictionsDataView = trainedModel.Transform(testDataset);
-			var metrics = mlContext.MulticlassClassification.Evaluate(predictionsDataView, labelColumnName: "LabelAsKey", predictedLabelColumnName: "PredictedLabel");
+			Stopwatch watch = Stopwatch.StartNew();
+			IDataView predictionsDataView = trainedModel.Transform(testDataset);
+			MulticlassClassificationMetrics metrics = mlContext.MulticlassClassification.Evaluate(predictionsDataView, labelColumnName: "LabelAsKey", predictedLabelColumnName: "PredictedLabel");
 			ConsoleHelper.PrintMultiClassClassificationMetrics("TensorFlow DNN Transfer Learning", metrics);
 			watch.Stop();
 			// End evaluating
-			var milliseconds = watch.ElapsedMilliseconds;
+			long milliseconds = watch.ElapsedMilliseconds;
 			Console.WriteLine($"Predicting and Evaluation took: {milliseconds / 1000} seconds");
 		}
 
@@ -131,10 +131,10 @@ namespace FlowerImageClassification.Shared
 				else
 					throw new Exception("Please run the pipeline before predicting!");
 			}
-			var predictionEngine = mlContext.Model.CreatePredictionEngine<ImageDataInMemory, ImagePrediction>(trainedModel);
-			var predictedImages = FileUtils.LoadImagesFromDirectoryInMemory(InputFolderPathForPrediction, false);
-			var image = predictedImages.First();
-			var prediction = predictionEngine.Predict(image);
+			PredictionEngine<ImageDataInMemory, ImagePrediction> predictionEngine = mlContext.Model.CreatePredictionEngine<ImageDataInMemory, ImagePrediction>(trainedModel);
+			IEnumerable<ImageDataInMemory> predictedImages = FileUtils.LoadImagesFromDirectoryInMemory(InputFolderPathForPrediction, false);
+			ImageDataInMemory image = predictedImages.First();
+			ImagePrediction prediction = predictionEngine.Predict(image);
 			PrintImagePrediction(image.ImagePath, image.Label, prediction.PredictedLabel, prediction.Score.Max());
 		}
 
@@ -150,11 +150,11 @@ namespace FlowerImageClassification.Shared
 				else
 					throw new Exception("Please run the pipeline before predicting!");
 			}
-			var predictionEngine = mlContext.Model.CreatePredictionEngine<ImageDataInMemory, ImagePrediction>(trainedModel);
-			var predictedImages = FileUtils.LoadImagesFromDirectoryInMemory(InputFolderPathForPrediction, false);
-			foreach (var image in predictedImages)
+			PredictionEngine<ImageDataInMemory, ImagePrediction> predictionEngine = mlContext.Model.CreatePredictionEngine<ImageDataInMemory, ImagePrediction>(trainedModel);
+			IEnumerable<ImageDataInMemory> predictedImages = FileUtils.LoadImagesFromDirectoryInMemory(InputFolderPathForPrediction, false);
+			foreach (ImageDataInMemory image in predictedImages)
 			{
-				var prediction = predictionEngine.Predict(image);
+				ImagePrediction prediction = predictionEngine.Predict(image);
 				PrintImagePrediction(image.ImagePath, image.Label, prediction.PredictedLabel, prediction.Score.Max());
 			}
 		}
@@ -182,11 +182,11 @@ namespace FlowerImageClassification.Shared
 			Then, the 30% validation set is further split into validation and test sets where 90% is used for validation and 10% is used for testing.
 			var trainSplit = mlContext.Data.TrainTestSplit(transformedDataset, 0.3);
 			*/
-			var trainSplit = mlContext.Data.TrainTestSplit(transformedDataset, testRatio);
+			DataOperationsCatalog.TrainTestData trainSplit = mlContext.Data.TrainTestSplit(transformedDataset, testRatio);
 			trainDataset = trainSplit.TrainSet;
 			if (shouldValidateBeforeTesting)
 			{
-				var validationTestSplit = mlContext.Data.TrainTestSplit(trainSplit.TestSet);
+				DataOperationsCatalog.TrainTestData validationTestSplit = mlContext.Data.TrainTestSplit(trainSplit.TestSet);
 				validationDataset = validationTestSplit.TrainSet;
 				testDataset = validationTestSplit.TestSet;
 			}
@@ -202,7 +202,7 @@ namespace FlowerImageClassification.Shared
 		private void LoadTrainedModel()
 		{
 			Console.WriteLine($"Loading model from: {OutputModelPath}");
-			trainedModel = mlContext.Model.Load(OutputModelPath, out var modelSchema);
+			trainedModel = mlContext.Model.Load(OutputModelPath, out DataViewSchema modelSchema);
 		}
 
 		/// <summary>
@@ -212,7 +212,7 @@ namespace FlowerImageClassification.Shared
 		/// <returns></returns>
 		private EstimatorChain<KeyToValueMappingTransformer> CreateDefaultPipeline(IDataView dataset)
 		{
-			var pipeline = mlContext.MulticlassClassification.Trainers.
+			EstimatorChain<KeyToValueMappingTransformer> pipeline = mlContext.MulticlassClassification.Trainers.
 				// The feature column name should has same name in ImageDataInMemory
 				ImageClassification(labelColumnName: "LabelAsKey", featureColumnName: "ImageBytes", validationSet: dataset).
 				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
@@ -226,7 +226,7 @@ namespace FlowerImageClassification.Shared
 		/// <returns></returns>
 		private EstimatorChain<KeyToValueMappingTransformer> CreateCustomPipeline()
 		{
-			var options = new ImageClassificationTrainer.Options()
+			ImageClassificationTrainer.Options options = new ImageClassificationTrainer.Options()
 			{
 				LabelColumnName = "LabelAsKey",
 				// The feature column name should has same name in ImageDataInMemory
@@ -242,7 +242,7 @@ namespace FlowerImageClassification.Shared
 				//ValidationSet = testDataset
 				ValidationSet = validationDataset
 			};
-			var pipeline = mlContext.MulticlassClassification.Trainers.ImageClassification(options).
+			EstimatorChain<KeyToValueMappingTransformer> pipeline = mlContext.MulticlassClassification.Trainers.ImageClassification(options).
 				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
 			return pipeline;
 		}
@@ -256,9 +256,9 @@ namespace FlowerImageClassification.Shared
 		/// <param name="probaility"></param>
 		private void PrintImagePrediction(string imagePath, string label, string predictedLabel, float probability)
 		{
-			var defaultForeground = Console.ForegroundColor;
-			var labelColor = ConsoleColor.Magenta;
-			var probColor = ConsoleColor.Blue;
+			ConsoleColor defaultForeground = Console.ForegroundColor;
+			ConsoleColor labelColor = ConsoleColor.Magenta;
+			ConsoleColor probColor = ConsoleColor.Blue;
 			Console.Write("Image File: ");
 			Console.ForegroundColor = labelColor;
 			Console.Write($"{Path.GetFileName(imagePath)}");

@@ -19,8 +19,8 @@ namespace FlowerImageClassification.WebApp.Services
 		{
 			logger.LogInformation($"Validating user [{username}]");
 			Users users = new Users();
-			var list = users.GetUsers();
-			var user = await Task.Run(
+			System.Collections.Generic.List<User> list = users.GetUsers();
+			User user = await Task.Run(
 				() => list.SingleOrDefault(u =>
 				u.Username.Equals(username, StringComparison.OrdinalIgnoreCase) &&
 				u.Password.Equals(password)

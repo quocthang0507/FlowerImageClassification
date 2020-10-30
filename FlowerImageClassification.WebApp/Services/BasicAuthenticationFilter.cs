@@ -27,13 +27,13 @@ namespace FlowerImageClassification.WebApp.Services
 				string authHeader = context.HttpContext.Request.Headers["Authorization"];
 				if (authHeader != null)
 				{
-					var authHeaderValue = AuthenticationHeaderValue.Parse(authHeader);
+					AuthenticationHeaderValue authHeaderValue = AuthenticationHeaderValue.Parse(authHeader);
 					if (authHeaderValue.Scheme.Equals(AuthenticationSchemes.Basic.ToString(), StringComparison.OrdinalIgnoreCase))
 					{
-						var credentials = Encoding.UTF8.GetString(Convert.FromBase64String(authHeaderValue.Parameter ?? string.Empty)).Split(':', 2);
+						string[] credentials = Encoding.UTF8.GetString(Convert.FromBase64String(authHeaderValue.Parameter ?? string.Empty)).Split(':', 2);
 						if (credentials.Length == 2)
 						{
-							var successful = await IsAuthorized(context, credentials[0], credentials[1]);
+							bool successful = await IsAuthorized(context, credentials[0], credentials[1]);
 							if (successful)
 							{
 								return;
@@ -57,7 +57,7 @@ namespace FlowerImageClassification.WebApp.Services
 
 		private async Task<bool> IsAuthorized(AuthorizationFilterContext context, string username, string password)
 		{
-			var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+			IUserService userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
 			return await userService.IsValidUser(username, password);
 		}
 	}
