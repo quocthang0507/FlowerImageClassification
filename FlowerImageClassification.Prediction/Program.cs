@@ -16,7 +16,7 @@ namespace FlowerImageClassification.Prediction
 			string model = "imageClassifier_resnetv2101.zip"; // Must put the name of trained model file
 			string output = Path.Combine(consoleOutputPath, $"EvaluatingOutput_{model}_{DateTime.Now.ToString("d_M_y h_m_s")}.txt");
 			outputMlNetModelFilePath = Path.Combine(outputMlNetModelFilePath, model);
-			using (MirrorOutput capturing = new MirrorOutput(output))
+			using (OutputHelper capturing = new OutputHelper(output))
 			{
 				MLTraining mlTraining = new MLTraining(outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath);
 				//mlTraining.EvaluateModel();

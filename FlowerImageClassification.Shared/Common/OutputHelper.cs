@@ -8,7 +8,7 @@ namespace FlowerImageClassification.Shared.Common
 	/// Mirror the standard output stream console
 	/// Reference from: https://stackoverflow.com/a/6927051
 	/// </summary>
-	public class MirrorOutput : IDisposable
+	public class OutputHelper : IDisposable
 	{
 		private StreamWriter fileWriter;
 		private TextWriter doubleWriter;
@@ -42,7 +42,7 @@ namespace FlowerImageClassification.Shared.Common
 			}
 		}
 
-		public MirrorOutput(string pathToOutput)
+		public OutputHelper(string pathToOutput)
 		{
 			stdOutput = Console.Out;
 			Console.OutputEncoding = Encoding.UTF8;
@@ -60,7 +60,7 @@ namespace FlowerImageClassification.Shared.Common
 			Console.SetOut(doubleWriter);
 		}
 
-		~MirrorOutput() => Dispose(false);
+		~OutputHelper() => Dispose(false);
 
 		public void Dispose(bool disposing)
 		{

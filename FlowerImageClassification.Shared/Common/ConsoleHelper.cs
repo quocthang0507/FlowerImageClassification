@@ -319,5 +319,30 @@ namespace FlowerImageClassification.Shared.Common
 				Console.WriteLine(line);
 			}
 		}
+
+		public static void Print_WarningText(string text)
+		{
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine(text);
+			Console.ResetColor();
+		}
+
+		public static void Print_SuccessText(string text)
+		{
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine(text);
+			Console.ResetColor();
+		}
+
+		public static void Print_CenteredTitle(string title, int maxWidth)
+		{
+			int len = title.Length;
+			if (maxWidth - len > 0)
+			{
+				int half = (maxWidth - len) / 2;
+				Console.WriteLine(new string(' ', half) + title);
+			}
+		}
+
 	}
 }

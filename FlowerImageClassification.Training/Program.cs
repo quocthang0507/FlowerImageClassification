@@ -25,7 +25,7 @@ namespace FlowerImageClassification.Training
 					SetPaths();
 					string output = Path.Combine(consoleOutputPath, fileName + ".txt");
 
-					MirrorOutput capturing = new MirrorOutput(output);
+					OutputHelper capturing = new OutputHelper(output);
 					Console.WriteLine($"==================== { architectureName} architecture, {frac} ratio of train set with test set ====================");
 					MLTraining mlTraining = new MLTraining(outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath, null, frac, (int)arch);
 					mlTraining.RunPipeline();

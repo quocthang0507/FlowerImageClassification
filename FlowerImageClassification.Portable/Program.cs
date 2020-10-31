@@ -24,7 +24,7 @@ namespace FlowerImageClassification.Portable
 		{
 			Console.OutputEncoding = Encoding.UTF8;
 			Console.ForegroundColor = ConsoleColor.Cyan;
-			WriteHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 100);
+			ConsoleHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 100);
 			Console.WriteLine(new String('=', 100));
 			Console.WriteLine("0. Thoát khỏi chương trình");
 			Console.WriteLine("1. Huấn luyện mô hình");
@@ -50,7 +50,7 @@ namespace FlowerImageClassification.Portable
 		static void PerformSubMenu_Training()
 		{
 			Console.ForegroundColor = ConsoleColor.Cyan;
-			WriteHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 100);
+			ConsoleHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 100);
 			Console.WriteLine("\n" + new string('=', 100));
 			Console.WriteLine("1. Chạy tự động với bộ thiết lập có sẵn");
 			Console.WriteLine("    Chương trình sẽ tự động sử dụng các kiến trúc DNN được hỗ trợ bởi ML.NET:");
@@ -78,7 +78,7 @@ namespace FlowerImageClassification.Portable
 							archNameInput = Enum.GetName(typeof(Architecture), (int)_arch);
 							modelFileName = $"{archNameInput}_{f}_{DateTime.Now.ToString("HH-mm-ss")}";
 
-							MirrorOutput capturing_1 = new MirrorOutput(Path.Combine(consoleOutputPath, modelFileName + ".txt"));
+							OutputHelper capturing_1 = new OutputHelper(Path.Combine(consoleOutputPath, modelFileName + ".txt"));
 							Console.WriteLine($"==================== {archNameInput} architecture, {f} ratio of train set with test set ====================");
 							MLTraining mlTraining_1 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), null, fullImagesetFolderPath, 1, f, (int)_arch);
 							mlTraining_1.RunPipeline();
@@ -98,19 +98,19 @@ namespace FlowerImageClassification.Portable
 						Print_FractionPrompt(out frac, "Nhập số thập phân kích thước tập huấn luyện so với tập đánh giá (0 < x < 1): ");
 						if (Enum.TryParse(archNameInput, out arch))
 							break;
-						WriteHelper.Print_WarningText("Nội dung nhập không hợp lệ");
+						ConsoleHelper.Print_WarningText("Nội dung nhập không hợp lệ");
 						Console.ReadKey();
 					}
 					archNameInput = Enum.GetName(typeof(Architecture), (int)arch);
 					modelFileName = $"{archNameInput}_{frac}_{DateTime.Now.ToString("HH-mm-ss")}";
-					MirrorOutput capturing_2 = new MirrorOutput(Path.Combine(consoleOutputPath, modelFileName + ".txt"));
+					OutputHelper capturing_2 = new OutputHelper(Path.Combine(consoleOutputPath, modelFileName + ".txt"));
 					Console.WriteLine($"==================== {archNameInput} architecture, {frac} ratio of train set with test set ====================");
 					MLTraining mlTraining_2 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), null, fullImagesetFolderPath, 1, frac, (int)arch);
 					mlTraining_2.RunPipeline();
 					capturing_2.Dispose();
 					break;
 				default:
-					WriteHelper.Print_WarningText("Nhập sai menu, vui lòng nhập lại!");
+					ConsoleHelper.Print_WarningText("Nhập sai menu, vui lòng nhập lại!");
 					break;
 			}
 			Console.WriteLine("Nhấn phím bất kỳ để quay trở lại...");
@@ -119,12 +119,12 @@ namespace FlowerImageClassification.Portable
 		static void PerformSubMenu_Evaluation()
 		{
 			Console.ForegroundColor = ConsoleColor.Cyan;
-			WriteHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 100);
+			ConsoleHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 100);
 			Console.WriteLine("\n" + new string('=', 100));
 			Console.WriteLine("1. Đánh giá tất cả các mô hình đã được huấn luyện với kích thước tùy chỉnh");
 			Console.WriteLine("    Chương trình sẽ tự động tìm và sử dụng các mô hình đã huấn luyện có định dạng tập tin *.zip:");
 			Console.WriteLine("2. Tự chọn một kiến trúc và kích thước tập đánh giá");
-			WriteHelper.Print_WarningText("Lưu ý: Hình ảnh đã được học nếu đem đi đánh giá sẽ không khách quan, do đó phải sử dụng \nkích thước tập đánh giá = 1 - kích thước tập huấn luyện");
+			ConsoleHelper.Print_WarningText("Lưu ý: Hình ảnh đã được học nếu đem đi đánh giá sẽ không khách quan, do đó phải sử dụng \nkích thước tập đánh giá = 1 - kích thước tập huấn luyện");
 			Console.WriteLine(new string('=', 100));
 			Console.ResetColor();
 			int function = SelectMenu(2);
@@ -142,13 +142,13 @@ namespace FlowerImageClassification.Portable
 						Where(file => Path.GetExtension(file).Contains("zip", StringComparison.OrdinalIgnoreCase));
 					if (foundTrainedModels.Count() == 0)
 					{
-						WriteHelper.Print_WarningText("Không tìm thấy bất kỳ tập tin *.zip nào trong thư mục này cả");
+						ConsoleHelper.Print_WarningText("Không tìm thấy bất kỳ tập tin *.zip nào trong thư mục này cả");
 						return;
 					}
 					foreach (string filePath in foundTrainedModels)
 					{
 						consoleFileName = $"EvaluationResult_{Path.GetFileName(filePath)}_{DateTime.Now.ToString("HH-mm-ss")}";
-						MirrorOutput capturing_1 = new MirrorOutput(Path.Combine(consoleOutputPath, consoleFileName + ".txt"));
+						OutputHelper capturing_1 = new OutputHelper(Path.Combine(consoleOutputPath, consoleFileName + ".txt"));
 						Console.WriteLine($"==================== {Path.GetFileName(filePath)} architecture, {frac} ratio of test set with train set====================");
 						MLTraining mlTraining_1 = new MLTraining(filePath, null, fullImagesetFolderPath, null, frac);
 						mlTraining_1.EvaluateModel();
@@ -158,14 +158,14 @@ namespace FlowerImageClassification.Portable
 				case 2:
 					Print_FilePathPrompt(out string modelPath, "Nhập đường dẫn đến tập tin mô hình đã được huấn luyện trước: ");
 					consoleFileName = $"EvaluationResult_{Path.GetFileName(modelPath)}_{DateTime.Now.ToString("HH-mm-ss")}";
-					MirrorOutput capturing_2 = new MirrorOutput(Path.Combine(consoleOutputPath, consoleFileName + ".txt"));
+					OutputHelper capturing_2 = new OutputHelper(Path.Combine(consoleOutputPath, consoleFileName + ".txt"));
 					Console.WriteLine($"==================== {modelPath} architecture, {frac} ratio of test set with train set====================");
 					MLTraining mlTraining_2 = new MLTraining(modelPath, null, fullImagesetFolderPath, null, 1 - frac);
 					mlTraining_2.EvaluateModel();
 					capturing_2.Dispose();
 					break;
 				default:
-					WriteHelper.Print_WarningText("Nhập sai menu, vui lòng nhập lại!");
+					ConsoleHelper.Print_WarningText("Nhập sai menu, vui lòng nhập lại!");
 					break;
 			}
 			Console.WriteLine("Nhấn phím bất kỳ để quay trở lại...");
@@ -174,11 +174,11 @@ namespace FlowerImageClassification.Portable
 		static void PerformSubMenu_Prediction()
 		{
 			Console.ForegroundColor = ConsoleColor.Cyan;
-			WriteHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 100);
+			ConsoleHelper.Print_CenteredTitle("VUI LÒNG CHỌN CHỨC NĂNG DƯỚI ĐÂY:", 100);
 			Console.WriteLine("\n" + new string('=', 100));
 			Console.WriteLine("1. Tự động dự đoán tất cả các bức hình có trong thư mục ");
 			Console.WriteLine("2. Dự đoán một bức hình tùy ý");
-			WriteHelper.Print_WarningText("Lưu ý: Chỉ nhận hình ảnh là tập tin *.jpg hoặc *.png");
+			ConsoleHelper.Print_WarningText("Lưu ý: Chỉ nhận hình ảnh là tập tin *.jpg hoặc *.png");
 			Console.WriteLine(new string('=', 100));
 			Console.ResetColor();
 			int function = SelectMenu(2);
@@ -224,12 +224,12 @@ namespace FlowerImageClassification.Portable
 				folderPath = folderPath.Replace("\"", "");
 				if (Directory.Exists(folderPath))
 				{
-					WriteHelper.Print_SuccessText("Tìm thấy thư mục, bạn có thể tiếp tục");
+					ConsoleHelper.Print_SuccessText("Tìm thấy thư mục, bạn có thể tiếp tục");
 					return;
 				}
 				else
 				{
-					WriteHelper.Print_WarningText("Không tìm thấy thư mục, vui lòng nhập lại");
+					ConsoleHelper.Print_WarningText("Không tìm thấy thư mục, vui lòng nhập lại");
 				}
 			}
 		}
@@ -254,11 +254,11 @@ namespace FlowerImageClassification.Portable
 					return false;
 				if (File.Exists(filePath))
 				{
-					WriteHelper.Print_SuccessText("Tìm thấy tập tin, bạn có thể tiếp tục");
+					ConsoleHelper.Print_SuccessText("Tìm thấy tập tin, bạn có thể tiếp tục");
 				}
 				else
 				{
-					WriteHelper.Print_WarningText("Không tìm thấy tập tin, vui lòng nhập lại");
+					ConsoleHelper.Print_WarningText("Không tìm thấy tập tin, vui lòng nhập lại");
 				}
 				return true;
 			}
@@ -274,7 +274,7 @@ namespace FlowerImageClassification.Portable
 				{
 					if (0f < frac && frac < 1f)
 						break;
-					WriteHelper.Print_WarningText("Tỷ lệ phải lớn hơn 0 và nhỏ hơn 1");
+					ConsoleHelper.Print_WarningText("Tỷ lệ phải lớn hơn 0 và nhỏ hơn 1");
 				}
 			}
 		}
