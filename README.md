@@ -1,3 +1,18 @@
+---
+Tên khóa luận: "Xây dựng ứng dụng nhận diện loài hoa sử dụng thư viện ML.NET"
+Loại khóa luận: "Khoá luận tốt nghiệp kỹ sư Công nghệ Thông tin"
+Giảng viên hướng dẫn: "TS. Trần Ngô Như Khánh"
+Sinh viên thực hiện: "1610207, La Quốc Thắng"
+Lớp: "CTK40"
+Tóm tắt: ""
+Ngôn ngữ:
+- csharp
+Công nghệ:
+- dotnet-core
+- ML.NET
+- asp.net-core-mvc
+---
+
 # FlowerImageClassification
 The entire solution is based on [DeepLearning_ImageClassification_Training](https://github.com/dotnet/machinelearning-samples/tree/master/samples/csharp/getting-started/DeepLearning_ImageClassification_Training).
 
