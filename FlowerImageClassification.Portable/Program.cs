@@ -80,7 +80,7 @@ namespace FlowerImageClassification.Portable
 
 							OutputHelper capturing_1 = new OutputHelper(Path.Combine(consoleOutputPath, modelFileName + ".txt"));
 							Console.WriteLine($"==================== {archNameInput} architecture, {f} ratio of train set with test set ====================");
-							MLTraining mlTraining_1 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), null, fullImagesetFolderPath, 1, f, (int)_arch);
+							MLTraining mlTraining_1 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), null, fullImagesetFolderPath, null, f, (int)_arch);
 							mlTraining_1.RunPipeline();
 							capturing_1.Dispose();
 						}

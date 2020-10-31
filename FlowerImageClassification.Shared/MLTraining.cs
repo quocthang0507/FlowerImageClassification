@@ -38,6 +38,7 @@ namespace FlowerImageClassification.Shared
 		protected IDataView trainDataset;
 		protected float testRatio;
 		protected int arch;
+		protected bool useValidationSet;
 
 		/// <summary>
 		/// Create a new instance of MLTraining with many necessary parameters
@@ -47,7 +48,7 @@ namespace FlowerImageClassification.Shared
 		/// <param name="inputFolderPathForTraining">Path to input folder for training</param>
 		/// <param name="randomSeed">A random seed</param>
 		/// <param name="testRatio">A fraction of train set and test set</param>
-		public MLTraining(string outputModelFilePath, string inputFolderPathForPrediction, string inputFolderPathForTraining, int? randomSeed = 1, float trainRatio = 0.7f, int arch = 3)
+		public MLTraining(string outputModelFilePath, string inputFolderPathForPrediction, string inputFolderPathForTraining, int? randomSeed = 1, float trainRatio = 0.7f, int arch = 3, bool useValidationSet=false)
 		{
 			OutputModelFilePath = outputModelFilePath;
 			InputFolderPathForPrediction = inputFolderPathForPrediction;
@@ -57,6 +58,7 @@ namespace FlowerImageClassification.Shared
 			mlContext.Log += PrintMLContextLog;
 			this.testRatio = 1f - trainRatio;
 			this.arch = arch;
+			this.useValidationSet = useValidationSet;
 		}
 
 		/// <summary>
@@ -65,7 +67,7 @@ namespace FlowerImageClassification.Shared
 		public void RunPipeline()
 		{
 			// 1., 2., 3., 4.
-			PrepareDataset(true);
+			PrepareDataset(useValidationSet);
 
 			// 5. Call pipeline
 			EstimatorChain<KeyToValueMappingTransformer> pipeline = CreateCustomPipeline();
@@ -244,9 +246,11 @@ namespace FlowerImageClassification.Shared
 				BatchSize = 10,
 				LearningRate = 0.01f,
 				MetricsCallback = (metrics) => Console.WriteLine(metrics),
-				//ValidationSet = testDataset
-				ValidationSet = validationDataset
 			};
+			if (useValidationSet)
+				options.ValidationSet = validationDataset;
+			else
+				options.ValidationSet = testDataset;
 			EstimatorChain<KeyToValueMappingTransformer> pipeline = mlContext.MulticlassClassification.Trainers.ImageClassification(options).
 				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
 			return pipeline;
