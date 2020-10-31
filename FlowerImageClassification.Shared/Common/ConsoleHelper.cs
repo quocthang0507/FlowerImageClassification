@@ -3,7 +3,9 @@ using Microsoft.ML.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Text;
 using static Microsoft.ML.TrainCatalogBase;
 
 namespace FlowerImageClassification.Shared.Common
@@ -344,5 +346,18 @@ namespace FlowerImageClassification.Shared.Common
 			}
 		}
 
+		public static void Export_ConfusionMatrix(ConfusionMatrix confusionMatrix, string fullFilePath, string modelName)
+		{
+			using (StreamWriter sw = new StreamWriter(fullFilePath, true, Encoding.UTF8))
+			{
+				sw.WriteLine("CONFUSION TABLE OF " + modelName);
+				sw.WriteLine("Recall\tPrecision");
+				for (int i = 0; i < confusionMatrix.NumberOfClasses; i++)
+				{
+					sw.WriteLine(confusionMatrix.PerClassRecall[i] + '\t' + confusionMatrix.PerClassPrecision[i]);
+				}
+				sw.WriteLine();
+			}
+		}
 	}
 }

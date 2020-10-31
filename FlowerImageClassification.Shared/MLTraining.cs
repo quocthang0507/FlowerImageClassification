@@ -21,7 +21,7 @@ namespace FlowerImageClassification.Shared
 		/// <summary>
 		/// Path to output folder where ML model saved
 		/// </summary>
-		public string OutputModelPath { get; set; }
+		public string OutputModelFilePath { get; set; }
 		/// <summary>
 		/// Path to image folder for prediction
 		/// </summary>
@@ -42,14 +42,14 @@ namespace FlowerImageClassification.Shared
 		/// <summary>
 		/// Create a new instance of MLTraining with many necessary parameters
 		/// </summary>
-		/// <param name="outputModelPath">Path to output model folder</param>
+		/// <param name="outputModelFilePath">Path to output model folder</param>
 		/// <param name="inputFolderPathForPrediction">Path to input folder for prediction</param>
 		/// <param name="inputFolderPathForTraining">Path to input folder for training</param>
 		/// <param name="randomSeed">A random seed</param>
 		/// <param name="testRatio">A fraction of train set and test set</param>
-		public MLTraining(string outputModelPath, string inputFolderPathForPrediction, string inputFolderPathForTraining, int? randomSeed = 1, float trainRatio = 0.7f, int arch = 3)
+		public MLTraining(string outputModelFilePath, string inputFolderPathForPrediction, string inputFolderPathForTraining, int? randomSeed = 1, float trainRatio = 0.7f, int arch = 3)
 		{
-			OutputModelPath = outputModelPath;
+			OutputModelFilePath = outputModelFilePath;
 			InputFolderPathForPrediction = inputFolderPathForPrediction;
 			InputFolderPathForTraining = inputFolderPathForTraining;
 			// MLContext's random number generator is the global source of randomness for all of such random operations.
@@ -82,12 +82,13 @@ namespace FlowerImageClassification.Shared
 			long ms = watch.ElapsedMilliseconds;
 			Console.WriteLine($"Training with transfer learning took: {ms / 1000} seconds");
 
-			// 7. Get the quality metrics
+			// 8->7. Save the model to assets/outputs ML.NET .zip model file and TF .pb model file
+			mlContext.Model.Save(trainedModel, trainDataset.Schema, OutputModelFilePath);
+			Console.WriteLine($"Model saved to: {OutputModelFilePath}");
+
+			// 7->8. Get the quality metrics
 			EvaluateModel();
 
-			// 8. Save the model to assets/outputs ML.NET .zip model file and TF .pb model file
-			mlContext.Model.Save(trainedModel, trainDataset.Schema, OutputModelPath);
-			Console.WriteLine($"Model saved to: {OutputModelPath}");
 		}
 
 		/// <summary>
@@ -99,7 +100,7 @@ namespace FlowerImageClassification.Shared
 		{
 			if (trainedModel == null)
 			{
-				if (File.Exists(OutputModelPath))
+				if (File.Exists(OutputModelFilePath))
 				{
 					LoadTrainedModel();
 					PrepareDataset(false);
@@ -117,6 +118,10 @@ namespace FlowerImageClassification.Shared
 			// End evaluating
 			long milliseconds = watch.ElapsedMilliseconds;
 			Console.WriteLine($"Predicting and Evaluation took: {milliseconds / 1000} seconds");
+
+			// Save confusion matrix metrics to file
+			string confusionPath = Path.Combine(Directory.GetParent(OutputModelFilePath).FullName, "ConfusionMatrix.csv");
+			ConsoleHelper.Export_ConfusionMatrix(metrics.ConfusionMatrix, confusionPath, Path.GetFileNameWithoutExtension(OutputModelFilePath));
 		}
 
 		/// <summary>
@@ -126,7 +131,7 @@ namespace FlowerImageClassification.Shared
 		{
 			if (trainedModel == null)
 			{
-				if (File.Exists(OutputModelPath))
+				if (File.Exists(OutputModelFilePath))
 					LoadTrainedModel();
 				else
 					throw new Exception("Please run the pipeline before predicting!");
@@ -145,7 +150,7 @@ namespace FlowerImageClassification.Shared
 		{
 			if (trainedModel == null)
 			{
-				if (File.Exists(OutputModelPath))
+				if (File.Exists(OutputModelFilePath))
 					LoadTrainedModel();
 				else
 					throw new Exception("Please run the pipeline before predicting!");
@@ -201,8 +206,8 @@ namespace FlowerImageClassification.Shared
 		/// </summary>
 		private void LoadTrainedModel()
 		{
-			Console.WriteLine($"Loading model from: {OutputModelPath}");
-			trainedModel = mlContext.Model.Load(OutputModelPath, out DataViewSchema modelSchema);
+			Console.WriteLine($"Loading model from: {OutputModelFilePath}");
+			trainedModel = mlContext.Model.Load(OutputModelFilePath, out DataViewSchema modelSchema);
 		}
 
 		/// <summary>

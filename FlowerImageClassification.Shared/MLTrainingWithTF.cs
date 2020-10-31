@@ -81,8 +81,8 @@ namespace FlowerImageClassification.Shared
 			EvaluateModel();
 
 			// 8. Save the model to assets/outputs ML.NET .zip model file and TF .pb model file
-			mlContext.Model.Save(trainedModel, trainDataset.Schema, OutputModelPath);
-			Console.WriteLine($"Model saved to: {OutputModelPath}");
+			mlContext.Model.Save(trainedModel, trainDataset.Schema, OutputModelFilePath);
+			Console.WriteLine($"Model saved to: {OutputModelFilePath}");
 		}
 
 		/// <summary>
