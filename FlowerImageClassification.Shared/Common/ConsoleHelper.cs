@@ -354,7 +354,7 @@ namespace FlowerImageClassification.Shared.Common
 				sw.WriteLine("Recall,Precision");
 				for (int i = 0; i < confusionMatrix.NumberOfClasses; i++)
 				{
-					sw.WriteLine(confusionMatrix.PerClassRecall[i] + ',' + confusionMatrix.PerClassPrecision[i]);
+					sw.WriteLine($"{confusionMatrix.PerClassRecall[i]},{confusionMatrix.PerClassPrecision[i]}");
 				}
 				sw.WriteLine();
 			}
