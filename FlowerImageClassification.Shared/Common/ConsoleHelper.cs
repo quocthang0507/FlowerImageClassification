@@ -351,10 +351,10 @@ namespace FlowerImageClassification.Shared.Common
 			using (StreamWriter sw = new StreamWriter(fullFilePath, true, Encoding.UTF8))
 			{
 				sw.WriteLine("CONFUSION TABLE OF " + modelName);
-				sw.WriteLine("Recall\tPrecision");
+				sw.WriteLine("Recall,Precision");
 				for (int i = 0; i < confusionMatrix.NumberOfClasses; i++)
 				{
-					sw.WriteLine(confusionMatrix.PerClassRecall[i] + '\t' + confusionMatrix.PerClassPrecision[i]);
+					sw.WriteLine(confusionMatrix.PerClassRecall[i] + ',' + confusionMatrix.PerClassPrecision[i]);
 				}
 				sw.WriteLine();
 			}
