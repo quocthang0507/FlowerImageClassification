@@ -339,5 +339,6 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-[Tt]rainings/
+dalat_dataset_5/
+dalat_dataset_10/
 *.zip
