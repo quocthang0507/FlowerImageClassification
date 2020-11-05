@@ -129,7 +129,57 @@ function uploadAndClassify(e) {
 function SubmitUserSentiment(e) {
 	e.preventDefault();
 
-	console.log("test");
+	var url = 'api/AddSentiment';
+	var formData = new FormData();
+
+	const name = document.getElementById('divImageId');
+	const prediction = document.getElementById('divPrediction');
+	const incorrect = document.getElementById('chkIncorrect');
+	const unuseful = document.getElementById('chkUnuseful');
+	const delay = document.getElementById('chkDelay');
+	const hard = document.getElementById('chkHard');
+	const comment = document.getElementById('tbxSentiment');
+
+	const sentiment = {
+		FileName = name,
+		PredictedLabel = prediction,
+		IncorrectPredictionVotes = incorrect,
+		UnusefulInfoVotes = unuseful,
+		DelayResponseVotes = delay,
+		HardToUseVotes = hard,
+		MoreInfo = comment
+	};
+
+	//////////// User input file ///////////
+	if (inputFile != null) {
+		const files = inputFile.files;
+		if (!validateFileExtension())
+			return;
+		formData.append('imageFile', files[0]);
+		url = 'api/ClassifyImage';
+	}
+	//////////// User webcam image ////////////
+	else {
+		var file = document.getElementById("inputWebcam").src;
+		formData.append("base64image", file);
+		url = 'api/ClassifyBase64'
+	}
+
+
+	fetch(url, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(sentiment)
+	}).then().then(() => {
+		$('#modal-sentiment').modal('toggle');
+		setTimeout(() => $('#modal-thank').modal('toggle'), 500);
+	}).catch(error => {
+		console.error('Lỗi gửi phản hồi:', error);
+		alert('Lỗi gửi phản hồi lên server.');
+	});
+
 	$('#modal-sentiment').modal('toggle');
 }
 

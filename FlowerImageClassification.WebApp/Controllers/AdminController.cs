@@ -36,6 +36,8 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[BasicAuthentication]
 		public IActionResult GetById(int id)
 		{
+			if (!ModelState.IsValid)
+				return BadRequest();
 			Flower result;
 			try
 			{
@@ -53,10 +55,12 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[HttpPost]
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
-		[Route("api/update")]
+		[Route("api/Update")]
 		[BasicAuthentication]
 		public IActionResult Update([FromBody] Flower flower)
 		{
+			if (!ModelState.IsValid || flower == null)
+				return BadRequest();
 			bool result;
 			try
 			{

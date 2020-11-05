@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace FlowerImageClassification.WebApp.Models
+﻿namespace FlowerImageClassification.WebApp.Models
 {
 	public class Sentiment
 	{
@@ -13,8 +11,8 @@ namespace FlowerImageClassification.WebApp.Models
 		public bool Avaiable { get; set; }
 		public uint IncorrectPredictionVotes { get; set; }
 		public uint UnusefulInfoVotes { get; set; }
-		public uint SlowResponseVotes { get; set; }
+		public uint DelayResponseVotes { get; set; }
 		public uint HardToUseVotes { get; set; }
-		public List<string> MoreInfo { get; set; }
+		public string MoreInfo { get; set; }
 	}
 }

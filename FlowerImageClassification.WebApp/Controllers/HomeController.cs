@@ -10,7 +10,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ML;
 using System;
 using System.Diagnostics;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,7 +23,6 @@ namespace FlowerImageClassification.WebApp.Controllers
 		private readonly PredictionEnginePool<ImageDataInMemory, ImagePrediction> predictionEnginePool;
 		private readonly ILiteDbFlowerService flowerService;
 		private readonly ILogger<HomeController> logger;
-		private const string contributionPath = @"wwwroot\Contributions";
 
 		public HomeController(PredictionEnginePool<ImageDataInMemory, ImagePrediction> predictionEnginePool, IConfiguration configuration, ILogger<HomeController> logger, ILiteDbFlowerService flowerService)
 		{
@@ -61,12 +59,16 @@ namespace FlowerImageClassification.WebApp.Controllers
 
 		[HttpGet]
 		[Route("api/ClassifyImage")]
-		public ActionResult<string> Get() => "Hello, World!";
+		public ActionResult<string> Get() => "Hello, World! From La Quoc Thang";
 
 		[HttpGet]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
 		[Route("api/GetInfo/{name}")]
 		public ActionResult<string> GetInfo(string name)
 		{
+			if (!ModelState.IsValid || name == null)
+				return BadRequest();
 			try
 			{
 				string info = flowerService.GetInfoByName(name);
@@ -84,9 +86,9 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[Route("api/ClassifyImage")]
 		public async Task<IActionResult> ClassifyImage(IFormFile imageFile)
 		{
-			if (imageFile == null || imageFile.Length == 0)
+			if (!ModelState.IsValid || imageFile == null || imageFile.Length == 0)
 				return BadRequest();
-			byte[] imageData = await GetUploadedFile(imageFile);
+			byte[] imageData = await GetByteFromUploadedFile(imageFile);
 			return Classify(imageData, imageFile.FileName);
 		}
 
@@ -96,13 +98,15 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[Route("api/ClassifyBase64")]
 		public async Task<IActionResult> ClassifyBase64(string base64image)
 		{
+			if (!ModelState.IsValid || base64image == null)
+				return BadRequest();
 			byte[] imageData = await ImageTransformer.Base64ToByteArray(base64image);
 			if (imageData == null)
 				return BadRequest();
 			return Classify(imageData);
 		}
 
-		private async Task<byte[]> GetUploadedFile(IFormFile imageFile)
+		public async Task<byte[]> GetByteFromUploadedFile(IFormFile imageFile)
 		{
 			MemoryStream memoryStream = new MemoryStream();
 
@@ -112,14 +116,6 @@ namespace FlowerImageClassification.WebApp.Controllers
 			// Check that the image is valid
 			byte[] imageData = memoryStream.ToArray();
 			return imageData;
-		}
-
-		private async void SaveUploadedFile(byte[] imageData)
-		{
-			string ext = ImageValidation.GetImageFormat(imageData) == ImageFormat.Jpeg ? ".jpg" : ".png";
-			string filePath = Path.Combine(Directory.GetCurrentDirectory(), contributionPath, Path.GetRandomFileName().Split('.')[0] + ext);
-			using FileStream stream = new FileStream(filePath, FileMode.Create);
-			await stream.WriteAsync(imageData);
 		}
 
 		private IActionResult Classify(byte[] imageData, string filename = null)
