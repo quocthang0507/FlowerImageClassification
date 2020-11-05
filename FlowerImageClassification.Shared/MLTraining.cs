@@ -49,7 +49,7 @@ namespace FlowerImageClassification.Shared
 		/// <param name="inputFolderPathForTraining">Path to input folder for training</param>
 		/// <param name="randomSeed">A random seed</param>
 		/// <param name="testRatio">A fraction of train set and test set</param>
-		public MLTraining(string outputModelFilePath, string inputFolderPathForPrediction, string inputFolderPathForTraining, int? randomSeed = 1, float trainRatio = 0.7f, int arch = 3, bool useValidationSet = false)
+		public MLTraining(string outputModelFilePath, string inputFolderPathForPrediction, string inputFolderPathForTraining, int? randomSeed = 1, float trainRatio = 0.7f, int arch = 3, bool useValidationSet=false)
 		{
 			OutputModelFilePath = outputModelFilePath;
 			InputFolderPathForPrediction = inputFolderPathForPrediction;

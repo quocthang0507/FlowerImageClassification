@@ -3,6 +3,7 @@ using FlowerImageClassification.Shared.ImageSchema;
 using FlowerImageClassification.Shared.Models.ImageHelpers;
 using FlowerImageClassification.WebApp.LiteDb;
 using FlowerImageClassification.WebApp.Models;
+using FlowerImageClassification.WebApp.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +11,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ML;
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -88,7 +88,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		{
 			if (!ModelState.IsValid || imageFile == null || imageFile.Length == 0)
 				return BadRequest();
-			byte[] imageData = await GetByteFromUploadedFile(imageFile);
+			byte[] imageData = await Transformer.GetByteFromUploadedFile(imageFile);
 			return Classify(imageData, imageFile.FileName);
 		}
 
@@ -104,18 +104,6 @@ namespace FlowerImageClassification.WebApp.Controllers
 			if (imageData == null)
 				return BadRequest();
 			return Classify(imageData);
-		}
-
-		public async Task<byte[]> GetByteFromUploadedFile(IFormFile imageFile)
-		{
-			MemoryStream memoryStream = new MemoryStream();
-
-			// Asynchronously copies the content of the uploaded file
-			await imageFile.CopyToAsync(memoryStream);
-
-			// Check that the image is valid
-			byte[] imageData = memoryStream.ToArray();
-			return imageData;
 		}
 
 		private IActionResult Classify(byte[] imageData, string filename = null)

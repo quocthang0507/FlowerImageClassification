@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FlowerImageClassification.WebApp.Extensions
+namespace FlowerImageClassification.WebApp.Utilties
 {
 	public static class Extension
 	{
