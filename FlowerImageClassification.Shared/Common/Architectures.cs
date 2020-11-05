@@ -1,4 +1,4 @@
-﻿namespace FlowerImageClassification.Shared
+﻿namespace FlowerImageClassification.Shared.Common
 {
 	public enum Architecture
 	{

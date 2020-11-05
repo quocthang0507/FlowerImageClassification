@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FlowerImageClassification.Shared.Common
+namespace FlowerImageClassification.Shared.WebHelpers
 {
 	/// <summary>
 	/// This class is based on DeepLearning_ImageClassification_Training

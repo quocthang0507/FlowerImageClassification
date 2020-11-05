@@ -2,7 +2,7 @@
 using Microsoft.ML;
 using System;
 
-namespace FlowerImageClassification.Shared
+namespace FlowerImageClassification.Shared.WebHelpers
 {
 	public class ConsumeModel
 	{

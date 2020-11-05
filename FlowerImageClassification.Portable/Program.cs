@@ -1,6 +1,7 @@
 ﻿using FlowerImageClassification.Shared;
 using FlowerImageClassification.Shared.Common;
 using FlowerImageClassification.Shared.ImageSchema;
+using FlowerImageClassification.Shared.WebHelpers;
 using System;
 using System.IO;
 using System.Linq;

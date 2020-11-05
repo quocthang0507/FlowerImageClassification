@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace FlowerImageClassification.Shared
+namespace FlowerImageClassification.Shared.WebHelpers
 {
 	/// <summary>
 	/// File utilities

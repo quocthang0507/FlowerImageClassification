@@ -37,9 +37,9 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[Route("api/AddSentiment")]
 		public async Task<IActionResult> AddSentiment([FromBody] Sentiment sentiment, IFormFile imageFile)
 		{
-			if (!ModelState.IsValid || sentiment == null)
+			if (!ModelState.IsValid || imageFile == null || imageFile.Length == 0)
 				return BadRequest();
-
+			return Ok();
 		}
 
 		[HttpPost]
@@ -50,7 +50,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		{
 			if (!ModelState.IsValid || sentiment == null)
 				return BadRequest();
-
+			return Ok();
 		}
 
 
