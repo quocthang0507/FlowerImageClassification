@@ -105,7 +105,7 @@ function uploadAndClassify(e) {
 		method: 'POST',
 		body: formData
 	}).then(response => response.json()).then(response2 => {
-		console.log('Received response from server: ', response2);
+		console.log('Đã nhận được phản hồi: ', response2);
 		document.getElementById("divResult_right").style.visibility = "visible";
 		document.getElementById('divImageId').innerHTML = "Tên tập tin vừa tải lên: " + response2.imageID;
 		document.getElementById('divPrediction').innerHTML = `Kết quả dự đoán là: ${dict[response2.predictedLabel]} (${response2.predictedLabel})`;
@@ -141,13 +141,13 @@ function SubmitUserSentiment(e) {
 	const comment = document.getElementById('tbxSentiment');
 
 	const sentiment = {
-		FileName = name,
-		PredictedLabel = prediction,
-		IncorrectPredictionVotes = incorrect,
-		UnusefulInfoVotes = unuseful,
-		DelayResponseVotes = delay,
-		HardToUseVotes = hard,
-		MoreInfo = comment
+		FileName : name.value,
+		PredictedLabel : prediction.value,
+		IncorrectPredictionVotes : incorrect.value,
+		UnusefulInfoVotes : unuseful.value,
+		DelayResponseVotes : delay.value,
+		HardToUseVotes : hard.value,
+		MoreInfo : comment.value
 	};
 
 	//////////// User input file ///////////
@@ -156,7 +156,8 @@ function SubmitUserSentiment(e) {
 		if (!validateFileExtension())
 			return;
 		formData.append('imageFile', files[0]);
-		url = 'api/ClassifyImage';
+		formData.append('sentiment', sentiment);
+		url = 'api/AddSentiment';
 	}
 	//////////// User webcam image ////////////
 	else {
@@ -165,16 +166,13 @@ function SubmitUserSentiment(e) {
 		url = 'api/ClassifyBase64'
 	}
 
-
 	fetch(url, {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(sentiment)
-	}).then().then(() => {
+		body: formData
+	}).then(response => response.json()).then(response2 => {
 		$('#modal-sentiment').modal('toggle');
 		setTimeout(() => $('#modal-thank').modal('toggle'), 500);
+		console.log('Đã nhận được phản hồi: ', response2);
 	}).catch(error => {
 		console.error('Lỗi gửi phản hồi:', error);
 		alert('Lỗi gửi phản hồi lên server.');

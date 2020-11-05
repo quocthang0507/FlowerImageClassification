@@ -68,7 +68,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		public ActionResult<string> GetInfo(string name)
 		{
 			if (!ModelState.IsValid || name == null)
-				return BadRequest();
+				return BadRequest("Bad request because of invalid model state or null parameter");
 			try
 			{
 				string info = flowerService.GetInfoByName(name);
@@ -87,7 +87,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		public async Task<IActionResult> ClassifyImage(IFormFile imageFile)
 		{
 			if (!ModelState.IsValid || imageFile == null || imageFile.Length == 0)
-				return BadRequest();
+				return BadRequest("Bad request because of invalid model state or null parameter");
 			byte[] imageData = await Transformer.GetByteFromUploadedFile(imageFile);
 			return Classify(imageData, imageFile.FileName);
 		}
@@ -99,10 +99,10 @@ namespace FlowerImageClassification.WebApp.Controllers
 		public async Task<IActionResult> ClassifyBase64(string base64image)
 		{
 			if (!ModelState.IsValid || base64image == null)
-				return BadRequest();
+				return BadRequest("Bad request because of invalid model state or null parameter");
 			byte[] imageData = await ImageTransformer.Base64ToByteArray(base64image);
 			if (imageData == null)
-				return BadRequest();
+				return BadRequest("Bad request because of an invalid base64 image");
 			return Classify(imageData);
 		}
 

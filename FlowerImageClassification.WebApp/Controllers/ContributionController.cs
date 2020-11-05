@@ -1,5 +1,7 @@
-﻿using FlowerImageClassification.WebApp.LiteDb;
+﻿using FlowerImageClassification.Shared.ImageHelpers;
+using FlowerImageClassification.WebApp.LiteDb;
 using FlowerImageClassification.WebApp.Models;
+using FlowerImageClassification.WebApp.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -12,13 +14,13 @@ namespace FlowerImageClassification.WebApp.Controllers
 	{
 		public IConfiguration Configuration { get; }
 
-		private readonly ILiteDbSentimentService flowerService;
+		private readonly ILiteDbSentimentService sentimentService;
 		private readonly ILogger<ContributionController> logger;
 
-		public ContributionController(IConfiguration configuration, ILiteDbSentimentService flowerService, ILogger<ContributionController> logger)
+		public ContributionController(IConfiguration configuration, ILiteDbSentimentService sentimentService, ILogger<ContributionController> logger)
 		{
 			Configuration = configuration;
-			this.flowerService = flowerService;
+			this.sentimentService = sentimentService;
 			this.logger = logger;
 		}
 
@@ -33,8 +35,13 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[Route("api/AddSentiment")]
 		public async Task<IActionResult> AddSentiment([FromBody] Sentiment sentiment, IFormFile imageFile)
 		{
-			if (!ModelState.IsValid || imageFile == null || imageFile.Length == 0)
-				return BadRequest();
+			if (!ModelState.IsValid || imageFile == null || imageFile.Length == 0 || sentiment == null)
+				return BadRequest("Bad request because of invalid model state or null paramter(s)");
+			byte[] imageData = await Transformer.GetByteFromUploadedFile(imageFile);
+			bool saved = await Transformer.SaveByteToFile(imageData);
+			if (!saved)
+				return BadRequest("Bad request because of invalid image");
+			sentimentService.Insert(sentiment);
 			return Ok();
 		}
 
@@ -42,10 +49,13 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 		[Route("api/AddSentimentBase64")]
-		public async Task<IActionResult> AddSentimentWithBase64([FromBody] Sentiment sentiment, string base64)
+		public async Task<IActionResult> AddSentimentWithBase64([FromBody] Sentiment sentiment, string base64image)
 		{
-			if (!ModelState.IsValid || sentiment == null)
-				return BadRequest();
+			if (!ModelState.IsValid || sentiment == null || base64image == null)
+				return BadRequest("Bad request because of invalid model state or null parameter(s) ");
+			byte[] imageData = await ImageTransformer.Base64ToByteArray(base64image);
+			if (imageData == null)
+				return BadRequest("Bad request because of an invalid base64 image");
 			return Ok();
 		}
 
