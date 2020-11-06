@@ -82,7 +82,7 @@ namespace FlowerImageClassification.Portable
 
 							OutputHelper capturing_1 = new OutputHelper(Path.Combine(consoleOutputPath, modelFileName + ".txt"));
 							Console.WriteLine($"==================== {archNameInput} architecture, {f} ratio of train set with test set ====================");
-							MLTraining mlTraining_1 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), null, fullImagesetFolderPath, 1, f, (int)_arch);
+							MLTraining mlTraining_1 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), fullImagesetFolderPath, null, 1, f, (int)_arch);
 							mlTraining_1.RunPipeline();
 							capturing_1.Dispose();
 						}
@@ -99,7 +99,7 @@ namespace FlowerImageClassification.Portable
 
 							OutputHelper capturing_1 = new OutputHelper(Path.Combine(consoleOutputPath, modelFileName + ".txt"));
 							Console.WriteLine($"==================== {archNameInput} architecture, {f} ratio of train set with test set ====================");
-							MLTraining mlTraining_1 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), null, fullImagesetFolderPath, 1, f, (int)_arch);
+							MLTraining mlTraining_1 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), fullImagesetFolderPath, abc, 1, f, (int)_arch);
 							mlTraining_1.RunPipeline();
 							capturing_1.Dispose();
 						}
@@ -124,7 +124,7 @@ namespace FlowerImageClassification.Portable
 					modelFileName = $"{archNameInput}_{frac}_{DateTime.Now.ToString("HH-mm-ss")}";
 					OutputHelper capturing_2 = new OutputHelper(Path.Combine(consoleOutputPath, modelFileName + ".txt"));
 					Console.WriteLine($"==================== {archNameInput} architecture, {frac} ratio of train set with test set ====================");
-					MLTraining mlTraining_2 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), null, fullImagesetFolderPath, 1, frac, (int)arch);
+					MLTraining mlTraining_2 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), fullImagesetFolderPath, null, 1, frac, (int)arch);
 					mlTraining_2.RunPipeline();
 					capturing_2.Dispose();
 					break;
@@ -169,7 +169,7 @@ namespace FlowerImageClassification.Portable
 						consoleFileName = $"EvaluationResult_{Path.GetFileName(filePath)}_{DateTime.Now.ToString("HH-mm-ss")}";
 						OutputHelper capturing_1 = new OutputHelper(Path.Combine(consoleOutputPath, consoleFileName + ".txt"));
 						Console.WriteLine($"==================== {Path.GetFileName(filePath)} architecture, {frac} ratio of test set with train set====================");
-						MLTraining mlTraining_1 = new MLTraining(filePath, null, fullImagesetFolderPath, null, frac);
+						MLTraining mlTraining_1 = new MLTraining(filePath, fullImagesetFolderPath, null, null, frac);
 						mlTraining_1.EvaluateModel();
 						capturing_1.Dispose();
 					}
@@ -179,7 +179,7 @@ namespace FlowerImageClassification.Portable
 					consoleFileName = $"EvaluationResult_{Path.GetFileName(modelPath)}_{DateTime.Now.ToString("HH-mm-ss")}";
 					OutputHelper capturing_2 = new OutputHelper(Path.Combine(consoleOutputPath, consoleFileName + ".txt"));
 					Console.WriteLine($"==================== {modelPath} architecture, {frac} ratio of test set with train set====================");
-					MLTraining mlTraining_2 = new MLTraining(modelPath, null, fullImagesetFolderPath, null, 1 - frac);
+					MLTraining mlTraining_2 = new MLTraining(modelPath, fullImagesetFolderPath, null, null, 1 - frac);
 					mlTraining_2.EvaluateModel();
 					capturing_2.Dispose();
 					break;
@@ -208,8 +208,8 @@ namespace FlowerImageClassification.Portable
 					Console.Clear();
 					Print_FilePathPrompt(out trainedModelPath, "Nhập đường dẫn đến mô hình đã được huấn luyện trước: ");
 					Print_FolderPathPrompt(out string predictionFolderPath, "Nhập đường dẫn đến thư mục hình ảnh cần dự đoán: ");
-					MLTraining mlTraining_1 = new MLTraining(trainedModelPath, predictionFolderPath, null);
-					mlTraining_1.TryMultiplePredictions();
+					MLTraining mlTraining_1 = new MLTraining(trainedModelPath, null, null);
+					mlTraining_1.TryMultiplePredictions(predictionFolderPath);
 					break;
 				case 2:
 					Console.Clear();

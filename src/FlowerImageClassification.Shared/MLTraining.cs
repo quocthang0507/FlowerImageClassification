@@ -26,7 +26,7 @@ namespace FlowerImageClassification.Shared
 		/// <summary>
 		/// Path to image folder for prediction
 		/// </summary>
-		public string InputFolderPathForPrediction { get; set; }
+		public string InputFolderPathForEvaluating { get; set; }
 		/// <summary>
 		/// Path to image folder for training
 		/// </summary>
@@ -49,10 +49,10 @@ namespace FlowerImageClassification.Shared
 		/// <param name="inputFolderPathForTraining">Path to input folder for training</param>
 		/// <param name="randomSeed">A random seed</param>
 		/// <param name="testRatio">A fraction of train set and test set</param>
-		public MLTraining(string outputModelFilePath, string inputFolderPathForPrediction, string inputFolderPathForTraining, int? randomSeed = 1, float trainRatio = 0.7f, int arch = 3, bool useValidationSet=false)
+		public MLTraining(string outputModelFilePath, string inputFolderPathForTraining, string inputFolderPathForEvaluating, int? randomSeed = 1, float trainRatio = 0.7f, int arch = 3, bool useValidationSet = false)
 		{
 			OutputModelFilePath = outputModelFilePath;
-			InputFolderPathForPrediction = inputFolderPathForPrediction;
+			InputFolderPathForEvaluating = inputFolderPathForEvaluating;
 			InputFolderPathForTraining = inputFolderPathForTraining;
 			// MLContext's random number generator is the global source of randomness for all of such random operations.
 			mlContext = new MLContext(randomSeed);
@@ -130,7 +130,7 @@ namespace FlowerImageClassification.Shared
 		/// <summary>
 		/// Get the first image file and run prediction method
 		/// </summary>
-		public void TrySinglePrediction()
+		public void TrySinglePrediction(string InputFolderPathForPrediction)
 		{
 			if (trainedModel == null)
 			{
@@ -149,7 +149,7 @@ namespace FlowerImageClassification.Shared
 		/// <summary>
 		/// Run prediction method to try multiple predictions
 		/// </summary>
-		public void TryMultiplePredictions()
+		public void TryMultiplePredictions(string InputFolderPathForPrediction)
 		{
 			if (trainedModel == null)
 			{
