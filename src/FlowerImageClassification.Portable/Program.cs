@@ -66,7 +66,7 @@ namespace FlowerImageClassification.Portable
 			int function = SelectMenu(3);
 			Console.Clear();
 			Print_FolderPathPrompt(out string outputModelPath, "Nhập đường dẫn đến thư mục sẽ lưu (các) mô hình đã được huấn luyện: ");
-			Print_FolderPathPrompt(out string fullImagesetFolderPath, "Nhập đường dẫn đến thư mục có chứa các thư mục tập hình ảnh: ");
+			Print_FolderPathPrompt(out string fullImagesetFolderPath, "Nhập đường dẫn đến thư mục có chứa các thư mục tập hình ảnh huấn luyện: ");
 			Print_FolderPathPrompt(out string consoleOutputPath, "Nhập đường dẫn đến thư mục sẽ lưu (các) kết quả cửa sổ Console: ");
 			string archNameInput, modelFileName;
 			switch (function)
@@ -89,6 +89,7 @@ namespace FlowerImageClassification.Portable
 					}
 					break;
 				case 2:
+					Print_FolderPathPrompt(out string fullImagesetFolderPathForEvaluating, "Nhập đường dẫn đến thư mục có chứa các thư mục tập hình ảnh huấn luyện: ");
 					Console.Clear();
 					foreach (Architecture _arch in (Architecture[])Enum.GetValues(typeof(Architecture)))
 					{
@@ -99,7 +100,7 @@ namespace FlowerImageClassification.Portable
 
 							OutputHelper capturing_1 = new OutputHelper(Path.Combine(consoleOutputPath, modelFileName + ".txt"));
 							Console.WriteLine($"==================== {archNameInput} architecture, {f} ratio of train set with test set ====================");
-							MLTraining mlTraining_1 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), fullImagesetFolderPath, abc, 1, f, (int)_arch);
+							MLTraining mlTraining_1 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), fullImagesetFolderPath, fullImagesetFolderPathForEvaluating, 1, f, (int)_arch);
 							mlTraining_1.RunPipeline();
 							capturing_1.Dispose();
 						}

@@ -32,6 +32,11 @@ namespace FlowerImageClassification.Shared
 		/// </summary>
 		public string InputFolderPathForTraining { get; set; }
 
+		private const string KeyColumn = "LabelAsKey";
+		private const string FeatureColumn = "ImageBytes";
+		private const string ImagePathColumn = "ImagePath";
+		private const string LabelColumn = "Label";
+		private const string PredictedLabelColumn = "PredictedLabel";
 		protected MLContext mlContext;
 		protected ITransformer trainedModel;
 		protected IDataView testDataset;
@@ -106,7 +111,7 @@ namespace FlowerImageClassification.Shared
 				if (File.Exists(OutputModelFilePath))
 				{
 					LoadTrainedModel();
-					PrepareDataset(false);
+					PrepareDataset(useValidationSet);
 				}
 				else
 					throw new Exception("Please run the pipeline before evaluating!");
@@ -115,7 +120,7 @@ namespace FlowerImageClassification.Shared
 			// Begin evaluating
 			Stopwatch watch = Stopwatch.StartNew();
 			IDataView predictionsDataView = trainedModel.Transform(testDataset);
-			MulticlassClassificationMetrics metrics = mlContext.MulticlassClassification.Evaluate(predictionsDataView, labelColumnName: "LabelAsKey", predictedLabelColumnName: "PredictedLabel");
+			MulticlassClassificationMetrics metrics = mlContext.MulticlassClassification.Evaluate(predictionsDataView, labelColumnName: KeyColumn, predictedLabelColumnName: PredictedLabelColumn);
 			ConsoleHelper.PrintMultiClassClassificationMetrics("TensorFlow DNN Transfer Learning", metrics);
 			watch.Stop();
 			// End evaluating
@@ -172,18 +177,7 @@ namespace FlowerImageClassification.Shared
 		/// </summary>
 		protected void PrepareDataset(bool shouldValidateBeforeTesting)
 		{
-			// 2. Load the initial full image-set into an IDataView and shuffle so it'll be better balanced
-			IEnumerable<ImageData> images = FileUtils.LoadImagesFromDirectory(InputFolderPathForTraining, true);
-			IDataView dataset = mlContext.Data.LoadFromEnumerable(images);
-			IDataView shuffledDataset = mlContext.Data.ShuffleRows(dataset);
-
-			// 3. Load Images with in-memory type within the IDataView and Transform Labels to Keys (Categorical)
-			IDataView transformedDataset = mlContext.Transforms.Conversion.
-				MapValueToKey("LabelAsKey", "Label", keyOrdinality: KeyOrdinality.ByValue).
-				// The outputColumnName should has same name in ImageDataInMemory
-				Append(mlContext.Transforms.LoadRawImageBytes("ImageBytes", InputFolderPathForTraining, "ImagePath")).
-				Fit(shuffledDataset).
-				Transform(shuffledDataset);
+			IDataView transformedDataset = TransformImagesToIDataView(InputFolderPathForTraining);
 
 			/* 4. Split the data into train, validation and test set.
 			The pre-processed data is split and 70% is used for training while the remaining 30% is used for validation. 
@@ -194,14 +188,49 @@ namespace FlowerImageClassification.Shared
 			trainDataset = trainSplit.TrainSet;
 			if (shouldValidateBeforeTesting)
 			{
-				DataOperationsCatalog.TrainTestData validationTestSplit = mlContext.Data.TrainTestSplit(trainSplit.TestSet);
-				validationDataset = validationTestSplit.TrainSet;
-				testDataset = validationTestSplit.TestSet;
+				if (InputFolderPathForEvaluating == null)
+				{
+					DataOperationsCatalog.TrainTestData validationTestSplit = mlContext.Data.TrainTestSplit(trainSplit.TestSet);
+					validationDataset = validationTestSplit.TrainSet;
+					testDataset = validationTestSplit.TestSet;
+				}
+				else
+				{
+					DataOperationsCatalog.TrainTestData validationTestSplit = mlContext.Data.TrainTestSplit(TransformImagesToIDataView(InputFolderPathForEvaluating));
+					validationDataset = validationTestSplit.TrainSet;
+					testDataset = validationTestSplit.TestSet;
+				}
 			}
 			else
 			{
-				testDataset = trainSplit.TestSet;
+				if (InputFolderPathForEvaluating == null)
+				{
+					testDataset = trainSplit.TestSet;
+				}
+				else
+				{
+					testDataset = TransformImagesToIDataView(InputFolderPathForEvaluating);
+				}
 			}
+		}
+
+		private IDataView TransformImagesToIDataView(string imageFolderPath)
+		{
+			if (imageFolderPath == null)
+				throw new ArgumentNullException();
+			// 2. Load the initial full image-set into an IDataView and shuffle so it'll be better balanced
+			IEnumerable<ImageData> images = FileUtils.LoadImagesFromDirectory(imageFolderPath, true);
+			IDataView dataset = mlContext.Data.LoadFromEnumerable(images);
+			IDataView shuffledDataset = mlContext.Data.ShuffleRows(dataset);
+
+			// 3. Load Images with in-memory type within the IDataView and Transform Labels to Keys (Categorical)
+			IDataView transformedDataset = mlContext.Transforms.Conversion.
+				MapValueToKey(KeyColumn, LabelColumn, keyOrdinality: KeyOrdinality.ByValue).
+				// The outputColumnName should has same name in ImageDataInMemory
+				Append(mlContext.Transforms.LoadRawImageBytes(FeatureColumn, imageFolderPath, ImagePathColumn)).
+				Fit(shuffledDataset).
+				Transform(shuffledDataset);
+			return transformedDataset;
 		}
 
 		/// <summary>
@@ -222,8 +251,8 @@ namespace FlowerImageClassification.Shared
 		{
 			EstimatorChain<KeyToValueMappingTransformer> pipeline = mlContext.MulticlassClassification.Trainers.
 				// The feature column name should has same name in ImageDataInMemory
-				ImageClassification(labelColumnName: "LabelAsKey", featureColumnName: "ImageBytes", validationSet: dataset).
-				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
+				ImageClassification(labelColumnName: KeyColumn, featureColumnName: FeatureColumn, validationSet: dataset).
+				Append(mlContext.Transforms.Conversion.MapKeyToValue(PredictedLabelColumn, PredictedLabelColumn));
 			return pipeline;
 		}
 
@@ -236,9 +265,9 @@ namespace FlowerImageClassification.Shared
 		{
 			ImageClassificationTrainer.Options options = new ImageClassificationTrainer.Options()
 			{
-				LabelColumnName = "LabelAsKey",
+				LabelColumnName = KeyColumn,
 				// The feature column name should has same name in ImageDataInMemory
-				FeatureColumnName = "ImageBytes",
+				FeatureColumnName = FeatureColumn,
 				// Change the architecture to different DNN architecture
 				Arch = (ImageClassificationTrainer.Architecture)arch,
 				// Number of training iterations
@@ -253,7 +282,7 @@ namespace FlowerImageClassification.Shared
 			else
 				options.ValidationSet = testDataset;
 			EstimatorChain<KeyToValueMappingTransformer> pipeline = mlContext.MulticlassClassification.Trainers.ImageClassification(options).
-				Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
+				Append(mlContext.Transforms.Conversion.MapKeyToValue(PredictedLabelColumn, PredictedLabelColumn));
 			return pipeline;
 		}
 
