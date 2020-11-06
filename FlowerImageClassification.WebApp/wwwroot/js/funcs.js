@@ -108,7 +108,8 @@ function uploadAndClassify(e) {
 		console.log('Đã nhận được phản hồi: ', response2);
 		document.getElementById("divResult_right").style.visibility = "visible";
 		document.getElementById('divImageId').innerHTML = "Tên tập tin vừa tải lên: " + response2.imageID;
-		document.getElementById('divPrediction').innerHTML = `Kết quả dự đoán là: ${dict[response2.predictedLabel]} (${response2.predictedLabel})`;
+		document.getElementById('divPrediction').innerHTML = `Kết quả dự đoán là: ${dict[response2.predictedLabel]}`;
+		document.getElementById('divEnPrediction').innerHTML = response2.predictedLabel;
 		document.getElementById('divProbability').innerHTML = "Xác suất: " + (response2.probability * 100).toFixed(3) + "%";
 		document.getElementById('divExecutionTime').innerHTML = "Thời gian dự đoán: " + response2.predictionExecutionTime + " mili giây";
 		getInfo(response2.predictedLabel);
@@ -133,7 +134,7 @@ function SubmitUserSentiment(e) {
 	var formData = new FormData();
 
 	const name = document.getElementById('divImageId');
-	const prediction = document.getElementById('divPrediction');
+	const prediction = document.getElementById('divEnPrediction');
 	const incorrect = document.getElementById('chkIncorrect');
 	const unuseful = document.getElementById('chkUnuseful');
 	const delay = document.getElementById('chkDelay');
@@ -143,10 +144,10 @@ function SubmitUserSentiment(e) {
 	const sentiment = {
 		FileName : name.value,
 		PredictedLabel : prediction.value,
-		IncorrectPredictionVotes : incorrect.value,
-		UnusefulInfoVotes : unuseful.value,
-		DelayResponseVotes : delay.value,
-		HardToUseVotes : hard.value,
+		IncorrectPredictionVotes : incorrect.checked,
+		UnusefulInfoVotes : unuseful.checked,
+		DelayResponseVotes : delay.checked,
+		HardToUseVotes : hard.checked,
 		MoreInfo : comment.value
 	};
 
