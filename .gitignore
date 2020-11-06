@@ -339,6 +339,9 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-dalat_dataset_5/
-dalat_dataset_10/
+kaggle_dataset_5/
+ms_small_set/
+thang_dataset_5/
+thang_dataset_10/
+
 *.zip

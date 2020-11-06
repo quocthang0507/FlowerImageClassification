@@ -28,23 +28,23 @@ Please don't miss the following information.
 ## Vấn đề
 Phân loại hình ảnh là một bài toán thường thấy trong lĩnh vực *Học Sâu*. Dưới đây trình bày cách tạo một mô hình phân loại hình ảnh tuỳ biến dựa trên cách tiếp cận *chuyển giao học tập*.
 
-![](Readme/image-classifier-scenario.png)
+![](docs/image-classifier-scenario.png)
 *Kịch bản phân loại hình ảnh, sử dụng thư viện ML.NET xây dựng mô hình học sâu tuỳ biến*
 
 ## Tập dữ liệu (Dataset/Imageset)
 Bạn có thể sử dụng nhiều tập hình ảnh hoa khác nhau, chẳng hạn tập hình ảnh nổi tiếng Oxford Flower Dataset của Maria-Elena Nilsback và Andrew Zisserman
 :
 * [17 category dataset](https://www.robots.ox.ac.uk/~vgg/data/flowers/17/index.html): Tập hình ảnh này có 17 loài hoa với 80 hình ảnh của mỗi loài, là những loài hoa phổ biến ở Vương quốc Anh.
-![](Readme/17categories.jpg)
+![](docs/17categories.jpg)
 * [102 category dataset](https://www.robots.ox.ac.uk/~vgg/data/flowers/102/index.html): Tập hình ảnh này có 102 loài hoa với từ 40 - 258 hình ảnh của mỗi loài, là những loài hoa phổ biến ở Vương quốc Anh.
-![](Readme/102categories.jpg)
+![](docs/102categories.jpg)
 
 *2 tập hình ảnh trên chứa các ảnh có nhiều biến thể (ảnh sáng, tỷ lệ, hình dáng) nên nhiều ảnh trong đó trông khác biệt với các hình còn lại.*
 
 Để sử dụng trong dự án này, bạn cần phải đưa các hình ảnh vào đúng thư mục với tên thư mục như là tên lớp (Names as labels). Tôi đã sắp xếp chúng, bạn có thể sử dụng từ liên kết [này](https://github.com/quocthang0507/ImageClassificationExample/tree/master/jpg) (cho tập 17 category) hoặc từ liên kết [này](https://github.com/quocthang0507/102-Category-Flower/tree/master/jpg) (cho tập 102 category).
 
 Trong đề tài này, tôi sử dụng tập hình ảnh có 10 loài hoa khác nhau, phổ biến ở thành phố Đà Lạt.
-![](Readme/10categories.jpg)
+![](docs/10categories.jpg)
 
 Tensoflow cũng cung cấp một tập hình ảnh, bạn có thể tải từ liên kết [này](http://download.tensorflow.org/example_images/flower_photos.tgz).
 
@@ -63,7 +63,7 @@ https://creativecommons.org/licenses/by/2.0/
 
 Để giải quyết bài toán này, đầu tiên sẽ xây dựng mô hình Học Máy. Sau đó, chúng ta huấn luyệN mô hình trên dữ liệu sẵn có, đánh giá kết quả và cuối cùng là sử dụng mô hình xây dựng được để phân loại các hình ảnh mới. Dưới đây trình bày các bước theo trình tự, các đoạn mã thật có thể khác đôi chút với các đoạn mã mẫu. Dự án có tên là `FlowerImageClassification.Shared`.
 
-![](Readme/modelpipeline.png)
+![](docs/modelpipeline.png)
 
 ### 1. Cấu hình dự án để sử dụng GPU hoặc CPU
 
@@ -73,13 +73,13 @@ Bạn có thể sử dụng sức mạnh sẵn có của máy tính để việc
 
 Bạn cần tham chiếu đến thư viện: `SciSharp.TensorFlow.Redist`
 
-![](Readme/cpu.png)
+![](docs/cpu.png)
 
 #### Sử dụng GPU
 
 Bạn cần tham chiếu đến thư viện: `SciSharp.TensorFlow.Redist-Windows-GPU` hoặc `SciSharp.TensorFlow.Redist-Linux-GPU`
 
-![](Readme/gpu.png)
+![](docs/gpu.png)
 
 ### 2. Xây dựng mô hình
 
@@ -279,11 +279,11 @@ In contrast, this sample is natively retraining a new TensorFlow model based on 
 
 The important difference is that this approach is internally retraining with TensorFlow APIs and creating a new TensorFlow model (.pb). Then, the ML.NET .zip file model you use is just like a wrapper around the new retrained TensorFlow model. This is why you can also see a new .pb file generated after training:
 
-![](Readme/meta.pb.png)
+![](docs/meta.pb.png)
 
 In the screenshot below you can see how you can see that retrained TensorFlow model (`custom_retrained_model_based_on_InceptionV3.meta.pb`) in **Netron**, since it is a native TensorFlow model:
 
-![](Readme/netron.png)
+![](docs/netron.png)
 
 **Benefits:** 
 
