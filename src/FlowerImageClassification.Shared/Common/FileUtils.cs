@@ -1,4 +1,5 @@
-﻿using FlowerImageClassification.Shared.ImageSchema;
+﻿using FlowerImageClassification.Shared.Common;
+using FlowerImageClassification.Shared.ImageSchema;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -52,6 +53,28 @@ namespace FlowerImageClassification.Shared.WebHelpers
 		{
 			string assemblyFolderPath = new FileInfo(assembly.Location).Directory.FullName;
 			return Path.GetFullPath(Path.Combine(assemblyFolderPath, relativePath));
+		}
+
+		public static void SplitDatasetToTrainTest(string pathToOriginalImageFolder, string pathToTrainingFolder, string pathToTestFolder, float testSize = 0.1f, bool random = true)
+		{
+			string[] subDirs = Directory.GetDirectories(pathToOriginalImageFolder);
+			List<ImageData> trainingList = new List<ImageData>();
+			List<ImageData> testList = new List<ImageData>();
+			foreach (var subDir in subDirs)
+			{
+				IEnumerable<ImageData> list = LoadImagesFromDirectory(subDir);
+				if (random)
+					list.Shuffle();
+				int testSampleSize = (int)(list.Count() * testSize);
+				int trainingSampleSize = list.Count() - testSampleSize;
+				for (int i = 0; i < list.Count(); i++)
+				{
+					if (i < trainingSampleSize)
+						trainingList.Add(list.ElementAt(i));
+					if (i >= trainingSampleSize && i < testSampleSize)
+						testList.Add(list.ElementAt(i));
+				}
+			}
 		}
 	}
 }
