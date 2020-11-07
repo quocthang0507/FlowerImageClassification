@@ -89,7 +89,7 @@ namespace FlowerImageClassification.Portable
 					}
 					break;
 				case 2:
-					Print_FolderPathPrompt(out string fullImagesetFolderPathForEvaluating, "Nhập đường dẫn đến thư mục có chứa các thư mục tập hình ảnh huấn luyện: ");
+					Print_FolderPathPrompt(out string fullImagesetFolderPathForEvaluating, "Nhập đường dẫn đến thư mục có chứa các thư mục tập hình ảnh đánh giá: ");
 					Console.Clear();
 					foreach (Architecture _arch in (Architecture[])Enum.GetValues(typeof(Architecture)))
 					{
