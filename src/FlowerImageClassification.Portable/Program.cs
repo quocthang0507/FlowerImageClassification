@@ -331,7 +331,10 @@ namespace FlowerImageClassification.Portable
 
 		static void Main(string[] args)
 		{
-			PerformMenu();
+			//PerformMenu();
+			FileUtils.SplitDatasetToTrainTest(@"D:\GitHub\FlowerImageClassification\src\Assets\Imagesets\Trainings\kaggle_dataset_5_full",
+				@"D:\GitHub\FlowerImageClassification\src\Assets\Imagesets\Trainings\kaggle_dataset_5\Training 0.9",
+				@"D:\GitHub\FlowerImageClassification\src\Assets\Imagesets\Trainings\kaggle_dataset_5\Evaluation 0.1");
 			Console.WriteLine("Nhấn phím bất kỳ để thoát...");
 			Console.ReadLine();
 		}

@@ -55,25 +55,45 @@ namespace FlowerImageClassification.Shared.WebHelpers
 			return Path.GetFullPath(Path.Combine(assemblyFolderPath, relativePath));
 		}
 
-		public static void SplitDatasetToTrainTest(string pathToOriginalImageFolder, string pathToTrainingFolder, string pathToTestFolder, float testSize = 0.1f, bool random = true)
+		public static void SplitDatasetToTrainTest(string pathToOriginalImageFolder, string pathToTrainingFolder, string pathToTestFolder, float testSize = 0.2f, bool random = true)
 		{
 			string[] subDirs = Directory.GetDirectories(pathToOriginalImageFolder);
+			Console.WriteLine($"Found {subDirs.Length} sub-directories in original training folder");
 			List<ImageData> trainingList = new List<ImageData>();
 			List<ImageData> testList = new List<ImageData>();
+			Console.WriteLine("I am splitting into two parts...");
 			foreach (var subDir in subDirs)
 			{
 				IEnumerable<ImageData> list = LoadImagesFromDirectory(subDir);
 				if (random)
-					list.Shuffle();
+					list = list.Shuffle();
 				int testSampleSize = (int)(list.Count() * testSize);
 				int trainingSampleSize = list.Count() - testSampleSize;
 				for (int i = 0; i < list.Count(); i++)
 				{
 					if (i < trainingSampleSize)
 						trainingList.Add(list.ElementAt(i));
-					if (i >= trainingSampleSize && i < testSampleSize)
+					else
 						testList.Add(list.ElementAt(i));
 				}
+			}
+			Console.WriteLine($"There are {trainingList.Count + testList.Count} files, the training folder will have {trainingList.Count} files" +
+				$" and the test folder will have {testList.Count}files");
+			Console.WriteLine("I am copying original files into training folder...");
+			foreach (var item in trainingList)
+			{
+				string fileName = Path.GetFileName(item.ImagePath);
+				string folderPath = Path.Combine(pathToTrainingFolder, item.Label);
+				Directory.CreateDirectory(folderPath);
+				File.Copy(item.ImagePath, Path.Combine(folderPath, fileName), true);
+			}
+			Console.WriteLine("I am copying original files into test folder...");
+			foreach (var item in testList)
+			{
+				string fileName = Path.GetFileName(item.ImagePath);
+				string folderPath = Path.Combine(pathToTestFolder, item.Label);
+				Directory.CreateDirectory(folderPath);
+				File.Copy(item.ImagePath, Path.Combine(folderPath, fileName), true);
 			}
 		}
 	}
