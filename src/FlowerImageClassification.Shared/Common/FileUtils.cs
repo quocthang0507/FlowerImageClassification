@@ -55,7 +55,7 @@ namespace FlowerImageClassification.Shared.WebHelpers
 			return Path.GetFullPath(Path.Combine(assemblyFolderPath, relativePath));
 		}
 
-		public static void SplitDatasetToTrainTest(string pathToOriginalImageFolder, string pathToTrainingFolder, string pathToTestFolder, float testSize = 0.2f, bool random = true)
+		public static void SplitDatasetToTrainTest(string pathToOriginalImageFolder, string pathToTrainingFolder, string pathToTestFolder, float testSize = 0.05f, bool random = true)
 		{
 			string[] subDirs = Directory.GetDirectories(pathToOriginalImageFolder);
 			Console.WriteLine($"Found {subDirs.Length} sub-directories in original training folder");
@@ -78,7 +78,7 @@ namespace FlowerImageClassification.Shared.WebHelpers
 				}
 			}
 			Console.WriteLine($"There are {trainingList.Count + testList.Count} files, the training folder will have {trainingList.Count} files" +
-				$" and the test folder will have {testList.Count}files");
+				$" and the test folder will have {testList.Count} files");
 			Console.WriteLine("I am copying original files into training folder...");
 			foreach (var item in trainingList)
 			{

@@ -20,6 +20,7 @@ namespace FlowerImageClassification.Portable
 	class Program
 	{
 		static float[] trainingFractions = { 0.5f, 0.6f, 0.7f, 0.8f, 0.9f };
+		static float[] trainingFractions_2 = { 0.91f, 0.92f, 0.93f, 0.94f, 0.95f };
 
 		static void PrintMenu()
 		{
@@ -96,7 +97,7 @@ namespace FlowerImageClassification.Portable
 					Console.Clear();
 					foreach (Architecture _arch in (Architecture[])Enum.GetValues(typeof(Architecture)))
 					{
-						foreach (float f in trainingFractions)
+						foreach (float f in trainingFractions_2)
 						{
 							archNameInput = Enum.GetName(typeof(Architecture), (int)_arch);
 							modelFileName = $"{archNameInput}_{f}_{DateTime.Now.ToString("HH-mm-ss")}";
@@ -363,8 +364,8 @@ namespace FlowerImageClassification.Portable
 		{
 			PerformMenu();
 			//FileUtils.SplitDatasetToTrainTest(@"D:\GitHub\FlowerImageClassification\src\Assets\Imagesets\Trainings\kaggle_dataset_5_full",
-			//	@"D:\GitHub\FlowerImageClassification\src\Assets\Imagesets\Trainings\kaggle_dataset_5\Training 0.9",
-			//	@"D:\GitHub\FlowerImageClassification\src\Assets\Imagesets\Trainings\kaggle_dataset_5\Evaluation 0.1");
+			//	@"D:\GitHub\FlowerImageClassification\src\Assets\Imagesets\Trainings\kaggle_dataset_5_2\Training 0.95",
+			//	@"D:\GitHub\FlowerImageClassification\src\Assets\Imagesets\Trainings\kaggle_dataset_5_2\Evaluation 0.05");
 			Console.WriteLine("Nhấn phím bất kỳ để thoát...");
 			Console.ReadLine();
 		}
