@@ -62,7 +62,7 @@ namespace FlowerImageClassification.Portable
 			Console.WriteLine("    Như vậy sẽ thực hiện tổng cộng 4 x 5 = 20 lần, thời gian chạy khá lâu, vui lòng không được tắt trong khi chạy");
 			Console.WriteLine("2. Cũng như trên, nhưng chạy đánh giá bằng tập dữ liệu riêng");
 			Console.WriteLine("3. Tự chọn một kiến trúc và kích thước tập huấn luyện");
-			Console.WriteLine("4. Cũng như trên, nhưng thực hiện liên tục với số lần cụ thể");
+			Console.WriteLine("4. Tự chọn một kiến trúc, nhưng sử dụng tập dữ liệu huấn luyện và đánh giá riêng với số lần cụ thể");
 			Console.WriteLine(new string('=', 100));
 			Console.ResetColor();
 			int function = SelectMenu(4);
@@ -139,7 +139,6 @@ namespace FlowerImageClassification.Portable
 						Console.WriteLine("ML.NET hỗ trợ các kiến trúc DNN sau: ResnetV2101, InceptionV3, MobilenetV2, ResnetV250");
 						Console.Write("Nhập đúng tên kiến trúc cần sử dụng để huấn luyện mô hình: ");
 						archNameInput = Console.ReadLine();
-						Print_FractionPrompt(out frac, "Nhập số thập phân kích thước tập huấn luyện so với tập đánh giá (0 < x < 1): ");
 						if (Enum.TryParse(archNameInput, out arch))
 							break;
 						Console.Write("Nhập số lần thực hiện bài huấn luyện này: ");
@@ -151,10 +150,10 @@ namespace FlowerImageClassification.Portable
 					for (int i = 1; i <= n; i++)
 					{
 						archNameInput = Enum.GetName(typeof(Architecture), (int)arch);
-						modelFileName = $"#{i}. {archNameInput}_{frac}_{DateTime.Now.ToString("HH-mm-ss")}";
+						modelFileName = $"#{i}. {archNameInput}_{DateTime.Now.ToString("HH-mm-ss")}";
 						OutputHelper capturing_3 = new OutputHelper(Path.Combine(consoleOutputPath, modelFileName + ".txt"));
-						Console.WriteLine($"====================#{i}. {archNameInput} architecture, {frac} ratio of train set with test set ====================");
-						MLTraining mlTraining_3 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), fullImagesetFolderPath, null, 1, frac, (int)arch);
+						Console.WriteLine($"====================#{i}. {archNameInput} architecture ====================");
+						MLTraining mlTraining_3 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), fullImagesetFolderPath, null, 1, 1, (int)arch);
 						mlTraining_3.RunPipeline();
 						capturing_3.Dispose();
 
