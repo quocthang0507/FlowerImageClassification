@@ -43,8 +43,8 @@ Bạn có thể sử dụng nhiều tập hình ảnh hoa khác nhau, chẳng h�
 
 Để sử dụng trong dự án này, bạn cần phải đưa các hình ảnh vào đúng thư mục với tên thư mục như là tên lớp (Names as labels). Tôi đã sắp xếp chúng, bạn có thể sử dụng từ liên kết [này](https://github.com/quocthang0507/ImageClassificationExample/tree/master/jpg) (cho tập 17 category) hoặc từ liên kết [này](https://github.com/quocthang0507/102-Category-Flower/tree/master/jpg) (cho tập 102 category).
 
-Trong đề tài này, tôi sử dụng tập hình ảnh có 10 loài hoa khác nhau, phổ biến ở thành phố Đà Lạt.
-![](docs/10categories.jpg)
+Trong đề tài này, tôi sử dụng tập hình ảnh có 5 loài hoa khác nhau lấy từ [https://www.kaggle.com/alxmamaev/flowers-recognition](https://www.kaggle.com/alxmamaev/flowers-recognition).
+![](docs/5categories.jpg)
 
 Tensoflow cũng cung cấp một tập hình ảnh, bạn có thể tải từ liên kết [này](http://download.tensorflow.org/example_images/flower_photos.tgz).
 
