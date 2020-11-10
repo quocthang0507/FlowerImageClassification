@@ -1,7 +1,7 @@
-==================== ResnetV2101 architecture, 0.92 ratio of train set with test set ====================
+==================== ResnetV2101 architecture, 0.95 ratio of train set with test set ====================
 *** Training the image classification model with DNN Transfer Learning on top of the selected pre-trained model/architecture ***
 [Source=ImageClassificationTrainer; Ensuring meta files are present., Kind=Trace] Channel started
-[Source=ImageClassificationTrainer; Ensuring meta files are present., Kind=Trace] Channel finished. Elapsed 00:00:00.0190888.
+[Source=ImageClassificationTrainer; Ensuring meta files are present., Kind=Trace] Channel finished. Elapsed 00:00:00.0165266.
 [Source=ImageClassificationTrainer; Ensuring meta files are present., Kind=Trace] Channel disposed
 Saver not created because there are no variables in the graph to restore
 Phase: Bottleneck Computation, Dataset used: Validation, Image Index:   1
@@ -2656,80 +2656,195 @@ Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2439
 Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2440
 Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2441
 Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2442
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:   0, Accuracy:  0.8469387, Cross-Entropy: 0.45389286, Learning Rate:       0.01
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   0, Accuracy:  0.9190475, Cross-Entropy: 0.26704088
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:   1, Accuracy:  0.9130608, Cross-Entropy: 0.26582682, Learning Rate:     0.0094
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   1, Accuracy:  0.9333333, Cross-Entropy: 0.23555708
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:   2, Accuracy:  0.9371424, Cross-Entropy: 0.20785524, Learning Rate:     0.0094
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   2, Accuracy: 0.92857134, Cross-Entropy: 0.22551766
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:   3, Accuracy:  0.9526525, Cross-Entropy: 0.17557977, Learning Rate:   0.008836
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   3, Accuracy:  0.9285714, Cross-Entropy: 0.22028144
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:   4, Accuracy:  0.9628568, Cross-Entropy: 0.15149127, Learning Rate:   0.008836
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   4, Accuracy:  0.9333333, Cross-Entropy: 0.21613562
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:   5, Accuracy: 0.96816283, Cross-Entropy: 0.13545114, Learning Rate: 0.008305839
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   5, Accuracy:  0.9380952, Cross-Entropy:  0.2135322
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:   6, Accuracy:    0.97102, Cross-Entropy: 0.12158629, Learning Rate: 0.008305839
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   6, Accuracy:  0.9380952, Cross-Entropy: 0.21105954
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:   7, Accuracy: 0.97428524, Cross-Entropy: 0.111670084, Learning Rate: 0.0078074895
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   7, Accuracy:  0.9428571, Cross-Entropy:  0.2097767
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:   8, Accuracy: 0.97877514, Cross-Entropy: 0.10246001, Learning Rate: 0.0078074895
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   8, Accuracy:  0.9428571, Cross-Entropy: 0.20843683
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:   9, Accuracy: 0.98081595, Cross-Entropy: 0.09567161, Learning Rate: 0.00733904
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   9, Accuracy:  0.9428571, Cross-Entropy: 0.20800057
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:  10, Accuracy: 0.98285687, Cross-Entropy: 0.08909609, Learning Rate: 0.00733904
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  10, Accuracy:  0.9380953, Cross-Entropy: 0.20743531
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:  11, Accuracy: 0.98448956, Cross-Entropy: 0.084176145, Learning Rate: 0.0068986975
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  11, Accuracy:  0.9380953, Cross-Entropy: 0.20748563
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:  12, Accuracy: 0.98693854, Cross-Entropy: 0.07926891, Learning Rate: 0.0068986975
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  12, Accuracy:  0.9380953, Cross-Entropy: 0.20740354
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:  13, Accuracy: 0.98857117, Cross-Entropy: 0.07555885, Learning Rate: 0.0064847753
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  13, Accuracy:  0.9333333, Cross-Entropy: 0.20772757
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:  14, Accuracy: 0.98897934, Cross-Entropy: 0.07177421, Learning Rate: 0.0064847753
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  14, Accuracy:  0.9380952, Cross-Entropy: 0.20794785
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:  15, Accuracy:  0.9897957, Cross-Entropy: 0.06888515, Learning Rate: 0.0060956893
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  15, Accuracy:  0.9428571, Cross-Entropy:  0.2084273
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:  16, Accuracy: 0.99224466, Cross-Entropy: 0.06588655, Learning Rate: 0.0060956893
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  16, Accuracy:  0.9428571, Cross-Entropy: 0.20882489
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:  17, Accuracy: 0.99224466, Cross-Entropy: 0.06357622, Learning Rate: 0.0057299477
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  17, Accuracy:  0.9428571, Cross-Entropy: 0.20938228
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:  18, Accuracy: 0.99306107, Cross-Entropy: 0.06114697, Learning Rate: 0.0057299477
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  18, Accuracy:  0.9428571, Cross-Entropy: 0.20986782
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:  19, Accuracy: 0.99346924, Cross-Entropy: 0.05925929, Learning Rate: 0.005386151
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  19, Accuracy:  0.9428571, Cross-Entropy: 0.21045326
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:  20, Accuracy: 0.99346924, Cross-Entropy: 0.057254855, Learning Rate: 0.005386151
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  20, Accuracy:  0.9428571, Cross-Entropy: 0.21096829
-Phase: Training, Dataset used:      Train, Batch Processed Count: 245, Epoch:  21, Accuracy:  0.9938774, Cross-Entropy: 0.05568563, Learning Rate: 0.0050629815
-Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  21, Accuracy:  0.9428571, Cross-Entropy: 0.21155228
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2443
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2444
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2445
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2446
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2447
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2448
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2449
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2450
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2451
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2452
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2453
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2454
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2455
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2456
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2457
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2458
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2459
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2460
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2461
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2462
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2463
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2464
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2465
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2466
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2467
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2468
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2469
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2470
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2471
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2472
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2473
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2474
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2475
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2476
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2477
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2478
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2479
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2480
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2481
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2482
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2483
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2484
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2485
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2486
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2487
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2488
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2489
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2490
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2491
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2492
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2493
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2494
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2495
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2496
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2497
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2498
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2499
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2500
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2501
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2502
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2503
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2504
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2505
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2506
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2507
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2508
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2509
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2510
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2511
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2512
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2513
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2514
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2515
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2516
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2517
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2518
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2519
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2520
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2521
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2522
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2523
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2524
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2525
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2526
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2527
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2528
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2529
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2530
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2531
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2532
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2533
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2534
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2535
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2536
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 2537
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:   0, Accuracy: 0.82193434, Cross-Entropy:   0.525458, Learning Rate:       0.01
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   0, Accuracy: 0.88571423, Cross-Entropy: 0.36739913
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:   1, Accuracy: 0.88762563, Cross-Entropy: 0.33472282, Learning Rate:     0.0094
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   1, Accuracy:  0.9047618, Cross-Entropy: 0.31489262
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:   2, Accuracy:  0.9090545, Cross-Entropy: 0.27762705, Learning Rate:     0.0094
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   2, Accuracy: 0.91428566, Cross-Entropy: 0.28602958
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:   3, Accuracy:  0.9216528, Cross-Entropy: 0.24488156, Learning Rate:   0.008836
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   3, Accuracy: 0.91428566, Cross-Entropy:  0.2683609
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:   4, Accuracy: 0.92873937, Cross-Entropy:  0.2185802, Learning Rate:   0.008836
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   4, Accuracy:  0.9190475, Cross-Entropy: 0.25371337
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:   5, Accuracy: 0.93700707, Cross-Entropy: 0.20049359, Learning Rate: 0.008305839
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   5, Accuracy:  0.9190476, Cross-Entropy: 0.24437821
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:   6, Accuracy: 0.94448763, Cross-Entropy: 0.18410042, Learning Rate: 0.008305839
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   6, Accuracy:  0.9190476, Cross-Entropy:  0.2354198
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:   7, Accuracy:  0.9511805, Cross-Entropy: 0.17242078, Learning Rate: 0.0078074895
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   7, Accuracy:  0.9238094, Cross-Entropy: 0.22986075
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:   8, Accuracy:  0.9559051, Cross-Entropy: 0.16117826, Learning Rate: 0.0078074895
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   8, Accuracy: 0.92857134, Cross-Entropy: 0.22365758
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:   9, Accuracy: 0.95866096, Cross-Entropy: 0.15302327, Learning Rate: 0.00733904
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:   9, Accuracy: 0.92857134, Cross-Entropy:  0.2199391
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  10, Accuracy:  0.9625979, Cross-Entropy: 0.14480737, Learning Rate: 0.00733904
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  10, Accuracy: 0.92857134, Cross-Entropy: 0.21524931
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  11, Accuracy:  0.9657474, Cross-Entropy: 0.13876024, Learning Rate: 0.0068986975
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  11, Accuracy:  0.9333333, Cross-Entropy: 0.21255518
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  12, Accuracy: 0.96692854, Cross-Entropy: 0.13245569, Learning Rate: 0.0068986975
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  12, Accuracy:  0.9333333, Cross-Entropy: 0.20884609
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  13, Accuracy: 0.96929085, Cross-Entropy: 0.12776794, Learning Rate: 0.0064847753
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  13, Accuracy:  0.9380952, Cross-Entropy: 0.20680621
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  14, Accuracy:  0.9712594, Cross-Entropy: 0.12275462, Learning Rate: 0.0064847753
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  14, Accuracy:  0.9380952, Cross-Entropy: 0.20381634
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  15, Accuracy: 0.97362167, Cross-Entropy: 0.11900309, Learning Rate: 0.0060956893
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  15, Accuracy:  0.9380952, Cross-Entropy:  0.2022386
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  16, Accuracy:  0.9767713, Cross-Entropy: 0.114910364, Learning Rate: 0.0060956893
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  16, Accuracy:  0.9380952, Cross-Entropy: 0.19981346
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  17, Accuracy:  0.9779524, Cross-Entropy: 0.11183726, Learning Rate: 0.0057299477
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  17, Accuracy:  0.9380952, Cross-Entropy:  0.1985811
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  18, Accuracy: 0.97834617, Cross-Entropy: 0.10842929, Learning Rate: 0.0057299477
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  18, Accuracy:  0.9380952, Cross-Entropy: 0.19661158
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  19, Accuracy:  0.9787398, Cross-Entropy: 0.105867356, Learning Rate: 0.005386151
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  19, Accuracy:  0.9380952, Cross-Entropy: 0.19564325
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  20, Accuracy:  0.9795273, Cross-Entropy: 0.10298628, Learning Rate: 0.005386151
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  20, Accuracy:  0.9380952, Cross-Entropy: 0.19404234
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  21, Accuracy:   0.979921, Cross-Entropy: 0.10082122, Learning Rate: 0.0050629815
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  21, Accuracy:  0.9380952, Cross-Entropy:  0.1932764
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  22, Accuracy:   0.979921, Cross-Entropy: 0.09835664, Learning Rate: 0.0050629815
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  22, Accuracy:  0.9380952, Cross-Entropy: 0.19197153
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  23, Accuracy: 0.98031473, Cross-Entropy: 0.09650709, Learning Rate: 0.0047592027
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  23, Accuracy:  0.9333333, Cross-Entropy: 0.19136031
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  24, Accuracy:  0.9814958, Cross-Entropy: 0.09437864, Learning Rate: 0.0047592027
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  24, Accuracy:  0.9333333, Cross-Entropy:  0.1902912
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  25, Accuracy:  0.9818894, Cross-Entropy: 0.09278431, Learning Rate: 0.004473651
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  25, Accuracy:  0.9333333, Cross-Entropy: 0.18979824
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  26, Accuracy:  0.9822832, Cross-Entropy: 0.09093149, Learning Rate: 0.004473651
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  26, Accuracy:  0.9333333, Cross-Entropy: 0.18891576
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  27, Accuracy:  0.9826768, Cross-Entropy: 0.08954631, Learning Rate: 0.0042052316
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  27, Accuracy:  0.9333333, Cross-Entropy: 0.18851338
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  28, Accuracy:  0.9834643, Cross-Entropy: 0.08792252, Learning Rate: 0.0042052316
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  28, Accuracy:  0.9333333, Cross-Entropy: 0.18777792
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  29, Accuracy:  0.9834643, Cross-Entropy: 0.08671089, Learning Rate: 0.0039529176
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  29, Accuracy:  0.9333333, Cross-Entropy: 0.18744543
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  30, Accuracy:   0.983858, Cross-Entropy: 0.08527907, Learning Rate: 0.0039529176
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  30, Accuracy:  0.9380952, Cross-Entropy: 0.18682545
+Phase: Training, Dataset used:      Train, Batch Processed Count: 254, Epoch:  31, Accuracy: 0.98425174, Cross-Entropy: 0.08421252, Learning Rate: 0.0037157428
+Phase: Training, Dataset used: Validation, Batch Processed Count:  21, Epoch:  31, Accuracy:  0.9380952, Cross-Entropy: 0.18654723
 Saver not created because there are no variables in the graph to restore
-Restoring parameters from C:\Users\La Quoc Thang\AppData\Local\Temp\uz4ofly2.vrj\custom_retrained_model_based_on_mobilenet_v2.meta
+Restoring parameters from C:\Users\La Quoc Thang\AppData\Local\Temp\kgkb1fhw.lj5\custom_retrained_model_based_on_resnet_v2_101_299.meta
 Froze 2 variables.
 Converted 2 variables to const ops.
 [Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel started
-[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel finished. Elapsed 00:00:00.0122548.
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel finished. Elapsed 00:00:00.0189596.
 [Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel disposed
 [Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel started
-[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel finished. Elapsed 00:00:00.0133780.
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel finished. Elapsed 00:00:00.0171301.
 [Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel disposed
-Training with transfer learning took: 212 seconds
+Training with transfer learning took: 2212 seconds
 [Source=ImageClassificationTrainer; BinarySaver; Saving, Kind=Trace] Channel started
 [Source=ImageClassificationTrainer; EmptyDataView; Cursor, Kind=Trace] Channel started
-[Source=ImageClassificationTrainer; EmptyDataView; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0167779.
+[Source=ImageClassificationTrainer; EmptyDataView; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0156298.
 [Source=ImageClassificationTrainer; EmptyDataView; Cursor, Kind=Trace] Channel disposed
 [Source=ImageClassificationTrainer; EmptyDataView; Cursor, Kind=Trace] Channel started
 [Source=ImageClassificationTrainer; BinarySaver; Write, Kind=Trace] Channel started
-[Source=ImageClassificationTrainer; EmptyDataView; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0246177.
+[Source=ImageClassificationTrainer; EmptyDataView; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0363890.
 [Source=ImageClassificationTrainer; EmptyDataView; Cursor, Kind=Trace] Channel disposed
-[Source=ImageClassificationTrainer; BinarySaver; Write, Kind=Trace] Channel finished. Elapsed 00:00:00.0673639.
+[Source=ImageClassificationTrainer; BinarySaver; Write, Kind=Trace] Channel finished. Elapsed 00:00:00.0986760.
 [Source=ImageClassificationTrainer; BinarySaver; Write, Kind=Trace] Channel disposed
-[Source=ImageClassificationTrainer; BinarySaver; Saving, Kind=Trace] Channel finished. Elapsed 00:00:00.2658349.
+[Source=ImageClassificationTrainer; BinarySaver; Saving, Kind=Trace] Channel finished. Elapsed 00:00:00.4021519.
 [Source=ImageClassificationTrainer; BinarySaver; Saving, Kind=Trace] Channel disposed
-Model saved to: D:\GitHub\FlowerImageClassification\src\Assets\Outputs\0.95\Lan 2\ResnetV2101_0.92_12-30-51.zip
+Model saved to: D:\GitHub\FlowerImageClassification\src\Assets\Outputs\0.95\Lan 2\ResnetV2101_0.95_08-21-32.zip
 Making predictions in bulk for evaluating model's quality...
 [Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel started
-[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel finished. Elapsed 00:00:00.0139893.
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel finished. Elapsed 00:00:00.0130416.
 [Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel disposed
 [Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel started
-[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel finished. Elapsed 00:00:00.0121562.
+[Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel finished. Elapsed 00:00:00.0151959.
 [Source=ImageClassificationTrainer; SchemaBindableWrapper; Bind, Kind=Trace] Channel disposed
 [Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
 [Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
@@ -2742,40 +2857,40 @@ Making predictions in bulk for evaluating model's quality...
 [Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
 [Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
 [Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel started
-[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0502957.
-[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0783695.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.2616088.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.2488117.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.1618079.
 [Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
-[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.1391411.
-[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0670872.
-[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0351128.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.1179191.
 [Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
-[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.1222427.
-[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
-[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
-[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0947092.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0509003.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0965265.
 [Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
 [Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
-[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0260048.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.1419583.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.1820165.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.0767294.
 [Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
 [Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
-[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:00.1704771.
 [Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
-[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:12.5897724.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:03:50.5541391.
 [Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
-[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:00:12.5704682.
+[Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel finished. Elapsed 00:03:50.5713221.
 [Source=ImageClassificationTrainer; MultiClassClassifierScore; Cursor, Kind=Trace] Channel disposed
 ************************************************************
 *    Metrics for TensorFlow DNN Transfer Learning multi-class classification model   
 *-----------------------------------------------------------
-    AccuracyMacro = 0.9406, a value between 0 and 1, the closer to 1, the better
-    AccuracyMicro = 0.9429, a value between 0 and 1, the closer to 1, the better
-    LogLossReduction = 0.8676, the closer to 1, the better
-    LogLoss = 0.2116, the closer to 0, the better
-    LogLoss for class 1 = 0.3966, the closer to 0, the better
-    LogLoss for class 2 = 0.0306, the closer to 0, the better
-    LogLoss for class 3 = 0.2396, the closer to 0, the better
-    LogLoss for class 4 = 0.3046, the closer to 0, the better
-    LogLoss for class 5 = 0.1657, the closer to 0, the better
+    AccuracyMacro = 0.9374, a value between 0 and 1, the closer to 1, the better
+    AccuracyMicro = 0.9381, a value between 0 and 1, the closer to 1, the better
+    LogLossReduction = 0.8833, the closer to 1, the better
+    LogLoss = 0.1865, the closer to 0, the better
+    LogLoss for class 1 = 0.3166, the closer to 0, the better
+    LogLoss for class 2 = 0.0796, the closer to 0, the better
+    LogLoss for class 3 = 0.2727, the closer to 0, the better
+    LogLoss for class 4 = 0.1695, the closer to 0, the better
+    LogLoss for class 5 = 0.1382, the closer to 0, the better
     TopKPredictionCount = 0
     TopKAccuracy = 0
     ConfusionMatrix:
@@ -2784,13 +2899,13 @@ Confusion table
              ||========================================
 PREDICTED    ||     0 |     1 |     2 |     3 |     4 | Recall
 TRUTH        ||========================================
-0.     daisy ||    34 |     3 |     0 |     1 |     0 | 0.8947
-1. dandelion ||     0 |    50 |     0 |     0 |     0 | 1.0000
-2.      rose ||     2 |     0 |    37 |     0 |     0 | 0.9487
-3. sunflower ||     0 |     1 |     0 |    32 |     1 | 0.9412
-4.     tulip ||     0 |     0 |     3 |     1 |    45 | 0.9184
+0.     daisy ||    34 |     2 |     0 |     2 |     0 | 0.8947
+1. dandelion ||     1 |    48 |     0 |     1 |     0 | 0.9600
+2.      rose ||     2 |     0 |    36 |     0 |     1 | 0.9231
+3. sunflower ||     0 |     0 |     1 |    33 |     0 | 0.9706
+4.     tulip ||     0 |     0 |     2 |     1 |    46 | 0.9388
              ||========================================
-Precision    ||0.9444 |0.9259 |0.9250 |0.9412 |0.9783 |
+Precision    ||0.9189 |0.9600 |0.9231 |0.8919 |0.9787 |
 
 ************************************************************
-Predicting and Evaluation took: 12 seconds
+Predicting and Evaluation took: 231 seconds
