@@ -16,35 +16,37 @@ namespace FlowerImageClassification.Training
 		static void Main(string[] args)
 		{
 
-			foreach (Architecture arch in (Architecture[])Enum.GetValues(typeof(Architecture)))
-			{
-				foreach (float frac in fractions)
-				{
-					architectureName = Enum.GetName(typeof(Architecture), (int)arch);
-					fileName = $"{architectureName}_{frac}";
+			//foreach (Architecture arch in (Architecture[])Enum.GetValues(typeof(Architecture)))
+			//{
+			//	foreach (float frac in fractions)
+			//	{
+			//		architectureName = Enum.GetName(typeof(Architecture), (int)arch);
+			//		fileName = $"{architectureName}_{frac}";
 
-					SetPaths();
-					string output = Path.Combine(consoleOutputPath, fileName + ".txt");
+			//		SetPaths();
+			//		string output = Path.Combine(consoleOutputPath, fileName + ".txt");
 
-					OutputHelper capturing = new OutputHelper(output);
-					Console.WriteLine($"==================== { architectureName} architecture, {frac} ratio of train set with test set ====================");
-					MLTraining mlTraining = new MLTraining(outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath, null, frac, (int)arch);
-					mlTraining.RunPipeline();
-					capturing.Dispose();
-				}
-			}
+			//		OutputHelper capturing = new OutputHelper(output);
+			//		Console.WriteLine($"==================== { architectureName} architecture, {frac} ratio of train set with test set ====================");
+			//		MLTraining mlTraining = new MLTraining(outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath, null, frac, (int)arch);
+			//		mlTraining.RunPipeline();
+			//		capturing.Dispose();
+			//	}
+			//}
 
 			// Redirect console output to a stream
-			//SetPaths();
-			//string output = Path.Combine(consoleOutputPath, $"{architectureName}_{ratio}_norandom.txt");
-			//using (MirrorOutput capturing = new MirrorOutput(output))
-			//{
-			//	Console.WriteLine($"========== {architectureName} architecture ==========");
-
-			//	// Begin to run the pipeline
-			//	MLTraining mlTraining = new MLTraining(outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath, null, 0.5f, arch);
-			//	mlTraining.RunPipeline();
-			//}
+			// SetPaths();
+			Console.WriteLine($"========== {architectureName} architecture ==========");
+			MLTraining mlTraining = new MLTraining(
+				@"D:\Github\FlowerImageClassification\src\FlowerImageClassification.WebApp\ML\InceptionV3.zip",
+				@"D:\Github\FlowerImageClassification\src\Assets\Imagesets\Trainings\kaggle_dataset_5_1\Training 0.8",
+				@"D:\Github\FlowerImageClassification\src\Assets\Imagesets\Trainings\kaggle_dataset_5_1\Evaluation 0.2",
+				1,
+				1,
+				(int)Architecture.MobilenetV2,
+				true);
+			// Begin to run the pipeline
+			mlTraining.RunPipeline();
 
 			// End the pipeline and write to file
 			Console.WriteLine("Press any key to exit...");

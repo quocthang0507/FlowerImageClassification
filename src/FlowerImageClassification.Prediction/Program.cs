@@ -22,7 +22,7 @@ namespace FlowerImageClassification.Prediction
 				MLTraining mlTraining = new MLTraining(outputMlNetModelFilePath, imagesFolderPathForPredictions, fullImagesetFolderPath);
 				//mlTraining.EvaluateModel();
 				//mlTraining.TrySinglePrediction();
-				mlTraining.TryMultiplePredictions();
+				mlTraining.TryMultiplePredictions(imagesFolderPathForPredictions);
 			}
 			// End the pipeline and write to file
 			Console.WriteLine("Press any key to exit...");

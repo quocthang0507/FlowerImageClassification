@@ -184,32 +184,42 @@ namespace FlowerImageClassification.Shared
 			Then, the 30% validation set is further split into validation and test sets where 90% is used for validation and 10% is used for testing.
 			var trainSplit = mlContext.Data.TrainTestSplit(transformedDataset, 0.3);
 			*/
-			DataOperationsCatalog.TrainTestData trainSplit = mlContext.Data.TrainTestSplit(transformedDataset, testRatio);
-			trainDataset = trainSplit.TrainSet;
-			if (shouldValidateBeforeTesting)
+
+			if (testRatio == 0 && InputFolderPathForEvaluating != null)
 			{
-				if (InputFolderPathForEvaluating == null)
-				{
-					DataOperationsCatalog.TrainTestData validationTestSplit = mlContext.Data.TrainTestSplit(trainSplit.TestSet);
-					validationDataset = validationTestSplit.TrainSet;
-					testDataset = validationTestSplit.TestSet;
-				}
-				else
-				{
-					DataOperationsCatalog.TrainTestData validationTestSplit = mlContext.Data.TrainTestSplit(TransformImagesToIDataView(InputFolderPathForEvaluating));
-					validationDataset = validationTestSplit.TrainSet;
-					testDataset = validationTestSplit.TestSet;
-				}
+				trainDataset = transformedDataset;
+				testDataset = TransformImagesToIDataView(InputFolderPathForEvaluating);
 			}
-			else
+			else if (testRatio != 0)
 			{
-				if (InputFolderPathForEvaluating == null)
+
+				DataOperationsCatalog.TrainTestData trainSplit = mlContext.Data.TrainTestSplit(transformedDataset, testRatio);
+				trainDataset = trainSplit.TrainSet;
+				if (shouldValidateBeforeTesting)
 				{
-					testDataset = trainSplit.TestSet;
+					if (InputFolderPathForEvaluating == null)
+					{
+						DataOperationsCatalog.TrainTestData validationTestSplit = mlContext.Data.TrainTestSplit(trainSplit.TestSet);
+						validationDataset = validationTestSplit.TrainSet;
+						testDataset = validationTestSplit.TestSet;
+					}
+					else
+					{
+						DataOperationsCatalog.TrainTestData validationTestSplit = mlContext.Data.TrainTestSplit(TransformImagesToIDataView(InputFolderPathForEvaluating));
+						validationDataset = validationTestSplit.TrainSet;
+						testDataset = validationTestSplit.TestSet;
+					}
 				}
 				else
 				{
-					testDataset = TransformImagesToIDataView(InputFolderPathForEvaluating);
+					if (InputFolderPathForEvaluating == null)
+					{
+						testDataset = trainSplit.TestSet;
+					}
+					else
+					{
+						testDataset = TransformImagesToIDataView(InputFolderPathForEvaluating);
+					}
 				}
 			}
 		}
