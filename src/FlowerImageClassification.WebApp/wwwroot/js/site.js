@@ -15,41 +15,36 @@ const background = document.querySelector("body > ul");
 
 /////////////// Form submit ///////////////
 if (inputFile != null || inputWebcam != null)
-    mainForm.addEventListener('submit', e => uploadAndClassify(e));
+	mainForm.addEventListener('submit', e => uploadAndClassify(e));
 if (sentimentForm != null)
-    sentimentForm.addEventListener('submit', e => SubmitUserSentiment(e));
+	sentimentForm.addEventListener('submit', e => SubmitUserSentiment(e));
 
 /////////////// File upload form ///////////////
 $(document).ready(customFileInput());
 
 /////////////// Webcam settings ///////////////
 if (webcam != null) {
-    var width = document.getElementById("formButton").offsetWidth;
-    var height = width * 3 / 4;
-    Webcam.set({ width: width, height: height, image_format: "jpeg", jpeg_quality: 90 });
-    Webcam.attach('#my_camera');
+	var width = document.getElementById("formButton").offsetWidth;
+	var height = width * 3 / 4;
+	Webcam.set({ width: width, height: height, image_format: "jpeg", jpeg_quality: 90 });
+	Webcam.attach('#my_camera');
 }
 
 /////////////// Random background images ///////////////
 if (background != null)
-    for (let index = 1; index <= 5; index++) {
-        var element = document.querySelector("body > ul > li:nth-child(" + index + ") > span ");
-        var random = getRandomArbitraryNumber(1, 15);
-        element.style.backgroundImage = 'url(../img/' + random + '.jpg)';
-        element.style.objectFit = 'cover';
-        element.style.animationDelay = (index - 1) * 10 + "s";
-    }
+	for (let index = 1; index <= 5; index++) {
+		var element = document.querySelector("body > ul > li:nth-child(" + index + ") > span ");
+		var random = getRandomArbitraryNumber(1, 15);
+		element.style.backgroundImage = 'url(../img/' + random + '.jpg)';
+		element.style.objectFit = 'cover';
+		element.style.animationDelay = (index - 1) * 10 + "s";
+	}
 
 /////////////// Dictionary about flower categories ///////////////
 var dict = {
-    "Carnation": "Hoa cẩm chướng",
-    "Hydrangea": "Hoa cẩm tú cầu",
-    "Jacaranda": "Hoa phượng tím",
-    "Lavender": "Hoa oải hương",
-    "Gladiolus": "Hoa lay ơn",
-    "Lily": "Hoa loa kèn",
-    "Lisianthus": "Hoa cát tường",
-    "Rose": "Hoa hồng",
-    "Sunflower": "Hoa hướng dương",
-    "Tulip": "Hoa uất kim hương"
+	"daisy": "Hoa cúc",
+	"dandelion": "Hoa bồ công anh",
+	"rose": "Hoa hồng",
+	"sunflower": "Hoa hướng dương",
+	"tulip": "Hoa uất kim hương"
 }

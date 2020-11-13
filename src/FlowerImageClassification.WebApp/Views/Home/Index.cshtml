@@ -3,12 +3,12 @@
 }
 
 <div class="card card-file">
-	<form method="post" enctype="multipart/form-data" id="mainForm">
+	<form method="post" enctype="multipart/form-data" id="mainForm" class="dropzone">
 		<div>
 			<p>Tải hình ảnh của bạn lên đây:</p>
 		</div>
 		<div>
-			<div class="form-group custom-file mb-3">
+			<div class="form-group custom-file mb-3 fallback">
 				<input type="file" class="custom-file-input form-control" id="inputFile" name="imageFile" accept="image/*">
 				<label class="custom-file-label" for="inputFile">Chọn tập tin</label>
 			</div>
