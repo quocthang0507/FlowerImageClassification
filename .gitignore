@@ -345,4 +345,4 @@ ms_small_set/
 thang_dataset_5/
 thang_dataset_10/
 
-*.zip
+Assets/**/*.zip
