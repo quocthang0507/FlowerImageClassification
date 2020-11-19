@@ -3,7 +3,6 @@ for details on configuring this project to bundle and minify static web assets. 
 
 
 /* For navigation bar
-    ---------------------------------------------------
 */
 
 .navbar {
@@ -24,7 +23,6 @@ a.navbar-brand {
 
 
 /* For entire page
-    ---------------------------------------------------
 */
 
 header {
@@ -67,6 +65,8 @@ header {
 
 .center {
 	text-align: center;
+	justify-content: center;
+	align-items: center;
 }
 
 .form-inline {
@@ -78,7 +78,6 @@ header {
 	}
 
 /* For slideshow background 
-    ---------------------------------------------------
 */
 .cb-slideshow {
 	list-style: none;
@@ -96,7 +95,7 @@ header {
 
 		.cb-slideshow:after {
 			content: '';
-			background: transparent url(../img/pattern.png) repeat top left;
+			/*background: transparent url(../img/pattern.png) repeat top left;*/
 		}
 
 		.cb-slideshow li span {
@@ -160,7 +159,6 @@ header {
 
 
 /* For form 
-    ---------------------------------------------------
 */
 
 img {
@@ -185,7 +183,6 @@ img {
 
 
 /* Input 
-    ---------------------------------------------------
 */
 
 input.form-check-input {
@@ -244,7 +241,6 @@ input.form-check-input {
 
 
 /* Provide sufficient contrast against white background 
-    ---------------------------------------------------
 */
 
 a {
@@ -266,7 +262,6 @@ a {
 
 
 /* Sticky footer styles
-    ---------------------------------------------------
 */
 
 html {
@@ -298,7 +293,6 @@ button.accept-policy {
 
 
 /* Sticky footer styles
-    ---------------------------------------------------
 */
 
 html {
@@ -310,25 +304,36 @@ body {
 	/* Margin bottom by footer height */
 	margin-bottom: 60px;
 	height: 100%;
+	font-family: 'Segoe UI',Arial,Helvetica,Sans-Serif;
 }
 
 .footer {
-	background-color: white;
+	background-color: #f3f3f3;
 	position: absolute;
 	bottom: 0;
 	width: 100%;
 	white-space: nowrap;
 	line-height: 2rem;
-	/* Vertically center the text there */
+	height: 150px;
+	color: #444;
 }
 
 	.footer .container {
 		text-align: center;
+		height: 100%;
 	}
+
+		.footer .container .center {
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+		}
 
 
 /* Nested list styles
-    ---------------------------------------------------
 */
 
 .list-group-item.main {
@@ -363,7 +368,6 @@ body {
 
 
 /* For Iframe
-    ---------------------------------------------------
 */
 
 iframe {
@@ -376,7 +380,6 @@ iframe {
 
 
 /* For scrollable list
-    ---------------------------------------------------
 */
 
 .list-group#listFlowers {
@@ -387,7 +390,6 @@ iframe {
 
 
 /** For ckeditor
-    ---------------------------------------------------
 */
 
 .document-editor {
@@ -432,7 +434,6 @@ iframe {
 
 
 /** For loading spinner
-    ---------------------------------------------------
 */
 
 .overlay {
@@ -457,45 +458,26 @@ iframe {
 		display: block;
 	}
 
-
-/** Sentiment response
-    ---------------------------------------------------
+/**
+	Skill logo image
 */
 
-button.sentiment {
+.skill_card {
+	width: 80%;
+	max-width: 1060px;
+	margin: auto;
+	margin-top: 50px;
+	margin-bottom: 20px;
 	text-align: center;
-	transition: all 0.5s;
-	cursor: pointer;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);
+	border-radius: 6px;
+	background: #fff;
 }
 
-	button.sentiment span {
-		cursor: pointer;
-		display: inline-block;
-		position: relative;
-		transition: 0.5s;
-	}
-
-		button.sentiment span.like:after {
-			content: "\A 👍";
-			white-space: pre;
-			opacity: 0;
-			transition: 0.5s;
-		}
-
-		button.sentiment span.dislike:after {
-			content: "\A 👎";
-			white-space: pre;
-			opacity: 0;
-			transition: 0.5s;
-		}
-
-		button.sentiment span.normal:after {
-			content: "\A 👌";
-			white-space: pre;
-			opacity: 0;
-			transition: 0.5s;
-		}
-
-	button.sentiment:hover span:after {
-		opacity: 1;
-	}
+.skill_logo {
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+	border: 1px solid #ececec;
+	margin-top: -40px;
+}

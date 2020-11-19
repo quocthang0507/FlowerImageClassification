@@ -29,35 +29,21 @@ namespace FlowerImageClassification.WebApp.Controllers
 			return View();
 		}
 
-		[HttpPost]
-		[ProducesResponseType(200)]
-		[ProducesResponseType(400)]
-		[Route("api/AddSentiment")]
-		public async Task<IActionResult> AddSentiment([FromBody] Sentiment sentiment, IFormFile imageFile)
-		{
-			if (!ModelState.IsValid || imageFile == null || imageFile.Length == 0 || sentiment == null)
-				return BadRequest("Bad request because of invalid model state or null paramter(s)");
-			byte[] imageData = await Transformer.GetByteFromUploadedFile(imageFile);
-			bool saved = await Transformer.SaveByteToFile(imageData);
-			if (!saved)
-				return BadRequest("Bad request because of invalid image");
-			sentimentService.Insert(sentiment);
-			return Ok();
-		}
-
-		[HttpPost]
-		[ProducesResponseType(200)]
-		[ProducesResponseType(400)]
-		[Route("api/AddSentimentBase64")]
-		public async Task<IActionResult> AddSentimentWithBase64([FromBody] Sentiment sentiment, string base64image)
-		{
-			if (!ModelState.IsValid || sentiment == null || base64image == null)
-				return BadRequest("Bad request because of invalid model state or null parameter(s) ");
-			byte[] imageData = await ImageTransformer.Base64ToByteArray(base64image);
-			if (imageData == null)
-				return BadRequest("Bad request because of an invalid base64 image");
-			return Ok();
-		}
+		//[HttpPost]
+		//[ProducesResponseType(200)]
+		//[ProducesResponseType(400)]
+		//[Route("api/AddSentiment")]
+		//public async Task<IActionResult> AddSentiment([FromBody] Sentiment sentiment, IFormFile imageFile)
+		//{
+		//	if (!ModelState.IsValid || imageFile == null || imageFile.Length == 0 || sentiment == null)
+		//		return BadRequest("Bad request because of invalid model state or null paramter(s)");
+		//	byte[] imageData = await Transformer.GetByteFromUploadedFile(imageFile);
+		//	bool saved = await Transformer.SaveByteToFile(imageData);
+		//	if (!saved)
+		//		return BadRequest("Bad request because of invalid image");
+		//	sentimentService.Insert(sentiment);
+		//	return Ok();
+		//}
 
 	}
 }

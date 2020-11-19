@@ -2,22 +2,25 @@
 	ViewData["Title"] = "Trang chủ";
 }
 
-<div class="card card-file">
-	<form method="post" enctype="multipart/form-data" id="mainForm" class="dropzone">
-		<div>
-			<p>Tải hình ảnh của bạn lên đây:</p>
-		</div>
-		<div>
-			<div class="form-group custom-file mb-3 fallback">
-				<input type="file" class="custom-file-input form-control" id="inputFile" name="imageFile" accept="image/*">
-				<label class="custom-file-label" for="inputFile">Chọn tập tin</label>
+<div class="skill_card">
+	<img src="~/logo.png" alt="skill logo image" class="skill_logo" />
+	<div class="card card-file">
+		<form method="post" enctype="multipart/form-data" id="mainForm">
+			<div>
+				<p>Tải hình ảnh của bạn lên đây:</p>
 			</div>
-		</div>
-		<div id="formButton">
-			<input type="submit" value="Gửi hình" name="submit" class="btn btn-primary" />
-			<a class="btn btn-success" asp-area="" asp-controller="Camera" asp-action="Index">Chuyển qua Camera</a>
-		</div>
-	</form>
+			<div>
+				<div class="form-group custom-file mb-3">
+					<input type="file" class="custom-file-input form-control" id="inputFile" name="imageFile" accept="image/*">
+					<label class="custom-file-label" for="inputFile">Chọn tập tin</label>
+				</div>
+			</div>
+			<div id="formButton">
+				<input type="submit" value="Gửi hình" name="submit" class="btn btn-primary" />
+				<a class="btn btn-success" asp-area="" asp-controller="Camera" asp-action="Index">Chuyển qua Camera</a>
+			</div>
+		</form>
+	</div>
 </div>
 <div class="row">
 	<div class="col-sm" id="divResult_left">
@@ -38,28 +41,9 @@
 				<div id="divProbability" class="col-md-10"></div>
 				<div id="divExecutionTime" class="col-md-10"></div>
 				<br />
-				<div class="center">
-					<button class="btn btn-info" data-toggle="modal" data-target="#modal-info">
-						Khám phá thêm về loài hoa
-						này
-					</button>
-				</div>
 				<div class="row center">
-					<div class="col-sm">
-						<button class="btn sentiment" data-toggle="modal" data-target="#modal-sentiment">
-							<span class="dislike">Không hài lòng</span>
-						</button>
-					</div>
-					<div class="col-sm">
-						<button class="btn sentiment" data-toggle="modal" data-target="#modal-sentiment">
-							<span class="normal">Bình thường</span>
-						</button>
-					</div>
-					<div class="col-sm">
-						<button class="btn sentiment" data-toggle="modal" data-target="#modal-thanks">
-							<span class="like">Hài lòng</span>
-						</button>
-					</div>
+					<input type="button" value="Khám phá thêm về loài hoa này" class="btn btn-info row-sm" data-toggle="modal" data-target="#modal-info" />
+					<input type="button" value="Báo cáo" class="btn btn-sm row-sm" />
 				</div>
 			</div>
 		</div>
@@ -83,81 +67,3 @@
 		</div>
 	</div>
 </div>
-
-<!--Model form phản hồi ý kiến-->
-<div class="modal fade" id="modal-sentiment" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<form method="post" enctype="multipart/form-data" id="sentimentForm">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="modalTitle">Phản hồi về kết quả</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<label class="form-check">
-						Kết quả dự đoán sai
-						<input type="checkbox" class="form-check-input" id="chkIncorrect">
-						<span class="checkmark"></span>
-					</label>
-					<div class="form-group">
-						<label for="message-text" class="col-form-label">Bạn có biết tên?</label>
-						<textarea class="form-control" id="tbxSentiment" placeholder="Ghi vào đây nhé" maxlength="400"></textarea>
-					</div>
-					<label class="form-check">
-						Thông tin giới thiệu chưa hữu ích
-						<input type="checkbox" class="form-check-input" id="chkUnuseful">
-						<span class="checkmark"></span>
-					</label>
-					<label class="form-check">
-						Thời gian phản hồi chậm
-						<input type="checkbox" class="form-check-input" id="chkDelay">
-						<span class="checkmark"></span>
-					</label>
-					<label class="form-check">
-						Gặp khó khăn khi sử dụng
-						<input type="checkbox" class="form-check-input" id="chkHard">
-						<span class="checkmark"></span>
-					</label>
-					<p>Lưu ý: Ảnh sẽ gửi kèm cùng với phản hồi này và lưu lại trên hệ thống. Bạn có muốn tiếp tục?</p>
-				</div>
-				<div class="modal-footer">
-					<input class="btn btn-primary" type="submit" name="submit" value="Gửi" />
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
-				</div>
-			</div>
-		</form>
-	</div>
-</div>
-
-<!--Model form cảm ơn-->
-<div class="modal fade" id="modal-thanks" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="modalTitle">Cảm ơn</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<p>
-					Cảm ơn bạn đã chia sẻ phản hồi cho chúng tôi biết. Truy cập điều khoản riêng tư để biết thêm chi tiết:
-					<a asp-area="" asp-controller="Home" asp-action="Privacy" target="_blank">Điều khoản Riêng tư</a>
-				</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
-			</div>
-		</div>
-	</div>
-</div>
-<script>
-	var e = document.querySelector("#sentimentForm > div > div.modal-body > label:nth-child(1) > span");
-	e.click(function () {
-		if ($(this).is(':checked')) {
-			$('#sentimentForm > div > div.modal-body > div').toggle();
-		}
-	})
-</script>

@@ -34,7 +34,7 @@ if (webcam != null) {
 if (background != null)
 	for (let index = 1; index <= 5; index++) {
 		var element = document.querySelector("body > ul > li:nth-child(" + index + ") > span ");
-		var random = getRandomArbitraryNumber(1, 15);
+		var random = getRandomArbitraryNumber(1, 14);
 		element.style.backgroundImage = 'url(../img/' + random + '.jpg)';
 		element.style.objectFit = 'cover';
 		element.style.animationDelay = (index - 1) * 10 + "s";
