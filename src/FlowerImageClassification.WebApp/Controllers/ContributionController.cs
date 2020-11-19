@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FlowerImageClassification.WebApp.Controllers
@@ -26,8 +28,11 @@ namespace FlowerImageClassification.WebApp.Controllers
 
 		public IActionResult Index()
 		{
-			return View();
+			IEnumerable<Sentiment> sentiments = GetAll();
+			return View(sentiments);
 		}
+
+		private IEnumerable<Sentiment> GetAll() => sentimentService.FindAll();
 
 		[HttpPost]
 		[ProducesResponseType(200)]

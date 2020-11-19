@@ -28,7 +28,7 @@ namespace FlowerImageClassification.WebApp.Utilities
 		}
 
 		/// <summary>
-		/// Saves image data (in byte array) and returns it's random file name
+		/// Saves image data (in byte array) and returns it's random file name with extension type
 		/// </summary>
 		/// <param name="imageData"></param>
 		/// <returns></returns>
@@ -38,11 +38,11 @@ namespace FlowerImageClassification.WebApp.Utilities
 				(ImageValidation.GetImageFormat(imageData) == ImageFormat.Jpeg ? ".jpg" : ".png") : null;
 			if (ext == null)
 				return null;
-			string name = Path.GetRandomFileName().Split('.')[0];
-			string filePath = Path.Combine(Directory.GetCurrentDirectory(), contributionPath, name + ext);
+			string filename = Path.GetRandomFileName().Split('.')[0] + ext;
+			string filePath = Path.Combine(Directory.GetCurrentDirectory(), contributionPath, filename);
 			using FileStream stream = new FileStream(filePath, FileMode.Create);
 			await stream.WriteAsync(imageData);
-			return name;
+			return filename;
 		}
 	}
 }
