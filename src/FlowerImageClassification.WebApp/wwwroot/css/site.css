@@ -43,8 +43,9 @@ header {
 	display: inline-block;
 }
 
-.container {
+.container, .container-xl {
 	position: relative;
+	padding: 15px;
 }
 
 .pb-3 {
@@ -314,7 +315,7 @@ body {
 	width: 100%;
 	white-space: nowrap;
 	line-height: 2rem;
-	height: 150px;
+	height: 100px;
 	color: #444;
 }
 
@@ -463,10 +464,8 @@ iframe {
 */
 
 .skill_card {
-	width: 80%;
-	max-width: 1060px;
 	margin: auto;
-	margin-top: 50px;
+	margin-top: 20px;
 	margin-bottom: 20px;
 	text-align: center;
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);

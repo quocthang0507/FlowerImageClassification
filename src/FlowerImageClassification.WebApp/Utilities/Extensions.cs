@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace FlowerImageClassification.WebApp.Utilties
 {
-	public static class Extension
+	public static class Extensions
 	{
 		public static string IsSelected(this IHtmlHelper htmlHelper, string controllers, string actions, string cssClass = "active")
 		=> IsThisPage(htmlHelper, controllers, actions) ? cssClass : string.Empty;
@@ -33,10 +33,7 @@ namespace FlowerImageClassification.WebApp.Utilties
 		/// </summary>
 		/// <param name="htmlHelper"></param>
 		/// <returns></returns>
-		public static bool IsLocalHost(this IHtmlHelper htmlHelper)
-		{
-			return htmlHelper.ViewContext.HttpContext.Request.Host.Value.Contains("localhost");
-		}
-
+		public static bool IsLocalHost(this IHtmlHelper htmlHelper) => htmlHelper.ViewContext.HttpContext.Request.Host.Value.Contains("localhost");
 	}
+
 }

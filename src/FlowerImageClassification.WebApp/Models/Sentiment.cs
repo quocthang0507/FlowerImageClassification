@@ -5,14 +5,16 @@
 		public int ID { get; set; }
 		public string FileName { get; set; }
 		public string PredictedLabel { get; set; }
-		public uint Likes { get; set; }
-		public uint Dislikes { get; set; }
-		public uint Neutral { get; set; }
-		public bool Avaiable { get; set; }
-		public uint IncorrectPredictionVotes { get; set; }
-		public uint UnusefulInfoVotes { get; set; }
-		public uint DelayResponseVotes { get; set; }
-		public uint HardToUseVotes { get; set; }
-		public string MoreInfo { get; set; }
+		public int LikeNumber { get; set; }
+		public int DislikeNumber { get; set; }
+
+		public Sentiment(string fileName, string predictedLabel, int likeNumber, int dislikeNumber)
+		{
+			FileName = fileName;
+			PredictedLabel = predictedLabel;
+			LikeNumber = likeNumber;
+			DislikeNumber = dislikeNumber;
+		}
+
 	}
 }

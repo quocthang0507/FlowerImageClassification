@@ -29,21 +29,40 @@ namespace FlowerImageClassification.WebApp.Controllers
 			return View();
 		}
 
-		//[HttpPost]
-		//[ProducesResponseType(200)]
-		//[ProducesResponseType(400)]
-		//[Route("api/AddSentiment")]
-		//public async Task<IActionResult> AddSentiment([FromBody] Sentiment sentiment, IFormFile imageFile)
-		//{
-		//	if (!ModelState.IsValid || imageFile == null || imageFile.Length == 0 || sentiment == null)
-		//		return BadRequest("Bad request because of invalid model state or null paramter(s)");
-		//	byte[] imageData = await Transformer.GetByteFromUploadedFile(imageFile);
-		//	bool saved = await Transformer.SaveByteToFile(imageData);
-		//	if (!saved)
-		//		return BadRequest("Bad request because of invalid image");
-		//	sentimentService.Insert(sentiment);
-		//	return Ok();
-		//}
+		[HttpPost]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
+		[Route("api/Contribution")]
+		public async Task<IActionResult> SaveUserContribution(IFormFile imageFile, string predictedLabel)
+		{
+			if (!ModelState.IsValid || imageFile == null || imageFile.Length == 0 || (imageFile.Length / 1000) > 2048)
+				return BadRequest("Bad request because of invalid model state or null parameter or too large");
+			byte[] imageData = await Transformer.GetByteFromUploadedFile(imageFile);
+			string filename = await Transformer.SaveByteToFile(imageData);
+			if (filename == null)
+				return BadRequest("The file which you uploaded can't save in server");
+			Sentiment user = new Sentiment(filename, predictedLabel, 0, 0);
+			sentimentService.Insert(user);
+			return Ok(user);
+		}
 
+		[HttpPost]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
+		[Route("api/Base64Contribution")]
+		public async Task<IActionResult> SaveUserBase64Contribution(string base64image, string predictedLabel)
+		{
+			if (!ModelState.IsValid || base64image == null)
+				return BadRequest("Bad request because of invalid model state or null parameter");
+			byte[] imageData = await ImageTransformer.Base64ToByteArray(base64image);
+			if (imageData == null)
+				return BadRequest("Bad request because of an invalid base64 image");
+			string filename = await Transformer.SaveByteToFile(imageData);
+			if (filename == null)
+				return BadRequest("The file which you uploaded can't save in server");
+			Sentiment user = new Sentiment(filename, predictedLabel, 0, 0);
+			sentimentService.Insert(user);
+			return Ok(user);
+		}
 	}
 }

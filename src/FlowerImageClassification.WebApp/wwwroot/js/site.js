@@ -7,8 +7,8 @@ console.log('%cWARNING! You are in development mode', 'color: red; font-size: 28
 
 /////////////// Constants ///////////////
 const webcam = document.getElementById("my_camera");
-const mainForm = document.querySelector('#mainForm');
-const sentimentForm = document.querySelector('#sentimentForm');
+const mainForm = document.getElementById('mainForm');
+const btnContribution = document.getElementById('btnSendContribution');
 const inputFile = document.getElementById("inputFile");
 const inputWebcam = document.getElementById("inputWebcam");
 const background = document.querySelector("body > ul");
@@ -16,8 +16,8 @@ const background = document.querySelector("body > ul");
 /////////////// Form submit ///////////////
 if (inputFile != null || inputWebcam != null)
 	mainForm.addEventListener('submit', e => uploadAndClassify(e));
-if (sentimentForm != null)
-	sentimentForm.addEventListener('submit', e => SubmitUserSentiment(e));
+if (btnContribution != null)
+	btnContribution.addEventListener('click', e => SubmitUserSentiment(e));
 
 /////////////// File upload form ///////////////
 $(document).ready(customFileInput());

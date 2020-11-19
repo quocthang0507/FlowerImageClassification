@@ -51,13 +51,21 @@ function validateFileExtension() {
 	} else {
 		// Image preview 
 		if (fileInput.files && fileInput.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				document.getElementById("divResult_left").style.visibility = "visible";
-				document.getElementById('divImagePreview').innerHTML = '<img class="imgPreview" src="' + e.target.result + '"/>';
-			};
-			reader.readAsDataURL(fileInput.files[0]);
-			return true;
+			const Bytes = fileInput.files[0].size;
+			const MB = Math.round((Bytes / 1024));
+			// The size of the file. 
+			if (MB > 2048) {
+				alert('Kích thước tập tin quá lớn, vui lòng gửi tập tin nhỏ hơn 2MB');
+				return false;
+			} else {
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					document.getElementById("divResult_left").style.visibility = "visible";
+					document.getElementById('divImagePreview').innerHTML = '<img class="imgPreview" src="' + e.target.result + '"/>';
+				};
+				reader.readAsDataURL(fileInput.files[0]);
+				return true;
+			}
 		}
 	}
 	return false;
@@ -124,65 +132,6 @@ function uploadAndClassify(e) {
 }
 
 /**
- * Submit user sentiment to server
- * @param {any} e
- */
-function SubmitUserSentiment(e) {
-	e.preventDefault();
-
-	var url = 'api/AddSentiment';
-	var formData = new FormData();
-
-	const name = document.getElementById('divImageId');
-	const prediction = document.getElementById('divEnPrediction');
-	const incorrect = document.getElementById('chkIncorrect');
-	const unuseful = document.getElementById('chkUnuseful');
-	const delay = document.getElementById('chkDelay');
-	const hard = document.getElementById('chkHard');
-	const comment = document.getElementById('tbxSentiment');
-
-	const sentiment = {
-		FileName : name.value,
-		PredictedLabel : prediction.value,
-		IncorrectPredictionVotes : incorrect.checked,
-		UnusefulInfoVotes : unuseful.checked,
-		DelayResponseVotes : delay.checked,
-		HardToUseVotes : hard.checked,
-		MoreInfo : comment.value
-	};
-
-	//////////// User input file ///////////
-	if (inputFile != null) {
-		const files = inputFile.files;
-		if (!validateFileExtension())
-			return;
-		formData.append('imageFile', files[0]);
-		formData.append('sentiment', sentiment);
-		url = 'api/AddSentiment';
-	}
-	//////////// User webcam image ////////////
-	else {
-		var file = document.getElementById("inputWebcam").src;
-		formData.append("base64image", file);
-		url = 'api/ClassifyBase64'
-	}
-
-	fetch(url, {
-		method: 'POST',
-		body: formData
-	}).then(response => response.json()).then(response2 => {
-		$('#modal-sentiment').modal('toggle');
-		setTimeout(() => $('#modal-thank').modal('toggle'), 500);
-		console.log('Đã nhận được phản hồi: ', response2);
-	}).catch(error => {
-		console.error('Lỗi gửi phản hồi:', error);
-		alert('Lỗi gửi phản hồi lên server.');
-	});
-
-	$('#modal-sentiment').modal('toggle');
-}
-
-/**
  * Send request to get info by flower name
  * @param {Text} name 
  */
@@ -190,5 +139,45 @@ function getInfo(name) {
 	var url = 'api/GetInfo/' + name;
 	$.get(url, function (data) {
 		document.querySelector('#modal-info > div > div > div.modal-body').innerHTML = data;
+	});
+}
+
+/**
+ * Submit user sentiment to server
+ * @param {any} e
+ */
+function SubmitUserSentiment(e) {
+	e.preventDefault();
+
+	var url = 'api/Contribution';
+	var formData = new FormData();
+
+	const prediction = document.getElementById('divEnPrediction').innerHTML;
+
+	//////////// User input file ///////////
+	if (inputFile != null) {
+		const files = inputFile.files;
+		if (!validateFileExtension())
+			return;
+		formData.append('imageFile', files[0]);
+		formData.append('predictedLabel', prediction);
+	}
+	//////////// User webcam image ////////////
+	else {
+		var file = document.getElementById("inputWebcam").src;
+		formData.append("base64image", file);
+		formData.append('predictedLabel', prediction);
+		url = 'api/Base64Contribution';
+	}
+
+	fetch(url, {
+		method: 'POST',
+		body: formData
+	}).then(response => response.json()).then(response2 => {
+		
+		console.log('Đã nhận được phản hồi: ', response2);
+	}).catch(error => {
+		console.error('Lỗi gửi phản hồi:', error);
+		alert('Lỗi gửi phản hồi lên server.');
 	});
 }

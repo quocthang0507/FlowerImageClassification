@@ -10,6 +10,11 @@ namespace FlowerImageClassification.WebApp.Utilities
 	{
 		private static readonly string contributionPath = @"wwwroot\Contributions";
 
+		/// <summary>
+		/// Reads the uploaded file and transform to byte array
+		/// </summary>
+		/// <param name="imageFile"></param>
+		/// <returns></returns>
 		public static async Task<byte[]> GetByteFromUploadedFile(IFormFile imageFile)
 		{
 			MemoryStream memoryStream = new MemoryStream();
@@ -22,18 +27,22 @@ namespace FlowerImageClassification.WebApp.Utilities
 			return imageData;
 		}
 
-		public static async Task<bool> SaveByteToFile(byte[] imageData)
+		/// <summary>
+		/// Saves image data (in byte array) and returns it's random file name
+		/// </summary>
+		/// <param name="imageData"></param>
+		/// <returns></returns>
+		public static async Task<string> SaveByteToFile(byte[] imageData)
 		{
 			string ext = ImageValidation.GetImageFormat(imageData) != null ?
 				(ImageValidation.GetImageFormat(imageData) == ImageFormat.Jpeg ? ".jpg" : ".png") : null;
 			if (ext == null)
-				return false;
-			string filePath = Path.Combine(Directory.GetCurrentDirectory(), contributionPath, Path.GetRandomFileName().Split('.')[0] + ext);
+				return null;
+			string name = Path.GetRandomFileName().Split('.')[0];
+			string filePath = Path.Combine(Directory.GetCurrentDirectory(), contributionPath, name + ext);
 			using FileStream stream = new FileStream(filePath, FileMode.Create);
 			await stream.WriteAsync(imageData);
-			return true;
+			return name;
 		}
-
-
 	}
 }
