@@ -2,16 +2,17 @@
 using FlowerImageClassification.WebApp.LiteDb;
 using FlowerImageClassification.WebApp.Models;
 using FlowerImageClassification.WebApp.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FlowerImageClassification.WebApp.Controllers
 {
+	[Authorize(Roles = Role.Expert)]
 	public class ContributionController : Controller
 	{
 		public IConfiguration Configuration { get; }
@@ -68,6 +69,25 @@ namespace FlowerImageClassification.WebApp.Controllers
 			Sentiment user = new Sentiment(filename, predictedLabel, 0, 0);
 			sentimentService.Insert(user);
 			return Ok(user);
+		}
+
+		[HttpPost]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
+		[Route("api/Vote")]
+		public IActionResult VoteSentiment(int id, bool like = false, bool dislike = false)
+		{
+			if (!ModelState.IsValid || like == dislike)
+				return BadRequest("Bad request because of invalid model state or invalid vote");
+			Sentiment sentiment = sentimentService.FindOne(id);
+			if (sentiment == null)
+				return NotFound("Not found a sentiment which have this id");
+			if (like)
+				sentiment.LikeNumber++;
+			else
+				sentiment.DislikeNumber++;
+			sentimentService.Update(sentiment);
+			return Ok(sentiment);
 		}
 	}
 }

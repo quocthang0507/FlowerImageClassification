@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using FlowerImageClassification.WebApp.Models;
 
 namespace FlowerImageClassification.WebApp.Services
 {
 	public interface IUserService
 	{
-		Task<bool> IsValidUser(string username, string password);
+		User Authenticate(string username, string password);
 	}
 }

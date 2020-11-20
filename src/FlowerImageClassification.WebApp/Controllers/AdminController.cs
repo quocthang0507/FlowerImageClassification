@@ -1,6 +1,6 @@
 ﻿using FlowerImageClassification.WebApp.LiteDb;
 using FlowerImageClassification.WebApp.Models;
-using FlowerImageClassification.WebApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace FlowerImageClassification.WebApp.Controllers
 {
-	[BasicAuthentication]
+	[Authorize(Roles = Role.Admin)]
 	public class AdminController : Controller
 	{
 		private readonly ILiteDbFlowerService flowerService;
@@ -22,7 +22,6 @@ namespace FlowerImageClassification.WebApp.Controllers
 			//imageset.RestoreImageSet(@"D:\GitHub\FlowerImageClassification\FlowerImageClassification.WebApp\_backup\");
 		}
 
-		[BasicAuthentication]
 		public IActionResult Index()
 		{
 			IEnumerable<Flower> flowers = GetAll();
@@ -33,7 +32,6 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 		[Route("api/GetById/{id:int}")]
-		[BasicAuthentication]
 		public IActionResult GetById(int id)
 		{
 			if (!ModelState.IsValid)
@@ -56,7 +54,6 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 		[Route("api/Update")]
-		[BasicAuthentication]
 		public IActionResult Update([FromBody] Flower flower)
 		{
 			if (!ModelState.IsValid || flower == null)

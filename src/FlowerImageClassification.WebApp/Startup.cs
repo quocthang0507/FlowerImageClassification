@@ -1,12 +1,15 @@
 using FlowerImageClassification.Shared.ImageSchema;
 using FlowerImageClassification.WebApp.LiteDb;
 using FlowerImageClassification.WebApp.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.ML;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace FlowerImageClassification.WebApp
 {
@@ -28,10 +31,34 @@ namespace FlowerImageClassification.WebApp
 			services.AddPredictionEnginePool<ImageDataInMemory, ImagePrediction>().
 				FromFile(Configuration["MLModel:MLModelFilePath"]);
 
+			var appSettingsSection = Configuration.GetSection("AppSettings");
+
 			services.Configure<LiteDbOptions>(Configuration.GetSection("LiteDbOptions"));
+			services.Configure<AppSettings>(appSettingsSection);
+
 			services.AddSingleton<ILiteDbContext, LiteDbContext>();
 			services.AddTransient<ILiteDbFlowerService, LiteDbFlowerService>();
 			services.AddTransient<ILiteDbSentimentService, LiteDbSentimentService>();
+
+			var appSettings = appSettingsSection.Get<AppSettings>();
+			var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+			services.AddAuthentication(x =>
+			{
+				x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+				x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+			})
+			.AddJwtBearer(x =>
+			{
+				x.RequireHttpsMetadata = false;
+				x.SaveToken = true;
+				x.TokenValidationParameters = new TokenValidationParameters
+				{
+					ValidateIssuerSigningKey = true,
+					IssuerSigningKey = new SymmetricSecurityKey(key),
+					ValidateIssuer = false,
+					ValidateAudience = false
+				};
+			});
 
 			services.AddScoped<IUserService, UserService>();
 		}
