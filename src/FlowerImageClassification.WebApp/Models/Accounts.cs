@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace FlowerImageClassification.WebApp.Models
 {
-	public class Users
+	public class Accounts
 	{
-		public List<User> GetUsers()
+		public List<User> GetAccounts()
 		{
 			return new List<User> {
 				new User
@@ -19,9 +19,9 @@ namespace FlowerImageClassification.WebApp.Models
 			};
 		}
 
-		public List<User> GetUsersWithoutPass()
+		public List<User> GetAccWithoutPass()
 		{
-			return GetUsers().Select(u => u.WithoutPassword()).ToList();
+			return GetAccounts().Select(u => u.WithoutPassword()).ToList();
 		}
 	}
 }

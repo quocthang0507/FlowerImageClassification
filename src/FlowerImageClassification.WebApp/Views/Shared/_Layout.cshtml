@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
@@ -31,24 +33,46 @@
 						<li class="nav-item">
 							<a class="nav-link text-dark @Html.IsSelected(actions: "Index", controllers: "Camera")" asp-area="" asp-controller="Camera" asp-action="Index">Camera</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link text-dark @Html.IsSelected(actions: "Index", controllers: "Contribution")" asp-area="" asp-controller="Contribution" asp-action="Index">Đóng góp</a>
-						</li>
+						@{
+							string role = Context.Session.GetString("Role");
+							if (role == Role.Expert)
+							{
+								<li class="nav-item">
+									<a class="nav-link text-dark @Html.IsSelected(actions: "Index", controllers: "Contribution")" asp-area="" asp-controller="Contribution" asp-action="Index">Đóng góp</a>
+								</li>
+							}
+							else if (role == Role.Admin)
+							{
+								<li class="nav-item">
+									<a class="nav-link text-dark @Html.IsSelected(actions: "Index", controllers: "Admin")" asp-area="" asp-controller="Admin" asp-action="Index">Trang quản trị</a>
+								</li>
+							}
+						}
 						<li class="nav-item">
 							<a class="nav-link text-dark @Html.IsSelected(actions: "Privacy", controllers: "Home")" asp-area="" asp-controller="Home" asp-action="Privacy">Điều khoản Riêng tư</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link text-dark @Html.IsSelected(actions: "About", controllers: "Home")" asp-area="" asp-controller="Home" asp-action="About">Giới thiệu</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link text-dark @Html.IsSelected(actions: "Index", controllers: "Login")" asp-area="" asp-controller="Login" asp-action="Index">Đăng nhập</a>
-						</li>
+						@{
+							string username = @Context.Session.GetString("Username");
+							<li class="nav-item">
+								@if (username == null)
+								{
+									<a class="nav-link text-dark @Html.IsSelected(actions: "Index", controllers: "Login")" asp-area="" asp-controller="Login" asp-action="Index">Đăng nhập</a>
+								}
+								else
+								{
+									<a class="nav-link text-dark" href="#">Xin chào @username</a>
+								}
+							</li>
+						}
 					</ul>
 				</div>
 			</div>
 		</nav>
 	</header>
-	@if (@Html.IsThisPage(actions: "Index", controllers: "Home") || @Html.IsThisPage(actions: "Index", controllers: "Camera"))
+	@if (@Html.IsThisPage(actions: "Index", controllers: "Home") || @Html.IsThisPage(actions: "Index", controllers: "Camera") || @Html.IsThisPage(actions: "Index", controllers: "Login"))
 	{
 		<!--Random background-image-->
 		<ul class="cb-slideshow">

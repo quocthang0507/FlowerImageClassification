@@ -27,6 +27,8 @@ namespace FlowerImageClassification.WebApp
 		{
 			services.AddControllersWithViews();
 
+			services.AddSession();
+
 			// Register the PredictionEnginePool as a service in the IoC container for DI.
 			services.AddPredictionEnginePool<ImageDataInMemory, ImagePrediction>().
 				FromFile(Configuration["MLModel:MLModelFilePath"]);
@@ -78,9 +80,11 @@ namespace FlowerImageClassification.WebApp
 
 			app.UseRouting();
 
+			app.UseAuthorization();
+
 			app.UseAuthentication();
 
-			app.UseAuthorization();
+			app.UseSession();
 
 			app.UseEndpoints(endpoints =>
 			{
@@ -88,6 +92,7 @@ namespace FlowerImageClassification.WebApp
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
 			});
+
 		}
 	}
 }

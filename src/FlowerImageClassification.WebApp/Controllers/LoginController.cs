@@ -32,6 +32,8 @@ namespace FlowerImageClassification.WebApp.Controllers
 					ViewBag.Message = "Sai tên đăng nhập hoặc mật khẩu";
 					return Index();
 				}
+				HttpContext.Session.Set("Username", Encoding.UTF8.GetBytes(user.Username));
+				HttpContext.Session.Set("Role", Encoding.UTF8.GetBytes(user.Role));
 				return RedirectToAction("Index", "Home");
 			}
 			return Unauthorized();

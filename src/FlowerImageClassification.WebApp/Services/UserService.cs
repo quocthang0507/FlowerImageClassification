@@ -25,8 +25,8 @@ namespace FlowerImageClassification.WebApp.Services
 		public User Authenticate(string username, string password)
 		{
 			logger.LogInformation($"Validating user [{username}]");
-			Users users = new Users();
-			List<User> list = users.GetUsers();
+			Accounts users = new Accounts();
+			List<User> list = users.GetAccounts();
 			User user = list.SingleOrDefault(u =>
 				 u.Username.Equals(username, StringComparison.OrdinalIgnoreCase) &&
 				 u.Password.Equals(password));
@@ -40,7 +40,7 @@ namespace FlowerImageClassification.WebApp.Services
 				Subject = new ClaimsIdentity(new Claim[]
 				{
 					new Claim(ClaimTypes.Name, user.Username),
-					new Claim(ClaimTypes.Role,user.Role)
+					new Claim(ClaimTypes.Role, user.Role)
 				}),
 				Expires = DateTime.UtcNow.AddDays(7),
 				SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
