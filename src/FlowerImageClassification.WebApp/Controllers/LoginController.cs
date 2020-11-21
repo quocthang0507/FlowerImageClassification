@@ -9,6 +9,9 @@ namespace FlowerImageClassification.WebApp.Controllers
 	public class LoginController : Controller
 	{
 		private readonly IUserService userService;
+		private const string TOKEN = "token";
+		private const string NAME = "Username";
+		private const string ROLE = "Role";
 
 		public LoginController(IUserService userService)
 		{
@@ -33,12 +36,21 @@ namespace FlowerImageClassification.WebApp.Controllers
 					ViewBag.Message = "Sai tên đăng nhập hoặc mật khẩu";
 					return Index();
 				}
-				HttpContext.Session.Set("Username", Encoding.UTF8.GetBytes(user.Username));
-				HttpContext.Session.Set("Role", Encoding.UTF8.GetBytes(user.Role));
-				HttpContext.Response.Cookies.Append("token", user.Token, new CookieOptions { HttpOnly = true });
+				HttpContext.Session.Set(NAME, Encoding.UTF8.GetBytes(user.Username));
+				HttpContext.Session.Set(ROLE, Encoding.UTF8.GetBytes(user.Role));
+				HttpContext.Response.Cookies.Append(TOKEN, user.Token, new CookieOptions { HttpOnly = true });
 				return RedirectToAction("Index", "Home");
 			}
 			return Unauthorized();
+		}
+
+		[Route("Logout")]
+		public IActionResult Logout()
+		{
+			HttpContext.Session.Remove("Username");
+			HttpContext.Session.Remove("Role");
+			HttpContext.Response.Cookies.Delete(TOKEN);
+			return RedirectToAction("Index", "Home");
 		}
 	}
 }

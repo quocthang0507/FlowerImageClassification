@@ -47,7 +47,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 			string filename = await Transformer.SaveByteToFile(imageData);
 			if (filename == null)
 				return BadRequest("The file which you uploaded can't save in server");
-			Sentiment user = new Sentiment(filename, predictedLabel, 0, 0);
+			Sentiment user = new Sentiment(filename, predictedLabel, "");
 			sentimentService.Insert(user);
 			return Ok(user);
 		}
@@ -66,7 +66,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 			string filename = await Transformer.SaveByteToFile(imageData);
 			if (filename == null)
 				return BadRequest("The file which you uploaded can't save in server");
-			Sentiment user = new Sentiment(filename, predictedLabel, 0, 0);
+			Sentiment user = new Sentiment(filename, predictedLabel, "");
 			sentimentService.Insert(user);
 			return Ok(user);
 		}
@@ -74,18 +74,15 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[HttpPost]
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
-		[Route("api/Vote")]
-		public IActionResult VoteSentiment(int id, bool like = false, bool dislike = false)
+		[Route("api/UpdateLabel")]
+		public IActionResult UpdateLabel(int id, string newLabel = "")
 		{
-			if (!ModelState.IsValid || like == dislike)
-				return BadRequest("Bad request because of invalid model state or invalid vote");
+			if (!ModelState.IsValid)
+				return BadRequest("Bad request because of invalid model state");
 			Sentiment sentiment = sentimentService.FindOne(id);
 			if (sentiment == null)
 				return NotFound("Not found a sentiment which have this id");
-			if (like)
-				sentiment.LikeNumber++;
-			else
-				sentiment.DislikeNumber++;
+			sentiment.NewLabel = newLabel;
 			sentimentService.Update(sentiment);
 			return Ok(sentiment);
 		}

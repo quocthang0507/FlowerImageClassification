@@ -38,13 +38,13 @@
 							if (role == Role.Expert)
 							{
 								<li class="nav-item">
-									<a class="nav-link text-dark @Html.IsSelected(actions: "Index", controllers: "Contribution")" asp-area="" asp-controller="Contribution" asp-action="Index">Đóng góp</a>
+									<a class="nav-link text-info @Html.IsSelected(actions: "Index", controllers: "Contribution")" asp-area="" asp-controller="Contribution" asp-action="Index">Đóng góp</a>
 								</li>
 							}
 							else if (role == Role.Admin)
 							{
 								<li class="nav-item">
-									<a class="nav-link text-dark @Html.IsSelected(actions: "Index", controllers: "Admin")" asp-area="" asp-controller="Admin" asp-action="Index">Trang quản trị</a>
+									<a class="nav-link text-info @Html.IsSelected(actions: "Index", controllers: "Admin")" asp-area="" asp-controller="Admin" asp-action="Index">Trang quản trị</a>
 								</li>
 							}
 						}
@@ -56,16 +56,21 @@
 						</li>
 						@{
 							string username = @Context.Session.GetString("Username");
-							<li class="nav-item">
-								@if (username == null)
-								{
-									<a class="nav-link text-dark @Html.IsSelected(actions: "Index", controllers: "Login")" asp-area="" asp-controller="Login" asp-action="Index">Đăng nhập</a>
-								}
-								else
-								{
-									<a class="nav-link text-dark" href="#">Xin chào @username</a>
-								}
-							</li>
+							if (username == null)
+							{
+								<li class="nav-item">
+									<a class="nav-link text-success @Html.IsSelected(actions: "Index", controllers: "Login")" asp-area="" asp-controller="Login" asp-action="Index">Đăng nhập</a>
+								</li>
+							}
+							else
+							{
+								<li class="nav-item">
+									<a class="nav-link text-success" href="#">Xin chào @username</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-danger" asp-area="" asp-controller="Login" asp-action="Logout">Đăng xuất</a>
+								</li>
+							}
 						}
 					</ul>
 				</div>
