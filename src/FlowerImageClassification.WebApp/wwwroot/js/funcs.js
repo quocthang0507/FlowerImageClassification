@@ -179,7 +179,7 @@ function SubmitUserSentiment(e) {
 			alert('Đóng góp thành công.')
 			console.log('Đã nhận được đóng góp: ', response2);
 		}).catch(error => {
-			console.error('Lỗi gửi đóng góp:', error);
+			console.error('Lỗi gửi đóng góp: ', error);
 			alert('Lỗi gửi đóng góp lên server.');
 		});
 	}
@@ -207,7 +207,7 @@ function UpdateLabel(id) {
 		alert('Cập nhật nhãn mới thành công');
 		console.log('Cập nhật nhãn mới thành công.');
 	}).catch(error => {
-		console.error('Lỗi cập nhật nhãn mới:', error);
+		console.error('Lỗi cập nhật nhãn mới: ', error);
 		alert('Lỗi cập nhật nhãn mới.');
 	});
 }
@@ -227,8 +227,9 @@ function MarkComplete(id) {
 	}).then().then(() => {
 		alert('Đánh dấu hoàn tất thành công');
 		console.log('Đánh dấu hoàn tất thành công.');
+		ReloadASentiment(id);
 	}).catch(error => {
-		console.error('Lỗi đánh dấu hoàn tất:', error);
+		console.error('Lỗi đánh dấu hoàn tất: ', error);
 		alert('Lỗi đánh dấu hoàn tất.');
 	});
 }
@@ -248,8 +249,48 @@ function UnmarkComplete(id) {
 	}).then().then(() => {
 		alert('Hoàn tác đánh dấu thành công');
 		console.log('Hoàn tác đánh dấu thành công.');
+		ReloadASentiment(id);
 	}).catch(error => {
-		console.error('Lỗi hoàn tác đánh dấu:', error);
+		console.error('Lỗi hoàn tác đánh dấu: ', error);
 		alert('Lỗi hoàn tác đánh dấu.');
 	});
+}
+
+/**
+ * Get a new sentiment from server and populate to html
+ * @param {any} id
+ */
+function ReloadASentiment(id) {
+	var url = window.location.origin + '/api/GetSentiment/' + id;
+
+	$.get(url, function (data, status) {
+		if (status == 'success') {
+			var parent = document.getElementById(id).parentElement;
+			parent.innerHTML = '';
+			if (data.visible) {
+				// <button class="btn btn-primary" id="@ID" onclick="MarkComplete(@ID)">Đánh dấu đã xử lý</button>
+				parent.appendChild(GenerateNode('button', id, 'btn btn-primary', 'Đánh dấu đã xử lý', `MarkComplete(${id})`));
+			}
+			else {
+				/*<button class="btn btn-info">Đã xử lý</button>
+				  <button class="btn btn-danger" id="@sentiment.ID" onclick="UnmarkComplete(@sentiment.ID)">Hoàn tác</button>
+				 */
+				parent.appendChild(GenerateNode('button', id, 'btn btn-info', 'Đã xử lý'));
+				parent.appendChild(GenerateNode('button', id, 'btn btn-danger', 'Hoàn tác', `UnmarkComplete(${id})`));
+			}
+		}
+		else if (status == 'error') {
+			console.error('Lỗi khi lấy thông tin: ', data);
+		}
+	});
+}
+
+function GenerateNode(tagName, id, classes, inner, onclick = null) {
+	var element = document.createElement(tagName);
+	element.id = id;
+	element.className = classes;
+	element.innerHTML = inner;
+	if (onclick != null)
+		element.setAttribute('onclick', onclick);
+	return element;
 }

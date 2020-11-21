@@ -135,7 +135,23 @@ namespace FlowerImageClassification.WebApp.Controllers
 				return NotFound("Not found a sentiment which have this id");
 		}
 
+		[HttpGet]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
+		[Authorize(Roles = Role.Admin)]
+		[Route("api/GetSentiment/{id:int}")]
+		public IActionResult GetSentimentByID(int id)
+		{
+			if (!ModelState.IsValid)
+				return BadRequest("Bad request because of invalid model state");
+			Sentiment sentiment = GetOne(id);
+			if (sentiment == null)
+				return NotFound("Not found a sentiment which have this id");
+			return Ok(sentiment);
+		}
+
 		private IEnumerable<Sentiment> GetAll() => sentimentService.FindAll();
 
+		private Sentiment GetOne(int id) => sentimentService.FindOne(id);
 	}
 }

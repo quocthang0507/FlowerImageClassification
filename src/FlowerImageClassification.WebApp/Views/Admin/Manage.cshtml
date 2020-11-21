@@ -26,12 +26,12 @@
 					<div class="form-group center">
 						@if (sentiment.Visible)
 						{
-							<button class="btn btn-primary" value="@sentiment.ID" onclick="MarkComplete(@sentiment.ID)">Đánh dấu đã xử lý</button>
+							<button class="btn btn-primary" id="@sentiment.ID" onclick="MarkComplete(@sentiment.ID)">Đánh dấu đã xử lý</button>
 						}
 						else
 						{
 							<button class="btn btn-info">Đã xử lý</button>
-							<button class="btn btn-danger" value="@sentiment.ID" onclick="UnmarkComplete(@sentiment.ID)">Hoàn tác</button>
+							<button class="btn btn-danger" id="@sentiment.ID" onclick="UnmarkComplete(@sentiment.ID)">Hoàn tác</button>
 						}
 					</div>
 				</div>
