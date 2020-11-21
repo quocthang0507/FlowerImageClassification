@@ -1,3 +1,5 @@
+# FlowerImageClassification
+
 ---
 Tên khóa luận: "Xây dựng ứng dụng nhận diện loài hoa sử dụng thư viện ML.NET"
 Loại khóa luận: "Khoá luận tốt nghiệp kỹ sư Công nghệ Thông tin"
@@ -13,7 +15,6 @@ Công nghệ:
 - asp.net-core-mvc
 ---
 
-# FlowerImageClassification
 The entire solution is based on [DeepLearning_ImageClassification_Training](https://github.com/dotnet/machinelearning-samples/tree/master/samples/csharp/getting-started/DeepLearning_ImageClassification_Training).
 
 Hope you like it! 😍😍😍
