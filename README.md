@@ -4,7 +4,7 @@
 | --- | --- | --- | --- | --- |
 | Xây dựng ứng dụng nhận diện loài hoa sử dụng thư viện ML.NET | Khoá luận tốt nghiệp kỹ sư Công nghệ Thông tin | TS. Trần Ngô Như Khánh | 1610207, La Quốc Thắng | CTK40 |
 
-The entire solution is based on [DeepLearning_ImageClassification_Training](https://github.com/dotnet/machinelearning-samples/tree/master/samples/csharp/getting-started/DeepLearning_ImageClassification_Training).
+*This solution is based on [DeepLearning_ImageClassification_Training](https://github.com/dotnet/machinelearning-samples/tree/master/samples/csharp/getting-started/DeepLearning_ImageClassification_Training).*
 
 Hope you like it! 😍😍😍
 
