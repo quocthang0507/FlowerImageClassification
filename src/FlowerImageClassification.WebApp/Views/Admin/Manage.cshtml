@@ -9,26 +9,33 @@
 
 <div class="row">
 	@foreach (var sentiment in Model)
-		if (sentiment.Visible)
-		{
-			<div class="col-md-4">
-				<div class="card">
-					<img src="~/Contributions/@sentiment.FileName" alt="@sentiment.FileName" class="card-img-top" />
-					<div class="card-body">
-						<p>Ngày tải lên: @sentiment.UploadDate.ToString("d/M/yyyy H:m:s")</p>
-						<div class="form-group">
-							<label for="tbxPredictedLabel">Nhãn dự đoán:</label>
-							<input type="text" class="form-control" id="tbxPredictedLabel" value="@sentiment.PredictedLabel" readonly>
-						</div>
-						<div class="form-group">
-							<label for="tbxNewLabel">Nhãn mới (nếu có):</label>
-							<input type="text" class="form-control" id="tbxNewLabel" value="@sentiment.NewLabel" readonly>
-						</div>
-						<div class="form-group center">
-							<button class="btn btn-primary" id="@sentiment.ID">Đánh dấu đã xử lý</button>
-						</div>
+	{
+		<div class="col-md-4">
+			<div class="card">
+				<img src="~/Contributions/@sentiment.FileName" alt="@sentiment.FileName" class="card-img-top" />
+				<div class="card-body">
+					<p>Ngày tải lên: @sentiment.UploadDate.ToString("d/M/yyyy H:m:s")</p>
+					<div class="form-group">
+						<label for="tbxPredictedLabel">Nhãn dự đoán:</label>
+						<input type="text" class="form-control" value="@sentiment.PredictedLabel" readonly>
+					</div>
+					<div class="form-group">
+						<label for="tbxNewLabel">Nhãn mới (nếu có):</label>
+						<input type="text" class="form-control" value="@sentiment.NewLabel" readonly>
+					</div>
+					<div class="form-group center">
+						@if (sentiment.Visible)
+						{
+							<button class="btn btn-primary" value="@sentiment.ID" onclick="MarkComplete(@sentiment.ID)">Đánh dấu đã xử lý</button>
+						}
+						else
+						{
+							<button class="btn btn-info">Đã xử lý</button>
+							<button class="btn btn-danger" value="@sentiment.ID" onclick="UnmarkComplete(@sentiment.ID)">Hoàn tác</button>
+						}
 					</div>
 				</div>
 			</div>
-		}
+		</div>
+	}
 </div>

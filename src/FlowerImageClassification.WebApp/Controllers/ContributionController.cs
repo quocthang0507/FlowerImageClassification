@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 
 namespace FlowerImageClassification.WebApp.Controllers
 {
-	[Authorize(Roles = Role.Expert)]
 	public class ContributionController : Controller
 	{
 		public IConfiguration Configuration { get; }
@@ -26,13 +25,12 @@ namespace FlowerImageClassification.WebApp.Controllers
 			this.sentimentService = sentimentService;
 		}
 
+		[Authorize(Roles = Role.Expert)]
 		public IActionResult Index()
 		{
 			IEnumerable<Sentiment> sentiments = GetAll();
 			return View(sentiments);
 		}
-
-		private IEnumerable<Sentiment> GetAll() => sentimentService.FindAll();
 
 		[HttpPost]
 		[ProducesResponseType(200)]
@@ -76,6 +74,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 		[Route("api/UpdateLabel")]
+		[Authorize(Roles = Role.Expert)]
 		public IActionResult UpdateLabel(int id, string newLabel = "")
 		{
 			if (!ModelState.IsValid)
@@ -88,12 +87,29 @@ namespace FlowerImageClassification.WebApp.Controllers
 			return Ok(sentiment);
 		}
 
-		[HttpGet]
+		[HttpPost]
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
-		[Route("api/Hide/{id:int}")]
 		[Authorize(Roles = Role.Admin)]
-		public IActionResult HideImage(int id)
+		[Route("api/MarkComplete")]
+		public IActionResult MarkComplete(int id)
+		{
+			if (!ModelState.IsValid)
+				return BadRequest("Bad request because of invalid model state");
+			Sentiment sentiment = sentimentService.FindOne(id);
+			if (sentiment == null)
+				return NotFound("Not found a sentiment which have this id");
+			sentiment.Visible = false;
+			sentimentService.Update(sentiment);
+			return Ok();
+		}
+
+		[HttpPost]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
+		[Authorize(Roles = Role.Admin)]
+		[Route("api/UnmarkComplete")]
+		public IActionResult UnmarkComplete(int id)
 		{
 			if (!ModelState.IsValid)
 				return BadRequest("Bad request because of invalid model state");
@@ -105,10 +121,9 @@ namespace FlowerImageClassification.WebApp.Controllers
 			return Ok();
 		}
 
-		[HttpGet]
+		[HttpPost]
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
-		[Route("api/Delete/{id:int}")]
 		[Authorize(Roles = Role.Admin)]
 		public IActionResult DeleteImage(int id)
 		{
@@ -119,6 +134,8 @@ namespace FlowerImageClassification.WebApp.Controllers
 			else
 				return NotFound("Not found a sentiment which have this id");
 		}
+
+		private IEnumerable<Sentiment> GetAll() => sentimentService.FindAll();
 
 	}
 }

@@ -19,14 +19,14 @@
 						<p>Ngày tải lên: @sentiment.UploadDate.ToString("d/M/yyyy H:m:s")</p>
 						<div class="form-group">
 							<label for="tbxPredictedLabel">Nhãn dự đoán:</label>
-							<input type="text" class="form-control" id="tbxPredictedLabel" value="@sentiment.PredictedLabel" readonly>
+							<input type="text" class="form-control" value="@sentiment.PredictedLabel" readonly>
 						</div>
 						<div class="form-group">
 							<label for="tbxNewLabel">Nhãn mới (nếu có):</label>
-							<input type="text" class="form-control" id="tbxNewLabel" value="@sentiment.NewLabel">
+							<input type="text" class="form-control" value="@sentiment.NewLabel" id="@sentiment.ID">
 						</div>
 						<div class="form-group center">
-							<button class="btn btn-primary" id="@sentiment.ID">Đóng góp</button>
+							<button class="btn btn-primary" name="@sentiment.ID" onclick="UpdateLabel(@sentiment.ID)">Đóng góp</button>
 						</div>
 					</div>
 				</div>

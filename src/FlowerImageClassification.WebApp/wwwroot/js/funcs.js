@@ -17,7 +17,7 @@ function getRandomArbitraryNumber(min, max) {
  */
 function takeSnapshot() {
 	Webcam.snap(function (data_uri) {
-		document.getElementById("inputWebcam").src = data_uri;
+		document.getElementById('inputWebcam').src = data_uri;
 	});
 }
 
@@ -25,14 +25,14 @@ function takeSnapshot() {
  * Add 'loading' class
  */
 function addLoadingClass() {
-	$("body").addClass("loading");
+	$('body').addClass('loading');
 }
 
 /**
  * Remove 'loading' class
  */
 function removeLoadingClass() {
-	$("body").removeClass("loading");
+	$('body').removeClass('loading');
 }
 
 /**
@@ -44,7 +44,7 @@ function validateFileExtension() {
 	// Allowing 2 extensions
 	var allowedExtensions = /(\.jpg|\.png)$/i;
 	if (fileInput.files.length == 0)
-		alert("Hình ảnh không được để trống!");
+		alert('Hình ảnh không được để trống!');
 	else if (!allowedExtensions.exec(filePath)) {
 		alert('Chỉ chấp nhận hình JPG và PNG!');
 		fileInput.value = '';
@@ -60,8 +60,8 @@ function validateFileExtension() {
 			} else {
 				var reader = new FileReader();
 				reader.onload = function (e) {
-					document.getElementById("divResult_left").style.visibility = "visible";
-					document.getElementById('divImagePreview').innerHTML = '<img class="imgPreview" src="' + e.target.result + '"/>';
+					document.getElementById('divResult_left').style.visibility = 'visible';
+					document.getElementById('divImagePreview').innerHTML = "<img class='imgPreview' src='' + e.target.result + ''/>";
 				};
 				reader.readAsDataURL(fileInput.files[0]);
 				return true;
@@ -76,9 +76,9 @@ function validateFileExtension() {
  */
 function customFileInput() {
 	// Add the following code if you want the name of the file appear on select
-	$(".custom-file-input").on("change", function () {
-		var fileName = $(this).val().split("\\").pop();
-		$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+	$('.custom-file-input').on('change', function () {
+		var fileName = $(this).val().split('\\').pop();
+		$(this).siblings('.custom-file-label').addClass('selected').html(fileName);
 	});
 }
 
@@ -102,8 +102,8 @@ function uploadAndClassify(e) {
 	}
 	//////////// User webcam image ////////////
 	else {
-		var file = document.getElementById("inputWebcam").src;
-		formData.append("base64image", file);
+		var file = document.getElementById('inputWebcam').src;
+		formData.append('base64image', file);
 		url = 'api/ClassifyBase64'
 	}
 
@@ -114,12 +114,12 @@ function uploadAndClassify(e) {
 		body: formData
 	}).then(response => response.json()).then(response2 => {
 		console.log('Đã nhận được phản hồi: ', response2);
-		document.getElementById("divResult_right").style.visibility = "visible";
-		document.getElementById('divImageId').innerHTML = "Tên tập tin vừa tải lên: " + response2.imageID;
+		document.getElementById('divResult_right').style.visibility = 'visible';
+		document.getElementById('divImageId').innerHTML = 'Tên tập tin vừa tải lên: ' + response2.imageID;
 		document.getElementById('divPrediction').innerHTML = `Kết quả dự đoán là: ${dict[response2.predictedLabel]}`;
 		document.getElementById('divEnPrediction').innerHTML = response2.predictedLabel;
-		document.getElementById('divProbability').innerHTML = "Xác suất: " + (response2.probability * 100).toFixed(3) + "%";
-		document.getElementById('divExecutionTime').innerHTML = "Thời gian dự đoán: " + response2.predictionExecutionTime + " mili giây";
+		document.getElementById('divProbability').innerHTML = 'Xác suất: ' + (response2.probability * 100).toFixed(3) + '%';
+		document.getElementById('divExecutionTime').innerHTML = 'Thời gian dự đoán: ' + response2.predictionExecutionTime + ' mili giây';
 		getInfo(response2.predictedLabel);
 
 		removeLoadingClass();
@@ -166,8 +166,8 @@ function SubmitUserSentiment(e) {
 		}
 		//////////// User webcam image ////////////
 		else {
-			var file = document.getElementById("inputWebcam").src;
-			formData.append("base64image", file);
+			var file = document.getElementById('inputWebcam').src;
+			formData.append('base64image', file);
 			formData.append('predictedLabel', prediction);
 			url = 'api/Base64Contribution';
 		}
@@ -184,6 +184,72 @@ function SubmitUserSentiment(e) {
 		});
 	}
 	else {
-		console.log("Đã từ chối đóng góp ảnh");
+		console.log('Đã từ chối đóng góp ảnh');
 	}
+}
+
+/**
+ * Update new label for incorrect labeled image
+ */
+function UpdateLabel(id) {
+	var url = 'api/UpdateLabel';
+	var formData = new FormData();
+
+	const label = document.getElementById(id).value;
+
+	formData.append('id', id);
+	formData.append('newLabel', label);
+
+	fetch(url, {
+		method: 'POST',
+		body: formData
+	}).then().then(() => {
+		alert('Cập nhật nhãn mới thành công');
+		console.log('Cập nhật nhãn mới thành công.');
+	}).catch(error => {
+		console.error('Lỗi cập nhật nhãn mới:', error);
+		alert('Lỗi cập nhật nhãn mới.');
+	});
+}
+
+/**
+ * Mark an image as labeled image
+ */
+function MarkComplete(id) {
+	var url = window.location.origin + '/api/MarkComplete';
+	var formData = new FormData();
+
+	formData.append('id', id);
+
+	fetch(url, {
+		method: 'POST',
+		body: formData
+	}).then().then(() => {
+		alert('Đánh dấu hoàn tất thành công');
+		console.log('Đánh dấu hoàn tất thành công.');
+	}).catch(error => {
+		console.error('Lỗi đánh dấu hoàn tất:', error);
+		alert('Lỗi đánh dấu hoàn tất.');
+	});
+}
+
+/**
+ * Mark an image as unlabeled image
+ */
+function UnmarkComplete(id) {
+	var url = window.location.origin + '/api/UnmarkComplete';
+	var formData = new FormData();
+
+	formData.append('id', id);
+
+	fetch(url, {
+		method: 'POST',
+		body: formData
+	}).then().then(() => {
+		alert('Hoàn tác đánh dấu thành công');
+		console.log('Hoàn tác đánh dấu thành công.');
+	}).catch(error => {
+		console.error('Lỗi hoàn tác đánh dấu:', error);
+		alert('Lỗi hoàn tác đánh dấu.');
+	});
 }
