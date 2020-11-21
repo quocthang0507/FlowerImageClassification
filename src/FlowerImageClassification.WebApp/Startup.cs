@@ -87,6 +87,7 @@ namespace FlowerImageClassification.WebApp
 			{
 				app.UseExceptionHandler("/Home/Error");
 			}
+
 			app.UseStaticFiles();
 
 			app.UseRouting();
