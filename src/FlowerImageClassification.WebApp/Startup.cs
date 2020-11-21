@@ -25,6 +25,8 @@ namespace FlowerImageClassification.WebApp
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddCors();
+
 			services.AddControllersWithViews();
 
 			services.AddSession();
@@ -80,9 +82,14 @@ namespace FlowerImageClassification.WebApp
 
 			app.UseRouting();
 
-			app.UseAuthorization();
+			app.UseCors(x => x
+				.AllowAnyOrigin()
+				.AllowAnyMethod()
+				.AllowAnyHeader());
 
 			app.UseAuthentication();
+
+			app.UseAuthorization();
 
 			app.UseSession();
 

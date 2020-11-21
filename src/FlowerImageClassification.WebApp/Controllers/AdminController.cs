@@ -8,7 +8,6 @@ using System.Collections.Generic;
 
 namespace FlowerImageClassification.WebApp.Controllers
 {
-	[Authorize(Roles = Role.Admin)]
 	public class AdminController : Controller
 	{
 		private readonly ILiteDbFlowerService flowerService;
@@ -24,6 +23,8 @@ namespace FlowerImageClassification.WebApp.Controllers
 
 		public IActionResult Index()
 		{
+			if (!User.IsInRole(Role.Admin))
+				return Forbid();
 			IEnumerable<Flower> flowers = GetAll();
 			return View(flowers);
 		}
