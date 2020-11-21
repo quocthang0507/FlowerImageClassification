@@ -9,6 +9,6 @@ namespace FlowerImageClassification.WebApp.LiteDb
 		Sentiment FindOne(int id);
 		int Insert(Sentiment sentiment);
 		bool Update(Sentiment sentiment);
-
+		bool Delete(int id);
 	}
 }

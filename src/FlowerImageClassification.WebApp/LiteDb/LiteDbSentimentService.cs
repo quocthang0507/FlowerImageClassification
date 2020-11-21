@@ -21,5 +21,7 @@ namespace FlowerImageClassification.WebApp.LiteDb
 		public int Insert(Sentiment sentiment) => liteDb.GetCollection<Sentiment>().Insert(sentiment);
 
 		public bool Update(Sentiment sentiment) => liteDb.GetCollection<Sentiment>().Update(sentiment);
+
+		public bool Delete(int id) => liteDb.GetCollection<Sentiment>().Delete(id);
 	}
 }

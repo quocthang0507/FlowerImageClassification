@@ -55,7 +55,7 @@ function validateFileExtension() {
 			const MB = Math.round((Bytes / 1024));
 			// The size of the file. 
 			if (MB > 2048) {
-				alert('Kích thước tập tin quá lớn, vui lòng gửi tập tin nhỏ hơn 2MB');
+				alert('Kích thước tập tin quá lớn, vui lòng gửi tập tin nhỏ hơn 2MB.');
 				return false;
 			} else {
 				var reader = new FileReader();
@@ -149,35 +149,41 @@ function getInfo(name) {
 function SubmitUserSentiment(e) {
 	e.preventDefault();
 
-	var url = 'api/Contribution';
-	var formData = new FormData();
+	if (confirm('Bạn có muốn đóng góp ảnh này vào hệ thống nhằm mục đích cải thiện mô hình không?')) {
 
-	const prediction = document.getElementById('divEnPrediction').innerHTML;
+		var url = 'api/Contribution';
+		var formData = new FormData();
 
-	//////////// User input file ///////////
-	if (inputFile != null) {
-		const files = inputFile.files;
-		if (!validateFileExtension())
-			return;
-		formData.append('imageFile', files[0]);
-		formData.append('predictedLabel', prediction);
+		const prediction = document.getElementById('divEnPrediction').innerHTML;
+
+		//////////// User input file ///////////
+		if (inputFile != null) {
+			const files = inputFile.files;
+			if (!validateFileExtension())
+				return;
+			formData.append('imageFile', files[0]);
+			formData.append('predictedLabel', prediction);
+		}
+		//////////// User webcam image ////////////
+		else {
+			var file = document.getElementById("inputWebcam").src;
+			formData.append("base64image", file);
+			formData.append('predictedLabel', prediction);
+			url = 'api/Base64Contribution';
+		}
+
+		fetch(url, {
+			method: 'POST',
+			body: formData
+		}).then(response => response.json()).then(response2 => {
+			alert('Đóng góp thành công.')
+			console.log('Đã nhận được đóng góp: ', response2);
+		}).catch(error => {
+			console.error('Lỗi gửi đóng góp:', error);
+			alert('Lỗi gửi đóng góp lên server.');
+		});
 	}
-	//////////// User webcam image ////////////
 	else {
-		var file = document.getElementById("inputWebcam").src;
-		formData.append("base64image", file);
-		formData.append('predictedLabel', prediction);
-		url = 'api/Base64Contribution';
+		console.log("Đã từ chối đóng góp ảnh");
 	}
-
-	fetch(url, {
-		method: 'POST',
-		body: formData
-	}).then(response => response.json()).then(response2 => {
-		
-		console.log('Đã nhận được phản hồi: ', response2);
-	}).catch(error => {
-		console.error('Lỗi gửi phản hồi:', error);
-		alert('Lỗi gửi phản hồi lên server.');
-	});
 }

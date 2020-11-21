@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -18,13 +19,11 @@ namespace FlowerImageClassification.WebApp.Controllers
 		public IConfiguration Configuration { get; }
 
 		private readonly ILiteDbSentimentService sentimentService;
-		private readonly ILogger<ContributionController> logger;
 
-		public ContributionController(IConfiguration configuration, ILiteDbSentimentService sentimentService, ILogger<ContributionController> logger)
+		public ContributionController(IConfiguration configuration, ILiteDbSentimentService sentimentService)
 		{
 			Configuration = configuration;
 			this.sentimentService = sentimentService;
-			this.logger = logger;
 		}
 
 		public IActionResult Index()
@@ -47,7 +46,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 			string filename = await Transformer.SaveByteToFile(imageData);
 			if (filename == null)
 				return BadRequest("The file which you uploaded can't save in server");
-			Sentiment user = new Sentiment(filename, predictedLabel, "");
+			Sentiment user = new Sentiment(filename, predictedLabel, DateTime.Now);
 			sentimentService.Insert(user);
 			return Ok(user);
 		}
@@ -66,7 +65,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 			string filename = await Transformer.SaveByteToFile(imageData);
 			if (filename == null)
 				return BadRequest("The file which you uploaded can't save in server");
-			Sentiment user = new Sentiment(filename, predictedLabel, "");
+			Sentiment user = new Sentiment(filename, predictedLabel, DateTime.Now);
 			sentimentService.Insert(user);
 			return Ok(user);
 		}
@@ -86,5 +85,38 @@ namespace FlowerImageClassification.WebApp.Controllers
 			sentimentService.Update(sentiment);
 			return Ok(sentiment);
 		}
+
+		[HttpGet]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
+		[Route("api/Hide?{id:int}")]
+		[Authorize(Roles = Role.Admin)]
+		public IActionResult HideImage(int id)
+		{
+			if (!ModelState.IsValid)
+				return BadRequest("Bad request because of invalid model state");
+			Sentiment sentiment = sentimentService.FindOne(id);
+			if (sentiment == null)
+				return NotFound("Not found a sentiment which have this id");
+			sentiment.Visible = true;
+			sentimentService.Update(sentiment);
+			return Ok();
+		}
+
+		[HttpGet]
+		[ProducesResponseType(200)]
+		[ProducesResponseType(400)]
+		[Route("api/Delete?{id:int}")]
+		[Authorize(Roles = Role.Admin)]
+		public IActionResult DeleteImage(int id)
+		{
+			if (!ModelState.IsValid)
+				return BadRequest("Bad request because of invalid model state");
+			if (sentimentService.Delete(id))
+				return Ok();
+			else
+				return NotFound("Not found a sentiment which have this id");
+		}
+
 	}
 }

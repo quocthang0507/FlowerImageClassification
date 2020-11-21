@@ -1,20 +1,35 @@
 ﻿@model IEnumerable<Sentiment>
 @{
-	ViewData["Title"] = "Đóng góp";
+	ViewData["Title"] = "Gắn nhãn hình ảnh";
 }
 
-<h1>Đóng góp</h1>
+<div class="text-center">
+	<h1 class="display-4">Gắn nhãn hình ảnh từ chuyên gia</h1>
+	<i>Lưu ý: Vui lòng chỉ gắn nhãn những hình ảnh cần sửa</i>
+</div>
 
 <div class="row">
 	@foreach (var sentiment in Model)
-	{
-		<div class="col-md-3">
-			<div class="img-thumbnail">
-				<img id="@sentiment.ID" src="~/Contributions/@sentiment.FileName" alt="@sentiment.FileName"/>
-				<div class="caption">
-					<p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+		if (sentiment.Visible)
+		{
+			<div class="col-md-4">
+				<div class="card">
+					<img src="~/Contributions/@sentiment.FileName" alt="@sentiment.FileName" class="card-img-top" />
+					<div class="card-body">
+						<p>Ngày tải lên: @sentiment.UploadDate.ToString("d/M/yyyy H:m:s")</p>
+						<div class="form-group">
+							<label for="tbxPredictedLabel">Nhãn dự đoán:</label>
+							<input type="text" class="form-control" id="tbxPredictedLabel" value="@sentiment.PredictedLabel" readonly>
+						</div>
+						<div class="form-group">
+							<label for="tbxNewLabel">Nhãn mới (nếu có):</label>
+							<input type="text" class="form-control" id="tbxNewLabel" value="@sentiment.NewLabel">
+						</div>
+						<div class="form-group center">
+							<button class="btn btn-primary" id="@sentiment.ID">Đóng góp</button>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	}
+		}
 </div>

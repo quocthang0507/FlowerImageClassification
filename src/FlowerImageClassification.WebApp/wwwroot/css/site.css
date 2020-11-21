@@ -18,7 +18,7 @@ a.navbar-brand {
 }
 
 .active {
-	font-weight: 600;
+	font-weight: 700;
 }
 
 
@@ -45,6 +45,10 @@ header {
 
 .container, .container-xl {
 	position: relative;
+}
+
+.container-xl {
+	margin-bottom: 100px;
 }
 
 .pb-3 {

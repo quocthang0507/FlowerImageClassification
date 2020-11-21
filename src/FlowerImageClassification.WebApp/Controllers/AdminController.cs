@@ -16,10 +16,6 @@ namespace FlowerImageClassification.WebApp.Controllers
 		public AdminController(ILiteDbFlowerService flowerService)
 		{
 			this.flowerService = flowerService;
-			FlowerDataset imageset = new FlowerDataset((LiteDbFlowerService)flowerService);
-			imageset.InitializeImageSet();
-			//imageset.SaveToFile(@"D:\GitHub\FlowerImageClassification\FlowerImageClassification.WebApp\_backup\");
-			//imageset.RestoreImageSet(@"D:\GitHub\FlowerImageClassification\FlowerImageClassification.WebApp\_backup\");
 		}
 
 		public IActionResult Index()
