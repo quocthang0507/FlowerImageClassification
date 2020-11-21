@@ -34,7 +34,7 @@ namespace FlowerImageClassification.WebApp.Services
 				return null;
 
 			var tokenHandler = new JwtSecurityTokenHandler();
-			var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+			var key = Encoding.UTF8.GetBytes(appSettings.Secret);
 			var tokenDescriptor = new SecurityTokenDescriptor
 			{
 				Subject = new ClaimsIdentity(new Claim[]
@@ -42,12 +42,11 @@ namespace FlowerImageClassification.WebApp.Services
 					new Claim(ClaimTypes.Name, user.Username),
 					new Claim(ClaimTypes.Role, user.Role)
 				}),
-				Expires = DateTime.UtcNow.AddDays(7),
+				Expires = DateTime.UtcNow.AddDays(1),
 				SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
 			};
 			var token = tokenHandler.CreateToken(tokenDescriptor);
 			user.Token = tokenHandler.WriteToken(token);
-
 			return user.WithoutPassword();
 		}
 	}

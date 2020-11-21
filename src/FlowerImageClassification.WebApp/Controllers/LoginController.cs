@@ -1,5 +1,6 @@
 ﻿using FlowerImageClassification.WebApp.Models;
 using FlowerImageClassification.WebApp.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 
@@ -34,8 +35,8 @@ namespace FlowerImageClassification.WebApp.Controllers
 				}
 				HttpContext.Session.Set("Username", Encoding.UTF8.GetBytes(user.Username));
 				HttpContext.Session.Set("Role", Encoding.UTF8.GetBytes(user.Role));
-				//return RedirectToAction("Index", "Home");
-				return Ok(user);
+				HttpContext.Response.Cookies.Append("token", user.Token, new CookieOptions { HttpOnly = true });
+				return RedirectToAction("Index", "Home");
 			}
 			return Unauthorized();
 		}

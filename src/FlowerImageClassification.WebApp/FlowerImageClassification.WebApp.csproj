@@ -16,7 +16,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.ML" Version="1.5.2" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.8.0" />
     <PackageReference Include="Microsoft.ML" Version="1.5.2" />
     <PackageReference Include="Microsoft.ML.ImageAnalytics" Version="1.5.2" />
     <PackageReference Include="Microsoft.ML.Vision" Version="1.5.2" />
