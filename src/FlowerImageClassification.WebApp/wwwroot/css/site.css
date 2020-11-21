@@ -59,6 +59,11 @@ header {
 	padding: 10px;
 }
 
+.card-img-top {
+	height: 230px;
+	object-fit: cover;
+}
+
 .row {
 	margin-top: 10px;
 }

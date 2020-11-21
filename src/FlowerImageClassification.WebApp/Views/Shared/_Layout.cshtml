@@ -44,7 +44,10 @@
 							else if (role == Role.Admin)
 							{
 								<li class="nav-item">
-									<a class="nav-link text-info @Html.IsSelected(actions: "Index", controllers: "Admin")" asp-area="" asp-controller="Admin" asp-action="Index">Trang quản trị</a>
+									<a class="nav-link text-info @Html.IsSelected(actions: "Index", controllers: "Admin")" asp-area="" asp-controller="Admin" asp-action="Index">Quản lý thông tin</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-info @Html.IsSelected(actions: "Manage", controllers: "Admin")" asp-area="" asp-controller="Admin" asp-action="Manage">Quản lý đóng góp</a>
 								</li>
 							}
 						}

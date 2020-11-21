@@ -12,16 +12,24 @@ namespace FlowerImageClassification.WebApp.Controllers
 	public class AdminController : Controller
 	{
 		private readonly ILiteDbFlowerService flowerService;
+		private readonly ILiteDbSentimentService sentimentService;
 
-		public AdminController(ILiteDbFlowerService flowerService)
+		public AdminController(ILiteDbFlowerService flowerService, ILiteDbSentimentService sentimentService)
 		{
 			this.flowerService = flowerService;
+			this.sentimentService = sentimentService;
 		}
 
 		public IActionResult Index()
 		{
-			IEnumerable<Flower> flowers = GetAll();
+			IEnumerable<Flower> flowers = GetAllFlowers();
 			return View(flowers);
+		}
+
+		public IActionResult Manage()
+		{
+			IEnumerable<Sentiment> sentiments = GetAllSentiments();
+			return View(sentiments);
 		}
 
 		[HttpGet]
@@ -68,9 +76,15 @@ namespace FlowerImageClassification.WebApp.Controllers
 			return NotFound();
 		}
 
-		private IEnumerable<Flower> GetAll()
+		private IEnumerable<Flower> GetAllFlowers()
 		{
 			return flowerService.FindAll();
 		}
+
+		private IEnumerable<Sentiment> GetAllSentiments()
+		{
+			return sentimentService.FindAll();
+		}
+
 	}
 }

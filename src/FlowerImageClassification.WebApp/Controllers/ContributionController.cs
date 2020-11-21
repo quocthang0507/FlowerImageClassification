@@ -38,6 +38,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 		[Route("api/Contribution")]
+		[AllowAnonymous]
 		public async Task<IActionResult> SaveUserContribution(IFormFile imageFile, string predictedLabel)
 		{
 			if (!ModelState.IsValid || imageFile == null || imageFile.Length == 0 || (imageFile.Length / 1000) > 2048)
@@ -55,6 +56,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
 		[Route("api/Base64Contribution")]
+		[AllowAnonymous]
 		public async Task<IActionResult> SaveUserBase64Contribution(string base64image, string predictedLabel)
 		{
 			if (!ModelState.IsValid || base64image == null)
@@ -89,7 +91,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[HttpGet]
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
-		[Route("api/Hide?{id:int}")]
+		[Route("api/Hide/{id:int}")]
 		[Authorize(Roles = Role.Admin)]
 		public IActionResult HideImage(int id)
 		{
@@ -106,7 +108,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		[HttpGet]
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
-		[Route("api/Delete?{id:int}")]
+		[Route("api/Delete/{id:int}")]
 		[Authorize(Roles = Role.Admin)]
 		public IActionResult DeleteImage(int id)
 		{

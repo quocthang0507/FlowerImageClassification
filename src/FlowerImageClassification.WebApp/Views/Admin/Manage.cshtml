@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Sentiment>
+@{
+	ViewData["Title"] = "Quản lý hình ảnh";
+}
+
+<div class="text-center">
+	<h1 class="display-4">Quản lý hình ảnh đã gắn nhãn</h1>
+</div>
+
+<div class="row">
+	@foreach (var sentiment in Model)
+		if (sentiment.Visible)
+		{
+			<div class="col-md-4">
+				<div class="card">
+					<img src="~/Contributions/@sentiment.FileName" alt="@sentiment.FileName" class="card-img-top" />
+					<div class="card-body">
+						<p>Ngày tải lên: @sentiment.UploadDate.ToString("d/M/yyyy H:m:s")</p>
+						<div class="form-group">
+							<label for="tbxPredictedLabel">Nhãn dự đoán:</label>
+							<input type="text" class="form-control" id="tbxPredictedLabel" value="@sentiment.PredictedLabel" readonly>
+						</div>
+						<div class="form-group">
+							<label for="tbxNewLabel">Nhãn mới (nếu có):</label>
+							<input type="text" class="form-control" id="tbxNewLabel" value="@sentiment.NewLabel" readonly>
+						</div>
+						<div class="form-group center">
+							<button class="btn btn-primary" id="@sentiment.ID">Đánh dấu đã xử lý</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+</div>
