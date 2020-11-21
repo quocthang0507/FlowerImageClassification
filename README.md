@@ -6,9 +6,7 @@
 
 *This solution is based on [DeepLearning_ImageClassification_Training](https://github.com/dotnet/machinelearning-samples/tree/master/samples/csharp/getting-started/DeepLearning_ImageClassification_Training).*
 
-Hope you like it! 😍😍😍
-
-Please don't miss the following information.
+Hope you like it! 😍😍😍 Please don't miss the following information.
 
 ## Bảng thông tin tóm tắt
 | ML.NET version | API type | Status | App Type | Data type | Scenario | ML Task | Algorithms |
