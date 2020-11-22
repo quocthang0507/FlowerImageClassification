@@ -133,9 +133,9 @@ namespace FlowerImageClassification.Portable
 					capturing_2.Dispose();
 					break;
 				case 4:
+					string[] archs = { "MobilenetV2", "ResnetV250" };
 					foreach (Architecture _arch in (Architecture[])Enum.GetValues(typeof(Architecture)))
 					{
-						string[] archs = { "MobilenetV2", "ResnetV250" };
 						if (archs.Contains(Enum.GetName(typeof(Architecture), _arch)))
 							for (int i = 1; i <= 10; i++)
 							{

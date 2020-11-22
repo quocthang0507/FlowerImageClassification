@@ -61,7 +61,7 @@ function validateFileExtension() {
 				var reader = new FileReader();
 				reader.onload = function (e) {
 					document.getElementById('divResult_left').style.visibility = 'visible';
-					document.getElementById('divImagePreview').innerHTML = "<img class='imgPreview' src='' + e.target.result + ''/>";
+					document.getElementById('divImagePreview').innerHTML = '<img class="imgPreview" src="' + e.target.result + '"/>';
 				};
 				reader.readAsDataURL(fileInput.files[0]);
 				return true;
