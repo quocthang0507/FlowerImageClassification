@@ -9,5 +9,6 @@
 		public string PredictedLabel { get; set; }
 		public float Probability { get; set; }
 		public long PredictionExecutionTime { get; set; }
+		public string VietnameseLabel { get; set; }
 	}
 }

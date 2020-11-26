@@ -48,12 +48,3 @@ if (background != null)
 		element.style.objectFit = 'cover';
 		element.style.animationDelay = (index - 1) * 10 + 's';
 	}
-
-/////////////// Dictionary about flower categories ///////////////
-var dict = {
-	'daisy': 'Hoa cúc',
-	'dandelion': 'Hoa bồ công anh',
-	'rose': 'Hoa hồng',
-	'sunflower': 'Hoa hướng dương',
-	'tulip': 'Hoa uất kim hương'
-}

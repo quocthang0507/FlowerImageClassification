@@ -115,11 +115,12 @@ function uploadAndClassify(e) {
 	}).then(response => response.json()).then(response2 => {
 		console.log('Đã nhận được phản hồi: ', response2);
 		document.getElementById('divResult_right').style.visibility = 'visible';
-		document.getElementById('divImageId').innerHTML = 'Tên tập tin vừa tải lên: ' + response2.imageID;
-		document.getElementById('divPrediction').innerHTML = `Kết quả dự đoán là: ${dict[response2.predictedLabel]}`;
+		document.getElementById('divImageId').innerHTML = `Tên tập tin vừa tải lên: ${response2.imageID}`;
+		document.getElementById('divPrediction').innerHTML = `Kết quả dự đoán là: ${response2.vietnameseLabel}`;
 		document.getElementById('divEnPrediction').innerHTML = response2.predictedLabel;
+		document.getElementById('divProbability').title = `Xác suất dự đoán đúng loài hoa này là ${(response2.probability * 100).toFixed(2)}%`;
 		document.getElementById('rating').style.width = response2.probability * 100 + "%";
-		document.getElementById('divExecutionTime').innerHTML = 'Thời gian dự đoán: ' + response2.predictionExecutionTime + ' mili giây';
+		document.getElementById('divExecutionTime').innerHTML = `Thời gian dự đoán: ${response2.predictionExecutionTime} mi-li giây`;
 		getInfo(response2.predictedLabel);
 
 		removeLoadingClass();
@@ -137,8 +138,11 @@ function uploadAndClassify(e) {
  */
 function getInfo(name) {
 	var url = 'api/GetInfo/' + name;
-	$.get(url, function (data) {
-		document.querySelector('#modal-info > div > div > div.modal-body').innerHTML = data;
+	$.get(url, function (data, status) {
+		if (status == 'success') {
+			document.querySelector('#modal-info > div > div > div.modal-body').innerHTML = data;
+		} else {
+		}
 	});
 }
 

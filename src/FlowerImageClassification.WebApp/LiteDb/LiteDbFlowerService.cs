@@ -55,13 +55,7 @@ namespace FlowerImageClassification.WebApp.LiteDb
 		/// </summary>
 		/// <param name="englishName"></param>
 		/// <returns></returns>
-		public string GetInfoByName(string englishName)
-		{
-			if (englishName.Contains(' '))
-				englishName = englishName.Split(' ')[0];
-			return liteDb.GetCollection<Flower>().Find(f => f.EnglishName.Equals(englishName, StringComparison.OrdinalIgnoreCase)).
-				FirstOrDefault().RichTextInfo;
-		}
+		public string GetInfoByName(string englishName) => liteDb.GetCollection<Flower>().Find(f => f.EnglishName.Equals(englishName, StringComparison.OrdinalIgnoreCase)).FirstOrDefault().RichTextInfo;
 
 		/// <summary>
 		/// Insert a new flower or update if it existed
@@ -72,5 +66,7 @@ namespace FlowerImageClassification.WebApp.LiteDb
 			if (!Update(flower))
 				Insert(flower);
 		}
+
+		public string FindVietnameseName(string englishName) => liteDb.GetCollection<Flower>().Find(f => f.VietnameseName.Equals(englishName, StringComparison.OrdinalIgnoreCase)).FirstOrDefault().VietnameseName;
 	}
 }
