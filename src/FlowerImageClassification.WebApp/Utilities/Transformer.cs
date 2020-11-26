@@ -1,5 +1,6 @@
 ﻿using FlowerImageClassification.Shared.Models.ImageHelpers;
 using Microsoft.AspNetCore.Http;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace FlowerImageClassification.WebApp.Utilities
 		/// </summary>
 		/// <param name="imageFile"></param>
 		/// <returns></returns>
-		public static async Task<byte[]> GetByteFromUploadedFile(IFormFile imageFile)
+		public static async Task<byte[]> GetBytesFromUploadedFile(IFormFile imageFile)
 		{
 			MemoryStream memoryStream = new MemoryStream();
 
@@ -32,7 +33,7 @@ namespace FlowerImageClassification.WebApp.Utilities
 		/// </summary>
 		/// <param name="imageData"></param>
 		/// <returns></returns>
-		public static async Task<string> SaveByteToFile(byte[] imageData)
+		public static async Task<string> SaveBytesToFile(byte[] imageData)
 		{
 			string ext = ImageValidation.GetImageFormat(imageData) != null ?
 				(ImageValidation.GetImageFormat(imageData) == ImageFormat.Jpeg ? ".jpg" : ".png") : null;
@@ -43,6 +44,14 @@ namespace FlowerImageClassification.WebApp.Utilities
 			using FileStream stream = new FileStream(filePath, FileMode.Create);
 			await stream.WriteAsync(imageData);
 			return filename;
+		}
+
+		public static Image ConvertBytesToImage(byte[] bmpBytes)
+		{
+			Image image = null;
+			using MemoryStream stream = new MemoryStream(bmpBytes);
+			image = Image.FromStream(stream);
+			return image;
 		}
 	}
 }

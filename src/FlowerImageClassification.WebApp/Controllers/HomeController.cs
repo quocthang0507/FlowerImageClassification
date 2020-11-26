@@ -92,7 +92,7 @@ namespace FlowerImageClassification.WebApp.Controllers
 		{
 			if (!ModelState.IsValid || imageFile == null || imageFile.Length == 0 || (imageFile.Length / 1000) > 2048)
 				return BadRequest("Bad request because of invalid model state or null parameter or too large");
-			byte[] imageData = await Transformer.GetByteFromUploadedFile(imageFile);
+			byte[] imageData = await Transformer.GetBytesFromUploadedFile(imageFile);
 			return Classify(imageData, imageFile.FileName);
 		}
 
