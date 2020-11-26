@@ -118,7 +118,7 @@ function uploadAndClassify(e) {
 		document.getElementById('divImageId').innerHTML = 'Tên tập tin vừa tải lên: ' + response2.imageID;
 		document.getElementById('divPrediction').innerHTML = `Kết quả dự đoán là: ${dict[response2.predictedLabel]}`;
 		document.getElementById('divEnPrediction').innerHTML = response2.predictedLabel;
-		document.getElementById('divProbability').innerHTML = 'Xác suất: ' + (response2.probability * 100).toFixed(3) + '%';
+		document.getElementById('rating').style.width = response2.probability * 100 + "%";
 		document.getElementById('divExecutionTime').innerHTML = 'Thời gian dự đoán: ' + response2.predictionExecutionTime + ' mili giây';
 		getInfo(response2.predictedLabel);
 

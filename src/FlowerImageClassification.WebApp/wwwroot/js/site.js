@@ -19,8 +19,17 @@ if (inputFile != null || inputWebcam != null)
 if (btnContribution != null)
 	btnContribution.addEventListener('click', e => SubmitUserSentiment(e));
 
-/////////////// File upload form ///////////////
-$(document).ready(customFileInput());
+$(document).ready(function () {
+	/////////////// Show tooltip ///////////////
+	$('[data-toggle="tooltip"]').tooltip();
+
+	/////////////// Star rating ///////////////
+	var star_rating_width = $('.fill-ratings span').width();
+	$('.star-ratings').width(star_rating_width);
+
+	/////////////// File upload form ///////////////
+	customFileInput();
+});
 
 /////////////// Webcam settings ///////////////
 if (webcam != null) {
