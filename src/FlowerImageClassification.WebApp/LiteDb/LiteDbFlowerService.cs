@@ -67,6 +67,6 @@ namespace FlowerImageClassification.WebApp.LiteDb
 				Insert(flower);
 		}
 
-		public string FindVietnameseName(string englishName) => liteDb.GetCollection<Flower>().Find(f => f.VietnameseName.Equals(englishName, StringComparison.OrdinalIgnoreCase)).FirstOrDefault().VietnameseName;
+		public string FindVietnameseName(string englishName) => liteDb.GetCollection<Flower>().Find(f => f.EnglishName.Equals(englishName, StringComparison.OrdinalIgnoreCase)).FirstOrDefault().VietnameseName;
 	}
 }
