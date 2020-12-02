@@ -14,6 +14,6 @@ namespace FlowerImageClassification.WebApp.LiteDb
 		int Insert(Flower flower);
 		bool Update(Flower flower);
 		string GetInfoByName(string englishName);
-
+		string FindVietnameseName(string englishName);
 	}
 }

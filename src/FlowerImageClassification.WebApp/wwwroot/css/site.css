@@ -516,3 +516,37 @@ iframe {
 	font-size: 15px;
 	font-weight: bold;
 }
+
+/**
+	Star Rating
+*/
+.star-ratings {
+	unicode-bidi: bidi-override;
+	color: #ccc;
+	font-size: 30px;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	display: inline;
+}
+
+	.star-ratings .fill-ratings {
+		color: #e7711b;
+		padding: 0;
+		position: absolute;
+		z-index: 1;
+		display: inline;
+		top: 0;
+		left: 0;
+		overflow: hidden;
+	}
+
+		.star-ratings .fill-ratings span {
+			display: inline-block;
+		}
+
+	.star-ratings .empty-ratings {
+		padding: 0;
+		display: inline;
+		z-index: 0;
+	}

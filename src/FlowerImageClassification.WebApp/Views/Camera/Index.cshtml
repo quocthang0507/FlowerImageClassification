@@ -11,7 +11,7 @@
 					<div class="card-body">
 						<div id="my_camera"></div>
 						<div id="formButton">
-							<input type="button" class="btn btn-success btnCapture" value="Chụp hình" onclick="takeSnapshot()" />
+							<input type="button" class="btn btn-success btnCapture" value="Chụp hình" onclick="takeSnapshot()" data-toggle="tooltip" data-placement="bottom" title="Chụp hình ảnh hiện tại của webcam!" />
 						</div>
 					</div>
 				</div>
@@ -27,34 +27,45 @@
 		</div>
 		<div class="row">
 			<div id="formButton">
-				<input type="submit" value="Gửi hình" name="submit" class="btn btn-primary" />
-				<a class="btn btn-success" asp-area="" asp-controller="Home" asp-action="Index">Chuyển qua tập tin</a>
+				<input type="submit" value="Gửi hình" name="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Gửi hình ảnh để nhận diện loài hoa" />
+				<a class="btn btn-success" asp-area="" asp-controller="Home" asp-action="Index" data-toggle="tooltip" data-placement="bottom" title="Chuyển qua trang gửi hình ảnh bằng tập tin">Chuyển qua tập tin</a>
 			</div>
 		</div>
 	</form>
 </div>
-<br/>
+<br />
 <div class="row">
 	<div class="col-sm" id="divResult_right">
 		<div class="card">
 			<div class="card-header">Kết quả</div>
 			<div class="card-body">
-				<div id="divImageId" class="col-md-10"></div>
+				<div id="divImageId" class="col-md-10" style="display: none"></div>
 				<div id="divPrediction" class="col-md-10"></div>
-				<div id="divProbability" class="col-md-10"></div>
-				<div id="divEnPrediction" class="col-md-10"></div>
+				<div id="divProbability" class="col-md-10" data-toggle="tooltip" data-placement="bottom" title="">
+					Độ chính xác:
+					<div class="star-ratings">
+						<div class="fill-ratings" id="rating" style="width:0%;">
+							<span>★★★★★</span>
+						</div>
+						<div class="empty-ratings">
+							<span>★★★★★</span>
+						</div>
+					</div>
+				</div>
+				<div id="divEnPrediction" class="col-md-10" style="display: none"></div>
 				<div id="divExecutionTime" class="col-md-10"></div>
 				<br />
 				<div class="formButton center">
 					<input type="button" value="Khám phá thêm về loài hoa này" class="btn btn-info row-sm" data-toggle="modal" data-target="#modal-info" />
-					<input type="button" value="Báo cáo" class="btn btn-sm row-sm btn-danger" id="btnSendContribution" />
+					<input type="button" value="Báo cáo" class="btn btn-sm row-sm btn-danger" id="btnSendContribution" data-toggle="tooltip" data-placement="bottom" title="Báo cáo ảnh này!" />
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+<!--Model form thông tin giới thiệu-->
+<div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="modalTitle">Thông tin cho bạn</h5>

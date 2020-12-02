@@ -12,12 +12,12 @@
 			<div>
 				<div class="form-group custom-file mb-3">
 					<input type="file" class="custom-file-input form-control" id="inputFile" name="imageFile" accept="image/*">
-					<label class="custom-file-label" for="inputFile">Chọn tập tin</label>
+					<label class="custom-file-label" for="inputFile" data-toggle="tooltip" data-placement="bottom" title="Chọn tập tin từ máy của bạn">Chọn tập tin</label>
 				</div>
 			</div>
 			<div id="formButton">
-				<input type="submit" value="Gửi hình" name="submit" class="btn btn-primary" />
-				<a class="btn btn-success" asp-area="" asp-controller="Camera" asp-action="Index">Chuyển qua Camera</a>
+				<input type="submit" value="Gửi hình" name="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Gửi hình ảnh để nhận dạng loài hoa" />
+				<a class="btn btn-success" asp-area="" asp-controller="Camera" asp-action="Index" data-toggle="tooltip" data-placement="bottom" title="Chuyển qua trang gửi hình ảnh camera">Chuyển qua Camera</a>
 			</div>
 		</form>
 	</div>
@@ -37,13 +37,23 @@
 			<div class="card-body">
 				<div id="divImageId" class="col-md-10"></div>
 				<div id="divPrediction" class="col-md-10"></div>
-				<div id="divEnPrediction" class="col-md-10"></div>
-				<div id="divProbability" class="col-md-10"></div>
+				<div id="divEnPrediction" class="col-md-10" style="display: none"></div>
+				<div id="divProbability" class="col-md-10" data-toggle="tooltip" data-placement="bottom" title="">
+					Độ chính xác: 
+					<div class="star-ratings">
+						<div class="fill-ratings" id="rating" style="width:0%;">
+							<span>★★★★★</span>
+						</div>
+						<div class="empty-ratings">
+							<span>★★★★★</span>
+						</div>
+					</div>
+				</div>
 				<div id="divExecutionTime" class="col-md-10"></div>
 				<br />
 				<div class="formButton center">
 					<input type="button" value="Khám phá thêm về loài hoa này" class="btn btn-info row-sm" data-toggle="modal" data-target="#modal-info" />
-					<input type="button" value="Báo cáo" class="btn btn-sm row-sm btn-danger" id="btnSendContribution"/>
+					<input type="button" value="Báo cáo" class="btn btn-sm row-sm btn-danger" id="btnSendContribution" data-toggle="tooltip" data-placement="bottom" title="Báo cáo ảnh này!" />
 				</div>
 			</div>
 		</div>
