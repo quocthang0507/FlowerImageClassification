@@ -24,7 +24,8 @@ namespace FlowerImageClassification.Shared.WebHelpers
 		{
 			IEnumerable<string> imagesPath = Directory.
 				GetFiles(pathToImageFolder, "*", SearchOption.AllDirectories).
-				Where(file => Path.GetExtension(file).Contains("jpg", StringComparison.OrdinalIgnoreCase) || Path.GetExtension(file).Contains("png", StringComparison.OrdinalIgnoreCase));
+				Where(file => Path.GetExtension(file).Contains("jpg", StringComparison.OrdinalIgnoreCase) || Path.GetExtension(file).Contains("png", StringComparison.OrdinalIgnoreCase)).
+				OrderBy(file => Path.GetFileName(file));
 			return nameAsLabel ?
 				imagesPath.Select(path => new ImageData(path, Directory.GetParent(path).Name)) :
 				imagesPath.Select(path => new ImageData(path, Path.GetFileName(path)));
