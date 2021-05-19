@@ -133,7 +133,7 @@ namespace FlowerImageClassification.Portable
 					capturing_2.Dispose();
 					break;
 				case 4:
-					string[] archs = { "MobilenetV2", "ResnetV250" };
+					string[] archs = { "MobilenetV2", "ResnetV250", "InceptionV3", "ResnetV2101" };
 					foreach (Architecture _arch in (Architecture[])Enum.GetValues(typeof(Architecture)))
 					{
 						if (archs.Contains(Enum.GetName(typeof(Architecture), _arch)))
@@ -143,7 +143,7 @@ namespace FlowerImageClassification.Portable
 								modelFileName = $"#{i}. {archNameInput}_{DateTime.Now.ToString("HH-mm-ss")}";
 								OutputHelper capturing_3 = new OutputHelper(Path.Combine(consoleOutputPath, modelFileName + ".txt"));
 								Console.WriteLine($"====================#{i}. {archNameInput} architecture ====================");
-								MLTraining mlTraining_3 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), fullImagesetFolderPath, null, 1, 0.8f, (int)_arch);
+								MLTraining mlTraining_3 = new MLTraining(Path.Combine(outputModelPath, modelFileName + ".zip"), fullImagesetFolderPath, null, 1, 0.7f, (int)_arch, true);
 								mlTraining_3.RunPipeline();
 								capturing_3.Dispose();
 
